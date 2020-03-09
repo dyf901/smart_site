@@ -16,7 +16,7 @@ import java.util.UUID;
 @RequestMapping("img")
 @CrossOrigin
 public class UploadController {
-    @ApiOperation(value = "上传图片",notes = "")
+    /*@ApiOperation(value = "上传图片",notes = "")
     @PostMapping("upload")
     public String picture(@RequestParam("file") MultipartFile file) {
         String oldFileName = file.getOriginalFilename();
@@ -119,5 +119,5 @@ public class UploadController {
         } catch (Exception e) {
             return false;
         }
-    }
+    }*/
 }
