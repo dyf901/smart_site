@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zty.smart_site.dao.StaffDao">
+    <!--增加员工信息-->
+    <insert id="InsertStaff" parameterType="java.util.Map">
+        INSERT INTO `smart_site`.`staff` (`staff_name`, `staff_age`, `staff_img`, `staff_sex`, `staff_nation`, `staff_card`, `staff_address`, `staff_province`, `staff_phone`, `sos_name`, `sos_ship`, `sos_phone`, `entry_time`, `section_id`, `department_id`, `worktype_id`, `picture`, `type`)
+        VALUES (#{staff_name}, #{staff_age}, #{staff_img}, #{staff_sex}, #{staff_nation}, #{staff_card}, #{staff_address}, #{staff_province}, #{staff_phone}, #{sos_name}, #{sos_ship}, #{sos_phone}, now(), #{section_id}, #{department_id}, #{worktype_id}, #{picture}, #{type});
+    </insert>
+
+    <!--删除员工信息-->
+    <delete id="DeleteStaff" parameterType="java.util.Map">
+        DELETE FROM `smart_site`.`staff` WHERE `id`=#{id}
+    </delete>
+
+    <!--修改员工信息-->
+    <update id="UpdateStaff" parameterType="java.util.Map">
+        UPDATE `smart_site`.`staff` SET `staff_name`=#{staff_name}, `staff_age`=#{staff_age}, `staff_img`=#{staff_img}, `staff_sex`=#{staff_sex}, `staff_nation`=#{staff_nation}, `staff_card`=#{staff_card}, `staff_address`=#{staff_address},`staff_phone`=#{staff_phone},
+        `sos_name`=#{sos_name}, `sos_ship`=#{sos_ship}, `sos_phone`=#{sos_phone},`section_id`=#{section_id}, `department_id`=#{department_id}, `worktype_id`=#{worktype_id} WHERE (`id`=#{id});
+    </update>
+
+    <!--修改App头像-->
+    <update id="UpdateStaffPicture" parameterType="java.util.Map">
+         UPDATE `smart_site`.`staff` SET `picture`=#{picture} WHERE `id`=#{id}
+    </update>
+
+    <!--修改App登录密码-->
+    <update id="UpdateStaffPassword" parameterType="java.util.Map">
+         UPDATE `smart_site`.`staff` SET `password`=#{password} WHERE `id`=#{id}
+    </update>
+
+    <!--修改员工在职/离职状态-->
+    <update id="UpdateStaffState" parameterType="java.util.Map">
+         UPDATE `smart_site`.`staff` SET `state`='0' WHERE `id`=#{id}
+    </update>
+
+    <!--修改员工培训状态-->
+    <update id="UpdateStaffTrain" parameterType="java.util.Map">
+         UPDATE `smart_site`.`staff` SET `train`='1' WHERE `id`=#{id}
+    </update>
+
+    <!--模糊分页查询员工信息-->
+    <select id="FindStaff" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.Staff">
+        <bind name="page" value="pageSize*(pageNo-1)"></bind>
+        SELECT `id`, `staff_name`, `staff_age`, `staff_img`, `staff_sex`, `staff_nation`, `staff_card`, `staff_address`, `staff_province`, `staff_phone`, `sos_name`, `sos_ship`, `sos_phone`, `entry_time`, `history_integral`, `end_integral`, `section_id`, `department_id`, `worktype_id`, `password`, `picture`, `state`, `status`, `type`, `train` FROM `smart_site`.`staff`
+        WHERE `section_id`=#{section_id}
+        limit #{page},#{pageSize}
+    </select>
+
+    <!--统计总数(行查后台)-->
+    <select id="Total" parameterType="java.util.Map" resultType="long">
+        SELECT COUNT (*) FROM `smart_site`.`staff`
+        WHERE `section_id`=#{section_id}
+    </select>
+
+    <!--根据手机号查询员工信息-->
+    <select id="FindStaffByStaff_phone" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.Staff">
+        SELECT `id`, `staff_name`, `staff_age`, `staff_img`, `staff_sex`, `staff_nation`, `staff_card`, `staff_address`, `staff_province`, `staff_phone`, `sos_name`, `sos_ship`, `sos_phone`, `entry_time`, `history_integral`, `end_integral`, `section_id`, `department_id`, `worktype_id`, `password`, `picture`, `state`, `status`, `type`, `train` FROM `smart_site`.`staff`
+        WHERE `staff_card`=#{staff_card}
+    </select>
+</mapper>
