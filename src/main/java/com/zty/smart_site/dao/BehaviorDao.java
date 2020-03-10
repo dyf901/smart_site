@@ -20,6 +20,9 @@ public interface BehaviorDao {
     //分页模糊查询
     List<Behavior> FindBehavior(Map map);
 
+    //统计总数
+    long Total(Map map);
+
     //行为类型下拉框
-    List<Behavior> SelectBehavior(Map map);
+    List<Behavior> SelectBehavior();
 }

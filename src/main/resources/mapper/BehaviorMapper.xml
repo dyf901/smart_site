@@ -30,6 +30,16 @@
         limit #{page},#{pageSize}
     </select>
 
+    <!--统计总数-->
+    <select id="Total" parameterType="java.util.Map" resultType="long">
+        SELECT COUNT(*) FROM `smart_site`.`behavior`
+        <where>
+            <if test="behavior_name!=null and behavior_name!=''">
+                `behavior_name`=#{behavior_name}
+            </if>
+        </where>
+    </select>
+
     <!--行为类型下拉框-->
     <select id="SelectBehavior" resultType="com.zty.smart_site.entity.Behavior">
         SELECT `id`, `behavior_name` FROM `smart_site`.`behavior`

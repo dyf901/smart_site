@@ -72,4 +72,10 @@ public class StaffService implements StaffDao {
     public Staff FindStaffByStaff_phone(Map map) {
         return staffDao.FindStaffByStaff_phone(map);
     }
+
+    //根据身份证号查询员工信息
+    @Override
+    public Staff FindStaffByStaff_card(Map map) {
+        return staffDao.FindStaffByStaff_card(map);
+    }
 }

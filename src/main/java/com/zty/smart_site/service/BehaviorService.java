@@ -37,9 +37,15 @@ public class BehaviorService implements BehaviorDao {
         return behaviorDao.FindBehavior(map);
     }
 
+    //统计总数
+    @Override
+    public long Total(Map map) {
+        return behaviorDao.Total(map);
+    }
+
     //行为类型下拉框
     @Override
-    public List<Behavior> SelectBehavior(Map map) {
-        return behaviorDao.SelectBehavior(map);
+    public List<Behavior> SelectBehavior() {
+        return behaviorDao.SelectBehavior();
     }
 }

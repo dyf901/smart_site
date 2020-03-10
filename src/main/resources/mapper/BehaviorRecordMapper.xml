@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="***.dao.******Dao">
+    <!--增加行为记录-->
+    <insert id="InsertBehaviorRecord" parameterType="java.util.Map">
+        INSERT INTO `smart_site`.`behavior_record` (`staff_id`, `behavior_id`, `uptime`, `remark`) VALUES (#{staff_id}, #{behavior_id}, now(), #{remark});
+    </insert>
+
+    <!--删除行为记录-->
+    <delete id="DeleteBehaviorRecord" parameterType="java.util.Map">
+        DELETE FROM `smart_site`.`behavior_record` WHERE `id`=#{id}
+    </delete>
+
+    <!--修改行为记录-->
+    <update id="UpdateBehaviorRecord" parameterType="java.util.Map">
+        UPDATE `smart_site`.`behavior_record` SET `behavior_id`=#{behavior_id}, `remark`=#{remark} WHERE (`id`=#{id});
+    </update>
+
+    <!--分页模糊查询行为记录-->
+    <select id="FindBehaviorRecord" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.BehaviorRecord">
+        <bind name="page" value="pageSize*(pageNo-1)"></bind>
+        SELECT b.`id`, b.`staff_id`, b.`behavior_id`, b.`uptime`, b.`remark`, s.`staff_name` as staff_name, a.`behavior_name` as behavior_name FROM `smart_site`.`behavior_record` b
+        INNER JOIN `smart_site`.`staff` s ON b.`staff_id`=s.`id`
+        INNER JOIN `smart_site`.`behavior` a ON b.`behavior_id`=a.`id`
+        <where>
+            <if test="behavior_id!=null and behavior_id!=''">
+                b.`behavior_id`=#{behavior_id}
+            </if>
+        </where>
+        limit #{page},#{pageSize}
+    </select>
+
+    <!--统计总数-->
+    <select id="Total" parameterType="java.util.Map" resultType="long">
+        SELECT COUNT (*) FROM `smart_site`.`behavior_record`
+        <where>
+            <if test="behavior_id!=null and behavior_id!=''">
+                `behavior_id`=#{behavior_id}
+            </if>
+        </where>
+    </select>
+
+    <!--分页查询个人行为记录-->
+    <select id="FindBehaviorRecordByStaff_id" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.BehaviorRecord">
+        <bind name="page" value="pageSize*(pageNo-1)"></bind>
+        SELECT b.`id`, b.`staff_id`, b.`behavior_id`, b.`uptime`, b.`remark`, s.`staff_name` as staff_name, a.`behavior_name` as behavior_name FROM `smart_site`.`behavior_record` b
+        INNER JOIN `smart_site`.`staff` s ON b.`staff_id`=s.`id`
+        INNER JOIN `smart_site`.`behavior` a ON b.`behavior_id`=a.`id`
+        WHERE b.`staff_id`=#{staff_id}
+        limit #{page},#{pageSize}
+    </select>
+
+    <!--统计个人记录总数-->
+    <select id="TotalByStaff_id" parameterType="java.util.Map" resultType="long">
+        SELECT COUNT (*) FROM `smart_site`.`behavior_record` WHERE `staff_id`=#{staff_id}
+    </select>
+</mapper>

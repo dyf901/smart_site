@@ -37,4 +37,7 @@ public interface StaffDao {
 
     //根据手机号查询员工信息
     Staff FindStaffByStaff_phone(Map map);
+
+    //根据身份证号查询员工信息
+    Staff FindStaffByStaff_card(Map map);
 }
