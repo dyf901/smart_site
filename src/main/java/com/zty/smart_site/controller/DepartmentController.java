@@ -14,4 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class DepartmentController {
     @Autowired
     private DepartmentService departmentService;
+
+
 }
