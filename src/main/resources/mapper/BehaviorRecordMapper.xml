@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="***.dao.******Dao">
+<mapper namespace="com.zty.smart_site.dao.BehaviorRecordDao">
     <!--增加行为记录-->
     <insert id="InsertBehaviorRecord" parameterType="java.util.Map">
         INSERT INTO `smart_site`.`behavior_record` (`staff_id`, `behavior_id`, `uptime`, `remark`) VALUES (#{staff_id}, #{behavior_id}, now(), #{remark});

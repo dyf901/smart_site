@@ -10,6 +10,9 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Map;
 
 @Api(description = "登录接口")
@@ -25,13 +28,26 @@ public class LoginController {
 
     @ApiOperation(value = "PC登陆",notes = "测试数据:")
     @PostMapping("/LoginPc")
-    public Msg LoginPc(@RequestBody Map map){
+    public Msg LoginPc(@RequestBody Map map) throws ParseException {
         Msg msg = new Msg();
         User user = userService.FindUserByUsername(map);//根据用户名查询用户信息
         if (user!=null){
             if (user.getPassword().equals(map.get("password"))){
-                msg.setMessage("登录成功!");
-                return msg;
+                // 获取当前时间
+                Date date = new Date();
+                //如果想比较日期则写成"yyyy-MM-dd"就可以了
+                SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+                //将字符串形式的时间转化为Date类型的时间
+                Date a=sdf.parse(user.getEnd_time());
+                Date b= sdf.parse(sdf.format(date));
+		if(a.getTime()-b.getTime()>=0) {
+            msg.setMessage("登录成功!");
+            return msg;
+        }else {
+            msg.setMessage("账户已过期,请联系厂家!");
+            return msg;
+
+        }
             }else {
                 msg.setMessage("密码错误,登录失败!");
                 return msg;

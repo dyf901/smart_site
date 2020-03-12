@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="***.***.***.***Dao">
+<mapper namespace="com.zty.smart_site.dao.SectionDao">
     <!--增加标段信息-->
     <insert id="InsertSection" parameterType="java.util.Map">
         INSERT INTO `smart_site`.`section` (`section_name`, `section_time`, `start_time`, `end_time`, `section_principal`) VALUES (#{section_name}, #{section_time}, #{start_time}, #{end_time}, #{section_principal});
@@ -17,4 +17,27 @@
     <update id="UpdateSection" parameterType="java.util.Map">
         UPDATE `smart_site`.`section` SET `section_name`=#{section_name}, `section_time`=#{section_time}, `start_time`=#{start_time}, `end_time`=#{end_time}, `section_principal`=#{section_principal} WHERE (`id`=#{id});
     </update>
+
+    <!--分页模糊查询标段信息-->
+    <select id="FindSectioon" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.Section">
+        <bind name="page" value="pageSize*(pageNo-1)"></bind>
+        SELECT  `id`, `section_name`, `section_time`, `start_time`, `end_time`, `section_principal` FROM `smart_site`.`section`
+        <where>
+            <if test="section_name!=null and section_name!=''">
+                section_name=#{section_name}
+            </if>
+        </where>
+        ORDER BY id DESC
+        limit #{page},#{pageSize}
+    </select>
+
+    <!--统计总数-->
+    <select id="Total" parameterType="java.util.Map" resultType="long">
+        SELECT COUNT (*) FROM `smart_site`.`section`
+        <where>
+            <if test="section_name!=null and section_name!=''">
+                section_name=#{section_name}
+            </if>
+        </where>
+    </select>
 </mapper>

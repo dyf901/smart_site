@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="***.***.***.***Dao">
+<mapper namespace="com.zty.smart_site.dao.DepartmentDao">
     <!--增加部门信息-->
     <insert id="InsertDepartment" parameterType="java.util.Map">
         INSERT INTO `smart_site`.`department` (`department_name`, `depthead`, `section_id`, `headphone`, `remark`) VALUES (#{department_name}, #{depthead}, #{section_id}, #{headphone}, #{remark});
