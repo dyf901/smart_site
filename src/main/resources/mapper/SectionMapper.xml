@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="***.***.***.***Dao">
+    <!--增加标段信息-->
+    <insert id="InsertSection" parameterType="java.util.Map">
+        INSERT INTO `smart_site`.`section` (`section_name`, `section_time`, `start_time`, `end_time`, `section_principal`) VALUES (#{section_name}, #{section_time}, #{start_time}, #{end_time}, #{section_principal});
+    </insert>
+
+    <!--删除标段信息-->
+    <delete id="DeleteSection" parameterType="java.util.Map">
+        DELETE FROM `smart_site`.`section` WHERE `id`=#{id}
+    </delete>
+
+    <!--修改标段信息-->
+    <update id="UpdateSection" parameterType="java.util.Map">
+        UPDATE `smart_site`.`section` SET `section_name`=#{section_name}, `section_time`=#{section_time}, `start_time`=#{start_time}, `end_time`=#{end_time}, `section_principal`=#{section_principal} WHERE (`id`=#{id});
+    </update>
+</mapper>
