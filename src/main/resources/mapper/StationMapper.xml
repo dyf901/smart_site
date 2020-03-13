@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zty.smart_site.dao.StationDao">
+    <!--增加站点信息-->
+    <insert id="InsertStation" parameterType="java.util.Map">
+        INSERT INTO `smart_site`.`station` (`section_id`, `station_name`, `station_time`, `start_time`, `end_time`, `station_principal`, `station_area`) VALUES (#{section_id}, #{station_name}, #{station_time}, #{start_time}, #{end_time}, #{station_principal}, #{station_area});
+    </insert>
+
+    <!--删除站点信息-->
+    <delete id="DeleteStation" parameterType="java.util.Map">
+        DELETE FROM `smart_site`.`station` WHERE `id`=#{id}
+    </delete>
+
+    <!--修改站点信息-->
+    <update id="UpdateStation" parameterType="java.util.Map">
+        UPDATE `smart_site`.`station` SET `station_name`=#{station_name}, `station_time`=#{station_time}, `start_time`=#{start_time}, `end_time`=#{end_time}, `station_principal`=#{station_principal}, `station_area`=#{station_area} WHERE (`id`=#{id});
+    </update>
+
+    <!--分页模糊查询站点信息-->
+    <select id="FindStation" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.Station">
+        <bind name="page" value="pageSize*(pageNo-1)"></bind>
+        SELECT s.`id`, s.`section_id`, s.`station_name`, s.`station_time`, s.`start_time`, s.`end_time`, s.`station_principal`, s.`station_area`,d.`section_name` as `section_name` FROM `smart_site`.`station` s
+        INNER JOIN `smart_site`.`section` d ON s.`section_id`=d.`id`
+        <where>
+            s.`section_id`=#{section_id}
+            <if test="s.`station_name`!=null and s.`station_name`!=''">
+
+            </if>
+        </where>
+    </select>
+</mapper>
