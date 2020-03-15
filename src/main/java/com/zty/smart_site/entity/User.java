@@ -10,23 +10,26 @@ password     			密码
 create_time   			创建时间
 end_time      			到期时间
 section_id     			标段id
+
+section_name            标段名称
 */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class User {
     private int id,section_id;
-    private String username,password,create_time,end_time;
+    private String username,password,create_time,end_time,section_name;
 
     public User(){
         super();
     }
 
-    public User(int id, int section_id, String username, String password, String create_time, String end_time) {
+    public User(int id, int section_id, String username, String password, String create_time, String end_time, String section_name) {
         this.id = id;
         this.section_id = section_id;
         this.username = username;
         this.password = password;
         this.create_time = create_time;
         this.end_time = end_time;
+        this.section_name = section_name;
     }
 
     public int getId() {
@@ -77,6 +80,14 @@ public class User {
         this.end_time = end_time;
     }
 
+    public String getSection_name() {
+        return section_name;
+    }
+
+    public void setSection_name(String section_name) {
+        this.section_name = section_name;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -86,6 +97,7 @@ public class User {
                 ", password='" + password + '\'' +
                 ", create_time='" + create_time + '\'' +
                 ", end_time='" + end_time + '\'' +
+                ", section_name='" + section_name + '\'' +
                 '}';
     }
 }

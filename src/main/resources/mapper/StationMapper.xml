@@ -26,7 +26,18 @@
         <where>
             s.`section_id`=#{section_id}
             <if test="s.`station_name`!=null and s.`station_name`!=''">
+                s.`station_name`=#{station_name}
+            </if>
+        </where>
+    </select>
 
+    <!--统计总数-->
+    <select id="Total" parameterType="java.util.Map" resultType="long">
+        SELECT COUNT (*) FROM
+        <where>
+            `section_id`=#{section_id}
+            <if test="s.`station_name`!=null and s.`station_name`!=''">
+                `station_name`=#{station_name}
             </if>
         </where>
     </select>

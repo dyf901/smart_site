@@ -41,6 +41,7 @@ public class LoginController {
                 Date a=sdf.parse(user.getEnd_time());
                 Date b= sdf.parse(sdf.format(date));
 		if(a.getTime()-b.getTime()>=0) {
+		    msg.setData(user);
             msg.setMessage("登录成功!");
             return msg;
         }else {

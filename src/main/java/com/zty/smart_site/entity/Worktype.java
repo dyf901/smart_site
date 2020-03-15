@@ -7,21 +7,25 @@ worktype   		工种表
 id    					工种id
 worktype_name   		工种名称
 content    				工作内容
+section_id              标段id
+station_id              站点id
 department_id   		所属部门
 remark   				备注
 
 */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Worktype {
-    private int id,department_id;
+    private int id,section_id,station_id,department_id;
     private String worktype_name,content,remark;
 
     public Worktype(){
         super();
     }
 
-    public Worktype(int id, int department_id, String worktype_name, String content, String remark) {
+    public Worktype(int id, int section_id, int station_id, int department_id, String worktype_name, String content, String remark) {
         this.id = id;
+        this.section_id = section_id;
+        this.station_id = station_id;
         this.department_id = department_id;
         this.worktype_name = worktype_name;
         this.content = content;
@@ -68,10 +72,28 @@ public class Worktype {
         this.remark = remark;
     }
 
+    public int getSection_id() {
+        return section_id;
+    }
+
+    public void setSection_id(int section_id) {
+        this.section_id = section_id;
+    }
+
+    public int getStation_id() {
+        return station_id;
+    }
+
+    public void setStation_id(int station_id) {
+        this.station_id = station_id;
+    }
+
     @Override
     public String toString() {
         return "Worktype{" +
                 "id=" + id +
+                ", section_id=" + section_id +
+                ", station_id=" + station_id +
                 ", department_id=" + department_id +
                 ", worktype_name='" + worktype_name + '\'' +
                 ", content='" + content + '\'' +
