@@ -10,23 +10,25 @@ content    				工作内容
 section_id              标段id
 station_id              站点id
 department_id   		所属部门
+person_count            人数
 remark   				备注
 
 */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Worktype {
-    private int id,section_id,station_id,department_id;
+    private int id,section_id,station_id,department_id,person_count;
     private String worktype_name,content,remark;
 
     public Worktype(){
         super();
     }
 
-    public Worktype(int id, int section_id, int station_id, int department_id, String worktype_name, String content, String remark) {
+    public Worktype(int id, int section_id, int station_id, int department_id, int person_count, String worktype_name, String content, String remark) {
         this.id = id;
         this.section_id = section_id;
         this.station_id = station_id;
         this.department_id = department_id;
+        this.person_count = person_count;
         this.worktype_name = worktype_name;
         this.content = content;
         this.remark = remark;
@@ -88,6 +90,14 @@ public class Worktype {
         this.station_id = station_id;
     }
 
+    public int getPerson_count() {
+        return person_count;
+    }
+
+    public void setPerson_count(int person_count) {
+        this.person_count = person_count;
+    }
+
     @Override
     public String toString() {
         return "Worktype{" +
@@ -95,6 +105,7 @@ public class Worktype {
                 ", section_id=" + section_id +
                 ", station_id=" + station_id +
                 ", department_id=" + department_id +
+                ", person_count=" + person_count +
                 ", worktype_name='" + worktype_name + '\'' +
                 ", content='" + content + '\'' +
                 ", remark='" + remark + '\'' +

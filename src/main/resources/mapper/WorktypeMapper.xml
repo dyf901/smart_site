@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zty.smart_site.dao.WorktypeDao">
+    <!--增加工种-->
+    <insert id="InsertWorktype" parameterType="java.util.Map">
+        INSERT INTO `smart_site`.`worktype` (worktype_name`, `content`, `section_id`, `station_id`, `department_id`, `person_count`, `remark`) VALUES (#{worktype_name}, #{content}, #{section_id}, #{station_id}, #{department_id}, #{person_count}, #{remark});
+    </insert>
+
+    <!--删除工种-->
+    <delete id="DeleteWorktype" parameterType="java.util.Map">
+        DELETE FROM `smart_site`.`worktype` WHERE `id`=#{id}
+    </delete>
+
+    <!--修改-->
+</mapper>

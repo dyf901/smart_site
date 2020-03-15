@@ -2,9 +2,10 @@ package com.zty.smart_site.controller;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import sun.misc.BASE64Decoder;
+import org.apache.tomcat.util.codec.binary.Base64;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
@@ -57,7 +58,7 @@ public class UploadController {
         }
     }
 
-   /* @ApiOperation(value = "base64", notes = "测试数据:")
+    /*@ApiOperation(value = "base64", notes = "测试数据:")
     @PostMapping("/base64_img")
     public static boolean GenerateImage(@RequestBody Map map) {// 对字节数组字符串进行Base64解码并生成图片
         System.out.println(map.get("imgStr"));
@@ -120,4 +121,6 @@ public class UploadController {
             return false;
         }
     }*/
+
+
 }
