@@ -31,6 +31,12 @@ public class WorktypeService implements WorktypeDao {
         return worktypeDao.UpdateWorktype(map);
     }
 
+    //修改工种人数
+    @Override
+    public int UpdateWorktypePerson_count(Map map) {
+        return worktypeDao.UpdateWorktypePerson_count(map);
+    }
+
     //分页模糊查询工种信息
     @Override
     public List<Worktype> FindWorktype(Map map) {

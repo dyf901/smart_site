@@ -23,7 +23,7 @@ public class BehaviorRecordController {
     @Autowired
     private StaffService staffService;//员工
 
-    @ApiOperation(value = "增加行为记录",notes = "")
+    @ApiOperation(value = "增加行为记录",notes = "测试数据:{\"staff_card\":\"340000000000000000\",\"behavior_id\":1,\"section_id\":1,\"station_idr\":1,\"remark\":\"表现优异\"}")
     @PostMapping("/InsertBehaviorRecord")
     public boolean InsertBehaviorRecord(@RequestBody Map map){
         Staff staff = staffService.FindStaffByStaff_card(map);
@@ -31,19 +31,19 @@ public class BehaviorRecordController {
         return behaviorRecordService.InsertBehaviorRecord(map)==1;
     }
 
-    @ApiOperation(value = "删除行为记录",notes = "")
+    @ApiOperation(value = "删除行为记录",notes = "测试数据:{\"id\":1}")
     @PostMapping("/DeleteBehaviorRecord")
     public boolean DeleteBehaviorRecord(@RequestBody Map map){
         return behaviorRecordService.DeleteBehaviorRecord(map)==1;
     }
 
-    @ApiOperation(value = "修改行为记录",notes = "")
+    @ApiOperation(value = "修改行为记录",notes = "测试数据:{\"id\":1,\"behavior_id\":1,\"remark\":\"表现优异1\"}")
     @PostMapping("/UpdateBehaviorRecord")
     public boolean UpdateBehaviorRecord(@RequestBody Map map){
         return behaviorRecordService.UpdateBehaviorRecord(map)==1;
     }
 
-    @ApiOperation(value = "分页模糊查询行为记录",notes = "")
+    @ApiOperation(value = "分页模糊查询行为记录",notes = "测试数据:{\"pageNo\":1,\"pageSize\":10,\"section_id\":1}")
     @PostMapping("/FindBehaviorRecord")
     public Page<BehaviorRecord> FindBehaviorRecord(@RequestBody Map map){
         Page<BehaviorRecord> page = new Page<BehaviorRecord>();

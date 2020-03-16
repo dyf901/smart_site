@@ -5,7 +5,7 @@
 <mapper namespace="com.zty.smart_site.dao.WorktypeDao">
     <!--增加工种-->
     <insert id="InsertWorktype" parameterType="java.util.Map">
-        INSERT INTO `smart_site`.`worktype` (worktype_name`, `content`, `section_id`, `station_id`, `department_id`, `person_count`, `remark`) VALUES (#{worktype_name}, #{content}, #{section_id}, #{station_id}, #{department_id}, #{person_count}, #{remark});
+        INSERT INTO `smart_site`.`worktype` (`worktype_name`, `content`, `section_id`, `station_id`, `department_id`, `remark`) VALUES (#{worktype_name}, #{content}, #{section_id}, #{station_id}, #{department_id}, #{remark});
     </insert>
 
     <!--删除工种-->
@@ -15,7 +15,12 @@
 
     <!--修改工种-->
     <update id="UpdateWorktype" parameterType="java.util.Map">
-        UPDATE `smart_site`.`worktype` SET `worktype_name`=#{worktype_name}, `content`=#{content}, `section_id`=#{section_id}, `station_id`=#{station_id}, `department_id`=#{department_id}, `person_count`=#{person_count}, `remark`=#{remark} WHERE (`id`=#{id});
+        UPDATE `smart_site`.`worktype` SET `worktype_name`=#{worktype_name}, `content`=#{content}, `remark`=#{remark} WHERE (`id`=#{id});
+    </update>
+
+    <!--修改工种人数-->
+    <update id="UpdateWorktypePerson_count" parameterType="java.util.Map">
+        UPDATE `smart_site`.`worktype` SET `person_count`=person_count+1 where `id`=#{id}
     </update>
 
     <!--分页模糊查询工种信息-->
@@ -29,6 +34,12 @@
             w.`section_id`=#{section_id}
             <if test="worktype_name!=null and worktype_name!=''">
                 w.`worktype_name`=#{worktype_name}
+            </if>
+            <if test="station_id!=null and station_id!=''">
+                w.`station_id`=#{station_id}
+            </if>
+            <if test="department_id!=null and department_id!=''">
+                w.`department_id`=#{department_id}
             </if>
         </where>
         limit #{page},#{pageSize}

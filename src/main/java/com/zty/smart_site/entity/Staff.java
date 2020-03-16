@@ -12,7 +12,6 @@ staff_nation			民族
 staff_card				身份证号
 staff_address			身份证地址
 staff_province			所在省
-
 staff_phone				手机号
 sos_name				紧急联系人姓名
 sos_ship				紧急联系人关系
@@ -21,6 +20,7 @@ entry_time				入职时间
 history_integral		历史积分
 end_integral			剩余积分
 section_id				标段id
+station_id              站点id
 department_id			部门id
 worktype_id     		工种id
 password				账号密码(手机端登录密码和考核系统登录密码)
@@ -32,14 +32,14 @@ train					培训状态('0' 未培训  '1'培训)
 */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Staff {
-    private int id,staff_age,history_integral,end_integral,section_id,department_id,worktype_id;
+    private int id,staff_age,history_integral,end_integral,section_id,department_id,worktype_id,station_id;
     private String staff_name,staff_img,staff_sex,staff_nation,staff_card,staff_address,staff_province,staff_phone,sos_name,sos_ship,sos_phone,entry_time,password,picture,state,status,type,train;
 
     public Staff(){
         super();
     }
 
-    public Staff(int id, int staff_age, int history_integral, int end_integral, int section_id, int department_id, int worktype_id, String staff_name, String staff_img, String staff_sex, String staff_nation, String staff_card, String staff_address, String staff_province, String staff_phone, String sos_name, String sos_ship, String sos_phone, String entry_time, String password, String picture, String state, String status, String type, String train) {
+    public Staff(int id, int staff_age, int history_integral, int end_integral, int section_id, int department_id, int worktype_id, int station_id, String staff_name, String staff_img, String staff_sex, String staff_nation, String staff_card, String staff_address, String staff_province, String staff_phone, String sos_name, String sos_ship, String sos_phone, String entry_time, String password, String picture, String state, String status, String type, String train) {
         this.id = id;
         this.staff_age = staff_age;
         this.history_integral = history_integral;
@@ -47,6 +47,7 @@ public class Staff {
         this.section_id = section_id;
         this.department_id = department_id;
         this.worktype_id = worktype_id;
+        this.station_id = station_id;
         this.staff_name = staff_name;
         this.staff_img = staff_img;
         this.staff_sex = staff_sex;
@@ -267,6 +268,14 @@ public class Staff {
         this.train = train;
     }
 
+    public int getStation_id() {
+        return station_id;
+    }
+
+    public void setStation_id(int station_id) {
+        this.station_id = station_id;
+    }
+
     @Override
     public String toString() {
         return "Staff{" +
@@ -277,6 +286,7 @@ public class Staff {
                 ", section_id=" + section_id +
                 ", department_id=" + department_id +
                 ", worktype_id=" + worktype_id +
+                ", station_id=" + station_id +
                 ", staff_name='" + staff_name + '\'' +
                 ", staff_img='" + staff_img + '\'' +
                 ", staff_sex='" + staff_sex + '\'' +

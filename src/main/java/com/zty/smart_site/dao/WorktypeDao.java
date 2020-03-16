@@ -17,6 +17,9 @@ public interface WorktypeDao {
     //修改工种
     int UpdateWorktype(Map map);
 
+    //修改工种人数
+    int UpdateWorktypePerson_count(Map map);
+
     //分页模糊查询工种信息
     List<Worktype> FindWorktype(Map map);
 
@@ -25,4 +28,5 @@ public interface WorktypeDao {
 
     //下拉框查询工种信息
     List<Worktype> SelectWorktype(Map map);
+
 }
