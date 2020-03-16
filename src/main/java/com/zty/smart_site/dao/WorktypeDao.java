@@ -29,4 +29,6 @@ public interface WorktypeDao {
     //下拉框查询工种信息
     List<Worktype> SelectWorktype(Map map);
 
+    //根据worktype_id查询工种信息
+    Worktype FindWorktypeByWorktypeId(Map map);
 }

@@ -10,7 +10,7 @@ public class JsonResult {
         super();
     }
 
-    public JsonResult(Integer code, String message) {
+    public JsonResult() {
         super();
         this.code = code;
         this.message = message;

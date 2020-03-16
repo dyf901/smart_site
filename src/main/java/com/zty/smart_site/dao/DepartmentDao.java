@@ -17,6 +17,9 @@ public interface DepartmentDao {
     //修改部门信息
     int UpdateDepartment(Map map);
 
+    //修改部门人数
+    int UpdateDepartmentPercount(Map map);
+
     //分页模糊查询部门信息
     List<Department> FindDepartment(Map map);
 
@@ -25,4 +28,7 @@ public interface DepartmentDao {
 
     //下拉框查询部门信息
     List<Department> SelectDepartment(Map map);
+
+    //根绝department_id查询部门信息
+    Department FindDepartmentByDepartmentId(Map map);
 }

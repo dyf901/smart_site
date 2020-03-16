@@ -1,8 +1,14 @@
 package com.zty.smart_site.controller;
 
+import com.zty.smart_site.entity.Department;
+import com.zty.smart_site.entity.JsonResult;
 import com.zty.smart_site.entity.Staff;
+import com.zty.smart_site.entity.Worktype;
 import com.zty.smart_site.page.Page;
+import com.zty.smart_site.service.DepartmentService;
 import com.zty.smart_site.service.StaffService;
+import com.zty.smart_site.service.WorktypeService;
+import com.zty.smart_site.util.ProvinceUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,12 +22,36 @@ import java.util.Map;
 @CrossOrigin
 public class StaffController {
     @Autowired
-    private StaffService staffService;
+    private StaffService staffService;//员工
 
-    @ApiOperation(value = "增加员工信息",notes = "{\"staff_name\":\"ssw\",\"staff_age\":24,\"staff_img\":\"1.png\",\"staff_sex\":\"男\",\"staff_nation\":\"汉\",\"staff_card\":\"341000000000000000\",\"staff_address\":\"河南省西平县\",\"staff_province\":\"河南省\",\"staff_phone\":\"13100000000\",\"sos_name\":\"ssw\",\"sos_ship\":\"亲戚\",\"sos_phone\":\"13000000000\",\"section_id\":1,\"department_id\":1,\"worktype_id\":1,\"type\":\"管理员\"}")
+    @Autowired
+    private DepartmentService departmentService;//部门
+
+    @Autowired
+    private WorktypeService worktypeService;//工种
+
+    @ApiOperation(value = "增加员工信息",notes = "{\"staff_name\":\"ssw\",\"staff_age\":24,\"staff_img\":\"1.png\",\"staff_sex\":\"男\",\"staff_nation\":\"汉\",\"staff_card\":\"341100000000000000\",\"staff_address\":\"河南省西平县\",\"staff_province\":\"河南省\",\"staff_phone\":\"13100000000\",\"sos_name\":\"ssw\",\"sos_ship\":\"亲戚\",\"sos_phone\":\"13000000000\",\"section_id\":1,\"station_id\":1,\"department_id\":1,\"worktype_id\":1,\"type\":\"管理员\"}")
     @PostMapping("/InsertStaff")
-    public boolean InsertStaff(@RequestBody Map map){
-        return staffService.InsertStaff(map)==1;
+    public JsonResult InsertStaff(@RequestBody Map map){
+        JsonResult jsonResult = new JsonResult();
+        Staff staff = staffService.FindStaffByStaff_card(map);
+        if(staff==null){
+            map.put("staff_province",ProvinceUtil.Province((String) map.get("staff_address")));
+            Department department = departmentService.FindDepartmentByDepartmentId(map);
+            Worktype worktype = worktypeService.FindWorktypeByWorktypeId(map);
+            map.put("person_count",worktype.getPerson_count());
+            map.put("percount",department.getPercount());
+            staffService.InsertStaff(map);
+            departmentService.UpdateDepartmentPercount(map);
+            worktypeService.UpdateWorktypePerson_count(map);
+            jsonResult.setMessage("增加成功!");
+            return jsonResult;
+        }else {
+            jsonResult.setMessage("员工已存在或信息有误,增加失败!");
+            return jsonResult;
+        }
+
+
     }
 
     @ApiOperation(value = "删除员工信息",notes = "{\"id\":2}")

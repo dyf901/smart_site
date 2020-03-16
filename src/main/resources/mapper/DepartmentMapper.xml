@@ -18,10 +18,15 @@
         UPDATE `smart_site`.`department` SET `department_name`=#{department_name}, `depthead`=#{depthead}, `headphone`=#{headphone}, `remark`=#{remark} WHERE (`id`=#{id});
     </update>
 
+    <!--修改部门人数-->
+    <update id="UpdateDepartmentPercount" parameterType="java.util.Map">
+        UPDATE `smart_site`.`department` SET percount=#{percount}+1 where id=#{department_id}
+    </update>
+
     <!--分页模糊查询部门信息-->
     <select id="FindDepartment" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.Department">
         <bind name="page" value="pageSize*(pageNo-1)"></bind>
-        SELECT d.`id`, d.`department_name`, d.`section_id`, d.`station_id`, `percount`, d.`depthead`, d.`headphone`, d.`remark`,s.`section_name` as section_name FROM `smart_site`.`department` d
+        SELECT d.`id`, d.`department_name`, d.`section_id`, d.`station_id`, d.`percount`, d.`depthead`, d.`headphone`, d.`remark`,s.`section_name` as section_name FROM `smart_site`.`department` d
         INNER JOIN `smart_site`.`section` s ON s.`id`=d.`section_id`
         INNER JOIN `smart_site`.`station` a ON a.`id`=d.`station_id`
         <where>
@@ -53,5 +58,10 @@
     <!--下拉框查询部门信息-->
     <select id="SelectDepartment" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.Department">
         SELECT `id`, `department_name` FROM `smart_site`.`department` WHERE `section_id`=#{section_id} and `station_id`=#{station_id}
+    </select>
+
+    <!--根据depatment_id查询部门信息-->
+    <select id="FindDepartmentByDepartmentId" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.Department">
+        SELECT `id`, `department_name`, `section_id`, `station_id`, `percount`, `depthead`, `headphone`, `remark` FROM `smart_site`.`department` WHERE `id`=#{department_id}
     </select>
 </mapper>

@@ -54,4 +54,10 @@ public class WorktypeService implements WorktypeDao {
     public List<Worktype> SelectWorktype(Map map) {
         return worktypeDao.SelectWorktype(map);
     }
+
+    //根绝worktype_id查询工种信息
+    @Override
+    public Worktype FindWorktypeByWorktypeId(Map map) {
+        return worktypeDao.FindWorktypeByWorktypeId(map);
+    }
 }
