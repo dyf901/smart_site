@@ -13,7 +13,12 @@ public class ResultCode {
     public static final int USER_ACCOUNT_ERROR = 20003; // 用户名或密码错误
     public static final int USER_ACCOUNT_FORBIDDEN = 20004; // 用户账户已过期
 
+    //短信验证码
+    public static final int INTERFACE_OUTER_INVOKE_ERROR = 20005;// 错误
+
 
     public static final int ERROR_UNKNOWN_CODE = 70001;// 错误
+
+
 
 }

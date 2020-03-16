@@ -45,6 +45,8 @@ public class JsonResult {
             return new JsonResult(ResultCode.USER_ACCOUNT_ERROR);
         } else if (integer == 20004) {
             return new JsonResult(ResultCode.USER_ACCOUNT_FORBIDDEN);
+        } else if (integer == 20005) {
+            return new JsonResult(ResultCode.INTERFACE_OUTER_INVOKE_ERROR);
         } else {
             return new JsonResult(ResultCode.ERROR_UNKNOWN_CODE);
         }
