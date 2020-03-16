@@ -34,7 +34,7 @@
 
     <!--统计总数-->
     <select id="Total" parameterType="java.util.Map" resultType="long">
-        SELECT COUNT (*) FROM `smart_site`.`behavior_record`
+        SELECT COUNT(*) FROM `smart_site`.`behavior_record`
         <where>
             <if test="behavior_id!=null and behavior_id!=''">
                 `behavior_id`=#{behavior_id}
@@ -54,6 +54,6 @@
 
     <!--统计个人记录总数-->
     <select id="TotalByStaff_id" parameterType="java.util.Map" resultType="long">
-        SELECT COUNT (*) FROM `smart_site`.`behavior_record` WHERE `staff_id`=#{staff_id}
+        SELECT COUNT(*) FROM `smart_site`.`behavior_record` WHERE `staff_id`=#{staff_id}
     </select>
 </mapper>

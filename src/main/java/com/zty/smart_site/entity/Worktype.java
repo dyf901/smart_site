@@ -9,21 +9,25 @@ worktype_name   		工种名称
 content    				工作内容
 section_id              标段id
 station_id              站点id
-department_id   		所属部门
+department_id   		部门id
 person_count            人数
 remark   				备注
 
+section_name            标段名称
+station_name            站点名称
+department_name         部门名称
 */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Worktype {
     private int id,section_id,station_id,department_id,person_count;
     private String worktype_name,content,remark;
+    private String section_name,station_name,department_name;
 
     public Worktype(){
         super();
     }
 
-    public Worktype(int id, int section_id, int station_id, int department_id, int person_count, String worktype_name, String content, String remark) {
+    public Worktype(int id, int section_id, int station_id, int department_id, int person_count, String worktype_name, String content, String remark, String section_name, String station_name, String department_name) {
         this.id = id;
         this.section_id = section_id;
         this.station_id = station_id;
@@ -32,6 +36,9 @@ public class Worktype {
         this.worktype_name = worktype_name;
         this.content = content;
         this.remark = remark;
+        this.section_name = section_name;
+        this.station_name = station_name;
+        this.department_name = department_name;
     }
 
     public int getId() {
@@ -98,6 +105,30 @@ public class Worktype {
         this.person_count = person_count;
     }
 
+    public String getSection_name() {
+        return section_name;
+    }
+
+    public void setSection_name(String section_name) {
+        this.section_name = section_name;
+    }
+
+    public String getStation_name() {
+        return station_name;
+    }
+
+    public void setStation_name(String station_name) {
+        this.station_name = station_name;
+    }
+
+    public String getDepartment_name() {
+        return department_name;
+    }
+
+    public void setDepartment_name(String department_name) {
+        this.department_name = department_name;
+    }
+
     @Override
     public String toString() {
         return "Worktype{" +
@@ -109,6 +140,9 @@ public class Worktype {
                 ", worktype_name='" + worktype_name + '\'' +
                 ", content='" + content + '\'' +
                 ", remark='" + remark + '\'' +
+                ", section_name='" + section_name + '\'' +
+                ", station_name='" + station_name + '\'' +
+                ", department_name='" + department_name + '\'' +
                 '}';
     }
 }

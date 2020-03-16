@@ -50,7 +50,7 @@
 
     <!--统计总数(行查后台)-->
     <select id="Total" parameterType="java.util.Map" resultType="long">
-        SELECT COUNT (*) FROM `smart_site`.`staff`
+        SELECT COUNT(*) FROM `smart_site`.`staff`
         WHERE `section_id`=#{section_id}
     </select>
 

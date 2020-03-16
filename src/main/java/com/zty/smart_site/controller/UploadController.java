@@ -58,9 +58,9 @@ public class UploadController {
         }
     }
 
-    /*@ApiOperation(value = "base64", notes = "测试数据:")
+    @ApiOperation(value = "base64", notes = "测试数据:")
     @PostMapping("/base64_img")
-    public static boolean GenerateImage(@RequestBody Map map) {// 对字节数组字符串进行Base64解码并生成图片
+    public boolean GenerateImage(@RequestBody Map map) {// 对字节数组字符串进行Base64解码并生成图片
         System.out.println(map.get("imgStr"));
         String imgStr1 = (String) map.get("imgStr");
         String imgStr = imgStr1.replaceAll(" ", "+");
@@ -120,7 +120,7 @@ public class UploadController {
         } catch (Exception e) {
             return false;
         }
-    }*/
+    }
 
 
 }

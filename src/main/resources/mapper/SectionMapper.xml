@@ -33,7 +33,7 @@
 
     <!--统计总数-->
     <select id="Total" parameterType="java.util.Map" resultType="long">
-        SELECT COUNT (*) FROM `smart_site`.`section`
+        SELECT COUNT(*) FROM `smart_site`.`section`
         <where>
             <if test="section_name!=null and section_name!=''">
                 section_name=#{section_name}

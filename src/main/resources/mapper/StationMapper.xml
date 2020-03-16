@@ -21,23 +21,23 @@
     <!--分页模糊查询站点信息-->
     <select id="FindStation" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.Station">
         <bind name="page" value="pageSize*(pageNo-1)"></bind>
-        SELECT s.`id`, s.`section_id`, s.`station_name`, s.`station_time`, s.`start_time`, s.`end_time`, s.`station_principal`, s.`station_area`,d.`section_name` as `section_name` FROM `smart_site`.`station` s
+        SELECT s.`id`, s.`section_id`, s.`station_name`, s.`station_time`, s.`start_time`, s.`end_time`, s.`station_principal`, s.`station_area`,d.`section_name` as section_name FROM `smart_site`.`station` s
         INNER JOIN `smart_site`.`section` d ON s.`section_id`=d.`id`
         <where>
-            s.`section_id`=#{section_id}
-            <if test="s.`station_name`!=null and s.`station_name`!=''">
-                s.`station_name`=#{station_name}
+            s.section_id=#{section_id}
+            <if test="station_name!=null and station_name!=''">
+                s.station_name=#{station_name}
             </if>
         </where>
     </select>
 
     <!--统计总数-->
     <select id="Total" parameterType="java.util.Map" resultType="long">
-        SELECT COUNT (*) FROM
+        SELECT COUNT(*) FROM `smart_site`.`station`
         <where>
-            `section_id`=#{section_id}
-            <if test="s.`station_name`!=null and s.`station_name`!=''">
-                `station_name`=#{station_name}
+            section_id=#{section_id}
+            <if test="station_name!=null and station_name!=''">
+                station_name=#{station_name}
             </if>
         </where>
     </select>
