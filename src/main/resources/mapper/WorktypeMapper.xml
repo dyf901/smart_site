@@ -5,7 +5,7 @@
 <mapper namespace="com.zty.smart_site.dao.WorktypeDao">
     <!--增加工种-->
     <insert id="InsertWorktype" parameterType="java.util.Map">
-        INSERT INTO `smart_site`.`worktype` (`worktype_name`, `content`, `section_id`, `station_id`, `department_id`, `remark`) VALUES (#{worktype_name}, #{content}, #{section_id}, #{station_id}, #{department_id}, #{remark});
+        INSERT INTO `smart_site`.`worktype` (`worktype_name`, `content`, `section_id`, `station_id`, `remark`) VALUES (#{worktype_name}, #{content}, #{section_id}, #{station_id}, #{remark});
     </insert>
 
     <!--删除工种-->
@@ -26,10 +26,9 @@
     <!--分页模糊查询工种信息-->
     <select id="FindWorktype" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.Worktype">
         <bind name="page" value="pageSize*(pageNo-1)"></bind>
-        SELECT w.`id`,w.`worktype_name`, w.`content`, w.`section_id`, w.`station_id`, w.`department_id`, w.`person_count`, w.`remark`,s.section_name as section_name,l.station_name as station_name,d.department_name as department_name  FROM `smart_site`.`worktype` w
+        SELECT w.`id`,w.`worktype_name`, w.`content`, w.`section_id`, w.`station_id`, w.`person_count`, w.`remark`,s.section_name as section_name,l.station_name as station_name  FROM `smart_site`.`worktype` w
         INNER JOIN `smart_site`.`section` s ON w.`section_id`=s.`id`
         INNER JOIN `smart_site`.`station` l ON w.`station_id`=l.`id`
-        INNER JOIN `smart_site`.`department` d ON w.`department_id`=d.`id`
         <where>
             w.`section_id`=#{section_id}
             <if test="worktype_name!=null and worktype_name!=''">
@@ -37,9 +36,6 @@
             </if>
             <if test="station_id!=null and station_id!=''">
                 w.`station_id`=#{station_id}
-            </if>
-            <if test="department_id!=null and department_id!=''">
-                w.`department_id`=#{department_id}
             </if>
         </where>
         limit #{page},#{pageSize}
@@ -53,17 +49,20 @@
             <if test="worktype_name!=null and worktype_name!=''">
                 `worktype_name`=#{worktype_name}
             </if>
+            <if test="station_id!=null and station_id!=''">
+                `station_id`=#{station_id}
+            </if>
         </where>
     </select>
 
     <!--下拉框查询工种信息-->
     <select id="SelectWorktype" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.Worktype">
         SELECT `id`,`worktype_name` FROM `smart_site`.`worktype`
-        where section_id=#{section_id} and station_id=#{station_id} and department_id=#{department_id}
+        where section_id=#{section_id} and station_id=#{station_id}
     </select>
 
     <!--根据worktype_id查询工种信息-->
     <select id="FindWorktypeByWorktypeId" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.Worktype">
-        SELECT `id`,`worktype_name`, `content`, `section_id`, `station_id`, `department_id`, `person_count`, `remark` FROM `smart_site`.`worktype` where id=#{worktype_id}
+        SELECT `id`,`worktype_name`, `content`, `section_id`, `station_id`, `person_count`, `remark` FROM `smart_site`.`worktype` where id=#{worktype_id}
     </select>
 </mapper>

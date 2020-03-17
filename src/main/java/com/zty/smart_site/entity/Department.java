@@ -6,7 +6,6 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 department    	部门表
 id   					部门id
 section_id              标段id
-station_id              站点id
 department_name			部门名称
 percount   				部门人数
 depthead   				部门负责人
@@ -14,28 +13,25 @@ headphone   			负责人联系电话
 remark   				备注
 
 section_name            标段名称
-station_name            站点名称
 */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Department {
-    private int id,percount,section_id,station_id;
-    private String department_name,depthead,headphone,remark,section_name,station_name;
+    private int id,percount,section_id;
+    private String department_name,depthead,headphone,remark,section_name;
 
     public Department(){
         super();
     }
 
-    public Department(int id, int percount, int section_id, int station_id, String department_name, String depthead, String headphone, String remark, String section_name, String station_name) {
+    public Department(int id, int percount, int section_id, String department_name, String depthead, String headphone, String remark, String section_name) {
         this.id = id;
         this.percount = percount;
         this.section_id = section_id;
-        this.station_id = station_id;
         this.department_name = department_name;
         this.depthead = depthead;
         this.headphone = headphone;
         this.remark = remark;
         this.section_name = section_name;
-        this.station_name = station_name;
     }
 
     public int getId() {
@@ -102,35 +98,17 @@ public class Department {
         this.section_name = section_name;
     }
 
-    public int getStation_id() {
-        return station_id;
-    }
-
-    public void setStation_id(int station_id) {
-        this.station_id = station_id;
-    }
-
-    public String getStation_name() {
-        return station_name;
-    }
-
-    public void setStation_name(String station_name) {
-        this.station_name = station_name;
-    }
-
     @Override
     public String toString() {
         return "Department{" +
                 "id=" + id +
                 ", percount=" + percount +
                 ", section_id=" + section_id +
-                ", station_id=" + station_id +
                 ", department_name='" + department_name + '\'' +
                 ", depthead='" + depthead + '\'' +
                 ", headphone='" + headphone + '\'' +
                 ", remark='" + remark + '\'' +
                 ", section_name='" + section_name + '\'' +
-                ", station_name='" + station_name + '\'' +
                 '}';
     }
 }

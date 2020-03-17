@@ -19,7 +19,7 @@ public class DepartmentController {
     @Autowired
     private DepartmentService departmentService;
 
-    @ApiOperation(value = "增加部门信息",notes = "测试数据:{\"department_name\":\"管理部\",\"depthead\":\"交捷交通\",\"section_id\":1,\"station_id\":1,\"headphone\":\"13000000000\",\"remark\":\"管理工地\"}")
+    @ApiOperation(value = "增加部门信息",notes = "测试数据:{\"department_name\":\"管理部\",\"depthead\":\"交捷交通\",\"section_id\":1,\"headphone\":\"13000000000\",\"remark\":\"管理工地\"}")
     @PostMapping("/InsertDepartment")
     public boolean InsertDepartment(@RequestBody Map map){
         return departmentService.InsertDepartment(map)==1;
@@ -48,7 +48,7 @@ public class DepartmentController {
         return page;
     }
 
-    @ApiOperation(value = "下拉框查询部门信息",notes = "测试数据:{\"section_id\":1,\"station_id\":1}")
+    @ApiOperation(value = "下拉框查询部门信息",notes = "测试数据:{\"section_id\":1}")
     @PostMapping("/SelectDepartment")
     public List<Department> SelectDepartment(@RequestBody Map map){
         return departmentService.SelectDepartment(map);

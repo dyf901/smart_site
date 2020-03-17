@@ -38,12 +38,9 @@ public class StaffController {
         if(staff==null){
             map.put("staff_province",ProvinceUtil.Province((String) map.get("staff_address")));
             Department department = departmentService.FindDepartmentByDepartmentId(map);
-            Worktype worktype = worktypeService.FindWorktypeByWorktypeId(map);
-            map.put("person_count",worktype.getPerson_count());
             map.put("percount",department.getPercount());
             staffService.InsertStaff(map);
             departmentService.UpdateDepartmentPercount(map);
-            worktypeService.UpdateWorktypePerson_count(map);
             jsonResult.setMessage("增加成功!");
             return jsonResult;
         }else {
@@ -75,7 +72,13 @@ public class StaffController {
     @ApiOperation(value = "修改App登录密码",notes = "{\"id\":2,\"password\":\"111111\"}")
     @PostMapping("/UpdateStaffPassword")
     public boolean UpdateStaffPassword(@RequestBody Map map){
-        return staffService.UpdateStaffPassword(map)==1;
+        Staff staff = staffService.FindStaffByStaff_phone(map);
+        if(staff.getPassword().equals(map.get("old_password"))){
+            return staffService.UpdateStaffPassword(map)==1;
+        }else {
+            return false;
+        }
+
     }
 
     @ApiOperation(value = "修改员工在职/离职状态",notes = "{\"id\":2}")

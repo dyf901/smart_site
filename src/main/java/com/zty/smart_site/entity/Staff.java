@@ -21,7 +21,7 @@ history_integral		历史积分
 end_integral			剩余积分
 section_id				标段id
 station_id              站点id
-department_id			部门id
+sub_id			        部门id
 worktype_id     		工种id
 password				账号密码(手机端登录密码和考核系统登录密码)
 picture					手机端头像
@@ -32,20 +32,20 @@ train					培训状态('0' 未培训  '1'培训)
 */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Staff {
-    private int id,staff_age,history_integral,end_integral,section_id,department_id,worktype_id,station_id;
+    private int id,staff_age,history_integral,end_integral,section_id,sub_id,worktype_id,station_id;
     private String staff_name,staff_img,staff_sex,staff_nation,staff_card,staff_address,staff_province,staff_phone,sos_name,sos_ship,sos_phone,entry_time,password,picture,state,status,type,train;
 
     public Staff(){
         super();
     }
 
-    public Staff(int id, int staff_age, int history_integral, int end_integral, int section_id, int department_id, int worktype_id, int station_id, String staff_name, String staff_img, String staff_sex, String staff_nation, String staff_card, String staff_address, String staff_province, String staff_phone, String sos_name, String sos_ship, String sos_phone, String entry_time, String password, String picture, String state, String status, String type, String train) {
+    public Staff(int id, int staff_age, int history_integral, int end_integral, int section_id, int sub_id, int worktype_id, int station_id, String staff_name, String staff_img, String staff_sex, String staff_nation, String staff_card, String staff_address, String staff_province, String staff_phone, String sos_name, String sos_ship, String sos_phone, String entry_time, String password, String picture, String state, String status, String type, String train) {
         this.id = id;
         this.staff_age = staff_age;
         this.history_integral = history_integral;
         this.end_integral = end_integral;
         this.section_id = section_id;
-        this.department_id = department_id;
+        this.sub_id = sub_id;
         this.worktype_id = worktype_id;
         this.station_id = station_id;
         this.staff_name = staff_name;
@@ -108,12 +108,12 @@ public class Staff {
         this.section_id = section_id;
     }
 
-    public int getDepartment_id() {
-        return department_id;
+    public int getSub_id() {
+        return sub_id;
     }
 
-    public void setDepartment_id(int department_id) {
-        this.department_id = department_id;
+    public void setSub_id(int sub_id) {
+        this.sub_id = sub_id;
     }
 
     public int getWorktype_id() {
@@ -284,7 +284,7 @@ public class Staff {
                 ", history_integral=" + history_integral +
                 ", end_integral=" + end_integral +
                 ", section_id=" + section_id +
-                ", department_id=" + department_id +
+                ", sub_id=" + sub_id +
                 ", worktype_id=" + worktype_id +
                 ", station_id=" + station_id +
                 ", staff_name='" + staff_name + '\'' +
