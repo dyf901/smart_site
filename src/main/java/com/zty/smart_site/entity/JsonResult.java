@@ -3,7 +3,6 @@ package com.zty.smart_site.entity;
 public class JsonResult {
     private String message;//中文信息
     private Object data;//实体
-    private Object statistics;
     private Integer code;
 
     public JsonResult(int userNotExist){
@@ -19,7 +18,6 @@ public class JsonResult {
     public JsonResult(String message, Object data, Object statistics, Integer code) {
         this.message = message;
         this.data = data;
-        this.statistics = statistics;
         this.code = code;
     }
 
@@ -47,6 +45,8 @@ public class JsonResult {
             return new JsonResult(ResultCode.USER_ACCOUNT_FORBIDDEN);
         } else if (integer == 20005) {
             return new JsonResult(ResultCode.INTERFACE_OUTER_INVOKE_ERROR);
+        } else if (integer == 20006) {
+            return new JsonResult(ResultCode.ERROR);
         } else {
             return new JsonResult(ResultCode.ERROR_UNKNOWN_CODE);
         }
@@ -68,14 +68,6 @@ public class JsonResult {
         this.data = data;
     }
 
-    public Object getStatistics() {
-        return statistics;
-    }
-
-    public void setStatistics(Object statistics) {
-        this.statistics = statistics;
-    }
-
     public Integer getCode() {
         return code;
     }
@@ -89,7 +81,6 @@ public class JsonResult {
         return "JsonResult{" +
                 "message='" + message + '\'' +
                 ", data=" + data +
-                ", statistics=" + statistics +
                 ", code=" + code +
                 '}';
     }

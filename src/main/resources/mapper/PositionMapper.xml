@@ -26,7 +26,7 @@
     </select>
 
     <!--统计总数-->
-    <select id="Total" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.Position">
+    <select id="Total" parameterType="java.util.Map" resultType="long">
         SELECT COUNT(*) FROM `smart_site`.`position`
     </select>
 </mapper>

@@ -25,22 +25,19 @@ public class StaffController {
     private StaffService staffService;//员工
 
     @Autowired
-    private DepartmentService departmentService;//部门
-
-    @Autowired
     private WorktypeService worktypeService;//工种
 
-    @ApiOperation(value = "增加员工信息",notes = "{\"staff_name\":\"ssw\",\"staff_age\":24,\"staff_img\":\"1.png\",\"staff_sex\":\"男\",\"staff_nation\":\"汉\",\"staff_card\":\"341100000000000000\",\"staff_address\":\"河南省西平县\",\"staff_province\":\"河南省\",\"staff_phone\":\"13100000000\",\"sos_name\":\"ssw\",\"sos_ship\":\"亲戚\",\"sos_phone\":\"13000000000\",\"section_id\":1,\"station_id\":1,\"sub_id\":1,\"worktype_id\":1,\"type\":\"管理员\"}")
+    @ApiOperation(value = "增加员工信息",notes = "{\"staff_name\":\"ssw\",\"staff_age\":24,\"staff_img\":\"1.png\",\"staff_sex\":\"男\",\"staff_nation\":\"汉\",\"staff_card\":\"341100000000000011\",\"staff_address\":\"河南省西平县\",\"staff_phone\":\"13100000000\",\"sos_name\":\"ssw\",\"sos_ship\":\"亲戚\",\"sos_phone\":\"13000000000\",\"section_id\":1,\"station_id\":1,\"sub_id\":1,\"worktype_id\":2,\"type\":\"管理员\"}")
     @PostMapping("/InsertStaff")
     public JsonResult InsertStaff(@RequestBody Map map){
         JsonResult jsonResult = new JsonResult();
         Staff staff = staffService.FindStaffByStaff_card(map);
         if(staff==null){
             map.put("staff_province",ProvinceUtil.Province((String) map.get("staff_address")));
-            Department department = departmentService.FindDepartmentByDepartmentId(map);
-            map.put("percount",department.getPercount());
+            Worktype worktype = worktypeService.FindWorktypeByWorktypeId(map);
+            map.put("person_count",worktype.getPerson_count());
             staffService.InsertStaff(map);
-            departmentService.UpdateDepartmentPercount(map);
+            worktypeService.UpdateWorktypePerson_count(map);
             jsonResult.setMessage("增加成功!");
             return jsonResult;
         }else {

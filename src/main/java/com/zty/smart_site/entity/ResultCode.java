@@ -19,6 +19,6 @@ public class ResultCode {
 
     public static final int ERROR_UNKNOWN_CODE = 70001;// 错误
 
-
+    public static final int ERROR = 20006;//失败
 
 }

@@ -1,10 +1,7 @@
 package com.zty.smart_site.controller;
 
-import com.zty.smart_site.entity.JsonResult;
-import com.zty.smart_site.entity.ResultCode;
-import com.zty.smart_site.entity.Staff;
-import com.zty.smart_site.entity.User;
-import com.zty.smart_site.service.StaffService;
+import com.zty.smart_site.entity.*;
+import com.zty.smart_site.service.AdminStaffService;
 import com.zty.smart_site.service.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -25,7 +22,7 @@ public class LoginController {
     private UserService userService;//用户
 
     @Autowired
-    private StaffService staffService;//员工
+    private AdminStaffService adminStaffService;//管理员工
 
     @ApiOperation(value = "PC登陆",notes = "测试数据:{\"username\":\"admin\",\"password\":\"123456\"}")
     @PostMapping("/LoginPc")
@@ -64,16 +61,16 @@ public class LoginController {
         }
     }
 
-    @ApiOperation(value = "App登录",notes = "测试数据:{\"staff_phone\":\"13000000000\",\n" +
+    @ApiOperation(value = "App登录",notes = "测试数据:{\"admin_phone\":\"13000000000\",\n" +
             "\"password\":\"123456\"}")
     @PostMapping("/LoginApp")
     public JsonResult LoginApp(@RequestBody Map map){
         JsonResult jsonResult = new JsonResult(ResultCode.USER_NOT_EXIST);
-        Staff staff = staffService.FindStaffByStaff_phone(map);
-        if(staff!=null){
-            if (staff.getPassword().equals(map.get("password"))){
+        AdminStaff adminStaff = adminStaffService.FindAdminStaffByStaff_phone(map);
+        if(adminStaff!=null){
+            if (adminStaff.getPassword().equals(map.get("password"))){
                 jsonResult.setMessage("登录成功!");
-                jsonResult.setData(staff);
+                jsonResult.setData(adminStaff);
                 jsonResult.setCode(200);
                 return jsonResult;
             }else {
