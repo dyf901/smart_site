@@ -42,4 +42,10 @@ public class StationService implements StationDao {
     public long Total(Map map) {
         return stationDao.Total(map);
     }
+
+    //下拉框查询站点信息
+    @Override
+    public List<Station> SelectStation(Map map) {
+        return stationDao.SelectStation(map);
+    }
 }

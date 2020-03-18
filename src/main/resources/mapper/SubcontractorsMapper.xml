@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zty.smart_site.dao.SubcontractorsDao">
+    <!--增加分包单位信息-->
+    <insert id="InsertSubcontractors" parameterType="java.util.Map">
+        INSERT INTO `smart_site`.`subcontractors` (`subcontractors_name`, `principal`, `section_id`, `station_id`, `principal_phone`, `remark`) VALUES (#{subcontractors_name}, #{principal}, #{section_id}, #{station_id}, #{principal_phone}, #{remark});
+    </insert>
+
+    <!--删除分包单位信息-->
+    <delete id="DeleteSubcontractors" parameterType="java.util.Map">
+        DELETE FROM `smart_site`.`subcontractors` WHERE `id`=#{id}
+    </delete>
+
+    <!--修改分包单位信息-->
+    <update id="UpdateSubcontractors" parameterType="java.util.Map">
+        UPDATE `smart_site`.`subcontractors` SET `subcontractors_name`=#{subcontractors_name}, `principal`=#{principal}, `principal_phone`=#{principal_phone}, `remark`=#{remark} WHERE (`id`=#{id});
+    </update>
+
+    <!--分页模糊查询分包单位信息-->
+    <select id="FindSubcontractors" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.Subcontractors">
+        <bind name="page" value="pageSize*(pageNo-1)"></bind>
+        SELECT s.`id`,s.`subcontractors_name`, s.`section_id`,s.`station_id` s.`principal`, s.`principal_phone`, s.`remark`,b.section_name as section_name,l.station_name as station_name FROM `smart_site`.`subcontractors` s
+        INNER JOIN `smart_site`.`section` b ON s.`section_id`=b.`id`
+        INNER JOIN `smart_site`.`station` l ON s.`station_id`=l.`id`
+        <where>
+            <if test="subcontractors_name!=null and subcontractors_name!=''">
+                `subcontractors_name`=#{subcontractors_name}
+            </if>
+        </where>
+        limit #{page},#{pageSize}
+    </select>
+
+    <!--统计总数-->
+    <select id="Total" parameterType="java.util.Map" resultType="long">
+        SELECT COUNT(*) FROM `smart_site`.`subcontractors`
+        <where>
+            <if test="subcontractors_name!=null and subcontractors_name!=''">
+                `subcontractors_name`=#{subcontractors_name}
+            </if>
+        </where>
+    </select>
+
+    <!--下拉框查询分包单位信息-->
+    <select id="SelectSubcontractors" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.Subcontractors">
+        SELECT `id`,`subcontractors_name`, `section_id` FROM `smart_site`.`subcontractors` WHERE `section_id`=#{section_id}
+    </select>
+</mapper>

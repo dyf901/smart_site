@@ -6,7 +6,7 @@
     <!--增加员工信息-->
     <insert id="InsertStaff" parameterType="java.util.Map">
         INSERT INTO `smart_site`.`staff` (`staff_name`, `staff_age`, `staff_img`, `staff_sex`, `staff_nation`, `staff_card`, `staff_address`, `staff_province`, `staff_phone`, `sos_name`, `sos_ship`, `sos_phone`, `entry_time`, `section_id`, `station_id`, `sub_id`, `worktype_id`, `picture`, `type`)
-        VALUES (#{staff_name}, #{staff_age}, #{staff_img}, #{staff_sex}, #{staff_nation}, #{staff_card}, #{staff_address}, #{staff_province}, #{staff_phone}, #{sos_name}, #{sos_ship}, #{sos_phone}, now(), #{section_id}, #{station_id}, #{department_id}, #{worktype_id}, #{picture}, #{type});
+        VALUES (#{staff_name}, #{staff_age}, #{staff_img}, #{staff_sex}, #{staff_nation}, #{staff_card}, #{staff_address}, #{staff_province}, #{staff_phone}, #{sos_name}, #{sos_ship}, #{sos_phone}, now(), #{section_id}, #{station_id}, #{sub_id}, #{worktype_id}, #{picture}, #{type});
     </insert>
 
     <!--删除员工信息-->

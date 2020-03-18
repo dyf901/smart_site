@@ -9,32 +9,36 @@ worktype_name   		工种名称
 content    				工作内容
 section_id              标段id
 station_id              站点id
+sub_id       分包单位id
 person_count            人数
 remark   				备注
 
 section_name            标段名称
 station_name            站点名称
+sub_name     分包单位名称
 */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Worktype {
-    private int id,section_id,station_id,person_count;
+    private int id,section_id,station_id,person_count,sub_id;
     private String worktype_name,content,remark;
-    private String section_name,station_name;
+    private String section_name,station_name,sub_name;
 
     public Worktype(){
         super();
     }
 
-    public Worktype(int id, int section_id, int station_id, int person_count, String worktype_name, String content, String remark, String section_name, String station_name) {
+    public Worktype(int id, int section_id, int station_id, int person_count, int sub_id, String worktype_name, String content, String remark, String section_name, String station_name, String sub_name) {
         this.id = id;
         this.section_id = section_id;
         this.station_id = station_id;
         this.person_count = person_count;
+        this.sub_id = sub_id;
         this.worktype_name = worktype_name;
         this.content = content;
         this.remark = remark;
         this.section_name = section_name;
         this.station_name = station_name;
+        this.sub_name = sub_name;
     }
 
     public int getId() {
@@ -109,6 +113,22 @@ public class Worktype {
         this.station_name = station_name;
     }
 
+    public int getSub_id() {
+        return sub_id;
+    }
+
+    public void setSub_id(int sub_id) {
+        this.sub_id = sub_id;
+    }
+
+    public String getSub_name() {
+        return sub_name;
+    }
+
+    public void setSub_name(String sub_name) {
+        this.sub_name = sub_name;
+    }
+
     @Override
     public String toString() {
         return "Worktype{" +
@@ -116,11 +136,13 @@ public class Worktype {
                 ", section_id=" + section_id +
                 ", station_id=" + station_id +
                 ", person_count=" + person_count +
+                ", sub_id=" + sub_id +
                 ", worktype_name='" + worktype_name + '\'' +
                 ", content='" + content + '\'' +
                 ", remark='" + remark + '\'' +
                 ", section_name='" + section_name + '\'' +
                 ", station_name='" + station_name + '\'' +
+                ", sub_name='" + sub_name + '\'' +
                 '}';
     }
 }

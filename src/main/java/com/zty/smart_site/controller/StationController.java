@@ -8,6 +8,7 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
 @Api(description = "站点接口")
@@ -45,5 +46,11 @@ public class StationController {
         page.setTotal(stationService.Total(map));
         page.setItems(stationService.FindStation(map));
         return page;
+    }
+
+    @ApiOperation(value = "下拉框查询站点信息",notes = "测试数据:{\"section_id\":1}")
+    @PostMapping("/SelectStation")
+    public List<Station> SelectStation(@RequestBody Map map){
+        return stationService.SelectStation(map);
     }
 }

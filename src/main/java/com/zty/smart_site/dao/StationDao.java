@@ -22,4 +22,7 @@ public interface StationDao {
 
     //统计总数
     long Total(Map map);
+
+    //下拉框查询站点信息
+    List<Station> SelectStation(Map map);
 }

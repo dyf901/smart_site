@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zty.smart_site.dao.PositionDao">
+    <!--增加职务信息-->
+    <insert id="InsertPosition" parameterType="java.util.Map">
+        INSERT INTO `smart_site`.`position` (`position_name`, `remark`) VALUES (#{position_name}, #{remark});
+    </insert>
+
+    <!--删除职务信息-->
+    <delete id="DeletePosition" parameterType="java.util.Map">
+        DELETE FROM `smart_site`.`position` WHERE `id`=#{id}
+    </delete>
+
+    <!--修改职务信息-->
+    <update id="UpdatePosition" parameterType="java.util.Map">
+        UPDATE `smart_site`.`position` SET  `position_name`=#{position_name}, `remark`=#{remark} WHERE (`id`=#{id});
+    </update>
+
+    <!--分页模糊查询职务信息-->
+    <select id="FindPosition" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.Position">
+        <bind name="page" value="pageSize*(pageNo-1)"></bind>
+        SELECT `id`,`position_name`, `remark` FROM `smart_site`.`position`
+        limit #{page},#{pageSize}
+    </select>
+
+    <!--统计总数-->
+    <select id="Total" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.Position">
+        SELECT COUNT(*) FROM `smart_site`.`position`
+    </select>
+</mapper>
