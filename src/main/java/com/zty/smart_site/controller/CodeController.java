@@ -20,7 +20,7 @@ import static com.zty.smart_site.util.CodeUtil.setNewcode;
 @CrossOrigin
 public class CodeController {
     @ApiOperation(value = "获取验证码",notes = "")
-    @PostMapping("/add_userapp")
+    @PostMapping("/gain_code")
     public JsonResult add_userapp(@RequestBody Map map) throws ClientException {
         JsonResult jsonResult = new JsonResult();
         setNewcode();
