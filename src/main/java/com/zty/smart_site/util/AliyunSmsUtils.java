@@ -38,7 +38,7 @@ public class AliyunSmsUtils {
         //必填:短信签名-可在短信控制台中找到
         request.setSignName("智铁云");    // TODO 修改成自己的
         //必填:短信模板-可在短信控制台中找到
-        request.setTemplateCode("SMS_173155777");    // TODO 修改成自己的
+        request.setTemplateCode("SMS_173155776");    // TODO 修改成自己的
         //可选:模板中的变量替换JSON串,如模板内容为"亲爱的${name},您的验证码为${code}"时,此处的值为
 //        request.setTemplateParam("{\"name\":\"Tom\", \"code\":\"123\"}");
         request.setTemplateParam("{\"code\":\"" + code + "\"}");

@@ -45,6 +45,10 @@ public class ProvinceUtil {
             province=asd+"省";
             return province;
 
+        }else if (asd.equals("江西")){
+            province=asd+"省";
+            return province;
+
         }else if (asd.equals("山东")){
             province=asd+"省";
             return province;

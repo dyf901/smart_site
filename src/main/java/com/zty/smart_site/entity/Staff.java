@@ -29,17 +29,23 @@ state					在职状态('0' 离职  '1'在职)
 status					实名认证状态('0' 未认证  '1' 已认证)
 type 				    员工类型
 train					培训状态('0' 未培训  '1'培训)
+
+section_name            标段名称
+station_name            站点名称
+sub_name                分包单位名称
+worktype_name           工种名称
 */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Staff {
     private int id,staff_age,history_integral,end_integral,section_id,sub_id,worktype_id,station_id;
     private String staff_name,staff_img,staff_sex,staff_nation,staff_card,staff_address,staff_province,staff_phone,sos_name,sos_ship,sos_phone,entry_time,password,picture,state,status,type,train;
+    private String section_name,station_name,sub_name,worktype_name;
 
     public Staff(){
         super();
     }
 
-    public Staff(int id, int staff_age, int history_integral, int end_integral, int section_id, int sub_id, int worktype_id, int station_id, String staff_name, String staff_img, String staff_sex, String staff_nation, String staff_card, String staff_address, String staff_province, String staff_phone, String sos_name, String sos_ship, String sos_phone, String entry_time, String password, String picture, String state, String status, String type, String train) {
+    public Staff(int id, int staff_age, int history_integral, int end_integral, int section_id, int sub_id, int worktype_id, int station_id, String staff_name, String staff_img, String staff_sex, String staff_nation, String staff_card, String staff_address, String staff_province, String staff_phone, String sos_name, String sos_ship, String sos_phone, String entry_time, String password, String picture, String state, String status, String type, String train, String section_name, String station_name, String sub_name, String worktype_name) {
         this.id = id;
         this.staff_age = staff_age;
         this.history_integral = history_integral;
@@ -66,6 +72,10 @@ public class Staff {
         this.status = status;
         this.type = type;
         this.train = train;
+        this.section_name = section_name;
+        this.station_name = station_name;
+        this.sub_name = sub_name;
+        this.worktype_name = worktype_name;
     }
 
     public int getId() {
@@ -276,6 +286,38 @@ public class Staff {
         this.station_id = station_id;
     }
 
+    public String getSection_name() {
+        return section_name;
+    }
+
+    public void setSection_name(String section_name) {
+        this.section_name = section_name;
+    }
+
+    public String getStation_name() {
+        return station_name;
+    }
+
+    public void setStation_name(String station_name) {
+        this.station_name = station_name;
+    }
+
+    public String getSub_name() {
+        return sub_name;
+    }
+
+    public void setSub_name(String sub_name) {
+        this.sub_name = sub_name;
+    }
+
+    public String getWorktype_name() {
+        return worktype_name;
+    }
+
+    public void setWorktype_name(String worktype_name) {
+        this.worktype_name = worktype_name;
+    }
+
     @Override
     public String toString() {
         return "Staff{" +
@@ -305,6 +347,10 @@ public class Staff {
                 ", status='" + status + '\'' +
                 ", type='" + type + '\'' +
                 ", train='" + train + '\'' +
+                ", section_name='" + section_name + '\'' +
+                ", station_name='" + station_name + '\'' +
+                ", sub_name='" + sub_name + '\'' +
+                ", worktype_name='" + worktype_name + '\'' +
                 '}';
     }
 }

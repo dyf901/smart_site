@@ -25,7 +25,7 @@ public class UploadController {
         String extName = oldFileName.substring(lastDotIndex);
         String newName = UUID.randomUUID() + extName;
         File excelFile =
-                new File("E:/test"//   /root/img/
+                new File("E:/test/"//   /root/img/
                         + newName);
         try {
             file.transferTo(excelFile);
@@ -39,11 +39,12 @@ public class UploadController {
     @ApiOperation(value = "下载图片", notes = "测试数据:{\"img_url\":\"安全行为之星系统.pdf\"}")
     @GetMapping("/download_img")
     public void find_img(@RequestParam String img_url, HttpServletResponse response) {
+        System.out.println(img_url);
         try {
             BufferedInputStream bis =
                     new BufferedInputStream(
                             new FileInputStream(
-                                    new File("/root/img/" + img_url)));///root/img/
+                                    new File("E:/test/" + img_url)));///root/img/
             int num;
             byte[] b = new byte[1024];
 
@@ -60,7 +61,7 @@ public class UploadController {
 
     @ApiOperation(value = "base64", notes = "测试数据:")
     @PostMapping("/base64_img")
-    public boolean GenerateImage(@RequestBody Map map) {// 对字节数组字符串进行Base64解码并生成图片
+    public String GenerateImage(@RequestBody Map map) {// 对字节数组字符串进行Base64解码并生成图片
         System.out.println(map.get("imgStr"));
         String imgStr1 = (String) map.get("imgStr");
         String imgStr = imgStr1.replaceAll(" ", "+");
@@ -69,14 +70,14 @@ public class UploadController {
         String data = "";//实体部分数据
         //String imgFilePath="D:\\wangyc.png";
         if (imgStr == null) {// 图像数据为空
-            return false;
+            return "添加失败!";
         } else {
             String[] d = imgStr.split("base64,");//将字符串分成数组
             if (d != null && d.length == 2) {
                 dataPrix = d[0];
                 data = d[1];
             } else {
-                return false;
+                return "添加失败!";
             }
         }
         String suffix = "";//图片后缀，用以识别哪种格式数据
@@ -93,7 +94,7 @@ public class UploadController {
             //data:image/png;base64,base64编码的png图片数据
             suffix = ".png";
         } else {
-            return false;
+            return "添加失败!";
         }
         String uuid = UUID.randomUUID().toString().replaceAll("-", "");
         String tempFileName = uuid + suffix;
@@ -116,9 +117,9 @@ public class UploadController {
             out.write(bytes);
             out.flush();
             out.close();
-            return true;
+            return tempFileName;
         } catch (Exception e) {
-            return false;
+            return "添加失败!";
         }
     }
 

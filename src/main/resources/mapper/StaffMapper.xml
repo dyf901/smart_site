@@ -43,8 +43,21 @@
     <!--模糊分页查询员工信息-->
     <select id="FindStaff" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.Staff">
         <bind name="page" value="pageSize*(pageNo-1)"></bind>
-        SELECT `id`, `staff_name`, `staff_age`, `staff_img`, `staff_sex`, `staff_nation`, `staff_card`, `staff_address`, `staff_province`, `staff_phone`, `sos_name`, `sos_ship`, `sos_phone`, `entry_time`, `history_integral`, `end_integral`, `section_id`, `station_id`, `sub_id`, `worktype_id`, `password`, `picture`, `state`, `status`, `type`, `train` FROM `smart_site`.`staff`
-        WHERE `section_id`=#{section_id}
+        SELECT s.`id`, s.`staff_name`, s.`staff_age`, s.`staff_img`, s.`staff_sex`, s.`staff_nation`, s.`staff_card`, s.`staff_address`, s.`staff_province`, s.`staff_phone`, s.`sos_name`, s.`sos_ship`, s.`sos_phone`, s.`entry_time`, s.`history_integral`, s.`end_integral`, s.`section_id`, s.`station_id`, s.`sub_id`, s.`worktype_id`, s.`password`, s.`picture`, s.`state`, s.`status`, s.`type`, s.`train`,l.subcontractors_name as sub_name,w.worktype_name as worktype_name  FROM `smart_site`.`staff` s
+        INNER JOIN `smart_site`.`subcontractors` l ON s.`sub_id`=l.`id`
+        INNER JOIN `smart_site`.`worktype` w ON s.`worktype_id`=w.id
+        <where>
+            s.`section_id`=#{section_id}
+            <if test="staff_name!=null and staff_name!=''">
+                s.`staff_name`=#{staff_name}
+            </if>
+            <if test="sub_id!=null and sub_id!=''">
+                s.`sub_id`=#{sub_id}
+            </if>
+            <if test="worktype_id!=null and worktype_id!=''">
+                s.`worktype_id`=#{worktype}
+            </if>
+        </where>
         limit #{page},#{pageSize}
     </select>
 

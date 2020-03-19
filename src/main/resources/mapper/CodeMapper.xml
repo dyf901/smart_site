@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zty.smart_site.dao.CodeDao">
+    <!--添加验证码-->
+    <insert id="InsertCode" parameterType="java.util.Map">
+        INSERT INTO `smart_site`.`code` (`phone`, `code`, `uptime`) VALUES (#{phone},#{code},#{uptime});
+    </insert>
+
+    <!--修改验证码-->
+    <update id="UpdateCode" parameterType="java.util.Map">
+        UPDATE `smart_site`.`code` SET `code`=#{code}, `uptime`=#{uptime} WHERE (`phone`=#{phone});
+    </update>
+
+    <!--根据手机号查询验证码信息-->
+    <select id="FindCodeByPhone" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.Code">
+        SELECT `id`,`phone`, `code`, `uptime` FROM `smart_site`.`code` where `phone`=#{phone}
+    </select>
+</mapper>
