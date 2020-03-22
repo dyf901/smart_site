@@ -3,6 +3,9 @@ package com.zty.smart_site.entity;
 public class JsonResult {
     private String message;//中文信息
     private Object data;//实体
+    private Object data2;
+    private Object data3;
+    private Object data4;
     private Integer code;
 
     public JsonResult(int userNotExist){
@@ -15,9 +18,33 @@ public class JsonResult {
         this.message = message;
     }
 
-    public JsonResult(String message, Object data, Object statistics, Integer code) {
+    public JsonResult(String message, Object data, Integer code) {
         this.message = message;
         this.data = data;
+        this.code = code;
+    }
+
+    public JsonResult(String message, Object data, Object data2, Integer code) {
+        this.message = message;
+        this.data = data;
+        this.data = data2;
+        this.code = code;
+    }
+
+    public JsonResult(String message, Object data, Object data2, Object data3, Integer code) {
+        this.message = message;
+        this.data = data;
+        this.data = data2;
+        this.data = data3;
+        this.code = code;
+    }
+
+    public JsonResult(String message, Object data, Object data2, Object data3, Object data4, Integer code) {
+        this.message = message;
+        this.data = data;
+        this.data = data2;
+        this.data = data3;
+        this.data = data4;
         this.code = code;
     }
 
@@ -76,11 +103,38 @@ public class JsonResult {
         this.code = code;
     }
 
+    public Object getData2() {
+        return data2;
+    }
+
+    public void setData2(Object data2) {
+        this.data2 = data2;
+    }
+
+    public Object getData3() {
+        return data3;
+    }
+
+    public void setData3(Object data3) {
+        this.data3 = data3;
+    }
+
+    public Object getData4() {
+        return data4;
+    }
+
+    public void setData4(Object data4) {
+        this.data4 = data4;
+    }
+
     @Override
     public String toString() {
         return "JsonResult{" +
                 "message='" + message + '\'' +
                 ", data=" + data +
+                ", data2=" + data2 +
+                ", data3=" + data3 +
+                ", data4=" + data4 +
                 ", code=" + code +
                 '}';
     }

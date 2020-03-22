@@ -78,4 +78,40 @@ public class StaffService implements StaffDao {
     public Staff FindStaffByStaff_card(Map map) {
         return staffDao.FindStaffByStaff_card(map);
     }
+
+    //根据工种分组统计人数(选择站点)
+    @Override
+    public List<Staff> CountByWorktype(Map map) {
+        return staffDao.CountByWorktype(map);
+    }
+
+    //根据分包单位分组统计人数(选择站点)
+    @Override
+    public List<Staff> CountBySub(Map map) {
+        return staffDao.CountBySub(map);
+    }
+
+    //根据人员类型分组统计人数(选择站点)
+    @Override
+    public List<Staff> CountByType(Map map) {
+        return staffDao.CountByType(map);
+    }
+
+    //根据地区分组统计人数(选择站点)
+    @Override
+    public List<Staff> CountByStaffProvince(Map map) {
+        return staffDao.CountByStaffProvince(map);
+    }
+
+    //根据民族分组统计人数(选择站点)
+    @Override
+    public List<Staff> CountByStaffNation(Map map) {
+        return staffDao.CountByStaffNation(map);
+    }
+
+    //根据性别分组统计人数(选择站点)
+    @Override
+    public List<Staff> CountByStaffSex(Map map) {
+        return staffDao.CountByStaffSex(map);
+    }
 }

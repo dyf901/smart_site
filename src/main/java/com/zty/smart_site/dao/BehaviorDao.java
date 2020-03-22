@@ -24,5 +24,5 @@ public interface BehaviorDao {
     long Total(Map map);
 
     //行为类型下拉框
-    List<Behavior> SelectBehavior();
+    List<Behavior> SelectBehavior(Map map);
 }

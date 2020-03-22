@@ -5,7 +5,7 @@
 <mapper namespace="com.zty.smart_site.dao.BehaviorDao">
     <!--增加行为类型-->
     <insert id="InsertBehavior" parameterType="java.util.Map">
-        INSERT INTO `smart_site`.`behavior` (`behavior_name`, `detail`, `remark`) VALUES (#{behavior_name}, #{detail}, #{remark});
+        INSERT INTO `smart_site`.`behavior` (`behavior_name`,`section_id`,`detail`, `remark`) VALUES (#{behavior_name}, #{section_id}, #{detail}, #{remark});
     </insert>
 
     <!--删除行为类型-->
@@ -21,10 +21,11 @@
     <!--分页模糊查询-->
     <select id="FindBehavior" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.Behavior">
         <bind name="page" value="pageSize*(pageNo-1)"></bind>
-        SELECT `id`, `behavior_name`, `detail`, `remark` FROM `smart_site`.`behavior`
+        SELECT `id`, `behavior_name`,`section_id`,`detail`, `remark` FROM `smart_site`.`behavior`
         <where>
+            `section_id`=#{section_id}
             <if test="behavior_name!=null and behavior_name!=''">
-                `behavior_name`=#{behavior_name}
+                and `behavior_name` like concat("%",#{behavior_name},"%")
             </if>
         </where>
         limit #{page},#{pageSize}
@@ -35,13 +36,13 @@
         SELECT COUNT(*) FROM `smart_site`.`behavior`
         <where>
             <if test="behavior_name!=null and behavior_name!=''">
-                `behavior_name`=#{behavior_name}
+                and `behavior_name` like concat("%",#{behavior_name},"%")
             </if>
         </where>
     </select>
 
     <!--行为类型下拉框-->
     <select id="SelectBehavior" resultType="com.zty.smart_site.entity.Behavior">
-        SELECT `id`, `behavior_name` FROM `smart_site`.`behavior`
+        SELECT `id`, `behavior_name` FROM `smart_site`.`behavior` where `section_id`=#{section_id}
     </select>
 </mapper>

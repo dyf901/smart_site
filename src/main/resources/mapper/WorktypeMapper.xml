@@ -33,10 +33,10 @@
         <where>
             w.`section_id`=#{section_id}
             <if test="worktype_name!=null and worktype_name!=''">
-                w.`worktype_name`=#{worktype_name}
+                and w.`worktype_name`like concat("%",#{worktype_name},"%")
             </if>
             <if test="station_id!=null and station_id!=''">
-                w.`station_id`=#{station_id}
+                and w.`station_id`=#{station_id}
             </if>
         </where>
         limit #{page},#{pageSize}
@@ -48,10 +48,10 @@
         <where>
             `section_id`=#{section_id}
             <if test="worktype_name!=null and worktype_name!=''">
-                `worktype_name`=#{worktype_name}
+                and `worktype_name`like concat("%",#{worktype_name},"%")
             </if>
             <if test="station_id!=null and station_id!=''">
-                `station_id`=#{station_id}
+                and `station_id`=#{station_id}
             </if>
         </where>
     </select>

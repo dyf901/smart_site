@@ -41,10 +41,10 @@
         <where>
             a.`section_id`=#{section_id}
             <if test="admin_name!=null and admin_name!=''">
-                a.`admin_name`=#{admin_name}
+               and a.`admin_name` like concat("%",#{admin_name},"%")
             </if>
             <if test="department_id!=null and department_id!=''">
-                a.`department_id`=#{department_id}
+                and a.`department_id`=#{department_id}
             </if>
         </where>
         limit #{page},#{pageSize}
@@ -56,10 +56,10 @@
         <where>
             `section_id`=#{section_id}
             <if test="admin_name!=null and admin_name!=''">
-                `admin_name`=#{admin_name}
+                and `admin_name` like concat("%",#{admin_name},"%")
             </if>
             <if test="department_id!=null and department_id!=''">
-                `department_id`=#{department_id}
+                and `department_id`=#{department_id}
             </if>
         </where>
     </select>

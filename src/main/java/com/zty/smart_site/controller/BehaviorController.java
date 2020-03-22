@@ -52,7 +52,7 @@ public class BehaviorController {
 
     @ApiOperation(value = "行为类型下拉框",notes = "")
     @PostMapping("/SelectBehavior")
-    public List<Behavior> SelectBehavior(){
-        return behaviorService.SelectBehavior();
+    public List<Behavior> SelectBehavior(@RequestBody Map map){
+        return behaviorService.SelectBehavior(map);
     }
 }

@@ -27,7 +27,7 @@
         <where>
             s.`section_id`=#{section_id}
             <if test="subcontractors_name!=null and subcontractors_name!=''">
-                `subcontractors_name`=#{subcontractors_name}
+                and `subcontractors_name` like concat("%",#{subcontractors_name},"%")
             </if>
         </where>
         limit #{page},#{pageSize}
@@ -39,7 +39,7 @@
         <where>
             `section_id`=#{section_id}
             <if test="subcontractors_name!=null and subcontractors_name!=''">
-                `subcontractors_name`=#{subcontractors_name}
+                and `subcontractors_name` like concat("%",#{subcontractors_name},"%")
             </if>
         </where>
     </select>

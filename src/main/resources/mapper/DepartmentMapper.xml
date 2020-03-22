@@ -31,7 +31,7 @@
         <where>
             d.`section_id`=#{section_id}
             <if test="department_name!=null and department_name!=''">
-                d.`department_name`=#{department_name}
+                and d.`department_name` like concat("%",#{department_name},"%")
             </if>
         </where>
         limit #{page},#{pageSize}
@@ -43,7 +43,7 @@
         <where>
             `section_id`=#{section_id}
             <if test="department_name!=null and department_name!=''">
-                `department_name`=#{department_name}
+                and `department_name` like concat("%",#{department_name},"%")
             </if>
         </where>
     </select>

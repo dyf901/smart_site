@@ -26,7 +26,7 @@
         <where>
             s.section_id=#{section_id}
             <if test="station_name!=null and station_name!=''">
-                s.station_name=#{station_name}
+                and s.station_name like concat("%",#{station_name},"%")
             </if>
         </where>
     </select>
@@ -37,7 +37,7 @@
         <where>
             section_id=#{section_id}
             <if test="station_name!=null and station_name!=''">
-                station_name=#{station_name}
+                station_name like concat("%",#{station_name},"%")
             </if>
         </where>
     </select>

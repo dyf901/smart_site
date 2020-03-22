@@ -45,7 +45,7 @@ public class BehaviorService implements BehaviorDao {
 
     //行为类型下拉框
     @Override
-    public List<Behavior> SelectBehavior() {
-        return behaviorDao.SelectBehavior();
+    public List<Behavior> SelectBehavior(Map map) {
+        return behaviorDao.SelectBehavior(map);
     }
 }

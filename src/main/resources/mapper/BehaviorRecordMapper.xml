@@ -29,10 +29,10 @@
         <where>
             b.`section_id`=#{section_id}
             <if test="behavior_id!=null and behavior_id!=''">
-                b.`behavior_id`=#{behavior_id}
+                and b.`behavior_id`=#{behavior_id}
             </if>
             <if test="station_id!=null and station_id!=''">
-                b.`station_id`=#{station_id}
+                and b.`station_id`=#{station_id}
             </if>
         </where>
         limit #{page},#{pageSize}
@@ -42,11 +42,12 @@
     <select id="Total" parameterType="java.util.Map" resultType="long">
         SELECT COUNT(*) FROM `smart_site`.`behavior_record`
         <where>
+            `section_id`=#{section_id}
             <if test="behavior_id!=null and behavior_id!=''">
-                `behavior_id`=#{behavior_id}
+                and `behavior_id`=#{behavior_id}
             </if>
             <if test="station_id!=null and station_id!=''">
-                `station_id`=#{station_id}
+                and `station_id`=#{station_id}
             </if>
         </where>
     </select>

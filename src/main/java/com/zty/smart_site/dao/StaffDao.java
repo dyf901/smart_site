@@ -40,4 +40,22 @@ public interface StaffDao {
 
     //根据身份证号查询员工信息
     Staff FindStaffByStaff_card(Map map);
+
+    //根据工种分组统计人数(选择站点)
+    List<Staff> CountByWorktype(Map map);
+
+    //根据分包单位分组统计人数(选择站点)
+    List<Staff> CountBySub(Map map);
+
+    //根据人员类型分组统计人数(选择站点)
+    List<Staff> CountByType(Map map);
+
+    //根据地区分组统计人数(选择站点)
+    List<Staff> CountByStaffProvince(Map map);
+
+    //根据民族分组统计人数(选择站点)
+    List<Staff> CountByStaffNation(Map map);
+
+    //根据性别分组统计人数(选择站点)
+    List<Staff> CountByStaffSex(Map map);
 }
