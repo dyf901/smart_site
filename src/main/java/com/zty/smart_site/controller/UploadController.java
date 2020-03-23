@@ -98,7 +98,7 @@ public class UploadController {
         }
         String uuid = UUID.randomUUID().toString().replaceAll("-", "");
         String tempFileName = uuid + suffix;
-        String imgFilePath = "D:\\Images\\" + tempFileName;//新生成的图片地址
+        String imgFilePath = "E:\\test\\" + tempFileName;//新生成的图片地址
         //String imgFilePath = "/img/wisdom_site/"+tempFileName;//新生成图片的服务器地址
         System.out.println(tempFileName);
         System.out.println(imgFilePath);

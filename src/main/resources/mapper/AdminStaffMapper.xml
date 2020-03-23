@@ -5,7 +5,7 @@
 <mapper namespace="com.zty.smart_site.dao.AdminStaffDao">
     <!--增加管理人员-->
     <insert id="InsertAdminStaff" parameterType="java.util.Map">
-        INSERT INTO `smart_site`.`admin_staff` (`admin_name`, `admin_age`, `admin_img`, `admin_sex`, `admin_nation`, `admin_address`, `admin_province`, `admin_card`, `admin_phone`, `sos_name`, `sos_ship`, `sos_phone`, `entry_time`, `section_id`, `department_id`, `password`, `picture`, `type`) VALUES (#{admin_name}, #{admin_age}, #{admin_img}, #{admin_sex}, #{admin_nation}, #{admin_address}, #{admin_province}, #{admin_card}, #{admin_phone}, #{sos_name}, #{sos_ship}, #{sos_phone}, now(), #{section_id}, #{department_id}, #{password}, #{picture}, #{type});
+        INSERT INTO `smart_site`.`admin_staff` (`admin_name`, `admin_age`, `admin_img`, `admin_sex`, `admin_nation`, `admin_address`, `admin_province`, `admin_card`, `admin_phone`, `sos_name`, `sos_ship`, `sos_phone`, `entry_time`, `section_id`, `department_id`, `picture`, `type`) VALUES (#{admin_name}, #{admin_age}, #{admin_img}, #{admin_sex}, #{admin_nation}, #{admin_address}, #{admin_province}, #{admin_card}, #{admin_phone}, #{sos_name}, #{sos_ship}, #{sos_phone}, now(), #{section_id}, #{department_id}, #{picture}, #{type});
     </insert>
 
     <!--删除管理人员-->
@@ -35,7 +35,7 @@
     <!--分页模糊查询管理人员信息-->
     <select id="FindAdminStaff" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.AdminStaff">
         <bind name="page" value="pageSize*(pageNo-1)"></bind>
-        SELECT a.`id`, a.`admin_name`, a.`admin_age`, a.`admin_img`, a.`admin_sex`, a.`admin_nation`, a.`admin_address`, a.`admin_province`, a.`admin_card`, a.`admin_phone`, a.`sos_name`, a.`sos_ship`, a.`sos_phone`, a.`entry_time`, a.`section_id`, a.`department_id`, a.`password`, a.`picture`, a.`state`, a.`status`, a.`type` FROM `smart_site`.`admin_staff` a
+        SELECT a.`id`, a.`admin_name`, a.`admin_age`, a.`admin_img`, a.`admin_sex`, a.`admin_nation`, a.`admin_address`, a.`admin_province`, a.`admin_card`, a.`admin_phone`, a.`sos_name`, a.`sos_ship`, a.`sos_phone`, a.`entry_time`, a.`section_id`, a.`department_id`, a.`password`, a.`picture`, a.`state`, a.`status`, a.`type`,d.department_name as department_name FROM `smart_site`.`admin_staff` a
         INNER JOIN `smart_site`.`section` s ON a.`section_id`=s.`id`
         INNER JOIN `smart_site`.`department` d ON a.`department_id`=d.`id`
         <where>

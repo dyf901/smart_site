@@ -35,6 +35,7 @@
     <select id="Total" parameterType="java.util.Map" resultType="long">
         SELECT COUNT(*) FROM `smart_site`.`behavior`
         <where>
+            `section_id`=#{section_id}
             <if test="behavior_name!=null and behavior_name!=''">
                 and `behavior_name` like concat("%",#{behavior_name},"%")
             </if>

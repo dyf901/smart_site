@@ -114,4 +114,16 @@ public class StaffService implements StaffDao {
     public List<Staff> CountByStaffSex(Map map) {
         return staffDao.CountByStaffSex(map);
     }
+
+    //统计总劳务人员数(单独站点)
+    @Override
+    public List<Staff> CountAll(Map map) {
+        return staffDao.CountAll(map);
+    }
+
+    //按照年龄端分组查询(单独站点)
+    @Override
+    public List<Staff> CountByStaffAge(Map map) {
+        return staffDao.CountByStaffAge(map);
+    }
 }

@@ -134,4 +134,16 @@
         WHERE section_id=#{section_id} and station_id=#{station_id}
         GROUP BY staff_sex
     </select>
+
+    <!--统计总劳务人员数(单独站点)-->
+    <select id="CountAll" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.Staff">
+        SELECT COUNT(*) as `count` from `smart_site`.`staff`
+        WHERE section_id=#{section_id} and station_id=#{station_id}
+    </select>
+
+    <!--按照年龄端分组查询(单独站点)-->
+    <select id="CountByStaffAge" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.Staff">
+        SELECT staff_age as age_duan,count(*) as `count` FROM (select case when `staff_age` &gt;= 15 and staff_age &lt;= 20 THEN '15-20' WHEN staff_age &gt;= 21 AND staff_age &lt;= 30 THEN '21-30' WHEN staff_age &gt;= 31 AND staff_age &lt;= 40 THEN '31-40' WHEN staff_age &gt;= 41 AND staff_age &lt;= 50 THEN '41-50' WHEN staff_age &gt;= 51 AND staff_age &lt;= 60 THEN '51-60' END AS staff_age FROM staff where section_id=#{section_id} and station_id=#{station_id}) a
+        GROUP BY staff_age
+    </select>
 </mapper>
