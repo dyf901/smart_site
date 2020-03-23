@@ -3,5 +3,47 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.zty.smart_site.dao.ConversionsDao">
+    <!--增加兑换记录-->
+    <insert id="InsertConversions" parameterType="java.util.Map">
+        INSERT INTO `smart_site`.`conversion` (`staff_id`, `commodity_id`, `section_id`, `station_id`, `sub_id`, `conversion_time`) VALUES (#{staff_id}, #{commodity_id}, #{section_id}, #{station_id}, #{sub_id}, now());
+    </insert>
 
+    <!--删除兑换记录-->
+    <delete id="DeleteConversions" parameterType="java.util.Map">
+        DELETE FROM `smart_site`.`conversion` WHERE `id`=#{id}
+    </delete>
+
+    <!--分页模糊查询兑换记录-->
+    <select id="FindConversions" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.Conversions">
+        <bind name="page" value="pageSize*(pageNo)"></bind>
+        SELECT `id`, `staff_id`, `commodity_id`, `section_id`, `station_id`, `sub_id`, `conversion_time`, `active`,s.staff_name as staff_name,b.commodity_name as commodity_name,l.station_name as station_name,w.subcontractors_name as sub_name FROM `smart_site`.`conversion` a
+        INNER `smart_site`.`staff` s ON a.`staff_id`=s.`id`
+        INNER `smart_site`.`commodity` b ON a.`staff_id`=b.`id`
+        INNER `smart_site`.`station` l ON a.`staff_id`=l.`id`
+        INNER `smart_site`.`subcontractors` w ON a.`staff_id`=w.`id`
+        WHERE a.`section_id`=#{section_id}
+        limit #{page},#{pageSize}
+    </select>
+
+    <!--统计总数-->
+    <select id="Total" parameterType="java.util.Map" resultType="long">
+        SELECT COUNT(*) FROM `smart_site`.`conversion` WHERE `section_id`=#{section_id}
+    </select>
+
+    <!--分页模糊查询个人兑换记录-->
+    <select id="FindConversionsByStaffId" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.Conversions">
+        <bind name="page" value="pageSize*(pageNo)"></bind>
+        SELECT `id`, `staff_id`, `commodity_id`, `section_id`, `station_id`, `sub_id`, `conversion_time`, `active`,s.staff_name as staff_name,b.commodity_name as commodity_name,l.station_name as station_name,w.subcontractors_name as sub_name FROM `smart_site`.`conversion` a
+        INNER `smart_site`.`staff` s ON a.`staff_id`=s.`id`
+        INNER `smart_site`.`commodity` b ON a.`staff_id`=b.`id`
+        INNER `smart_site`.`station` l ON a.`staff_id`=l.`id`
+        INNER `smart_site`.`subcontractors` w ON a.`staff_id`=w.`id`
+        WHERE a.`section_id`=#{section_id} and a.`staff_id`=#{staff_id}
+        limit #{page},#{pageSize}
+    </select>
+
+    <!--统计个人总数-->
+    <select id="TotalByStaff" parameterType="java.util.Map" resultType="long">
+        SELECT COUNT(*) FROM `smart_site`.`conversion` WHERE `section_id`=#{section_id} and `staff_id`=#{staff_id}
+    </select>
 </mapper>
