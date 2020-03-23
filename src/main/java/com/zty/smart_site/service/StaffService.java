@@ -55,6 +55,12 @@ public class StaffService implements StaffDao {
         return staffDao.UpdateStaffTrain(map);
     }
 
+    //修改员工剩余积分
+    @Override
+    public int UpdateStaffEnd_integral(Map map) {
+        return staffDao.UpdateStaffEnd_integral(map);
+    }
+
     //模糊分页查询员工信息
     @Override
     public List<Staff> FindStaff(Map map) {
@@ -77,6 +83,12 @@ public class StaffService implements StaffDao {
     @Override
     public Staff FindStaffByStaff_card(Map map) {
         return staffDao.FindStaffByStaff_card(map);
+    }
+
+    //根据id查询员工信息
+    @Override
+    public Staff FindStaffById(Map map) {
+        return staffDao.FindStaffById(map);
     }
 
     //根据工种分组统计人数(选择站点)

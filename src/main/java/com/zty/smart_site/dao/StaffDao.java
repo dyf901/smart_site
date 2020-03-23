@@ -29,6 +29,9 @@ public interface StaffDao {
     //修改员工培训状态
     int UpdateStaffTrain(Map map);
 
+    //修改员工剩余积分
+    int UpdateStaffEnd_integral(Map map);
+
     //模糊分页查询员工信息
     List<Staff> FindStaff(Map map);
 
@@ -40,6 +43,9 @@ public interface StaffDao {
 
     //根据身份证号查询员工信息
     Staff FindStaffByStaff_card(Map map);
+
+    //根据Id查询员工信息
+    Staff FindStaffById(Map map);
 
     //根据工种分组统计人数(选择站点)
     List<Staff> CountByWorktype(Map map);

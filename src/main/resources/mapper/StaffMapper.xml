@@ -40,6 +40,11 @@
          UPDATE `smart_site`.`staff` SET `train`='1' WHERE `id`=#{id}
     </update>
 
+    <!--修改员工剩余积分-->
+    <update id="UpdateStaffEnd_integral" parameterType="java.util.Map">
+         UPDATE `smart_site`.`staff` SET `end_integral`=`end_integral`-#{commodity_price} WHERE `id`=#{id}
+    </update>
+
     <!--模糊分页查询员工信息-->
     <select id="FindStaff" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.Staff">
         <bind name="page" value="pageSize*(pageNo-1)"></bind>
@@ -88,6 +93,12 @@
     <select id="FindStaffByStaff_card" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.Staff">
         SELECT `id`, `staff_name`, `staff_age`, `staff_img`, `staff_sex`, `staff_nation`, `staff_card`, `staff_address`, `staff_province`, `staff_phone`, `sos_name`, `sos_ship`, `sos_phone`, `entry_time`, `history_integral`, `end_integral`, `section_id`, `station_id`, `sub_id`, `worktype_id`, `password`, `picture`, `state`, `status`, `type`, `train` FROM `smart_site`.`staff`
         WHERE `staff_card`=#{staff_card}
+    </select>
+
+    <!--根据id查询员工信息-->
+    <select id="FindStaffById" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.Staff">
+        SELECT `id`, `staff_name`, `staff_age`, `staff_img`, `staff_sex`, `staff_nation`, `staff_card`, `staff_address`, `staff_province`, `staff_phone`, `sos_name`, `sos_ship`, `sos_phone`, `entry_time`, `history_integral`, `end_integral`, `section_id`, `station_id`, `sub_id`, `worktype_id`, `password`, `picture`, `state`, `status`, `type`, `train` FROM `smart_site`.`staff`
+        WHERE `id`=#{id}
     </select>
 
     <!--统计图数据-->
