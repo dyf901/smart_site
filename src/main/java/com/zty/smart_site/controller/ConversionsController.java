@@ -62,6 +62,7 @@ public class ConversionsController {
     @PostMapping("/FindConversions")
     public Page<Conversions> FindConversions(@RequestBody Map map){
         Page<Conversions> page = new Page<Conversions>();
+
         page.setPageNo((Integer) map.get("pageNo"));
         page.setPageSize((Integer) map.get("pageSize"));
         page.setTotal(conversionsService.Total(map));
