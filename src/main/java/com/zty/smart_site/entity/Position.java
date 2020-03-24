@@ -2,10 +2,10 @@ package com.zty.smart_site.entity;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 /*
-职务表实体类
-position            职务表
-id						职务id
-position_name			职务名称
+菜单表实体类
+position            菜单表
+id						菜单id
+position_name			菜单名称
 remark					备注
 
 */

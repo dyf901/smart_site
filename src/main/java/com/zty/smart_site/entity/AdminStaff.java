@@ -25,13 +25,14 @@ picture					手机端头像
 state					在职状态('0' 离职  '1'在职)
 status					实名认证状态('0' 未认证  '1' 已认证)
 type 					员工类型
+position_id             菜单id
 
 section_name            标段名称
 department_name         部门名称
 */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class AdminStaff {
-    private int id,admin_age,section_id,department_id;
+    private int id,admin_age,section_id,department_id,position_id;
     private String admin_name,admin_img,admin_sex,admin_nation,admin_address,admin_province,admin_card,admin_phone,sos_name,sos_ship,sos_phone,entry_time,password,picture,state,status,type;
     private String section_name,department_name;
     
@@ -39,11 +40,12 @@ public class AdminStaff {
         super();
     }
 
-    public AdminStaff(int id, int admin_age, int section_id, int department_id, String admin_name, String admin_img, String admin_sex, String admin_nation, String admin_address, String admin_province, String admin_card, String admin_phone, String sos_name, String sos_ship, String sos_phone, String entry_time, String password, String picture, String state, String status, String type, String section_name, String department_name) {
+    public AdminStaff(int id, int admin_age, int section_id, int department_id, int position_id, String admin_name, String admin_img, String admin_sex, String admin_nation, String admin_address, String admin_province, String admin_card, String admin_phone, String sos_name, String sos_ship, String sos_phone, String entry_time, String password, String picture, String state, String status, String type, String section_name, String department_name) {
         this.id = id;
         this.admin_age = admin_age;
         this.section_id = section_id;
         this.department_id = department_id;
+        this.position_id = position_id;
         this.admin_name = admin_name;
         this.admin_img = admin_img;
         this.admin_sex = admin_sex;
@@ -249,6 +251,14 @@ public class AdminStaff {
         this.department_name = department_name;
     }
 
+    public int getPosition_id() {
+        return position_id;
+    }
+
+    public void setPosition_id(int position_id) {
+        this.position_id = position_id;
+    }
+
     @Override
     public String toString() {
         return "AdminStaff{" +
@@ -256,6 +266,7 @@ public class AdminStaff {
                 ", admin_age=" + admin_age +
                 ", section_id=" + section_id +
                 ", department_id=" + department_id +
+                ", position_id=" + position_id +
                 ", admin_name='" + admin_name + '\'' +
                 ", admin_img='" + admin_img + '\'' +
                 ", admin_sex='" + admin_sex + '\'' +

@@ -29,6 +29,7 @@ state					在职状态('0' 离职  '1'在职)
 status					实名认证状态('0' 未认证  '1' 已认证)
 type 				    员工类型
 train					培训状态('0' 未培训  '1'培训)
+position_id             菜单id
 
 section_name            标段名称
 station_name            站点名称
@@ -39,7 +40,7 @@ age_duan                年龄段
 //@JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class Staff {
-    private int id,staff_age,history_integral,end_integral,section_id,sub_id,worktype_id,station_id,count;
+    private int id,staff_age,history_integral,end_integral,section_id,sub_id,worktype_id,station_id,count,position_id;
     private String staff_name,staff_img,staff_sex,staff_nation,staff_card,staff_address,staff_province,staff_phone,sos_name,sos_ship,sos_phone,entry_time,password,picture,state,status,type,train;
     private String section_name,station_name,sub_name,worktype_name,age_duan;
 
@@ -47,7 +48,7 @@ public class Staff {
         super();
     }
 
-    public Staff(int id, int staff_age, int history_integral, int end_integral, int section_id, int sub_id, int worktype_id, int station_id, int count, String staff_name, String staff_img, String staff_sex, String staff_nation, String staff_card, String staff_address, String staff_province, String staff_phone, String sos_name, String sos_ship, String sos_phone, String entry_time, String password, String picture, String state, String status, String type, String train, String section_name, String station_name, String sub_name, String worktype_name, String age_duan) {
+    public Staff(int id, int staff_age, int history_integral, int end_integral, int section_id, int sub_id, int worktype_id, int station_id, int count, int position_id, String staff_name, String staff_img, String staff_sex, String staff_nation, String staff_card, String staff_address, String staff_province, String staff_phone, String sos_name, String sos_ship, String sos_phone, String entry_time, String password, String picture, String state, String status, String type, String train, String section_name, String station_name, String sub_name, String worktype_name, String age_duan) {
         this.id = id;
         this.staff_age = staff_age;
         this.history_integral = history_integral;
@@ -57,6 +58,7 @@ public class Staff {
         this.worktype_id = worktype_id;
         this.station_id = station_id;
         this.count = count;
+        this.position_id = position_id;
         this.staff_name = staff_name;
         this.staff_img = staff_img;
         this.staff_sex = staff_sex;
@@ -344,6 +346,14 @@ public class Staff {
         this.age_duan = age_duan;
     }
 
+    public int getPosition_id() {
+        return position_id;
+    }
+
+    public void setPosition_id(int position_id) {
+        this.position_id = position_id;
+    }
+
     @Override
     public String toString() {
         return "Staff{" +
@@ -356,6 +366,7 @@ public class Staff {
                 ", worktype_id=" + worktype_id +
                 ", station_id=" + station_id +
                 ", count=" + count +
+                ", position_id=" + position_id +
                 ", staff_name='" + staff_name + '\'' +
                 ", staff_img='" + staff_img + '\'' +
                 ", staff_sex='" + staff_sex + '\'' +
