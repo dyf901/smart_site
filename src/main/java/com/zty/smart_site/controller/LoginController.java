@@ -1,9 +1,7 @@
 package com.zty.smart_site.controller;
 
 import com.zty.smart_site.entity.*;
-import com.zty.smart_site.service.AdminStaffService;
-import com.zty.smart_site.service.StaffService;
-import com.zty.smart_site.service.UserService;
+import com.zty.smart_site.service.*;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +9,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 @Api(description = "登录接口")
@@ -27,6 +27,12 @@ public class LoginController {
 
     @Autowired
     private StaffService staffService;//劳务人员
+
+    @Autowired
+    private PositionTitleService positionTitleService;//菜单图标
+
+    @Autowired
+    private TitleService titleService;//图标
 
     @ApiOperation(value = "PC登陆",notes = "测试数据:{\"username\":\"admin\",\"password\":\"123456\"}")
     @PostMapping("/LoginPc")
@@ -71,6 +77,7 @@ public class LoginController {
     public JsonResult LoginApp(@RequestBody Map map){
         JsonResult jsonResult = new JsonResult(ResultCode.USER_NOT_EXIST);
         AdminStaff adminStaff = adminStaffService.FindAdminStaffByStaff_phone(map);
+        map.put("position_id",adminStaff.getPosition_id());
         if(adminStaff!=null){
             if (adminStaff.getPassword().equals(map.get("password"))){
                 jsonResult.setMessage("登录成功!");
@@ -95,6 +102,7 @@ public class LoginController {
     public JsonResult LoginApp1(@RequestBody Map map){
         JsonResult jsonResult = new JsonResult(ResultCode.USER_NOT_EXIST);
         Staff staff = staffService.FindStaffByStaff_phone(map);
+        map.put("position_id",staff.getPosition_id());
         if(staff!=null){
             if (staff.getPassword().equals(map.get("password"))){
                 jsonResult.setMessage("登录成功!");

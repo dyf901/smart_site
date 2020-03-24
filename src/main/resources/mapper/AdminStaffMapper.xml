@@ -66,13 +66,13 @@
 
     <!--根据手机号查询员工信息-->
     <select id="FindAdminStaffByStaff_phone" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.AdminStaff">
-         SELECT `id`, `admin_name`, `admin_age`, `admin_img`, `admin_sex`, `admin_nation`, `admin_address`, `admin_province`, `admin_card`, `admin_phone`, `sos_name`, `sos_ship`, `sos_phone`, `entry_time`, `section_id`, `department_id`, `password`, `picture`, `state`, `status`, `type` FROM `smart_site`.`admin_staff`
+         SELECT `id`, `admin_name`, `admin_age`, `admin_img`, `admin_sex`, `admin_nation`, `admin_address`, `admin_province`, `admin_card`, `admin_phone`, `sos_name`, `sos_ship`, `sos_phone`, `entry_time`, `section_id`, `department_id`,`position_id`, `password`, `picture`, `state`, `status`, `type` FROM `smart_site`.`admin_staff`
          WHERE `admin_phone`=#{admin_phone}
     </select>
 
     <!--根据身份证号查询员工信息-->
     <select id="FindAdminStaffByStaff_card" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.AdminStaff">
-         SELECT `id`, `admin_name`, `admin_age`, `admin_img`, `admin_sex`, `admin_nation`, `admin_address`, `admin_province`, `admin_card`, `admin_phone`, `sos_name`, `sos_ship`, `sos_phone`, `entry_time`, `section_id`, `department_id`, `password`, `picture`, `state`, `status`, `type` FROM `smart_site`.`admin_staff`
+         SELECT `id`, `admin_name`, `admin_age`, `admin_img`, `admin_sex`, `admin_nation`, `admin_address`, `admin_province`, `admin_card`, `admin_phone`, `sos_name`, `sos_ship`, `sos_phone`, `entry_time`, `section_id`, `department_id`,`position_id`, `password`, `picture`, `state`, `status`, `type` FROM `smart_site`.`admin_staff`
          WHERE `admin_card`=#{admin_card}
     </select>
 </mapper>

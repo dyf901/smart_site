@@ -54,7 +54,7 @@ public class PcCountController {
         return staffService.CountByStaffSex(map);
     }
 
-    @ApiOperation(value = "按照年龄端分组查询(单独站点)",notes = "测试数据:{\"section_id\":1,\"station_id\":1}")
+    @ApiOperation(value = "按照年龄端分组查询(选择站点)",notes = "测试数据:{\"section_id\":1,\"station_id\":1}")
     @PostMapping("/CountByStaffAge")
     public List<Staff> CountByStaffAge(@RequestBody Map map){
         return staffService.CountByStaffAge(map);
