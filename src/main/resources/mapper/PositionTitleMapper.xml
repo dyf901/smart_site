@@ -3,5 +3,18 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.zty.smart_site.dao.PositionTitleDao">
+    <!--增加菜单图标-->
+    <insert id="InsertPositionTitle" parameterType="java.util.Map">
+        INSERT INTO `smart_site`.`position_title` (`position_id`, `title_id`) VALUES (#{position_id}, #{title_id});
+    </insert>
 
+    <!--删除菜单图标-->
+    <delete id="DeletePositionTitle" parameterType="java.util.Map">
+        DELETE FROM `smart_site`.`position_title` WHERE `id`=#{id}
+    </delete>
+
+    <!--根据position_id查询菜单图标对应权限-->
+    <select id="FindByPositionId" parameterType="java.util.Map" resultType="long">
+        SELECT `title_id` FROM `smart_site`.`position_title` WHERE `position_id`=#{position_id}
+    </select>
 </mapper>
