@@ -128,21 +128,21 @@
     <!--根据地区分组查询(单独站点)-->
     <select id="CountByStaffProvince" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.Staff">
         SELECT COUNT(*) as `count`,staff_province from `smart_site`.`staff`
-        WHERE section_id=#{section_id} and station_id=#{station_id}
+        WHERE section_id=#{section_id}
         GROUP BY staff_province
     </select>
 
     <!--根据民族分组查询(单独站点)-->
     <select id="CountByStaffNation" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.Staff">
         SELECT COUNT(*) as `count`,staff_nation from `smart_site`.`staff`
-        WHERE section_id=#{section_id} and station_id=#{station_id}
+        WHERE section_id=#{section_id}
         GROUP BY staff_nation
     </select>
 
     <!--根据性别分组查询(单独站点)-->
     <select id="CountByStaffSex" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.Staff">
         SELECT COUNT(*) as `count`,staff_sex from `smart_site`.`staff`
-        WHERE section_id=#{section_id} and station_id=#{station_id}
+        WHERE section_id=#{section_id}
         GROUP BY staff_sex
     </select>
 

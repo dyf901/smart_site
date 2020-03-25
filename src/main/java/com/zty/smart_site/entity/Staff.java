@@ -1,6 +1,9 @@
 package com.zty.smart_site.entity;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 /*
 STAFF    		员工信息表
 id            			员工id
@@ -39,10 +42,106 @@ age_duan                年龄段
 */
 //@JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
+@ApiModel(value="staff", description="劳务人员对象")
 public class Staff {
-    private int id,staff_age,history_integral,end_integral,section_id,sub_id,worktype_id,station_id,count,position_id;
-    private String staff_name,staff_img,staff_sex,staff_nation,staff_card,staff_address,staff_province,staff_phone,sos_name,sos_ship,sos_phone,entry_time,password,picture,state,status,type,train;
-    private String section_name,station_name,sub_name,worktype_name,age_duan;
+    @ApiModelProperty(value="劳务人员id",name="id")
+    private int id;
+
+    @ApiModelProperty(value="年龄",name="staff_age")
+    private int staff_age;
+
+    @ApiModelProperty(value="历史积分",name="history_integral")
+    private int history_integral;
+
+    @ApiModelProperty(value="剩余积分",name="end_integral")
+    private int end_integral;
+
+    @ApiModelProperty(value="标段id",name="section_id")
+    private int section_id;
+
+    @ApiModelProperty(value="分包单位id",name="sub_id")
+    private int sub_id;
+
+    @ApiModelProperty(value="工种id",name="worktype_id")
+    private int worktype_id;
+
+    @ApiModelProperty(value="站点id",name="station_id")
+    private int station_id;
+
+    @ApiModelProperty(value="统计人数",name="count")
+    private int count;
+
+    @ApiModelProperty(value="菜单id",name="position_id")
+    private int position_id;
+
+    @ApiModelProperty(value="姓名",name="staff_name")
+    private String staff_name;
+
+    @ApiModelProperty(value="照片",name="staff_img")
+    private String staff_img;
+
+    @ApiModelProperty(value="性别",name="staff_sex")
+    private String staff_sex;
+
+    @ApiModelProperty(value="民族",name="staff_nation")
+    private String staff_nation;
+
+    @ApiModelProperty(value="身份证号",name="staff_card")
+    private String staff_card;
+
+    @ApiModelProperty(value="身份证地址",name="staff_address")
+    private String staff_address;
+
+    @ApiModelProperty(value="省份",name="staff_province")
+    private String staff_province;
+
+    @ApiModelProperty(value="手机号",name="staff_phone")
+    private String staff_phone;
+
+    @ApiModelProperty(value="紧急联系人姓名",name="sos_name")
+    private String sos_name;
+
+    @ApiModelProperty(value="紧急联系人关系",name="sos_ship")
+    private String sos_ship;
+
+    @ApiModelProperty(value="紧急联系人号码",name="sos_phone")
+    private String sos_phone;
+
+    @ApiModelProperty(value="入职时间",name="entry_time")
+    private String entry_time;
+
+    @ApiModelProperty(value="密码",name="password")
+    private String password;
+
+    @ApiModelProperty(value="头像",name="picture")
+    private String picture;
+
+    @ApiModelProperty(value="在职状态('0' 离职  '1'在职)",name="state")
+    private String state;
+
+    @ApiModelProperty(value="实名认证状态('0' 未认证  '1' 已认证)",name="status")
+    private String status;
+
+    @ApiModelProperty(value="员工类型",name="type")
+    private String type;
+
+    @ApiModelProperty(value="培训状态('0' 未培训  '1'培训)",name="train")
+    private String train;
+
+    @ApiModelProperty(value="标段名称",name="section_name")
+    private String section_name;
+
+    @ApiModelProperty(value="站点名称",name="station_name")
+    private String station_name;
+
+    @ApiModelProperty(value="分包单位名称",name="sub_name")
+    private String sub_name;
+
+    @ApiModelProperty(value="工种名称",name="worktype_name")
+    private String worktype_name;
+
+    @ApiModelProperty(value="人员年龄段",name="age_duan")
+    private String age_duan;
 
     public Staff(){
         super();

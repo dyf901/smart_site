@@ -3,6 +3,8 @@ package com.zty.smart_site.controller;
 import com.zty.smart_site.entity.Staff;
 import com.zty.smart_site.service.StaffService;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiModelProperty;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -56,6 +58,7 @@ public class PcCountController {
 
     @ApiOperation(value = "按照年龄端分组查询(选择站点)",notes = "测试数据:{\"section_id\":1,\"station_id\":1}")
     @PostMapping("/CountByStaffAge")
+    @ApiModelProperty(value="人员年龄段",name="age_duan",example="001")
     public List<Staff> CountByStaffAge(@RequestBody Map map){
         return staffService.CountByStaffAge(map);
     }
