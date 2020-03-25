@@ -5,8 +5,6 @@ import com.zty.smart_site.entity.Staff;
 import com.zty.smart_site.service.AdminStaffService;
 import com.zty.smart_site.service.StaffService;
 import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiModelProperty;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

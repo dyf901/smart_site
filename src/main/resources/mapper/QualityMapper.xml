@@ -3,5 +3,36 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.zty.smart_site.dao.QualityDao">
+    <!--增加质量隐患类型-->
+    <insert id="InsertQuality" parameterType="java.util.Map">
+        INSERT INTO `smart_site`.`quality` (`section_id`, `quality_category`, `quality_description`, `quality_grade`, `quality_duration`, `construction`, `construction_person`, `construction_phone`, `supervisor`, `supervisor_person`, `supervisor_phone`) VALUES (#{section_id}, #{quality_category}, #{quality_description}, #{quality_grade}, #{quality_duration}, #{construction}, #{construction_person}, #{construction_phone}, #{supervisor}, #{supervisor_person}, #{supervisor_phone});
+    </insert>
 
+    <!--删除质量隐患类型-->
+    <delete id="DeleteQuality" parameterType="java.util.Map">
+        DELETE FROM `smart_site`.`quality` WHERE `id`=#{id}
+    </delete>
+
+    <!--修改质量隐患类型-->
+    <update id="UpdateQuality" parameterType="java.util.Map">
+        UPDATE `smart_site`.`quality` SET `quality_category`=#{quality_category}, `quality_description`=#{quality_description}, `quality_grade`=#{quality_grade}, `quality_duration`=#{quality_duration}, `construction`=#{construction}, `construction_person`=#{construction_person}, `construction_phone`=#{construction_phone}, `supervisor`=#{supervisor}, `supervisor_person`=#{supervisor_person}, `supervisor_phone`=#{supervisor_phone} WHERE (`id`=#{id});
+    </update>
+
+    <!--分页模糊查询质量隐患类型-->
+    <select id="FindQuality" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.Quality">
+        <bind name="page" value="pageSize*(pageNo-1)"></bind>
+        SELECT `id`, `section_id`, `quality_category`, `quality_description`, `quality_grade`, `quality_duration`, `construction`, `construction_person`, `construction_phone`, `supervisor`, `supervisor_person`, `supervisor_phone` FROM `smart_site`.`quality`
+        WHERE `section_id`=#{section_id}
+        limit #{page},#{pageSize}
+    </select>
+
+    <!--统计总数-->
+    <select id="Total" parameterType="java.util.Map" resultType="long">
+        SELECT COUNT(*) FROM `smart_site`.`quality` WHERE `section_id`=#{section_id}
+    </select>
+
+    <!--下拉框查询质量隐患类型-->
+    <select id="SelectQuality" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.Quality">
+        SELECT `id` , `quality_category` FROM `smart_site`.`quality` WHERE `section_id`=#{section_id}
+    </select>
 </mapper>
