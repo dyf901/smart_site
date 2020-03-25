@@ -72,4 +72,10 @@ public class AdminStaffService implements AdminStaffDao {
     public AdminStaff FindAdminStaffByStaff_card(Map map) {
         return adminStaffDao.FindAdminStaffByStaff_card(map);
     }
+
+    //统计管理人员总数(全部站点)
+    @Override
+    public List<AdminStaff> CountAllAdmin(Map map) {
+        return adminStaffDao.CountAllAdmin(map);
+    }
 }

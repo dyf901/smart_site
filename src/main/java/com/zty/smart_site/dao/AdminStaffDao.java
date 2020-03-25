@@ -1,6 +1,7 @@
 package com.zty.smart_site.dao;
 
 import com.zty.smart_site.entity.AdminStaff;
+import com.zty.smart_site.entity.Staff;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -37,4 +38,7 @@ public interface AdminStaffDao {
 
     //根据身份证号查询员工信息
     AdminStaff FindAdminStaffByStaff_card(Map map);
+
+    //统计总劳务人员数(单独站点)
+    List<AdminStaff> CountAllAdmin(Map map);
 }

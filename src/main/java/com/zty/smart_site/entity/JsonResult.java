@@ -6,6 +6,7 @@ public class JsonResult {
     private Object data2;
     private Object data3;
     private Object data4;
+    private Object data5;
     private Integer code;
 
     public JsonResult(int userNotExist){
@@ -45,6 +46,16 @@ public class JsonResult {
         this.data = data2;
         this.data = data3;
         this.data = data4;
+        this.code = code;
+    }
+
+    public JsonResult(String message, Object data, Object data2, Object data3, Object data4, Object data5, Integer code) {
+        this.message = message;
+        this.data = data;
+        this.data2 = data2;
+        this.data3 = data3;
+        this.data4 = data4;
+        this.data5 = data5;
         this.code = code;
     }
 
@@ -127,6 +138,14 @@ public class JsonResult {
         this.data4 = data4;
     }
 
+    public Object getData5() {
+        return data5;
+    }
+
+    public void setData5(Object data5) {
+        this.data5 = data5;
+    }
+
     @Override
     public String toString() {
         return "JsonResult{" +
@@ -135,6 +154,7 @@ public class JsonResult {
                 ", data2=" + data2 +
                 ", data3=" + data3 +
                 ", data4=" + data4 +
+                ", data5=" + data5 +
                 ", code=" + code +
                 '}';
     }

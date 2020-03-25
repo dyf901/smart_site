@@ -75,4 +75,10 @@
          SELECT `id`, `admin_name`, `admin_age`, `admin_img`, `admin_sex`, `admin_nation`, `admin_address`, `admin_province`, `admin_card`, `admin_phone`, `sos_name`, `sos_ship`, `sos_phone`, `entry_time`, `section_id`, `department_id`,`position_id`, `password`, `picture`, `state`, `status`, `type` FROM `smart_site`.`admin_staff`
          WHERE `admin_card`=#{admin_card}
     </select>
+
+    <!--统计总劳务人员数(单独站点)-->
+    <select id="CountAllAdmin" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.Staff">
+        SELECT COUNT(*) as `count` from `smart_site`.`admin_staff`
+        WHERE section_id=#{section_id}
+    </select>
 </mapper>

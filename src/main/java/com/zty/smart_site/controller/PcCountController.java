@@ -1,6 +1,8 @@
 package com.zty.smart_site.controller;
 
+import com.zty.smart_site.entity.AdminStaff;
 import com.zty.smart_site.entity.Staff;
+import com.zty.smart_site.service.AdminStaffService;
 import com.zty.smart_site.service.StaffService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -19,6 +21,9 @@ import java.util.Map;
 public class PcCountController {
     @Autowired
     private StaffService staffService;
+
+    @Autowired
+    private AdminStaffService adminStaffService;
 
     @ApiOperation(value = "根据工种分布统计人数(选择站点)",notes = "测试数据:{\"section_id\":1,\"station_id\":1}")
     @PostMapping("/CountByWorktype")
@@ -58,8 +63,19 @@ public class PcCountController {
 
     @ApiOperation(value = "按照年龄端分组查询(选择站点)",notes = "测试数据:{\"section_id\":1,\"station_id\":1}")
     @PostMapping("/CountByStaffAge")
-    @ApiModelProperty(value="人员年龄段",name="age_duan",example="001")
     public List<Staff> CountByStaffAge(@RequestBody Map map){
         return staffService.CountByStaffAge(map);
+    }
+
+    @ApiOperation(value = "劳务人员总数",notes = "测试数据:{\"section_id\":1}")
+    @PostMapping("/CountAll")
+    public List<Staff> CountAll(@RequestBody Map map){
+        return staffService.CountAll(map);
+    }
+
+    @ApiOperation(value = "管理人员总数",notes = "测试数据:{\"section_id\":1}")
+    @PostMapping("/CountAllAdmin")
+    public List<AdminStaff> CountAllAdmin(@RequestBody Map map){
+        return adminStaffService.CountAllAdmin(map);
     }
 }

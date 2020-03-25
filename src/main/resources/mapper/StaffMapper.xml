@@ -149,7 +149,7 @@
     <!--统计总劳务人员数(单独站点)-->
     <select id="CountAll" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.Staff">
         SELECT COUNT(*) as `count` from `smart_site`.`staff`
-        WHERE section_id=#{section_id} and station_id=#{station_id}
+        WHERE section_id=#{section_id}
     </select>
 
     <!--按照年龄端分组查询(单独站点)-->
