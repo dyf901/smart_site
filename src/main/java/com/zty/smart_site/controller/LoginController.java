@@ -85,7 +85,7 @@ public class LoginController {
                 jsonResult.setCode(200);
                 return jsonResult;
             }else {
-                jsonResult.setMessage("密码错误,登录成功!");
+                jsonResult.setMessage("密码错误,登录失败!");
                 jsonResult.setCode(20003);
                 return jsonResult;
             }

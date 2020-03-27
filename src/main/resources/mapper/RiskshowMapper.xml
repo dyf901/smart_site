@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zty.smart_site.dao.RiskshowDao">
+    <!--增加安全隐患信息记录-->
+    <insert id="InsertRiskshow" parameterType="java.util.Map">
+        INSERT INTO `smart_site`.`riskshow` (`risk_id`, `staff_name`, `section_id`, `station_id`, `description`, `uptime`, `url`, `active`) VALUES (#{risk_id}, #{staff_name}, #{section_id}, #{station_id}, #{description}, now(), #{url}, #{active});
+    </insert>
+
+    <!--删除安全隐患记录-->
+    <delete id="DeleteRiskshow" parameterType="java.util.Map">
+        DELETE FROM `smart_site`.`riskshow` WHERE `id`=#{id}
+    </delete>
+
+    <!--分页模糊查询安全隐患记录-->
+    <select id="FindRiskshow" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.Riskshow">
+        <bind name="page" value="pageSize*(pageNo-1)"></bind>
+        SELECT `id`, `risk_id`, `staff_name`, `section_id`, `station_id`, `description`, `uptime`, `url`, `active`,a.`risk_category` as risk_name,s.`station_name` as station_name FROM `smart_site`.`riskshow` r
+        INNER JOIN `smart_site`.`risk` a ON r.`risk_id`=a.`id`
+        INNER JOIN `smart_site`.`station` s ON r.`station_id`=s.`id`
+        <where>
+            r.`section_id`=`section_id`
+            <if test="risk_id!=null and risk_id!=''">
+                and r.`risk_id`=#{risk_id}
+            </if>
+            <if test="staff_name!=null and staff_name!=''">
+                and r.`staff_name`=#{staff_name}
+            </if>
+            <if test="station_id!=null and station_id!=''">
+                and r.`station_id`=#{station_id}
+            </if>
+        </where>
+    </select>
+
+    <!--统计总数-->
+    <select id="Total" parameterType="java.util.Map" resultType="long">
+        SELECT COUNT(*) FROM `smart_site`.`riskshow`
+        <where>
+            `section_id`=`section_id`
+            <if test="risk_id!=null and risk_id!=''">
+                and `risk_id`=#{risk_id}
+            </if>
+            <if test="staff_name!=null and staff_name!=''">
+                and `staff_name`=#{staff_name}
+            </if>
+            <if test="station_id!=null and station_id!=''">
+                and `station_id`=#{station_id}
+            </if>
+        </where>
+    </select>
+</mapper>

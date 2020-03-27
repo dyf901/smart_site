@@ -22,7 +22,12 @@
     <select id="FindRisk" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.Risk">
         <bind name="page" value="pageSize*(pageNo-1)"></bind>
         SELECT `id`, `section_id`, `risk_category`, `risk_description`, `risk_grade`, `risk_duration`, `construction`, `construction_person`, `construction_phone`, `supervisor`, `supervisor_person`, `supervisor_phone` FROM `smart_site`.`risk`
-        WHERE `section_id`=#{section_id}
+        <where>
+            `section_id`=#{section_id}
+            <if test="risk_category!=null and risk_category!=''">
+                and `risk_category` like concat("%",#{risk_category},"%")
+            </if>
+        </where>
         limit #{page},#{pageSize}
     </select>
 

@@ -83,7 +83,7 @@ public class AdminStaffController {
         }
     }
 
-    @ApiOperation(value = "忘记密码",notes = "测试数据:{\"id\":1,\"password\":\"960901\",\"old_password\":\"123456\",\"admin_phone\":\"13100000000\"}")
+    @ApiOperation(value = "忘记密码",notes = "测试数据:{\"id\":1,\"password\":\"960901\",\"code\":\"123456\",\"admin_phone\":\"13100000000\"}")
     @PostMapping("/ForgetPassword")
     public JsonResult ForgetPassword(@RequestBody Map map) throws ParseException {
         JsonResult jsonResult = new JsonResult();

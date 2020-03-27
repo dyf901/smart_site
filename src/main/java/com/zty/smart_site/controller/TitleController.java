@@ -24,7 +24,7 @@ public class TitleController {
     @Autowired
     private TitleService titleService;//图标
 
-    @ApiOperation(value = "对应图标",notes = "")
+    @ApiOperation(value = "对应图标",notes = "测试数据:{\"position_id\":1}")
     @PostMapping("/FindById")
     public JsonResult FindByPositionId(@RequestBody Map map){
         JsonResult jsonResult = new JsonResult();
