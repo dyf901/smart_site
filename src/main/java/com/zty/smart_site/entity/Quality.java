@@ -30,6 +30,9 @@ public class Quality {
     @ApiModelProperty(value = "标段id",name="section_id")
     private int section_id;
 
+    @ApiModelProperty(value = "站点id",name="station_id")
+    private int station_id;
+
     @ApiModelProperty(value = "风险源类别",name="quality_category")
     private String quality_category;
 
@@ -60,13 +63,17 @@ public class Quality {
     @ApiModelProperty(value = "监理责任人电话",name="supervisor_phone")
     private String supervisor_phone;
 
+    @ApiModelProperty(value = "站点名称",name="station_name")
+    private String station_name;
+
     public Quality(){
         super();
     }
 
-    public Quality(int id, int section_id, String quality_category, String quality_description, String quality_grade, String quality_duration, String construction, String construction_person, String construction_phone, String supervisor, String supervisor_person, String supervisor_phone) {
+    public Quality(int id, int section_id, int station_id, String quality_category, String quality_description, String quality_grade, String quality_duration, String construction, String construction_person, String construction_phone, String supervisor, String supervisor_person, String supervisor_phone, String station_name) {
         this.id = id;
         this.section_id = section_id;
+        this.station_id = station_id;
         this.quality_category = quality_category;
         this.quality_description = quality_description;
         this.quality_grade = quality_grade;
@@ -77,6 +84,7 @@ public class Quality {
         this.supervisor = supervisor;
         this.supervisor_person = supervisor_person;
         this.supervisor_phone = supervisor_phone;
+        this.station_name = station_name;
     }
 
     public int getId() {
@@ -175,11 +183,28 @@ public class Quality {
         this.supervisor_phone = supervisor_phone;
     }
 
+    public int getStation_id() {
+        return station_id;
+    }
+
+    public void setStation_id(int station_id) {
+        this.station_id = station_id;
+    }
+
+    public String getStation_name() {
+        return station_name;
+    }
+
+    public void setStation_name(String station_name) {
+        this.station_name = station_name;
+    }
+
     @Override
     public String toString() {
         return "Quality{" +
                 "id=" + id +
                 ", section_id=" + section_id +
+                ", station_id=" + station_id +
                 ", quality_category='" + quality_category + '\'' +
                 ", quality_description='" + quality_description + '\'' +
                 ", quality_grade='" + quality_grade + '\'' +
@@ -190,6 +215,7 @@ public class Quality {
                 ", supervisor='" + supervisor + '\'' +
                 ", supervisor_person='" + supervisor_person + '\'' +
                 ", supervisor_phone='" + supervisor_phone + '\'' +
+                ", station_name=" + station_name +
                 '}';
     }
 }

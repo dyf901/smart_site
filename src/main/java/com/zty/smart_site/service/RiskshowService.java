@@ -36,4 +36,28 @@ public class RiskshowService implements RiskshowDao {
     public long Total(Map map) {
         return riskshowDao.Total(map);
     }
+
+    //统计安全隐患数量
+    @Override
+    public int CountRiskShow(Map map) {
+        return riskshowDao.CountRiskShow(map);
+    }
+
+    //统计安全隐患数量_已整改
+    @Override
+    public int CountRiskShowByYZG(Map map) {
+        return riskshowDao.CountRiskShowByYZG(map);
+    }
+
+    //统计安全隐患数量_未整改
+    @Override
+    public int CountRiskShowByWZG(Map map) {
+        return riskshowDao.CountRiskShowByWZG(map);
+    }
+
+    //统计安全隐患数量_超期未整改
+    @Override
+    public int CountRiskShowByCQWZG(Map map) {
+        return riskshowDao.CountRiskShowByCQWZG(map);
+    }
 }

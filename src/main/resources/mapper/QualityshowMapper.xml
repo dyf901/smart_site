@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zty.smart_site.dao.QualityshowDao">
+    <!--增加质量安全隐患记录-->
+    <insert id="InsertQualityShow" parameterType="java.util.Map">
+        INSERT INTO `smart_site`.`qualityshow` (`quality_id`, `section_id`, `station_id`, `sub_id`, `responsible`, `staff_name`, `description`, `uptime`, `url`, `title`) VALUES (#{quality_id}, #{section_id}, #{station_id}, #{sub_id}, #{responsible}, #{staff_name}, #{description}, now(),#{url},#{title});
+    </insert>
+
+    <!--删除质量安全隐患记录-->
+    <delete id="DeleteQualityShow" parameterType="java.util.Map">
+        DELETE FROM `smart_site`.`qualityshow` WHERE `id`=#{id}
+    </delete>
+
+    <!--分页模糊查询质量安全隐患记录-->
+    <select id="FindQualityShow" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.Qualityshow">
+        <bind name="page" value="pageSize(pageNo-1)"></bind>
+        SELECT q.`id`, q.`quality_id`, q.`section_id`, q.`station_id`, q.`sub_id`,q.`responsible`, q.`staff_name`, q.`description`, q.`uptime`, q.`active`,q.`url`,q.`title`,a.`quality_category` as quality_name,s.`station_name` as station_name,l.`subcontractors_name` as `sub_name` FROM `smart_site`.`qualityshow` q
+        INNER JOIN `smart_site`.`risk` a ON q.`quality_id`=a.`id`
+        INNER JOIN `smart_site`.`station` s ON q.`station_id`=s.`id`
+        inner JOIN `smart_site`.`subcontractors` l ON q.`sub_id`=l.`id`
+        <where>
+            q.`section_id`=`section_id`
+            <if test="quality_id!=null and quality_id!=''">
+                and q.`quality_id`=#{quality_id}
+            </if>
+            <if test="staff_name!=null and staff_name!=''">
+                and q.`staff_name` like concat("%",#{staff_name},"%")
+            </if>
+            <if test="station_id!=null and station_id!=''">
+                and q.`station_id`=#{station_id}
+            </if>
+        </where>
+        limit #{page},#{pageSize}
+    </select>
+
+    <!--统计总数-->
+    <select id="Total" parameterType="java.util.Map" resultType="long">
+        SELECT COUNT(*) FROM `smart_site`.`qualityshow`
+        <where>
+            `section_id`=`section_id`
+            <if test="quality_id!=null and quality_id!=''">
+                and `quality_id`=#{quality_id}
+            </if>
+            <if test="staff_name!=null and staff_name!=''">
+                and `staff_name` like concat("%",#{staff_name},"%")
+            </if>
+            <if test="station_id!=null and station_id!=''">
+                and `station_id`=#{station_id}
+            </if>
+        </where>
+    </select>
+</mapper>

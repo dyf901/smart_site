@@ -25,4 +25,5 @@ public interface RiskDao {
 
     //下拉框查询安全隐患类型
     List<Risk> SelectRisk(Map map);
+
 }

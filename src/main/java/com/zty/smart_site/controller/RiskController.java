@@ -49,7 +49,7 @@ public class RiskController {
         return page;
     }
 
-    @ApiOperation(value = "下拉框查询安全隐患类型",notes = "测试数据:{\"section_id\":1}")
+    @ApiOperation(value = "下拉框查询安全隐患类型",notes = "测试数据:{\"section_id\":1}      (section_id标段id登录时返回)")
     @PostMapping("/SelectRisk")
     public List<Risk> SelectRisk(@RequestBody Map map){
         return riskService.SelectRisk(map);

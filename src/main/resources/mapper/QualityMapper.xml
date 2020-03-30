@@ -5,7 +5,7 @@
 <mapper namespace="com.zty.smart_site.dao.QualityDao">
     <!--增加质量隐患类型-->
     <insert id="InsertQuality" parameterType="java.util.Map">
-        INSERT INTO `smart_site`.`quality` (`section_id`, `quality_category`, `quality_description`, `quality_grade`, `quality_duration`, `construction`, `construction_person`, `construction_phone`, `supervisor`, `supervisor_person`, `supervisor_phone`) VALUES (#{section_id}, #{quality_category}, #{quality_description}, #{quality_grade}, #{quality_duration}, #{construction}, #{construction_person}, #{construction_phone}, #{supervisor}, #{supervisor_person}, #{supervisor_phone});
+        INSERT INTO `smart_site`.`quality` (`section_id`, `station_id`, `quality_category`, `quality_description`, `quality_grade`, `quality_duration`, `construction`, `construction_person`, `construction_phone`, `supervisor`, `supervisor_person`, `supervisor_phone`) VALUES (#{section_id},#{station_id}, #{quality_category}, #{quality_description}, #{quality_grade}, #{quality_duration}, #{construction}, #{construction_person}, #{construction_phone}, #{supervisor}, #{supervisor_person}, #{supervisor_phone});
     </insert>
 
     <!--删除质量隐患类型-->
@@ -21,11 +21,12 @@
     <!--分页模糊查询质量隐患类型-->
     <select id="FindQuality" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.Quality">
         <bind name="page" value="pageSize*(pageNo-1)"></bind>
-        SELECT `id`, `section_id`, `quality_category`, `quality_description`, `quality_grade`, `quality_duration`, `construction`, `construction_person`, `construction_phone`, `supervisor`, `supervisor_person`, `supervisor_phone` FROM `smart_site`.`quality`
+        SELECT q.`id`, q.`section_id`, q.`station_id`, q.`quality_category`, q.`quality_description`, q.`quality_grade`, q.`quality_duration`, q.`construction`, q.`construction_person`, q.`construction_phone`, q.`supervisor`, q.`supervisor_person`, q.`supervisor_phone`, s.`station_name` as `station_name` FROM `smart_site`.`quality` q
+        INNER JOIN `smart_site`.`station` s on q.`station_id`=s.`id`
         <where>
-            `section_id`=#{section_id}
+            q.`section_id`=#{section_id}
             <if test="quality_category!=null and quality_category!=''">
-                and `quality_category` like concat("%",#{quality_category},"%")
+                and q.`quality_category` like concat("%",#{quality_category},"%")
             </if>
         </where>
         limit #{page},#{pageSize}
@@ -38,6 +39,6 @@
 
     <!--下拉框查询质量隐患类型-->
     <select id="SelectQuality" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.Quality">
-        SELECT `id` , `quality_category` FROM `smart_site`.`quality` WHERE `section_id`=#{section_id}
+        SELECT `id` , `quality_category` FROM `smart_site`.`quality` WHERE `section_id`=#{section_id} and `station_id`=#{station_id}
     </select>
 </mapper>

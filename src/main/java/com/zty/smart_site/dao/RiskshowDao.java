@@ -20,4 +20,15 @@ public interface RiskshowDao {
     //统计总数
     long Total(Map map);
 
+    //统计安全隐患数量
+    int CountRiskShow(Map map);
+
+    //统计安全隐患数量_已整改
+    int CountRiskShowByYZG(Map map);
+
+    //统计安全隐患数量_未整改
+    int CountRiskShowByWZG(Map map);
+
+    //统计安全隐患数量_超期未整改
+    int CountRiskShowByCQWZG(Map map);
 }

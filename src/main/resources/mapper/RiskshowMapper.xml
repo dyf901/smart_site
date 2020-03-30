@@ -5,7 +5,7 @@
 <mapper namespace="com.zty.smart_site.dao.RiskshowDao">
     <!--增加安全隐患信息记录-->
     <insert id="InsertRiskshow" parameterType="java.util.Map">
-        INSERT INTO `smart_site`.`riskshow` (`risk_id`, `staff_name`, `section_id`, `station_id`, `description`, `uptime`, `url`, `active`) VALUES (#{risk_id}, #{staff_name}, #{section_id}, #{station_id}, #{description}, now(), #{url}, #{active});
+        INSERT INTO `smart_site`.`riskshow` (`risk_id`, `staff_name`, `section_id`, `station_id`, `sub_id`, `responsible`, `description`, `uptime`, `url`, `title`) VALUES (#{risk_id}, #{staff_name}, #{section_id}, #{station_id}, #{sub_id}, #{responsible}, #{description}, now(), #{url},#{title});
     </insert>
 
     <!--删除安全隐患记录-->
@@ -16,21 +16,23 @@
     <!--分页模糊查询安全隐患记录-->
     <select id="FindRiskshow" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.Riskshow">
         <bind name="page" value="pageSize*(pageNo-1)"></bind>
-        SELECT `id`, `risk_id`, `staff_name`, `section_id`, `station_id`, `description`, `uptime`, `url`, `active`,a.`risk_category` as risk_name,s.`station_name` as station_name FROM `smart_site`.`riskshow` r
+        SELECT r.`id`, r.`risk_id`, r.`staff_name`, r.`section_id`, r.`station_id`, r.`sub_id`, r.`responsible`, r.`description`, r.`uptime`, r.`url`, r.`active`,r.`title`,a.`risk_category` as risk_name,s.`station_name` as station_name,l.`subcontractors_name` as `sub_name` FROM `smart_site`.`riskshow` r
         INNER JOIN `smart_site`.`risk` a ON r.`risk_id`=a.`id`
         INNER JOIN `smart_site`.`station` s ON r.`station_id`=s.`id`
+        inner JOIN `smart_site`.`subcontractors` l ON r.`sub_id`=l.`id`
         <where>
             r.`section_id`=`section_id`
             <if test="risk_id!=null and risk_id!=''">
                 and r.`risk_id`=#{risk_id}
             </if>
             <if test="staff_name!=null and staff_name!=''">
-                and r.`staff_name`=#{staff_name}
+                and q.`staff_name` like concat("%",#{staff_name},"%")
             </if>
             <if test="station_id!=null and station_id!=''">
                 and r.`station_id`=#{station_id}
             </if>
         </where>
+        limit #{page},#{pageSize}
     </select>
 
     <!--统计总数-->
@@ -48,5 +50,25 @@
                 and `station_id`=#{station_id}
             </if>
         </where>
+    </select>
+
+    <!--统计安全隐患数量-->
+    <select id="CountRiskShow" parameterType="java.util.Map" resultType="int">
+        SELECT COUNT(*) FROM `smart_site`.`riskshow` WHERE `section_id`=#{section_id} and `station_id`=#{station_id}
+    </select>
+
+    <!--统计安全隐患数量_已整改-->
+    <select id="CountRiskShowByYZG" parameterType="java.util.Map" resultType="int">
+        SELECT COUNT(*) FROM `smart_site`.`riskshow` WHERE `section_id`=#{section_id} and `station_id`=#{station_id} and `active`='已整改'
+    </select>
+
+    <!--统计安全隐患数量_未整改-->
+    <select id="CountRiskShowByWZG" parameterType="java.util.Map" resultType="int">
+        SELECT COUNT(*) FROM `smart_site`.`riskshow` WHERE `section_id`=#{section_id} and `station_id`=#{station_id} and `active`='未整改'
+    </select>
+
+    <!--统计安全隐患数量_超期未整改-->
+    <select id="CountRiskShowByCQWZG" parameterType="java.util.Map" resultType="int">
+        SELECT COUNT(*) FROM `smart_site`.`riskshow` WHERE `section_id`=#{section_id} and `station_id`=#{station_id} and `active`='超期未整改'
     </select>
 </mapper>

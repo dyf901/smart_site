@@ -5,13 +5,13 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@ApiModel(value = "riskshow",description = "安全隐患对象")
-public class Riskshow {
-    @ApiModelProperty(value = "安全隐患id",name = "id")
+@ApiModel(value = "qualityshow",description = "质量隐患对象")
+public class Qualityshow {
+    @ApiModelProperty(value = "质量隐患id",name = "id")
     private int id;
 
-    @ApiModelProperty(value = "安全隐患类型id",name = "risk_id")
-    private int risk_id;
+    @ApiModelProperty(value = "质量隐患类型id",name = "quality_id")
+    private int quality_id;
 
     @ApiModelProperty(value = "标段id",name = "section_id")
     private int section_id;
@@ -31,13 +31,13 @@ public class Riskshow {
     @ApiModelProperty(value = "状态",name = "active")
     private String active;
 
-    @ApiModelProperty(value = "安全隐患类型名称",name = "risk_name")
-    private String risk_name;
+    @ApiModelProperty(value = "质量隐患类型名称",name = "quality_name")
+    private String quality_name;
 
     @ApiModelProperty(value = "员工名称",name = "staff_name")
     private String staff_name;
 
-    @ApiModelProperty(value = "站点名称",name = "station_name")
+    @ApiModelProperty(value = "站点id",name = "station_name")
     private String station_name;
 
     @ApiModelProperty(value = "标题",name = "title")
@@ -52,20 +52,20 @@ public class Riskshow {
     @ApiModelProperty(value = "责任人",name = "responsible")
     private String responsible;
 
-    public Riskshow(){
+    public Qualityshow(){
         super();
     }
 
-    public Riskshow(int id, int risk_id, int section_id, int station_id, String description, String uptime, String url, String active, String risk_name, String staff_name, String station_name, String title, int sub_id, String sub_name, String responsible) {
+    public Qualityshow(int id, int quality_id, int section_id, int station_id, String description, String uptime, String url, String active, String quality_name, String staff_name, String station_name, String title, int sub_id, String sub_name, String responsible) {
         this.id = id;
-        this.risk_id = risk_id;
+        this.quality_id = quality_id;
         this.section_id = section_id;
         this.station_id = station_id;
         this.description = description;
         this.uptime = uptime;
         this.url = url;
         this.active = active;
-        this.risk_name = risk_name;
+        this.quality_name = quality_name;
         this.staff_name = staff_name;
         this.station_name = station_name;
         this.title = title;
@@ -82,12 +82,12 @@ public class Riskshow {
         this.id = id;
     }
 
-    public int getRisk_id() {
-        return risk_id;
+    public int getQuality_id() {
+        return quality_id;
     }
 
-    public void setRisk_id(int risk_id) {
-        this.risk_id = risk_id;
+    public void setQuality_id(int quality_id) {
+        this.quality_id = quality_id;
     }
 
     public int getSection_id() {
@@ -138,12 +138,12 @@ public class Riskshow {
         this.active = active;
     }
 
-    public String getRisk_name() {
-        return risk_name;
+    public String getQuality_name() {
+        return quality_name;
     }
 
-    public void setRisk_name(String risk_name) {
-        this.risk_name = risk_name;
+    public void setQuality_name(String quality_name) {
+        this.quality_name = quality_name;
     }
 
     public String getStaff_name() {
@@ -178,14 +178,6 @@ public class Riskshow {
         this.sub_id = sub_id;
     }
 
-    public String getResponsible() {
-        return responsible;
-    }
-
-    public void setResponsible(String responsible) {
-        this.responsible = responsible;
-    }
-
     public String getSub_name() {
         return sub_name;
     }
@@ -194,18 +186,26 @@ public class Riskshow {
         this.sub_name = sub_name;
     }
 
+    public String getResponsible() {
+        return responsible;
+    }
+
+    public void setResponsible(String responsible) {
+        this.responsible = responsible;
+    }
+
     @Override
     public String toString() {
-        return "Riskshow{" +
+        return "Qualityshow{" +
                 "id=" + id +
-                ", risk_id=" + risk_id +
+                ", quality_id=" + quality_id +
                 ", section_id=" + section_id +
                 ", station_id=" + station_id +
                 ", description='" + description + '\'' +
                 ", uptime='" + uptime + '\'' +
                 ", url='" + url + '\'' +
                 ", active='" + active + '\'' +
-                ", risk_name='" + risk_name + '\'' +
+                ", quality_name='" + quality_name + '\'' +
                 ", staff_name='" + staff_name + '\'' +
                 ", station_name='" + station_name + '\'' +
                 ", title='" + title + '\'' +
