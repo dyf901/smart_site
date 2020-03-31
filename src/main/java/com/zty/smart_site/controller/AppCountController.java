@@ -12,6 +12,8 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Api(description = "App端统计图数据接口")
@@ -72,5 +74,47 @@ public class AppCountController {
     @PostMapping("/CountRiskShowByCQWZG")
     public int CountRiskShowByCQWZG(@RequestBody Map map){
         return riskshowService.CountRiskShowByCQWZG(map);
+    }
+
+    @ApiOperation(value = "安全质量隐患数据",notes = "测试数据:section_id(标段id,登录返回),station_id(站点id,下拉框选择)")
+    @PostMapping("/CountRiskshow")
+    public JsonResult CountRiskshow(@RequestBody Map map){
+        JsonResult jsonResult=new JsonResult();
+        double i=riskshowService.CountRiskShowByYZG(map);
+        double l=riskshowService.CountRiskShow(map);
+        double t=(i/l)*100;
+        Map map1 = new HashMap();
+        map1.put("CountAll",riskshowService.CountRiskShow(map));
+        map1.put("CountYZG",riskshowService.CountRiskShowByYZG(map));
+        map1.put("CountWZG",riskshowService.CountRiskShowByCQWZG(map));
+        map1.put("CountCQWZG",riskshowService.CountRiskShowByCQWZG(map));
+        map1.put("CountZGL",t);
+        jsonResult.setData(map1);
+        Map map2=new HashMap();
+        map2.put("month",riskshowService.find_month());
+        map2.put("monthTop",riskshowService.find_riskshow_top(map));
+        map2.put("monthMid",riskshowService.find_riskshow_mid(map));
+        map2.put("monthEnd",riskshowService.find_riskshow_end(map));
+        map2.put("monthTopY",riskshowService.find_riskshow_top_y(map));
+        map2.put("monthMidY",riskshowService.find_riskshow_mid_y(map));
+        map2.put("monthEndY",riskshowService.find_riskshow_end_y(map));
+        jsonResult.setData2(map2);
+        return jsonResult;
+    }
+
+    @ApiOperation(value = "根据隐患类型查询数量总数",notes = "测试数据:section_id(标段id,登录返回),station_id(站点id,下拉框选择)")
+    @PostMapping("/CountRiskshowByRiskId")
+    public JsonResult CountRiskshowByRiskId(@RequestBody Map map){
+        JsonResult jsonResult = new JsonResult();
+        jsonResult.setData(riskshowService.CountRiskshowByRiskId(map));
+        return jsonResult;
+    }
+
+    @ApiOperation(value = "根据分包单位查询数量总数",notes = "测试数据:section_id(标段id,登录返回),station_id(站点id,下拉框选择)")
+    @PostMapping("/CountRiskshowBySubId")
+    public JsonResult CountRiskshowBySubId(@RequestBody Map map){
+        JsonResult jsonResult = new JsonResult();
+        jsonResult.setData(riskshowService.CountRiskshowBySubId(map));
+        return jsonResult;
     }
 }

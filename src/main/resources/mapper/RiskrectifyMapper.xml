@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zty.smart_site.dao.RiskrectifyDao">
+    <!--增加整改通知单-->
+    <insert id="InsertRiskrectify" parameterType="java.util.Map">
+        INSERT INTO `smart_site`.`riskrectify` (`title`, `section_id`, `station_id`, `sub_id`, `up_name`, `responsible`, `up_time`, `description`) VALUES (#{title}, #{section_id}, #{station_id}, #{sub_id}, #{up_name}, #{responsible}, now(), #{description});
+    </insert>
+
+    <!--删除整改通知单-->
+    <delete id="DeleteRiskrectify" parameterType="java.util.Map">
+        DELETE FROM `smart_site`.`riskrectify` WHERE `id`=#{id}
+    </delete>
+
+    <!--修改整改通知单-->
+    <update id="UpdateRiskrectify" parameterType="java.util.Map">
+        UPDATE `smart_site`.`riskrectify` `title`=#{title}, `up_name`=#{up_name}, `responsible`=#{responsible}, `description`=#{description} WHERE (`id`=#{id});
+    </update>
+
+    <!---->
+</mapper>

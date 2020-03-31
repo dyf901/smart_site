@@ -19,7 +19,7 @@
         SELECT r.`id`, r.`risk_id`, r.`staff_name`, r.`section_id`, r.`station_id`, r.`sub_id`, r.`responsible`, r.`description`, r.`uptime`, r.`url`, r.`active`,r.`title`,a.`risk_category` as risk_name,s.`station_name` as station_name,l.`subcontractors_name` as `sub_name` FROM `smart_site`.`riskshow` r
         INNER JOIN `smart_site`.`risk` a ON r.`risk_id`=a.`id`
         INNER JOIN `smart_site`.`station` s ON r.`station_id`=s.`id`
-        inner JOIN `smart_site`.`subcontractors` l ON r.`sub_id`=l.`id`
+        INNER JOIN `smart_site`.`subcontractors` l ON r.`sub_id`=l.`id`
         <where>
             r.`section_id`=`section_id`
             <if test="risk_id!=null and risk_id!=''">
@@ -70,5 +70,56 @@
     <!--统计安全隐患数量_超期未整改-->
     <select id="CountRiskShowByCQWZG" parameterType="java.util.Map" resultType="int">
         SELECT COUNT(*) FROM `smart_site`.`riskshow` WHERE `section_id`=#{section_id} and `station_id`=#{station_id} and `active`='超期未整改'
+    </select>
+
+    <!-- 返回本月的月份 -->
+    <select id="find_month" resultType="int">
+		select MONTH(CURDATE());
+	</select>
+
+    <!-- 查询当月上旬数据的条数 -->
+    <select id="find_riskshow_top" resultType="int" parameterType="java.util.Map">
+		SELECT count(*) from `smart_site`.`riskshow` where uptime between (select DATE_ADD(curdate(),interval -day(curdate())+1 day)) and (select DATE_ADD(curdate(),interval -day(curdate())+10 day)) and section_id=#{section_id} and station_id=#{station_id}
+	</select>
+
+    <!-- 查询当月中旬数据的条数 -->
+    <select id="find_riskshow_mid" resultType="int" parameterType="java.util.Map">
+		SELECT count(*) from `smart_site`.`riskshow` where uptime between (select DATE_ADD(curdate(),interval -day(curdate())+10 day)) and (select DATE_ADD(curdate(),interval -day(curdate())+20 day)) and section_id=#{section_id} and station_id=#{station_id}
+	</select>
+
+    <!-- 查询当月下旬数据的条数 -->
+    <select id="find_riskshow_end" resultType="int" parameterType="java.util.Map">
+		SELECT count(*) from `smart_site`.`riskshow` where uptime between (select DATE_ADD(curdate(),interval -day(curdate())+20 day)) and (select DATE_ADD(curdate(),interval -day(curdate())+31 day)) and section_id=#{section_id} and station_id=#{station_id}
+	</select>
+
+    <!-- 查询当月上旬有效数据的条数 -->
+    <select id="find_riskshow_top_y" resultType="int" parameterType="java.util.Map">
+		SELECT count(*) from `smart_site`.`riskshow` where uptime between (select DATE_ADD(curdate(),interval -day(curdate())+1 day)) and (select DATE_ADD(curdate(),interval -day(curdate())+10 day)) and state='有效' and section_id=#{section_id} and station_id=#{station_id}
+	</select>
+
+    <!-- 查询当月中旬有效数据的条数 -->
+    <select id="find_riskshow_mid_y" resultType="int" parameterType="java.util.Map">
+		SELECT count(*) from `smart_site`.`riskshow` where uptime between (select DATE_ADD(curdate(),interval -day(curdate())+10 day)) and (select DATE_ADD(curdate(),interval -day(curdate())+20 day)) and state='有效' and section_id=#{section_id} and station_id=#{station_id}
+	</select>
+
+    <!-- 查询当月下旬有效数据的条数 -->
+    <select id="find_riskshow_end_y" resultType="int" parameterType="java.util.Map">
+		SELECT count(*) from `smart_site`.`riskshow` where uptime between (select DATE_ADD(curdate(),interval -day(curdate())+20 day)) and (select DATE_ADD(curdate(),interval -day(curdate())+31 day)) and state='有效' and section_id=#{section_id} and station_id=#{station_id}
+	</select>
+
+    <!--根据隐患类型查询数量总数-->
+    <select id="CountRiskshowByRiskId" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.Riskshow">
+        SELECT Count(*) as `count`,a.`risk_category` as risk_name FROM `smart_site`.`riskshow` r
+        INNER JOIN `smart_site`.`risk` a ON r.`risk_id`=a.`id`
+        WHERE r.`section_id`=#{section_id} and r.`station_id`=#{station_id}
+        group by r.`risk_id`
+    </select>
+
+    <!--根据分包单位查询数量总数-->
+    <select id="CountRiskshowBySubId" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.Riskshow">
+        SELECT Count(*) as `count`,l.`subcontractors_name` as `sub_name` FROM `smart_site`.`riskshow` r
+        INNER JOIN `smart_site`.`subcontractors` l ON r.`sub_id`=l.`id`
+        WHERE r.`section_id`=#{section_id} and r.`station_id`=#{station_id}
+        group by r.`sub_id`
     </select>
 </mapper>

@@ -31,4 +31,31 @@ public interface RiskshowDao {
 
     //统计安全隐患数量_超期未整改
     int CountRiskShowByCQWZG(Map map);
+
+    //返回本月份
+    int find_month();
+
+    //查询当月上旬数据的条数
+    int find_riskshow_top(Map map);
+
+    //查询当月中旬数据的条数
+    int find_riskshow_mid(Map map);
+
+    //查询当月下旬数据的条数
+    int find_riskshow_end(Map map);
+
+    //查询当月上旬有效数据的条数
+    int find_riskshow_top_y(Map map);
+
+    //查询当月中旬有效数据的条数
+    int find_riskshow_mid_y(Map map);
+
+    //查询当月下旬有效数据的条数
+    int find_riskshow_end_y(Map map);
+
+    //根据隐患类型查询数量总数
+    List<Riskshow> CountRiskshowByRiskId(Map map);
+
+    //根据分包单位查询数量总数
+    List<Riskshow> CountRiskshowBySubId(Map map);
 }

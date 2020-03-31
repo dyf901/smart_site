@@ -91,6 +91,12 @@ public class StaffService implements StaffDao {
         return staffDao.FindStaffById(map);
     }
 
+    //根绝position_id查询负责人信息
+    @Override
+    public Staff FindStaffByPositionId(Map map) {
+        return staffDao.FindStaffByPositionId(map);
+    }
+
     //根据工种分组统计人数(选择站点)
     @Override
     public List<Staff> CountByWorktype(Map map) {

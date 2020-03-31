@@ -101,6 +101,11 @@
         WHERE `id`=#{id}
     </select>
 
+    <!--根绝站点,PositionId查询安全隐患负责人-->
+    <select id="FindStaffByPositionId" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.Staff">
+        SELECT `id`,`staff_name` FROM `smart_site`.`staff` WHERE `section_id`=#{section_id} and `position_id`=2
+    </select>
+
     <!--统计图数据-->
     <!--根据工种分组查询(单独站点)-->
     <select id="CountByWorktype" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.Staff">

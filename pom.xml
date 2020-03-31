@@ -88,17 +88,11 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- 阿里fastjson包JSON转换-->
+        <!--aliyunOSS-->
         <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>fastjson</artifactId>
-            <version>1.2.47</version>
-        </dependency>
-
-        <dependency>
-            <groupId>commons-httpclient</groupId>
-            <artifactId>commons-httpclient</artifactId>
-            <version>3.1</version>
+            <groupId>com.aliyun.oss</groupId>
+            <artifactId>aliyun-sdk-oss</artifactId>
+            <version>2.4.0</version>
         </dependency>
 
         <dependency>

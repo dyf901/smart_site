@@ -60,4 +60,58 @@ public class RiskshowService implements RiskshowDao {
     public int CountRiskShowByCQWZG(Map map) {
         return riskshowDao.CountRiskShowByCQWZG(map);
     }
+
+    //返回本月份
+    @Override
+    public int find_month() {
+        return riskshowDao.find_month();
+    }
+
+    //查询当月上旬数据的条数
+    @Override
+    public int find_riskshow_top(Map map) {
+        return riskshowDao.find_riskshow_top(map);
+    }
+
+    //查询当月中旬数据的条数
+    @Override
+    public int find_riskshow_mid(Map map) {
+        return riskshowDao.find_riskshow_mid(map);
+    }
+
+    //查询当月下旬数据的条数
+    @Override
+    public int find_riskshow_end(Map map) {
+        return riskshowDao.find_riskshow_end(map);
+    }
+
+    //查询当月上旬有效数据的条数
+    @Override
+    public int find_riskshow_top_y(Map map) {
+        return riskshowDao.find_riskshow_top_y(map);
+    }
+
+    //查询当月中旬有效数据的条数
+    @Override
+    public int find_riskshow_mid_y(Map map) {
+        return riskshowDao.find_riskshow_mid_y(map);
+    }
+
+    //查询当月下旬有效数据的条数
+    @Override
+    public int find_riskshow_end_y(Map map) {
+        return riskshowDao.find_riskshow_end_y(map);
+    }
+
+    //根据隐患类型查询数量总数
+    @Override
+    public List<Riskshow> CountRiskshowByRiskId(Map map) {
+        return riskshowDao.CountRiskshowByRiskId(map);
+    }
+
+    //根据分包单位查询数量总数
+    @Override
+    public List<Riskshow> CountRiskshowBySubId(Map map) {
+        return riskshowDao.CountRiskshowBySubId(map);
+    }
 }

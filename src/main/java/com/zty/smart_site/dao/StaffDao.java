@@ -47,6 +47,9 @@ public interface StaffDao {
     //根据Id查询员工信息
     Staff FindStaffById(Map map);
 
+    //根绝站点,PositionId查询安全隐患负责人
+    Staff FindStaffByPositionId(Map map);
+
     //根据工种分组统计人数(选择站点)
     List<Staff> CountByWorktype(Map map);
 
