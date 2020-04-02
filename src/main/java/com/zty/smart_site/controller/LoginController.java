@@ -101,16 +101,18 @@ public class LoginController {
     @PostMapping("/LoginApp1")
     public JsonResult LoginApp1(@RequestBody Map map){
         JsonResult jsonResult = new JsonResult(ResultCode.USER_NOT_EXIST);
+        System.out.println(map);
         Staff staff = staffService.FindStaffByStaff_phone(map);
-        map.put("position_id",staff.getPosition_id());
+        System.out.println(staff);
         if(staff!=null){
+            map.put("position_id",staff.getPosition_id());
             if (staff.getPassword().equals(map.get("password"))){
                 jsonResult.setMessage("登录成功!");
                 jsonResult.setData(staff);
                 jsonResult.setCode(200);
                 return jsonResult;
             }else {
-                jsonResult.setMessage("密码错误,登录成功!");
+                jsonResult.setMessage("密码错误,登录失败!");
                 jsonResult.setCode(20003);
                 return jsonResult;
             }
