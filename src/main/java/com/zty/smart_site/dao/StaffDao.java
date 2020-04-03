@@ -32,6 +32,12 @@ public interface StaffDao {
     //修改员工剩余积分
     int UpdateStaffEnd_integral(Map map);
 
+    //修改员工历史积分
+    int UpdateStaffHistory_integral(Map map);
+
+    //修改员工剩余积分加
+    int UpdateStaffEnd_integralJ(Map map);
+
     //模糊分页查询员工信息
     List<Staff> FindStaff(Map map);
 

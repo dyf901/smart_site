@@ -21,7 +21,7 @@
         INNER JOIN `smart_site`.`station` s ON q.`station_id`=s.`id`
         inner JOIN `smart_site`.`subcontractors` l ON q.`sub_id`=l.`id`
         <where>
-            q.`section_id`=`section_id`
+            q.`section_id`=#{section_id}
             <if test="quality_id!=null and quality_id!=''">
                 and q.`quality_id`=#{quality_id}
             </if>
@@ -39,7 +39,7 @@
     <select id="Total" parameterType="java.util.Map" resultType="long">
         SELECT COUNT(*) FROM `smart_site`.`qualityshow`
         <where>
-            `section_id`=`section_id`
+            `section_id`=#{section_id}
             <if test="quality_id!=null and quality_id!=''">
                 and `quality_id`=#{quality_id}
             </if>

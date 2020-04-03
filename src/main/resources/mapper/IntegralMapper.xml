@@ -10,6 +10,7 @@
 
     <!--查询个人积分明细-->
     <select id="FindIntegral" parameterType="java.util.Map">
-        SELECT `id`, `content`, `up_time` WHERE `staff_id`=#{staff_id}
+        <bind name="page" value="pageSize*(pageNo-1)"></bind>
+        SELECT `id`, `content`, `up_time` WHERE `staff_id`=#{staff_id} limit #{page},#{pageSize}
     </select>
 </mapper>

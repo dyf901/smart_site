@@ -61,6 +61,18 @@ public class StaffService implements StaffDao {
         return staffDao.UpdateStaffEnd_integral(map);
     }
 
+    //修改员工历史积分
+    @Override
+    public int UpdateStaffHistory_integral(Map map) {
+        return staffDao.UpdateStaffHistory_integral(map);
+    }
+
+    //修改员工剩余积分加
+    @Override
+    public int UpdateStaffEnd_integralJ(Map map) {
+        return staffDao.UpdateStaffEnd_integralJ(map);
+    }
+
     //模糊分页查询员工信息
     @Override
     public List<Staff> FindStaff(Map map) {

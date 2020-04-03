@@ -33,7 +33,7 @@ public class OssUploadController {
                     os.close();
                     file.transferTo(newFile);
                     //上传到OSS
-                    String uploadUrl = AliyunOSSUtil.upload(newFile);
+                    String uploadUrl = "https://jjjt.oss-cn-shanghai.aliyuncs.com/"+AliyunOSSUtil.upload(newFile);
                     return uploadUrl;
                 }
 

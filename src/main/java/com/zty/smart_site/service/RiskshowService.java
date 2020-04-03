@@ -37,6 +37,18 @@ public class RiskshowService implements RiskshowDao {
         return riskshowDao.Total(map);
     }
 
+    //修改安全隐患状态(有效)
+    @Override
+    public int UpdateActiveY(Map map) {
+        return riskshowDao.UpdateActiveY(map);
+    }
+
+    //修改安全隐患状态(无效)
+    @Override
+    public int UpdateActiveW(Map map) {
+        return riskshowDao.UpdateActiveW(map);
+    }
+
     //统计安全隐患数量
     @Override
     public int CountRiskShow(Map map) {

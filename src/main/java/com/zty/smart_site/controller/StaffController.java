@@ -88,10 +88,12 @@ public class StaffController {
 
     }
 
-    @ApiOperation(value = "忘记密码",notes = "测试数据:{\"id\":1,\"password\":\"960901\",\"code\":\"123456\",\"staff_phone\":\"13100000000\"}")
+    @ApiOperation(value = "忘记密码",notes = "测试数据:{\"password\":\"960901\",\"code\":\"123456\",\"staff_phone\":\"13100000000\"}")
     @PostMapping("/ForgetPassword")
     public JsonResult ForgetPassword(@RequestBody Map map) throws ParseException {
         JsonResult jsonResult = new JsonResult();
+        Staff staff = staffService.FindStaffByStaff_phone(map);
+        map.put("id",staff.getId());
         map.put("phone",map.get("staff_phone"));
         Code code = codeService.FindCodeByPhone(map);
         int c=code.getCode();
@@ -117,7 +119,7 @@ public class StaffController {
 
         }else {
             jsonResult.setCode(20006);
-            jsonResult.setMessage("旧密码错误,修改失败!");
+            jsonResult.setMessage("验证码错误,修改失败!");
             return jsonResult;
         }
     }
@@ -145,5 +147,12 @@ public class StaffController {
         return page;
     }
 
-
+    @ApiOperation(value = "根据id查询员工信息",notes = "传参:id")
+    @PostMapping("/FindStaffById")
+    public JsonResult FindStaffById(@RequestBody Map map){
+        JsonResult jsonResult = new JsonResult();
+        jsonResult.setCode(200);
+        jsonResult.setData(staffService.FindStaffById(map));
+        return jsonResult;
+    }
 }

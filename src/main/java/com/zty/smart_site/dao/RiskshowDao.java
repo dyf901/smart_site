@@ -20,6 +20,12 @@ public interface RiskshowDao {
     //统计总数
     long Total(Map map);
 
+    //修改安全隐患状态(有效)
+    int UpdateActiveY(Map map);
+
+    //修改安全隐患状态(无效)
+    int UpdateActiveW(Map map);
+
     //统计安全隐患数量
     int CountRiskShow(Map map);
 
