@@ -19,12 +19,13 @@ section_name            标段名称
 public class Station {
     private int id,station_time,section_id;
     private String station_name,start_time,end_time,station_principal,station_area,section_name;
+    private String userId,groupId,deviceKey;
 
     public Station(){
         super();
     }
 
-    public Station(int id, int station_time, int section_id, String station_name, String start_time, String end_time, String station_principal, String station_area, String section_name) {
+    public Station(int id, int station_time, int section_id, String station_name, String start_time, String end_time, String station_principal, String station_area, String section_name, String userId, String groupId, String deviceKey) {
         this.id = id;
         this.station_time = station_time;
         this.section_id = section_id;
@@ -34,6 +35,9 @@ public class Station {
         this.station_principal = station_principal;
         this.station_area = station_area;
         this.section_name = section_name;
+        this.userId = userId;
+        this.groupId = groupId;
+        this.deviceKey = deviceKey;
     }
 
     public int getId() {
@@ -108,6 +112,30 @@ public class Station {
         this.section_name = section_name;
     }
 
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    public String getGroupId() {
+        return groupId;
+    }
+
+    public void setGroupId(String groupId) {
+        this.groupId = groupId;
+    }
+
+    public String getDeviceKey() {
+        return deviceKey;
+    }
+
+    public void setDeviceKey(String deviceKey) {
+        this.deviceKey = deviceKey;
+    }
+
     @Override
     public String toString() {
         return "Station{" +
@@ -120,6 +148,9 @@ public class Station {
                 ", station_principal='" + station_principal + '\'' +
                 ", station_area='" + station_area + '\'' +
                 ", section_name='" + section_name + '\'' +
+                ", userId='" + userId + '\'' +
+                ", groupId='" + groupId + '\'' +
+                ", deviceKey='" + deviceKey + '\'' +
                 '}';
     }
 }

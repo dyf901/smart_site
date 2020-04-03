@@ -1,8 +1,6 @@
 package com.zty.smart_site.controller;
 
-import com.zty.smart_site.entity.AdminStaff;
 import com.zty.smart_site.entity.Staff;
-import com.zty.smart_site.service.AdminStaffService;
 import com.zty.smart_site.service.RiskshowService;
 import com.zty.smart_site.service.StaffService;
 import io.swagger.annotations.Api;
@@ -20,9 +18,6 @@ import java.util.Map;
 public class PcCountController {
     @Autowired
     private StaffService staffService;
-
-    @Autowired
-    private AdminStaffService adminStaffService;
 
     @Autowired
     private RiskshowService riskshowService;
@@ -70,15 +65,15 @@ public class PcCountController {
     }
 
     @ApiOperation(value = "劳务人员总数",notes = "测试数据:{\"section_id\":1}")
-    @PostMapping("/CountAll")
-    public List<Staff> CountAll(@RequestBody Map map){
-        return staffService.CountAll(map);
+    @PostMapping("/CountByTypeLW")
+    public List<Staff> CountByTypeLW(@RequestBody Map map){
+        return staffService.CountByTypeLW(map);
     }
 
     @ApiOperation(value = "管理人员总数",notes = "测试数据:{\"section_id\":1}")
-    @PostMapping("/CountAllAdmin")
-    public List<AdminStaff> CountAllAdmin(@RequestBody Map map){
-        return adminStaffService.CountAllAdmin(map);
+    @PostMapping("/CountByTypeGL")
+    public List<Staff> CountByTypeGL(@RequestBody Map map){
+        return staffService.CountByTypeGL(map);
     }
 
     @ApiOperation(value = "统计安全隐患总数",notes = "测试数据:section_id(标段id,登录返回),station_id(站点id,下拉框选择)")

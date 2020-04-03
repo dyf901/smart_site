@@ -61,11 +61,20 @@ public class Riskshow {
     @ApiModelProperty(value = "整改图片地址",name = "zg_url")
     private String zg_url;
 
+    @ApiModelProperty(value = "工序id",name = "process_id")
+    private int process_id;
+
+    @ApiModelProperty(value = "工序名称",name = "process_name")
+    private String process_name;
+
+    @ApiModelProperty(value = "劳务人员id",name = "staff_id")
+    private int staff_id;
+
     public Riskshow(){
         super();
     }
 
-    public Riskshow(int id, int risk_id, int section_id, int station_id, String description, String uptime, String url, String active, String risk_name, String staff_name, String station_name, String title, int sub_id, String sub_name, String responsible, String count, String plan_time, String zg_url) {
+    public Riskshow(int id, int risk_id, int section_id, int station_id, String description, String uptime, String url, String active, String risk_name, String staff_name, String station_name, String title, int sub_id, String sub_name, String responsible, String count, String plan_time, String zg_url, int process_id, String process_name, int staff_id) {
         this.id = id;
         this.risk_id = risk_id;
         this.section_id = section_id;
@@ -84,6 +93,9 @@ public class Riskshow {
         this.count = count;
         this.plan_time = plan_time;
         this.zg_url = zg_url;
+        this.process_id = process_id;
+        this.process_name = process_name;
+        this.staff_id = staff_id;
     }
 
     public int getId() {
@@ -230,6 +242,30 @@ public class Riskshow {
         this.zg_url = zg_url;
     }
 
+    public int getProcess_id() {
+        return process_id;
+    }
+
+    public void setProcess_id(int process_id) {
+        this.process_id = process_id;
+    }
+
+    public String getProcess_name() {
+        return process_name;
+    }
+
+    public void setProcess_name(String process_name) {
+        this.process_name = process_name;
+    }
+
+    public int getStaff_id() {
+        return staff_id;
+    }
+
+    public void setStaff_id(int staff_id) {
+        this.staff_id = staff_id;
+    }
+
     @Override
     public String toString() {
         return "Riskshow{" +
@@ -251,6 +287,9 @@ public class Riskshow {
                 ", count='" + count + '\'' +
                 ", plan_time='" + plan_time + '\'' +
                 ", zg_url='" + zg_url + '\'' +
+                ", process_id=" + process_id +
+                ", process_name='" + process_name + '\'' +
+                ", staff_id=" + staff_id +
                 '}';
     }
 }

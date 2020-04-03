@@ -68,8 +68,11 @@ public interface StaffDao {
     //根据性别分组统计人数(选择站点)
     List<Staff> CountByStaffSex(Map map);
 
-    //统计总劳务人员数(单独站点)
-    List<Staff> CountAll(Map map);
+    //统计劳务人员总数(单独站点)
+    List<Staff> CountByTypeLW(Map map);
+
+    //统计管理人员总数
+    List<Staff> CountByTypeGL(Map map);
 
     //按照年龄端分组查询(单独站点)
     List<Staff> CountByStaffAge(Map map);

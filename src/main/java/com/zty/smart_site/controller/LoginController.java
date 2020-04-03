@@ -23,9 +23,6 @@ public class LoginController {
     private UserService userService;//用户
 
     @Autowired
-    private AdminStaffService adminStaffService;//管理员工
-
-    @Autowired
     private StaffService staffService;//劳务人员
 
     @Autowired
@@ -71,7 +68,7 @@ public class LoginController {
         }
     }
 
-    @ApiOperation(value = "App登录(管理人员)",notes = "测试数据:{\"admin_phone\":\"13100000000\",\n" +
+    /*@ApiOperation(value = "App登录(管理人员)",notes = "测试数据:{\"admin_phone\":\"13100000000\",\n" +
             "\"password\":\"123456\"}")
     @PostMapping("/LoginApp")
     public JsonResult LoginApp(@RequestBody Map map){
@@ -94,11 +91,11 @@ public class LoginController {
             jsonResult.setCode(20001);
             return jsonResult;
         }
-    }
+    }*/
 
-    @ApiOperation(value = "App登录(劳务人员)",notes = "测试数据:{\"staff_phone\":\"13100000000\",\n" +
+    @ApiOperation(value = "App登录",notes = "测试数据:{\"staff_phone\":\"13100000000\",\n" +
             "\"password\":\"123456\"}")
-    @PostMapping("/LoginApp1")
+    @PostMapping("/LoginApp")
     public JsonResult LoginApp1(@RequestBody Map map){
         JsonResult jsonResult = new JsonResult(ResultCode.USER_NOT_EXIST);
         System.out.println(map);

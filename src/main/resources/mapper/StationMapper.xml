@@ -44,6 +44,6 @@
 
     <!--下拉框查询站点信息-->
     <select id="SelectStation" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.Station">
-        SELECT `id`, `section_id`, `station_name`, `station_time`, `start_time`, `end_time`, `station_principal`, `station_area` FROM `smart_site`.`station` WHERE `section_id`=#{section_id}
+        SELECT `id`, `section_id`, `station_name`, `station_time`, `start_time`, `end_time`, `station_principal`, `station_area`, `userId`, `groupId`, `deviceKey`  FROM `smart_site`.`station` WHERE `section_id`=#{section_id}
     </select>
 </mapper>

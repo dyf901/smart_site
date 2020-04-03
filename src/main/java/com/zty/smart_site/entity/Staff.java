@@ -143,11 +143,17 @@ public class Staff {
     @ApiModelProperty(value="人员年龄段",name="age_duan")
     private String age_duan;
 
+    @ApiModelProperty(value = "部门id",name = "department_id")
+    private int department_id;
+
+    @ApiModelProperty(value = "部门名称",name = "department_name")
+    private String department_name;
+
     public Staff(){
         super();
     }
 
-    public Staff(int id, int staff_age, int history_integral, int end_integral, int section_id, int sub_id, int worktype_id, int station_id, int count, int position_id, String staff_name, String staff_img, String staff_sex, String staff_nation, String staff_card, String staff_address, String staff_province, String staff_phone, String sos_name, String sos_ship, String sos_phone, String entry_time, String password, String picture, String state, String status, String type, String train, String section_name, String station_name, String sub_name, String worktype_name, String age_duan) {
+    public Staff(int id, int staff_age, int history_integral, int end_integral, int section_id, int sub_id, int worktype_id, int station_id, int count, int position_id, String staff_name, String staff_img, String staff_sex, String staff_nation, String staff_card, String staff_address, String staff_province, String staff_phone, String sos_name, String sos_ship, String sos_phone, String entry_time, String password, String picture, String state, String status, String type, String train, String section_name, String station_name, String sub_name, String worktype_name, String age_duan, int department_id, String department_name) {
         this.id = id;
         this.staff_age = staff_age;
         this.history_integral = history_integral;
@@ -181,6 +187,8 @@ public class Staff {
         this.sub_name = sub_name;
         this.worktype_name = worktype_name;
         this.age_duan = age_duan;
+        this.department_id = department_id;
+        this.department_name = department_name;
     }
 
     public Staff(int worktype_id, int count, String worktype_name) {
@@ -453,6 +461,22 @@ public class Staff {
         this.position_id = position_id;
     }
 
+    public int getDepartment_id() {
+        return department_id;
+    }
+
+    public void setDepartment_id(int department_id) {
+        this.department_id = department_id;
+    }
+
+    public String getDepartment_name() {
+        return department_name;
+    }
+
+    public void setDepartment_name(String department_name) {
+        this.department_name = department_name;
+    }
+
     @Override
     public String toString() {
         return "Staff{" +
@@ -489,6 +513,8 @@ public class Staff {
                 ", sub_name='" + sub_name + '\'' +
                 ", worktype_name='" + worktype_name + '\'' +
                 ", age_duan='" + age_duan + '\'' +
+                ", department_id=" + department_id +
+                ", department_name='" + department_name + '\'' +
                 '}';
     }
 }

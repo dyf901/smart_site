@@ -27,13 +27,13 @@ public class CodeController {
     @Autowired
     private CodeService codeService;//验证码
 
-    @ApiOperation(value = "获取验证码",notes = "")
+    @ApiOperation(value = "获取验证码",notes = "传参:`staff_phone`(手机号码)")
     @PostMapping("/gain_code")
     public JsonResult add_userapp(@RequestBody Map map) throws ClientException {
         JsonResult jsonResult = new JsonResult();
         setNewcode();
         String code = Integer.toString(getNewcode());
-        String phone=(String) map.get("admin_phone");
+        String phone=(String) map.get("staff_phone");
         map.put("phone",phone);
         map.put("code",code);
         SendSmsResponse response =sendSms(phone,code);

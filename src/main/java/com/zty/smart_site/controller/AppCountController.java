@@ -1,19 +1,15 @@
 package com.zty.smart_site.controller;
 
 import com.zty.smart_site.entity.JsonResult;
-import com.zty.smart_site.service.AdminStaffService;
 import com.zty.smart_site.service.RiskshowService;
 import com.zty.smart_site.service.StaffService;
 import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiModel;
 
-import io.swagger.annotations.ApiModelProperty;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 @Api(description = "App端统计图数据接口")
@@ -22,10 +18,7 @@ import java.util.Map;
 @CrossOrigin
 public class AppCountController {
     @Autowired
-    private StaffService staffService;//劳务人员
-
-    @Autowired
-    private AdminStaffService adminStaffService;//管理人员
+    private StaffService staffService;//人员
 
     @Autowired
     private RiskshowService riskshowService;
@@ -37,8 +30,8 @@ public class AppCountController {
         jsonResult.setData(staffService.CountByWorktype(map));
         jsonResult.setData2(staffService.CountBySub(map));
         jsonResult.setData3(staffService.CountByType(map));
-        jsonResult.setData4(staffService.CountAll(map));
-        jsonResult.setData5(adminStaffService.CountAllAdmin(map));
+        jsonResult.setData4(staffService.CountByTypeLW(map));
+        jsonResult.setData5(staffService.CountByTypeGL(map));
         return jsonResult;
     }
 

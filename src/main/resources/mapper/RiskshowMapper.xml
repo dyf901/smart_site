@@ -5,7 +5,7 @@
 <mapper namespace="com.zty.smart_site.dao.RiskshowDao">
     <!--增加安全隐患信息记录-->
     <insert id="InsertRiskshow" parameterType="java.util.Map">
-        INSERT INTO `smart_site`.`riskshow` (`risk_id`, `staff_name`, `section_id`, `station_id`, `sub_id`, `responsible`, `description`, `uptime`, `url`, `title`) VALUES (#{risk_id}, #{staff_name}, #{section_id}, #{station_id}, #{sub_id}, #{responsible}, #{description}, now(), #{url},#{title});
+        INSERT INTO `smart_site`.`riskshow` (`risk_id`, `staff_name`, `section_id`, `station_id`, `sub_id`, `responsible`, `description`, `uptime`, `url`, `title`,`staff_id`,`adminstaff_id`,`process_id`) VALUES (#{risk_id}, #{staff_name}, #{section_id}, #{station_id}, #{sub_id}, #{responsible}, #{description}, now(), #{url},#{title},#{staff_id},#{adminstaff_id}),#{process_id};
     </insert>
 
     <!--删除安全隐患记录-->
@@ -16,10 +16,11 @@
     <!--分页模糊查询安全隐患记录-->
     <select id="FindRiskshow" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.Riskshow">
         <bind name="page" value="pageSize*(pageNo-1)"></bind>
-        SELECT r.`id`, r.`risk_id`, r.`staff_name`, r.`section_id`, r.`station_id`, r.`sub_id`, r.`responsible`, r.`description`, r.`uptime`, r.`url`, r.`active`,r.`title`,a.`risk_category` as risk_name,s.`station_name` as station_name,l.`subcontractors_name` as `sub_name` FROM `smart_site`.`riskshow` r
+        SELECT r.`id`, r.`risk_id`, r.`staff_id`, r.`adminstaff_id`, r.`process_id`, r.`staff_name`, r.`section_id`, r.`station_id`, r.`sub_id`, r.`responsible`, r.`description`, r.`uptime`, r.`url`, r.`active`,r.`title`,a.`risk_category` as risk_name,s.`station_name` as station_name,l.`subcontractors_name` as `sub_name`,p.`process_name` as `process_name` FROM `smart_site`.`riskshow` r
         INNER JOIN `smart_site`.`risk` a ON r.`risk_id`=a.`id`
         INNER JOIN `smart_site`.`station` s ON r.`station_id`=s.`id`
         INNER JOIN `smart_site`.`subcontractors` l ON r.`sub_id`=l.`id`
+        INNER JOIN `smart_site`.`process` p ON r.`process_id`=p.`id`
         <where>
             r.`section_id`=`section_id`
             <if test="risk_id!=null and risk_id!=''">
