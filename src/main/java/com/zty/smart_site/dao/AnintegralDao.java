@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 @Repository
-public interface IntegralDao {
+public interface AnintegralDao {
     //上传积分明细
     int InsertIntegral(Map map);
 

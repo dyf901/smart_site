@@ -4,13 +4,16 @@ import com.zty.smart_site.entity.JsonResult;
 import com.zty.smart_site.entity.Riskshow;
 import com.zty.smart_site.page.Page;
 
+import com.zty.smart_site.service.AnintegralService;
 import com.zty.smart_site.service.RiskshowService;
 import com.zty.smart_site.service.StaffService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -25,18 +28,22 @@ public class RiskshowController {
     @Autowired
     private StaffService staffService;//人员
 
-
+    @Autowired
+    private AnintegralService anintegralService;//积分明细
 
     @ApiOperation(value = "增加安全隐患记录",notes = "传参:`title`(标题),`risk_id`(安全隐患类id,安全隐患类型下拉框), `staff_name`(员工姓名,登录时返回), `section_id`(标段id), `station_id`(站点id,下拉框查询),`sub_id`(分包单位id) `description`(详细说明), `url`(图片地址数组), `staff_id(劳务人员id,管理人员不需要传,登录返回)`,  `process_id`(工序id,下拉框返回)")
     @PostMapping("/InsertRiskshow")
-    public String InsertRiskshow(@RequestBody Map map){
+    public JsonResult InsertRiskshow(@RequestBody Map map){
         JsonResult jsonResult = new JsonResult();
         System.out.println(map);
-        //int i=riskshowService.InsertRiskshow(map);
-        System.out.println(map.get("url"));
-        String ass[]= (String[]) map.get("url");
-        System.out.println(ass);
-        /*if (i==1){
+        List list = (List) map.get("url1");
+        System.out.println("list:"+list);
+        //String url = StringUtils.join(list, ",");
+        String url=list.toString();
+        System.out.println(url);
+        map.put("url",url);
+        int i=riskshowService.InsertRiskshow(map);
+        if (i==1){
             jsonResult.setMessage("增加成功!");
             jsonResult.setCode(200);
             return jsonResult;
@@ -44,8 +51,7 @@ public class RiskshowController {
             jsonResult.setMessage("添加失败!");
             jsonResult.setCode(20006);
             return jsonResult;
-        }*/
-        return "asd";
+        }
     }
 
     @ApiOperation(value = "删除安全隐患记录",notes = "测试数据:{\"id\":1}")
@@ -72,10 +78,10 @@ public class RiskshowController {
         if(map.get("state").equals("有效")){
             int i = riskshowService.UpdateActiveY(map);
             if (i==1){
-                staffService.UpdateStaffEnd_integralJ(map);
-                staffService.UpdateStaffHistory_integral(map);
+                staffService.UpdateStaffHistory_integral(map);//修改历史积分
+                staffService.UpdateStaffEnd_integralJ(map);//修改剩余积分
                 map.put("content","安全隐患上传");
-
+                anintegralService.InsertIntegral(map);
                 jsonResult.setCode(200);
                 jsonResult.setMessage("审核成功!");
                 return jsonResult;

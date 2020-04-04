@@ -5,7 +5,8 @@
 <mapper namespace="com.zty.smart_site.dao.RiskshowDao">
     <!--增加安全隐患信息记录-->
     <insert id="InsertRiskshow" parameterType="java.util.Map">
-        INSERT INTO `smart_site`.`riskshow` (`risk_id`, `section_id`, `station_id`, `sub_id`, `responsible`, `description`, `uptime`, `url`, `title`,`staff_id`,process_id`) VALUES (#{risk_id}, #{section_id}, #{station_id}, #{sub_id}, #{responsible}, #{description}, now(), #{url},#{title},#{staff_id},#{process_id};
+        INSERT INTO `smart_site`.`riskshow` (`title`, `staff_id`, `risk_id`, `section_id`, `station_id`, `process_id`, `sub_id`, `responsible`, `description`, `uptime`, `url`,`integral`)
+        VALUES (#{title}, #{staff_id}, #{risk_id}, #{section_id}, #{station_id}, #{process_id}, #{sub_id}, #{responsible}, #{description}, now(), #{url}, #{integral});
     </insert>
 
     <!--删除安全隐患记录-->

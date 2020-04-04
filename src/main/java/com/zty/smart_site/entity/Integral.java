@@ -5,7 +5,7 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@ApiModel(value = "riskshow",description = "安全隐患对象")
+@ApiModel(value = "anintegral",description = "积分明细对象")
 public class Integral {
     @ApiModelProperty(value = "积分id",name = "id")
     private int id;
