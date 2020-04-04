@@ -71,6 +71,50 @@ public class RiskshowController {
         return page;
     }
 
+    @ApiOperation(value = "分页模糊查询安全隐患记录_检查记录",notes = "测试数据:{\"pageNo\":1,\"pageSize\":10,\"section_id\":2}")
+    @PostMapping("/FindRiskshow_JCJL")
+    public Page<Riskshow> FindRiskshow_JCJL(@RequestBody Map map){
+        Page<Riskshow> page = new Page<Riskshow>();
+        page.setPageNo((Integer) map.get("pageNo"));
+        page.setPageSize((Integer) map.get("pageSize"));
+        page.setTotal(riskshowService.Total_JCJL(map));
+        page.setItems(riskshowService.FindRiskshow_JCJL(map));
+        return page;
+    }
+
+    @ApiOperation(value = "分页模糊查询安全隐患记录_无效记录",notes = "测试数据:{\"pageNo\":1,\"pageSize\":10,\"section_id\":2}")
+    @PostMapping("/FindRiskshow_WXJL")
+    public Page<Riskshow> FindRiskshow_WXJL(@RequestBody Map map){
+        Page<Riskshow> page = new Page<Riskshow>();
+        page.setPageNo((Integer) map.get("pageNo"));
+        page.setPageSize((Integer) map.get("pageSize"));
+        page.setTotal(riskshowService.Total_WXJL(map));
+        page.setItems(riskshowService.FindRiskshow_WXJL(map));
+        return page;
+    }
+
+    @ApiOperation(value = "分页模糊查询安全隐患记录_待整改",notes = "测试数据:{\"pageNo\":1,\"pageSize\":10,\"section_id\":2}")
+    @PostMapping("/FindRiskshow_DZG")
+    public Page<Riskshow> FindRiskshow_DZG(@RequestBody Map map){
+        Page<Riskshow> page = new Page<Riskshow>();
+        page.setPageNo((Integer) map.get("pageNo"));
+        page.setPageSize((Integer) map.get("pageSize"));
+        page.setTotal(riskshowService.Total_DZG(map));
+        page.setItems(riskshowService.FindRiskshow_DZG(map));
+        return page;
+    }
+
+    @ApiOperation(value = "分页模糊查询安全隐患记录_整改复查",notes = "测试数据:{\"pageNo\":1,\"pageSize\":10,\"section_id\":2}")
+    @PostMapping("/FindRiskshow_ZGFC")
+    public Page<Riskshow> FindRiskshow_ZGFC(@RequestBody Map map){
+        Page<Riskshow> page = new Page<Riskshow>();
+        page.setPageNo((Integer) map.get("pageNo"));
+        page.setPageSize((Integer) map.get("pageSize"));
+        page.setTotal(riskshowService.Total_ZGFC(map));
+        page.setItems(riskshowService.FindRiskshow_ZGFC(map));
+        return page;
+    }
+
     @ApiOperation(value = "审核安全隐患记录",notes = "传参:id(隐患数据id,数据类型:int),integral(积分,数据类型:String),state(有效/无效,数据类型:String),staff_id(员工id安全隐患记录返回的数据,数据类型:int)")
     @PostMapping("/UpdateActive")
     public JsonResult UpdateActive(@RequestBody Map map){

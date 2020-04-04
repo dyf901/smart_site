@@ -48,6 +48,78 @@
             </if>
         </where>
     </select>
+
+    <!--分页模糊查询安全隐患记录_检查记录-->
+    <select id="FindRiskshow_JCJL" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.Riskshow">
+        <bind name="page" value="pageSize*(pageNo-1)"></bind>
+        SELECT r.`id`, r.`risk_id`, r.`staff_id`, r.`process_id`, r.`section_id`, r.`station_id`, r.`sub_id`, r.`responsible`, r.`description`, r.`uptime`, r.`url`, r.`active`,r.`title`,a.`risk_category` as risk_name,s.`station_name` as station_name,l.`subcontractors_name` as `sub_name`,p.`process_name` as `process_name`,z.`staff_name`  as `staff_name` FROM `smart_site`.`riskshow` r
+        INNER JOIN `smart_site`.`risk` a ON r.`risk_id`=a.`id`
+        INNER JOIN `smart_site`.`station` s ON r.`station_id`=s.`id`
+        INNER JOIN `smart_site`.`subcontractors` l ON r.`sub_id`=l.`id`
+        INNER JOIN `smart_site`.`process` p ON r.`process_id`=p.`id`
+        INNER JOIN `smart_site`.`staff` z ON r.`staff_id`=z.`id`
+        where r.`section_id`=#{section_id} and r.`station_id`=#{station_id} and r.`state`='待审核'
+        limit #{page},#{pageSize}
+    </select>
+
+    <!--统计总数-->
+    <select id="Total_JCJL" parameterType="java.util.Map" resultType="long">
+        SELECT COUNT(*) FROM `smart_site`.`riskshow` where `section_id`=#{section_id} and `station_id`=#{station_id} and `state`='待审核'
+    </select>
+
+    <!--分页模糊查询安全隐患记录_无效记录-->
+    <select id="FindRiskshow_WXJL" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.Riskshow">
+        <bind name="page" value="pageSize*(pageNo-1)"></bind>
+        SELECT r.`id`, r.`risk_id`, r.`staff_id`, r.`process_id`, r.`section_id`, r.`station_id`, r.`sub_id`, r.`responsible`, r.`description`, r.`uptime`, r.`url`, r.`active`,r.`title`,a.`risk_category` as risk_name,s.`station_name` as station_name,l.`subcontractors_name` as `sub_name`,p.`process_name` as `process_name`,z.`staff_name`  as `staff_name` FROM `smart_site`.`riskshow` r
+        INNER JOIN `smart_site`.`risk` a ON r.`risk_id`=a.`id`
+        INNER JOIN `smart_site`.`station` s ON r.`station_id`=s.`id`
+        INNER JOIN `smart_site`.`subcontractors` l ON r.`sub_id`=l.`id`
+        INNER JOIN `smart_site`.`process` p ON r.`process_id`=p.`id`
+        INNER JOIN `smart_site`.`staff` z ON r.`staff_id`=z.`id`
+        where r.`section_id`=#{section_id} and r.`station_id`=#{station_id} and r.`state`='无效'
+        limit #{page},#{pageSize}
+    </select>
+
+    <!--统计总数_无效记录-->
+    <select id="Total_WXJL" parameterType="java.util.Map" resultType="long">
+        SELECT COUNT(*) FROM `smart_site`.`riskshow` where `section_id`=#{section_id} and `station_id`=#{station_id} and `state`='无效'
+    </select>
+
+    <!--分页模糊查询安全隐患记录_待整改-->
+    <select id="FindRiskshow_DZG" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.Riskshow">
+        <bind name="page" value="pageSize*(pageNo-1)"></bind>
+        SELECT r.`id`, r.`risk_id`, r.`staff_id`, r.`process_id`, r.`section_id`, r.`station_id`, r.`sub_id`, r.`responsible`, r.`description`, r.`uptime`, r.`url`, r.`active`,r.`title`,a.`risk_category` as risk_name,s.`station_name` as station_name,l.`subcontractors_name` as `sub_name`,p.`process_name` as `process_name`,z.`staff_name`  as `staff_name` FROM `smart_site`.`riskshow` r
+        INNER JOIN `smart_site`.`risk` a ON r.`risk_id`=a.`id`
+        INNER JOIN `smart_site`.`station` s ON r.`station_id`=s.`id`
+        INNER JOIN `smart_site`.`subcontractors` l ON r.`sub_id`=l.`id`
+        INNER JOIN `smart_site`.`process` p ON r.`process_id`=p.`id`
+        INNER JOIN `smart_site`.`staff` z ON r.`staff_id`=z.`id`
+        where r.`section_id`=#{section_id} and r.`station_id`=#{station_id} and r.`state`='有效' and r.`active`='待整改'
+        limit #{page},#{pageSize}
+    </select>
+
+    <!--统计总数_待整改-->
+    <select id="Total_DZG" parameterType="java.util.Map" resultType="long">
+        SELECT COUNT(*) FROM `smart_site`.`riskshow` where `section_id`=#{section_id} and `station_id`=#{station_id} and `state`='有效' and `active`='待整改'
+    </select>
+
+    <!--分页模糊查询安全隐患记录_整改复查-->
+    <select id="FindRiskshow_ZGFC" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.Riskshow">
+        <bind name="page" value="pageSize*(pageNo-1)"></bind>
+        SELECT r.`id`, r.`risk_id`, r.`staff_id`, r.`process_id`, r.`section_id`, r.`station_id`, r.`sub_id`, r.`responsible`, r.`description`, r.`uptime`, r.`url`, r.`active`,r.`title`,a.`risk_category` as risk_name,s.`station_name` as station_name,l.`subcontractors_name` as `sub_name`,p.`process_name` as `process_name`,z.`staff_name`  as `staff_name` FROM `smart_site`.`riskshow` r
+        INNER JOIN `smart_site`.`risk` a ON r.`risk_id`=a.`id`
+        INNER JOIN `smart_site`.`station` s ON r.`station_id`=s.`id`
+        INNER JOIN `smart_site`.`subcontractors` l ON r.`sub_id`=l.`id`
+        INNER JOIN `smart_site`.`process` p ON r.`process_id`=p.`id`
+        INNER JOIN `smart_site`.`staff` z ON r.`staff_id`=z.`id`
+        where r.`section_id`=#{section_id} and r.`station_id`=#{station_id} and r.`state`='有效' and r.`active`='已整改'
+        limit #{page},#{pageSize}
+    </select>
+
+    <!--统计总数_整改复查-->
+    <select id="Total_ZGFC" parameterType="java.util.Map" resultType="long">
+        SELECT COUNT(*) FROM `smart_site`.`riskshow` where `section_id`=#{section_id} and `station_id`=#{station_id} and `state`='有效' and `active`='已整改'
+    </select>
     
     <!--修改安全隐患状态(有效)-->
     <update id="UpdateActiveY" parameterType="java.util.Map">

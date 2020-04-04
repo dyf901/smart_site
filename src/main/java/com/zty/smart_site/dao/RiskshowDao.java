@@ -20,6 +20,30 @@ public interface RiskshowDao {
     //统计总数
     long Total(Map map);
 
+    //分页模糊查询安全隐患记录_检查记录
+    List<Riskshow> FindRiskshow_JCJL(Map map);
+
+    //统计总数_检查记录
+    long Total_JCJL(Map map);
+
+    //分页模糊查询安全隐患记录_无效记录
+    List<Riskshow> FindRiskshow_WXJL(Map map);
+
+    //统计总数_无效记录
+    long Total_WXJL(Map map);
+
+    //分页模糊查询安全隐患记录_待整改
+    List<Riskshow> FindRiskshow_DZG(Map map);
+
+    //统计总数_待整改
+    long Total_DZG(Map map);
+
+    //分页模糊查询安全隐患记录_整改复查
+    List<Riskshow> FindRiskshow_ZGFC(Map map);
+
+    //统计总数_整改复查
+    long Total_ZGFC(Map map);
+
     //修改安全隐患状态(有效)
     int UpdateActiveY(Map map);
 
