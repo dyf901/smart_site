@@ -20,11 +20,6 @@
         `sos_name`=#{sos_name}, `sos_ship`=#{sos_ship}, `sos_phone`=#{sos_phone},`section_id`=#{section_id}, `station_id`=#{station_id}, `sub_id`=#{sub_id}, `worktype_id`=#{worktype_id}, `department_id`=#{department_id} WHERE (`id`=#{id});
     </update>
 
-    <!--修改App头像-->
-    <update id="UpdateStaffPicture" parameterType="java.util.Map">
-         UPDATE `smart_site`.`staff` SET `picture`=#{picture} WHERE `id`=#{id}
-    </update>
-
     <!--修改App登录密码-->
     <update id="UpdateStaffPassword" parameterType="java.util.Map">
          UPDATE `smart_site`.`staff` SET `password`=#{password} WHERE `id`=#{id}
@@ -53,6 +48,20 @@
     <!--修改员工剩余积分-->
     <update id="UpdateStaffEnd_integralJ" parameterType="java.util.Map">
          UPDATE `smart_site`.`staff` SET `end_integral`=`end_integral`+#{integral} WHERE `id`=#{staff_id}
+    </update>
+
+    <!--修改个人资料_app-->
+    <update id="UpdateStaffApp" parameterType="java.util.Map">
+        update `smart_site`.`staff`
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="nikename!=null and nikename!=''">
+                `nikename`=#{nikename},
+            </if>
+            <if test="picture!=null and nickname!=''">
+                `picture`=#{picture},
+            </if>
+        </trim>
+        where id=#{id}
     </update>
 
     <!--模糊分页查询员工信息-->
@@ -97,7 +106,8 @@
 
     <!--根据手机号查询员工信息-->
     <select id="FindStaffByStaff_phone" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.Staff">
-        SELECT `id`, `staff_name`, `staff_age`, `staff_img`, `staff_sex`, `staff_nation`, `staff_card`, `staff_address`, `staff_province`, `staff_phone`, `sos_name`, `sos_ship`, `sos_phone`, `entry_time`, `history_integral`, `end_integral`, `section_id`, `station_id`, `sub_id`, `worktype_id`,`department_id`,`position_id`, `password`, `picture`, `state`, `status`, `type`, `train` FROM `smart_site`.`staff`
+        SELECT s.`id`, s.`staff_name`, s.`staff_age`, s.`staff_img`, s.`staff_sex`, s.`staff_nation`, s.`staff_card`, s.`staff_address`, s.`staff_province`, s.`staff_phone`, s.`sos_name`, s.`sos_ship`, s.`sos_phone`, s.`entry_time`, s.`history_integral`, s.`end_integral`, s.`section_id`, s.`station_id`, s.`sub_id`, s.`worktype_id`,s.`department_id`,s.`position_id`, s.`password`, s.`picture`, s.`state`, s.`status`, s.`type`,s.`nikename`,s.`picture`, s.`train`,l.`section_name` as `section_name` FROM `smart_site`.`staff` s
+        INNER JOIN `smart_site`.`section` l ON s.`section_id`=l.`id`
         WHERE `staff_phone`=#{staff_phone}
     </select>
 
@@ -109,11 +119,12 @@
 
     <!--根据id查询员工信息-->
     <select id="FindStaffById" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.Staff">
-        SELECT s.`id`,s.`staff_name`,s.`staff_age`,s.`staff_img`,s.`staff_sex`,s.`staff_nation`,s.`staff_card`,s.`staff_address`,s.`staff_province`,s.`staff_phone`,s.`sos_name`,s.`sos_ship`,s.`sos_phone`,s.`entry_time`,s.`history_integral`,s.`end_integral`,s.`section_id`,s.`station_id`,s.`sub_id`,s.`worktype_id`,s.`department_id`,s.`password`,s.`picture`,s.`state`,s.`status`,s.`type`,s.`train`,l.subcontractors_name as sub_name,w.worktype_name as worktype_name,d.department_name as department_name,z.station_name as station_name  FROM `smart_site`.`staff` s
+        SELECT s.`id`,s.`staff_name`,s.`staff_age`,s.`staff_img`,s.`staff_sex`,s.`staff_nation`,s.`staff_card`,s.`staff_address`,s.`staff_province`,s.`staff_phone`,s.`sos_name`,s.`sos_ship`,s.`sos_phone`,s.`entry_time`,s.`nikename`,s.`picture`,s.`history_integral`,s.`end_integral`,s.`section_id`,s.`station_id`,s.`sub_id`,s.`worktype_id`,s.`department_id`,s.`password`,s.`picture`,s.`state`,s.`status`,s.`type`,s.`train`,l.subcontractors_name as sub_name,w.worktype_name as worktype_name,d.department_name as department_name,z.station_name as station_name,j.`section_name` as `section_name`  FROM `smart_site`.`staff` s
         INNER JOIN `smart_site`.`subcontractors` l ON s.`sub_id`=l.`id`
         INNER JOIN `smart_site`.`worktype` w ON s.`worktype_id`=w.`id`
         INNER JOIN `smart_site`.`department` d ON s.`department_id`=d.`id`
         INNER JOIN `smart_site`.`station` z ON s.`station_id`=z.`id`
+        INNER JOIN `smart_site`.`section` j ON s.`section_id`=j.`id`
         WHERE s.`id`=#{id}
     </select>
 

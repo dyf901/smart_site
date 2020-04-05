@@ -31,10 +31,10 @@ public class StaffService implements StaffDao {
         return staffDao.UpdateStaff(map);
     }
 
-    //修改App头像
+    //修改app信息
     @Override
-    public int UpdateStaffPicture(Map map) {
-        return staffDao.UpdateStaffPicture(map);
+    public int UpdateStaffApp(Map map) {
+        return staffDao.UpdateStaffApp(map);
     }
 
     //修改App登录密码

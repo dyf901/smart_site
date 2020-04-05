@@ -6,7 +6,7 @@ import io.swagger.annotations.ApiModelProperty;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @ApiModel(value = "anintegral",description = "积分明细对象")
-public class Integral {
+public class Anintegral {
     @ApiModelProperty(value = "积分id",name = "id")
     private int id;
 
@@ -19,15 +19,19 @@ public class Integral {
     @ApiModelProperty(value = "用户id",name = "staff_id")
     private int staff_id;
 
-    public Integral(){
+    @ApiModelProperty(value = "上传时间",name="integral")
+    private String integral;
+
+    public Anintegral(){
         super();
     }
 
-    public Integral(int id, String content, String up_time, int staff_id) {
+    public Anintegral(int id, String content, String up_time, int staff_id, String integral) {
         this.id = id;
         this.content = content;
         this.up_time = up_time;
         this.staff_id = staff_id;
+        this.integral = integral;
     }
 
     public int getId() {
@@ -62,13 +66,22 @@ public class Integral {
         this.staff_id = staff_id;
     }
 
+    public String getIntegral() {
+        return integral;
+    }
+
+    public void setIntegral(String integral) {
+        this.integral = integral;
+    }
+
     @Override
     public String toString() {
-        return "Integral{" +
+        return "Anintegral{" +
                 "id=" + id +
                 ", content='" + content + '\'' +
                 ", up_time='" + up_time + '\'' +
                 ", staff_id=" + staff_id +
+                ", integral='" + integral + '\'' +
                 '}';
     }
 }

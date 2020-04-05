@@ -14,6 +14,9 @@ public interface RiskshowDao {
     //删除安全隐患记录
     int DeleteRiskshow(Map map);
 
+    //根据id查询安全隐患记录
+    Riskshow FindRiskshowById(Map map);
+
     //分页模糊查询安全隐患记录
     List<Riskshow> FindRiskshow(Map map);
 
@@ -49,6 +52,9 @@ public interface RiskshowDao {
 
     //修改安全隐患状态(无效)
     int UpdateActiveW(Map map);
+
+    //修改安全隐患计划整改时间
+    int UpdatePlanTime(Map map);
 
     //统计安全隐患数量
     int CountRiskShow(Map map);

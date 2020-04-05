@@ -1,7 +1,7 @@
 package com.zty.smart_site.service;
 
 import com.zty.smart_site.dao.AnintegralDao;
-import com.zty.smart_site.entity.Integral;
+import com.zty.smart_site.entity.Anintegral;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,12 +15,19 @@ public class AnintegralService implements AnintegralDao {
 
     //增加积分明细
     @Override
-    public int InsertIntegral(Map map) {
-        return anintegralDao.InsertIntegral(map);
+    public int InsertAnintegral(Map map) {
+        return anintegralDao.InsertAnintegral(map);
     }
 
+    //分页查询查询积分明细
     @Override
-    public List<Integral> FindIntegral(Map map) {
-        return anintegralDao.FindIntegral(map);
+    public List<Anintegral> FindAnintegral(Map map) {
+        return anintegralDao.FindAnintegral(map);
+    }
+
+    //统计总数
+    @Override
+    public long Total(Map map) {
+        return anintegralDao.Total(map);
     }
 }

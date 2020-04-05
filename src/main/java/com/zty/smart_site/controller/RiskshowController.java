@@ -4,20 +4,18 @@ import com.zty.smart_site.entity.JsonResult;
 import com.zty.smart_site.entity.Riskshow;
 import com.zty.smart_site.page.Page;
 
-import com.zty.smart_site.service.AnintegralService;
-import com.zty.smart_site.service.RiskshowService;
-import com.zty.smart_site.service.StaffService;
+import com.zty.smart_site.service.*;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
-@Api(description = "安全隐患记录")
+@Api(description = "安全隐患记录接口")
 @RestController
 @RequestMapping("riskshow")
 @CrossOrigin
@@ -30,6 +28,29 @@ public class RiskshowController {
 
     @Autowired
     private AnintegralService anintegralService;//积分明细
+
+    @Autowired
+    private MessageService messageService;//我的信息
+
+    @Autowired
+    private RiskrectifyService riskrectifyService;//整改通知单
+
+    @ApiOperation(value = "cesh",notes = "传参:`title`(标题),`risk_id`(安全隐患类id,安全隐患类型下拉框), `staff_name`(员工姓名,登录时返回), `section_id`(标段id), `station_id`(站点id,下拉框查询),`sub_id`(分包单位id) `description`(详细说明), `url`(图片地址数组), `staff_id(劳务人员id,管理人员不需要传,登录返回)`,  `process_id`(工序id,下拉框返回)")
+    @PostMapping("/Tseta")
+    public String Testa(@RequestBody Map map){
+        System.out.println("map:"+map);
+        List list = (List) map.get("url1");
+        for (int i=0;i<list.size();i++){
+            list.get(i);
+            System.out.println(i+":"+list.get(i));
+        }
+        System.out.println("list:"+list);
+        //String url = StringUtils.join(list, ",");
+        String url=list.toString();
+        System.out.println(url);
+        map.put("url",url);
+        return "asd";
+    }
 
     @ApiOperation(value = "增加安全隐患记录",notes = "传参:`title`(标题),`risk_id`(安全隐患类id,安全隐患类型下拉框), `staff_name`(员工姓名,登录时返回), `section_id`(标段id), `station_id`(站点id,下拉框查询),`sub_id`(分包单位id) `description`(详细说明), `url`(图片地址数组), `staff_id(劳务人员id,管理人员不需要传,登录返回)`,  `process_id`(工序id,下拉框返回)")
     @PostMapping("/InsertRiskshow")
@@ -117,15 +138,43 @@ public class RiskshowController {
 
     @ApiOperation(value = "审核安全隐患记录",notes = "传参:id(隐患数据id,数据类型:int),integral(积分,数据类型:String),state(有效/无效,数据类型:String),staff_id(员工id安全隐患记录返回的数据,数据类型:int)")
     @PostMapping("/UpdateActive")
-    public JsonResult UpdateActive(@RequestBody Map map){
+    public JsonResult UpdateActive(@RequestBody Map map) throws ParseException {
         JsonResult jsonResult = new JsonResult();
         if(map.get("state").equals("有效")){
             int i = riskshowService.UpdateActiveY(map);
+            Riskshow riskshow=riskshowService.FindRiskshowById(map);//根据id查询安全隐患记录
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+            Date currdate = format.parse(riskshow.getUptime());
+            System.out.println("现在的日期是：" + currdate);
+            Calendar ca = Calendar.getInstance();
+            ca.add(Calendar.DATE, 3);// num为增加的天数，可以改变的
+            currdate = ca.getTime();
+            String enddate = format.format(currdate);
+            System.out.println("增加天数以后的日期：" + enddate);
+            map.put("plan_time",enddate);
+            riskshowService.UpdatePlanTime(map);//修改安全隐患计划整改时间
+
             if (i==1){
                 staffService.UpdateStaffHistory_integral(map);//修改历史积分
                 staffService.UpdateStaffEnd_integralJ(map);//修改剩余积分
                 map.put("content","安全隐患上传");
-                anintegralService.InsertIntegral(map);
+                anintegralService.InsertAnintegral(map);//生成积分明细
+                map.put("station_id",riskshow.getStation_id());
+                map.put("uptime",riskshow.getUptime());
+                messageService.InsertMessage(map);
+                Riskshow riskshow1 = riskshowService.FindRiskshowById(map);
+                System.out.println(riskshow1);
+                map.put("title",riskshow1.getTitle());
+                map.put("section_id",riskshow1.getSection_id());
+                map.put("station_id",riskshow1.getStation_id());
+                map.put("sub_id",riskshow1.getSub_id());
+                map.put("process_id",riskshow1.getProcess_id());
+                map.put("staff_name",riskshow1.getStaff_name());
+                map.put("up_time",riskshow1.getUptime());
+                map.put("plan_time",riskshow1.getPlan_time());
+                map.put("description",riskshow1.getDescription());
+                map.put("responsible",riskshow1.getResponsible());
+                riskrectifyService.InsertRiskrectify(map);
                 jsonResult.setCode(200);
                 jsonResult.setMessage("审核成功!");
                 return jsonResult;

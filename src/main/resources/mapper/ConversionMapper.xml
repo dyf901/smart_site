@@ -16,7 +16,7 @@
     <!--分页模糊查询兑换记录-->
     <select id="FindConversions" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.Conversions">
         <bind name="page" value="pageSize*(pageNo-1)"></bind>
-        SELECT a.`id`, a.`staff_id`, a.`commodity_id`, a.`section_id`, a.`station_id`, a.`sub_id`, a.`conversion_time`, a.`active`,s.staff_name as staff_name,b.commodity_name as commodity_name,l.station_name as station_name,w.subcontractors_name as sub_name FROM `smart_site`.`conversion` a
+        SELECT a.`id`, a.`staff_id`, a.`commodity_id`, a.`section_id`, a.`station_id`, a.`sub_id`, a.`conversion_time`, a.`active`,s.staff_name as staff_name,b.commodity_name as commodity_name,b.commodity_img as commodity_img,l.station_name as station_name,w.subcontractors_name as sub_name FROM `smart_site`.`conversion` a
         INNER JOIN `smart_site`.`staff` s ON a.`staff_id`=s.`id`
         INNER JOIN `smart_site`.`commodity` b ON a.`commodity_id`=b.`id`
         INNER JOIN `smart_site`.`station` l ON a.`station_id`=l.`id`
@@ -33,7 +33,7 @@
     <!--分页模糊查询个人兑换记录-->
     <select id="FindConversionsByStaffId" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.Conversions">
         <bind name="page" value="pageSize*(pageNo-1)"></bind>
-        SELECT a.`id`, a.`staff_id`, a.`commodity_id`, a.`section_id`, a.`station_id`, a.`sub_id`, a.`conversion_time`, a.`active`,s.staff_name as staff_name,b.commodity_name as commodity_name,l.station_name as station_name,w.subcontractors_name as sub_name FROM `smart_site`.`conversion` a
+        SELECT a.`id`, a.`staff_id`, a.`commodity_id`, a.`section_id`, a.`station_id`, a.`sub_id`, a.`conversion_time`, a.`active`,s.staff_name as staff_name,b.commodity_name as commodity_name,b.commodity_img as commodity_img,l.station_name as station_name,w.subcontractors_name as sub_name FROM `smart_site`.`conversion` a
         INNER JOIN `smart_site`.`staff` s ON a.`staff_id`=s.`id`
         INNER JOIN `smart_site`.`commodity` b ON a.`commodity_id`=b.`id`
         INNER JOIN `smart_site`.`station` l ON a.`station_id`=l.`id`

@@ -40,11 +40,17 @@ public class Riskrectify {
     @ApiModelProperty(value = "责任人",name = "responsible")
     private String responsible;
 
+    @ApiModelProperty(value = "分包单位id",name = "process_id")
+    private int process_id;
+
+    @ApiModelProperty(value = "分包单位名称",name = "process_name")
+    private int process_name;
+
     public Riskrectify(){
         super();
     }
 
-    public Riskrectify(int id, int section_id, int station_id, String description, String active, String staff_name, String station_name, String title, int sub_id, String sub_name, String responsible) {
+    public Riskrectify(int id, int section_id, int station_id, String description, String active, String staff_name, String station_name, String title, int sub_id, String sub_name, String responsible, int process_id, int process_name) {
         this.id = id;
         this.section_id = section_id;
         this.station_id = station_id;
@@ -56,6 +62,8 @@ public class Riskrectify {
         this.sub_id = sub_id;
         this.sub_name = sub_name;
         this.responsible = responsible;
+        this.process_id = process_id;
+        this.process_name = process_name;
     }
 
     public int getId() {
@@ -146,6 +154,22 @@ public class Riskrectify {
         this.responsible = responsible;
     }
 
+    public int getProcess_id() {
+        return process_id;
+    }
+
+    public void setProcess_id(int process_id) {
+        this.process_id = process_id;
+    }
+
+    public int getProcess_name() {
+        return process_name;
+    }
+
+    public void setProcess_name(int process_name) {
+        this.process_name = process_name;
+    }
+
     @Override
     public String toString() {
         return "Riskrectify{" +
@@ -160,6 +184,8 @@ public class Riskrectify {
                 ", sub_id=" + sub_id +
                 ", sub_name='" + sub_name + '\'' +
                 ", responsible='" + responsible + '\'' +
+                ", process_id=" + process_id +
+                ", process_name=" + process_name +
                 '}';
     }
 }

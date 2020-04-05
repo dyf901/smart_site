@@ -64,10 +64,20 @@ public class StaffController {
         return staffService.UpdateStaff(map)==1;
     }
 
-    @ApiOperation(value = "修改App头像",notes = "{\"id\":2,\"picture\":\"1.png\"}")
-    @PostMapping("/UpdateStaffPicture")
-    public boolean UpdateStaffPicture(@RequestBody Map map){
-        return staffService.UpdateStaffPicture(map)==1;
+    @ApiOperation(value = "修改员工信息App",notes = "{\"id\":2,\"picture\":\"1.png\"}")
+    @PostMapping("/UpdateStaffApp")
+    public JsonResult UpdateStaffApp(@RequestBody Map map){
+        JsonResult jsonResult = new JsonResult();
+        int i=staffService.UpdateStaffApp(map);
+        if(i==1){
+            jsonResult.setCode(200);
+            jsonResult.setMessage("修改成功!");
+            return jsonResult;
+        }else {
+            jsonResult.setCode(20006);
+            jsonResult.setMessage("修改失败!");
+            return jsonResult;
+        }
     }
 
     @ApiOperation(value = "修改App登录密码",notes = "{\"id\":2,\"password\":\"111111\"}")

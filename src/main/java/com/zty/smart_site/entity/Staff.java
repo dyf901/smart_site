@@ -41,7 +41,6 @@ worktype_name           工种名称
 age_duan                年龄段
 */
 //@JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
 @ApiModel(value="staff", description="劳务人员对象")
 public class Staff {
     @ApiModelProperty(value="劳务人员id",name="id")
@@ -149,11 +148,14 @@ public class Staff {
     @ApiModelProperty(value = "部门名称",name = "department_name")
     private String department_name;
 
+    @ApiModelProperty(value = "昵称",name="nikename")
+    private String nikename;
+
     public Staff(){
         super();
     }
 
-    public Staff(int id, int staff_age, int history_integral, int end_integral, int section_id, int sub_id, int worktype_id, int station_id, int count, int position_id, String staff_name, String staff_img, String staff_sex, String staff_nation, String staff_card, String staff_address, String staff_province, String staff_phone, String sos_name, String sos_ship, String sos_phone, String entry_time, String password, String picture, String state, String status, String type, String train, String section_name, String station_name, String sub_name, String worktype_name, String age_duan, int department_id, String department_name) {
+    public Staff(int id, int staff_age, int history_integral, int end_integral, int section_id, int sub_id, int worktype_id, int station_id, int count, int position_id, String staff_name, String staff_img, String staff_sex, String staff_nation, String staff_card, String staff_address, String staff_province, String staff_phone, String sos_name, String sos_ship, String sos_phone, String entry_time, String password, String picture, String state, String status, String type, String train, String section_name, String station_name, String sub_name, String worktype_name, String age_duan, int department_id, String department_name, String nikename) {
         this.id = id;
         this.staff_age = staff_age;
         this.history_integral = history_integral;
@@ -189,6 +191,7 @@ public class Staff {
         this.age_duan = age_duan;
         this.department_id = department_id;
         this.department_name = department_name;
+        this.nikename = nikename;
     }
 
     public Staff(int worktype_id, int count, String worktype_name) {
@@ -477,6 +480,14 @@ public class Staff {
         this.department_name = department_name;
     }
 
+    public String getNikename() {
+        return nikename;
+    }
+
+    public void setNikename(String nikename) {
+        this.nikename = nikename;
+    }
+
     @Override
     public String toString() {
         return "Staff{" +
@@ -515,6 +526,7 @@ public class Staff {
                 ", age_duan='" + age_duan + '\'' +
                 ", department_id=" + department_id +
                 ", department_name='" + department_name + '\'' +
+                ", nikename='" + nikename + '\'' +
                 '}';
     }
 }

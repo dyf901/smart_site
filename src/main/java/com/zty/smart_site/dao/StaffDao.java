@@ -17,8 +17,8 @@ public interface StaffDao {
     //修改员工信息
     int UpdateStaff(Map map);
 
-    //修改App头像
-    int UpdateStaffPicture(Map map);
+    //修改App员工信息
+    int UpdateStaffApp(Map map);
 
     //修改App登录密码
     int UpdateStaffPassword(Map map);

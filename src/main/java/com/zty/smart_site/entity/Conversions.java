@@ -21,13 +21,13 @@ sub_name            分包单位名称
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Conversions {
     private int id,staff_id,commodity_id,section_id,station_id,sub_id;
-    private String conversion_time,active,staff_name,commodity_name,station_name,sub_name;
+    private String conversion_time,active,staff_name,commodity_name,station_name,sub_name,commodity_img;
 
     public Conversions(){
         super();
     }
 
-    public Conversions(int id, int staff_id, int commodity_id, int section_id, int station_id, int sub_id, String conversion_time, String active, String staff_name, String commodity_name, String station_name, String sub_name) {
+    public Conversions(int id, int staff_id, int commodity_id, int section_id, int station_id, int sub_id, String conversion_time, String active, String staff_name, String commodity_name, String station_name, String sub_name, String commodity_img) {
         this.id = id;
         this.staff_id = staff_id;
         this.commodity_id = commodity_id;
@@ -40,6 +40,7 @@ public class Conversions {
         this.commodity_name = commodity_name;
         this.station_name = station_name;
         this.sub_name = sub_name;
+        this.commodity_img = commodity_img;
     }
 
     public int getId() {
@@ -138,9 +139,17 @@ public class Conversions {
         this.sub_name = sub_name;
     }
 
+    public String getCommodity_img() {
+        return commodity_img;
+    }
+
+    public void setCommodity_img(String commodity_img) {
+        this.commodity_img = commodity_img;
+    }
+
     @Override
     public String toString() {
-        return "Conversion{" +
+        return "Conversions{" +
                 "id=" + id +
                 ", staff_id=" + staff_id +
                 ", commodity_id=" + commodity_id +
@@ -153,6 +162,7 @@ public class Conversions {
                 ", commodity_name='" + commodity_name + '\'' +
                 ", station_name='" + station_name + '\'' +
                 ", sub_name='" + sub_name + '\'' +
+                ", commodity_img='" + commodity_img + '\'' +
                 '}';
     }
 }

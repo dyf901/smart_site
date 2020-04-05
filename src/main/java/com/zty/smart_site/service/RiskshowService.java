@@ -25,6 +25,12 @@ public class RiskshowService implements RiskshowDao {
         return riskshowDao.DeleteRiskshow(map);
     }
 
+    //根据id查询安全隐患记录
+    @Override
+    public Riskshow FindRiskshowById(Map map) {
+        return riskshowDao.FindRiskshowById(map);
+    }
+
     //分页模糊查询安全隐患记录
     @Override
     public List<Riskshow> FindRiskshow(Map map) {
@@ -95,6 +101,12 @@ public class RiskshowService implements RiskshowDao {
     @Override
     public int UpdateActiveW(Map map) {
         return riskshowDao.UpdateActiveW(map);
+    }
+
+    //修改安全隐患计划整改时间
+    @Override
+    public int UpdatePlanTime(Map map) {
+        return riskshowDao.UpdatePlanTime(map);
     }
 
     //统计安全隐患数量

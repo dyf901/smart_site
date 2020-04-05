@@ -4,13 +4,21 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.zty.smart_site.dao.AnintegralDao">
     <!--增加积分明细-->
-    <insert id="InsertIntegral" parameterType="java.util.Map">
-        INSERT INTO `smart_site`.`integral` (`content`, `up_time`, `staff_id`) VALUES (#{content}, now(), #{staff_id});
+    <insert id="InsertAnintegral" parameterType="java.util.Map">
+        INSERT INTO `smart_site`.`anintegral` (`content`, `up_time`, `staff_id`,`integral`) VALUES (#{content}, now(), #{staff_id},#{integral});
     </insert>
 
     <!--查询个人积分明细-->
-    <select id="FindIntegral" parameterType="java.util.Map">
+    <select id="FindAnintegral" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.Anintegral">
         <bind name="page" value="pageSize*(pageNo-1)"></bind>
-        SELECT `id`, `content`, `up_time` WHERE `staff_id`=#{staff_id} limit #{page},#{pageSize}
+        SELECT `id`, `content`, `up_time`,`integral`,`staff_id` FROM `smart_site`.`anintegral`
+        WHERE `staff_id`=#{staff_id}
+        ORDER BY `up_time` desc
+        limit #{page},#{pageSize}
+    </select>
+
+    <!--统计总数-->
+    <select id="Total" parameterType="java.util.Map" resultType="long">
+        SELECT COUNT(*) FROM `smart_site`.`anintegral` WHERE `staff_id`=#{staff_id}
     </select>
 </mapper>
