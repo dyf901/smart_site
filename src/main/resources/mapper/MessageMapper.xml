@@ -5,13 +5,13 @@
 <mapper namespace="com.zty.smart_site.dao.MessageDao">
     <!--添加我的信息-->
     <insert id="InsertMessage" parameterType="java.util.Map">
-        INSERT INTO `smart_site`.`message` (`staff_id`, `station_id`, `uptime`, `nowtime`) VALUES (#{staff_id}, #{station_id}, #{uptime}, now());
+        INSERT INTO `smart_site`.`message` (`staff_id`, `station_id`, `uptime`, `nowtime`,`upC`,`noC`) VALUES (#{staff_id}, #{station_id}, #{uptime}, now(),#{upC},#{noC});
     </insert>
 
     <!--分页查询我的信息-->
     <select id="FindMessage" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.Message">
         <bind name="page" value="pageSize*(pageNo-1)"></bind>
-        select m.`id`,m.`staff_id`, m.`station_id`, m.`uptime`,s.`station_name` as `station_name` FROM `smart_site`.`message` m
+        select m.`id`,m.`staff_id`, m.`station_id`, m.`uptime`,m.`upC`,m.`noC`,s.`station_name` as `station_name` FROM `smart_site`.`message` m
         INNER JOIN `smart_site`.`station` s ON m.`station_id`=s.`id`
         WHERE m.`staff_id`=#{staff_id}
         ORDER BY m.`nowtime` DESC

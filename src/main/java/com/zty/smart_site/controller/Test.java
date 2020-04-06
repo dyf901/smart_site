@@ -1,11 +1,8 @@
 package com.zty.smart_site.controller;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.zty.smart_site.entity.JsonResult;
-import com.zty.smart_site.entity.Title;
-import com.zty.smart_site.service.PositionService;
-import com.zty.smart_site.service.PositionTitleService;
-import com.zty.smart_site.service.TitleService;
+import com.zty.smart_site.entity.*;
+import com.zty.smart_site.service.*;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +24,12 @@ public class Test {
 
     @Autowired
     private TitleService titleService;
+
+    @Autowired
+    private TrainTypeService trainTypeService;
+
+    @Autowired
+    private TrainService trainService;
 
     @ApiOperation(value = "测试",notes = "")
     @GetMapping("/test")
@@ -52,5 +55,48 @@ public class Test {
             System.out.println(list);
             return "asd";
         }
+
+
+    @ApiOperation(value = "测试",notes = "")
+    @PostMapping("/test2")
+    public List<TestData> FindByPositionId1(@RequestBody Map map){
+
+        List<TestData> testDataList=new ArrayList<>();
+        List<Train> dataIns=new ArrayList<>();
+
+        int section_id= (int) map.get("section_id");
+        List<Long> longs= trainTypeService.FindTrainTypeBySectionId(map);
+        System.out.println("longs:"+longs);
+        List list =new ArrayList();
+        for (Long l:longs){
+            Train train1= new Train();
+            train1.setSection_id(section_id);
+            int i= Math.toIntExact(l);
+            train1.setType_id(i);
+
+            TestData testData=new TestData();
+            TrainType trainType=trainTypeService.FindTrainTypeById(l);
+            testData.setId(i);
+            testData.setType_name(trainType.getType_name());
+            List<Long> longs1 = trainService.FindTrainByTypeId_S(train1);
+
+            System.out.println("longs1:"+longs1);
+            for (Long l1:longs1){
+
+                System.out.println(l1);
+                Train train = trainService.FindTrainById(l1);
+                list.add(train);
+                dataIns.add(train);
+                System.out.println(train);
+            }
+
+            testData.setDataIn(dataIns);
+
+            testDataList.add(testData);
+        }
+        System.out.println(testDataList.toString());
+        System.out.println("testDataList"+testDataList);
+        return testDataList;
+    }
 
 }

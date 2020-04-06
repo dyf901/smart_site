@@ -15,6 +15,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
+import static java.time.OffsetDateTime.now;
+
 @Api(description = "安全隐患记录接口")
 @RestController
 @RequestMapping("riskshow")
@@ -155,12 +157,16 @@ public class RiskshowController {
             riskshowService.UpdatePlanTime(map);//修改安全隐患计划整改时间
 
             if (i==1){
+                Date now = new Date();
                 staffService.UpdateStaffHistory_integral(map);//修改历史积分
                 staffService.UpdateStaffEnd_integralJ(map);//修改剩余积分
                 map.put("content","安全隐患上传");
                 anintegralService.InsertAnintegral(map);//生成积分明细
                 map.put("station_id",riskshow.getStation_id());
                 map.put("uptime",riskshow.getUptime());
+                map.put("noC",System.currentTimeMillis());
+
+
                 messageService.InsertMessage(map);
                 Riskshow riskshow1 = riskshowService.FindRiskshowById(map);
                 System.out.println(riskshow1);
@@ -195,5 +201,22 @@ public class RiskshowController {
                 return jsonResult;
             }
         }
+    }
+
+    public static String dateToStamp(String s){
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String res = "";
+        if (!"".equals(s)) {
+            try {
+                res = String.valueOf(sdf.parse(s).getTime());
+            } catch (Exception e) {
+                System.out.println("传入了null值");
+            }
+        }else {
+            long time = System.currentTimeMillis();
+            res = String.valueOf(time);
+        }
+
+        return res;
     }
 }

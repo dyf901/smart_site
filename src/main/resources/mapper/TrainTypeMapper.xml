@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zty.smart_site.dao.TrainTypeDao">
+    <!--增加培训类型-->
+    <insert id="InsertTrainType" parameterType="java.util.Map">
+        INSERT INTO `smart_site`.`train_type` (`type_name`, `section_id`) VALUES (#{type_name}, #{section_id});
+    </insert>
+
+    <!--删除培训类型-->
+    <delete id="DeleteTrainType" parameterType="java.util.Map">
+        DELETE FROM `smart_site`.`train_type` WHERE `id`=#{id}
+    </delete>
+
+    <!--修改培训类型-->
+    <update id="UpdateTrainType" parameterType="java.util.Map">
+        UPDATE `smart_site`.`train_type` SET  `type_name`=#{type_name} WHERE (`id`=#{id});
+    </update>
+
+    <!--分页模糊查询培训类型-->
+    <select id="FindTrainType" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.TrainType">
+        <bind name="page" value="pageSize*(pageNo-1)"></bind>
+        SELECT `id` ,`type_name` FROM `smart_site`.`train_type`
+        <where>
+            section_id=#{section_id}
+            <if test="type_name!=null and type_name!=''">
+                and `type_name`like concat("%",#{type_name},"%")
+            </if>
+        </where>
+        limit #{page},#{pageSize}
+    </select>
+
+    <!--统计总数-->
+    <select id="Total" parameterType="java.util.Map" resultType="long">
+        SELECT COUNT(*) FROM `smart_site`.`train_type`
+        <where>
+            section_id=#{section_id}
+            <if test="type_name!=null and type_name!=''">
+                and `type_name`like concat("%",#{type_name},"%")
+            </if>
+        </where>
+    </select>
+
+    <!--根据section_id查询培训类型(返回id数组)-->
+    <select id="FindTrainTypeBySectionId" parameterType="java.util.Map" resultType="long">
+        SELECT `id` FROM `smart_site`.`train_type` WHERE `section_id`=#{section_id}
+    </select>
+
+    <!--根据section_id查询培训类型(返回id数组)-->
+    <select id="FindTrainTypeById" parameterType="long" resultType="com.zty.smart_site.entity.TrainType">
+        SELECT `id` ,`type_name` FROM `smart_site`.`train_type` WHERE `id`=#{id}
+    </select>
+</mapper>
