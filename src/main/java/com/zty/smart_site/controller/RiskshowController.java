@@ -192,12 +192,12 @@ public class RiskshowController {
     public JsonResult UpdateZgUrl(@RequestBody Map map) throws Exception{
         JsonResult jsonResult = new JsonResult();
         System.out.println(map);
-        List list = (List) map.get("zg_url1");
-        System.out.println("list:"+list);
+        String qq = (String) map.get("zg_url1");
+        //System.out.println("list:"+list);
         //String url = StringUtils.join(list, ",");
-        String url=list.toString();
-        System.out.println(url);
-        map.put("zg_url",url);
+        //String url=list.toString();
+        //System.out.println(url);
+        map.put("zg_url",qq);
         Riskshow riskshow=riskshowService.FindRiskshowById(map);
         System.out.println(riskshow);
         // 获取当前时间d
