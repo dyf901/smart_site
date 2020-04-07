@@ -44,13 +44,16 @@ public class Riskrectify {
     private int process_id;
 
     @ApiModelProperty(value = "分包单位名称",name = "process_name")
-    private int process_name;
+    private String process_name;
+
+    @ApiModelProperty(value = "安全隐患记录id",name = "riskshow_id")
+    private int riskshow_id;
 
     public Riskrectify(){
         super();
     }
 
-    public Riskrectify(int id, int section_id, int station_id, String description, String active, String staff_name, String station_name, String title, int sub_id, String sub_name, String responsible, int process_id, int process_name) {
+    public Riskrectify(int id, int section_id, int station_id, String description, String active, String staff_name, String station_name, String title, int sub_id, String sub_name, String responsible, int process_id, String process_name, int riskshow_id) {
         this.id = id;
         this.section_id = section_id;
         this.station_id = station_id;
@@ -64,6 +67,7 @@ public class Riskrectify {
         this.responsible = responsible;
         this.process_id = process_id;
         this.process_name = process_name;
+        this.riskshow_id = riskshow_id;
     }
 
     public int getId() {
@@ -162,17 +166,25 @@ public class Riskrectify {
         this.process_id = process_id;
     }
 
-    public int getProcess_name() {
+    public String getProcess_name() {
         return process_name;
     }
 
-    public void setProcess_name(int process_name) {
+    public void setProcess_name(String process_name) {
         this.process_name = process_name;
+    }
+
+    public int getRiskshow_id() {
+        return riskshow_id;
+    }
+
+    public void setRiskshow_id(int riskshow_id) {
+        this.riskshow_id = riskshow_id;
     }
 
     @Override
     public String toString() {
-        return "Riskrectify{" +
+        return "{" +
                 "id=" + id +
                 ", section_id=" + section_id +
                 ", station_id=" + station_id +
@@ -185,7 +197,8 @@ public class Riskrectify {
                 ", sub_name='" + sub_name + '\'' +
                 ", responsible='" + responsible + '\'' +
                 ", process_id=" + process_id +
-                ", process_name=" + process_name +
+                ", process_name='" + process_name + '\'' +
+                ", riskshow_id=" + riskshow_id +
                 '}';
     }
 }

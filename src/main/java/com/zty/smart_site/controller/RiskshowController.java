@@ -37,23 +37,6 @@ public class RiskshowController {
     @Autowired
     private RiskrectifyService riskrectifyService;//整改通知单
 
-    @ApiOperation(value = "cesh",notes = "传参:`title`(标题),`risk_id`(安全隐患类id,安全隐患类型下拉框), `staff_name`(员工姓名,登录时返回), `section_id`(标段id), `station_id`(站点id,下拉框查询),`sub_id`(分包单位id) `description`(详细说明), `url`(图片地址数组), `staff_id(劳务人员id,管理人员不需要传,登录返回)`,  `process_id`(工序id,下拉框返回)")
-    @PostMapping("/Tseta")
-    public String Testa(@RequestBody Map map){
-        System.out.println("map:"+map);
-        List list = (List) map.get("url1");
-        for (int i=0;i<list.size();i++){
-            list.get(i);
-            System.out.println(i+":"+list.get(i));
-        }
-        System.out.println("list:"+list);
-        //String url = StringUtils.join(list, ",");
-        String url=list.toString();
-        System.out.println(url);
-        map.put("url",url);
-        return "asd";
-    }
-
     @ApiOperation(value = "增加安全隐患记录",notes = "传参:`title`(标题),`risk_id`(安全隐患类id,安全隐患类型下拉框), `staff_name`(员工姓名,登录时返回), `section_id`(标段id), `station_id`(站点id,下拉框查询),`sub_id`(分包单位id) `description`(详细说明), `url`(图片地址数组), `staff_id(劳务人员id,管理人员不需要传,登录返回)`,  `process_id`(工序id,下拉框返回)")
     @PostMapping("/InsertRiskshow")
     public JsonResult InsertRiskshow(@RequestBody Map map){
@@ -94,7 +77,7 @@ public class RiskshowController {
         return page;
     }
 
-    @ApiOperation(value = "分页模糊查询安全隐患记录_检查记录",notes = "测试数据:{\"pageNo\":1,\"pageSize\":10,\"section_id\":2}")
+    @ApiOperation(value = "分页模糊查询安全隐患记录_检查记录",notes = "测试数据:{\"pageNo\":1,\"pageSize\":10,\"section_id\":2,\"station_id\":1}")
     @PostMapping("/FindRiskshow_JCJL")
     public Page<Riskshow> FindRiskshow_JCJL(@RequestBody Map map){
         Page<Riskshow> page = new Page<Riskshow>();
@@ -105,7 +88,7 @@ public class RiskshowController {
         return page;
     }
 
-    @ApiOperation(value = "分页模糊查询安全隐患记录_无效记录",notes = "测试数据:{\"pageNo\":1,\"pageSize\":10,\"section_id\":2}")
+    @ApiOperation(value = "分页模糊查询安全隐患记录_无效记录",notes = "测试数据:{\"pageNo\":1,\"pageSize\":10,\"section_id\":2,\"station_id\":1}")
     @PostMapping("/FindRiskshow_WXJL")
     public Page<Riskshow> FindRiskshow_WXJL(@RequestBody Map map){
         Page<Riskshow> page = new Page<Riskshow>();
@@ -116,7 +99,7 @@ public class RiskshowController {
         return page;
     }
 
-    @ApiOperation(value = "分页模糊查询安全隐患记录_待整改",notes = "测试数据:{\"pageNo\":1,\"pageSize\":10,\"section_id\":2}")
+    @ApiOperation(value = "分页模糊查询安全隐患记录_待整改",notes = "测试数据:{\"pageNo\":1,\"pageSize\":10,\"section_id\":2,\"station_id\":1}")
     @PostMapping("/FindRiskshow_DZG")
     public Page<Riskshow> FindRiskshow_DZG(@RequestBody Map map){
         Page<Riskshow> page = new Page<Riskshow>();
@@ -127,7 +110,7 @@ public class RiskshowController {
         return page;
     }
 
-    @ApiOperation(value = "分页模糊查询安全隐患记录_整改复查",notes = "测试数据:{\"pageNo\":1,\"pageSize\":10,\"section_id\":2}")
+    @ApiOperation(value = "分页模糊查询安全隐患记录_整改复查",notes = "测试数据:{\"pageNo\":1,\"pageSize\":10,\"section_id\":2,\"station_id\":1}")
     @PostMapping("/FindRiskshow_ZGFC")
     public Page<Riskshow> FindRiskshow_ZGFC(@RequestBody Map map){
         Page<Riskshow> page = new Page<Riskshow>();
@@ -180,7 +163,8 @@ public class RiskshowController {
                 map.put("plan_time",riskshow1.getPlan_time());
                 map.put("description",riskshow1.getDescription());
                 map.put("responsible",riskshow1.getResponsible());
-                riskrectifyService.InsertRiskrectify(map);
+                map.put("riskshow_id",riskshow1.getId());
+                riskrectifyService.InsertRiskrectify(map);//增加整改通知单信息
                 jsonResult.setCode(200);
                 jsonResult.setMessage("审核成功!");
                 return jsonResult;
@@ -203,20 +187,45 @@ public class RiskshowController {
         }
     }
 
-    public static String dateToStamp(String s){
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        String res = "";
-        if (!"".equals(s)) {
-            try {
-                res = String.valueOf(sdf.parse(s).getTime());
-            } catch (Exception e) {
-                System.out.println("传入了null值");
+    @ApiOperation(value = "整改上报",notes = "传参:id(安全隐患id),zg_url1(地址数组),zg_description(整改说明)")
+    @PostMapping("/UpdateZgUrl")
+    public JsonResult UpdateZgUrl(@RequestBody Map map) throws Exception{
+        JsonResult jsonResult = new JsonResult();
+        System.out.println(map);
+        List list = (List) map.get("zg_url1");
+        System.out.println("list:"+list);
+        //String url = StringUtils.join(list, ",");
+        String url=list.toString();
+        System.out.println(url);
+        map.put("zg_url",url);
+        Riskshow riskshow=riskshowService.FindRiskshowById(map);
+        System.out.println(riskshow);
+        // 获取当前时间d
+        Date date = new Date();
+        //如果想比较日期则写成"yyyy-MM-dd"就可以了
+        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+        //将字符串形式的时间转化为Date类型的时间
+        Date a=sdf.parse(riskshow.getPlan_time());
+        Date b= sdf.parse(sdf.format(date));
+        if(a.getTime()-b.getTime()>=0) {
+            int i=riskshowService.UpdateZgUrl(map);
+            if (i==1){
+                riskshowService.UpdateActiveYZG(map);
+                jsonResult.setCode(200);
+                jsonResult.setMessage("上报成功!");
+                return jsonResult;
+            }else {
+                jsonResult.setCode(20006);
+                jsonResult.setMessage("信息错误,上报失败!");
+                return jsonResult;
             }
         }else {
-            long time = System.currentTimeMillis();
-            res = String.valueOf(time);
+            riskshowService.UpdateActiveCQWZG(map);
+            jsonResult.setCode(20006);
+            jsonResult.setMessage("超过整改日期,上报失败!");
+            return jsonResult;
         }
-
-        return res;
     }
+
+
 }

@@ -70,11 +70,14 @@ public class Riskshow {
     @ApiModelProperty(value = "劳务人员id",name = "staff_id")
     private int staff_id;
 
+    @ApiModelProperty(value = "整改描述",name = "zg_description")
+    private String zg_description;
+
     public Riskshow(){
         super();
     }
 
-    public Riskshow(int id, int risk_id, int section_id, int station_id, String description, String uptime, String url, String active, String risk_name, String staff_name, String station_name, String title, int sub_id, String sub_name, String responsible, String count, String plan_time, String zg_url, int process_id, String process_name, int staff_id) {
+    public Riskshow(int id, int risk_id, int section_id, int station_id, String description, String uptime, String url, String active, String risk_name, String staff_name, String station_name, String title, int sub_id, String sub_name, String responsible, String count, String plan_time, String zg_url, int process_id, String process_name, int staff_id, String zg_description) {
         this.id = id;
         this.risk_id = risk_id;
         this.section_id = section_id;
@@ -96,6 +99,7 @@ public class Riskshow {
         this.process_id = process_id;
         this.process_name = process_name;
         this.staff_id = staff_id;
+        this.zg_description = zg_description;
     }
 
     public int getId() {
@@ -266,6 +270,14 @@ public class Riskshow {
         this.staff_id = staff_id;
     }
 
+    public String getZg_description() {
+        return zg_description;
+    }
+
+    public void setZg_description(String zg_description) {
+        this.zg_description = zg_description;
+    }
+
     @Override
     public String toString() {
         return "Riskshow{" +
@@ -290,6 +302,7 @@ public class Riskshow {
                 ", process_id=" + process_id +
                 ", process_name='" + process_name + '\'' +
                 ", staff_id=" + staff_id +
+                ", zg_description='" + zg_description + '\'' +
                 '}';
     }
 }

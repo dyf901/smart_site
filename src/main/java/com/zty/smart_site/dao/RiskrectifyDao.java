@@ -23,4 +23,6 @@ public interface RiskrectifyDao {
     //统计总数
     long Total(Map map);
 
+    //根据riskshow_id查询整改通知单信息
+    Riskrectify FindRiskrectifyByriskshowId(Map map);
 }

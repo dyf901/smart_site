@@ -18,7 +18,7 @@ public class AnintegralController {
     @Autowired
     private AnintegralService anintegralService;
 
-    @ApiOperation(value = "分页查询积分明细",notes = "测试数据:")
+    @ApiOperation(value = "分页查询积分明细",notes = "测试数据:{\"pageNo\":1,\"pageSize\":10,\"staff_id\":3}")
     @PostMapping("/FindAnintegral")
     public Page<Anintegral> FindAnintegral(@RequestBody Map map){
         Page<Anintegral> page = new Page<Anintegral>();

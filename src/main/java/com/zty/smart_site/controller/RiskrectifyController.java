@@ -57,4 +57,13 @@ public class RiskrectifyController {
         page.setItems(riskrectifyService.FindRiskrectify(map));
         return page;
     }
+
+    @ApiOperation(value = "根据riskshow_id查询整改通知单信息",notes = "传参:riskshow_id(安全隐患记录id)")
+    @PostMapping("/FindRiskrectifyByriskshowId")
+    public JsonResult FindRiskrectifyByriskshowId(@RequestBody Map map){
+        JsonResult jsonResult = new JsonResult();
+        jsonResult.setCode(200);
+        jsonResult.setData(riskrectifyService.FindRiskrectifyByriskshowId(map));
+        return jsonResult;
+    }
 }

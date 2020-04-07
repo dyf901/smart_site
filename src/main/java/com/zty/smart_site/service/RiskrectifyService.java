@@ -42,4 +42,9 @@ public class RiskrectifyService implements RiskrectifyDao {
     public long Total(Map map) {
         return riskrectifyDao.Total(map);
     }
+
+    @Override
+    public Riskrectify FindRiskrectifyByriskshowId(Map map) {
+        return riskrectifyDao.FindRiskrectifyByriskshowId(map);
+    }
 }

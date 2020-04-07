@@ -109,6 +109,24 @@ public class RiskshowService implements RiskshowDao {
         return riskshowDao.UpdatePlanTime(map);
     }
 
+    //整改上报
+    @Override
+    public int UpdateZgUrl(Map map) {
+        return riskshowDao.UpdateZgUrl(map);
+    }
+
+    //修改安全隐患状态(已整改)
+    @Override
+    public int UpdateActiveYZG(Map map) {
+        return riskshowDao.UpdateActiveYZG(map);
+    }
+
+    //修改安全隐患状态(超期未整改)
+    @Override
+    public int UpdateActiveCQWZG(Map map) {
+        return riskshowDao.CountRiskShowByCQWZG(map);
+    }
+
     //统计安全隐患数量
     @Override
     public int CountRiskShow(Map map) {

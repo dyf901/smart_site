@@ -99,7 +99,7 @@
     <!--分页模糊查询安全隐患记录_待整改-->
     <select id="FindRiskshow_DZG" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.Riskshow">
         <bind name="page" value="pageSize*(pageNo-1)"></bind>
-        SELECT r.`id`, r.`risk_id`, r.`staff_id`, r.`process_id`, r.`section_id`, r.`station_id`, r.`sub_id`, r.`responsible`, r.`description`, r.`uptime`, r.`url`, r.`active`,r.`title`,a.`risk_category` as risk_name,s.`station_name` as station_name,l.`subcontractors_name` as `sub_name`,p.`process_name` as `process_name`,z.`staff_name`  as `staff_name` FROM `smart_site`.`riskshow` r
+        SELECT r.`id`, r.`risk_id`, r.`staff_id`, r.`process_id`, r.`section_id`, r.`station_id`, r.`sub_id`, r.`responsible`, r.`description`, r.`uptime`,r.`plan_time`, r.`url`, r.`active`,r.`title`,a.`risk_category` as risk_name,s.`station_name` as station_name,l.`subcontractors_name` as `sub_name`,p.`process_name` as `process_name`,z.`staff_name`  as `staff_name` FROM `smart_site`.`riskshow` r
         INNER JOIN `smart_site`.`risk` a ON r.`risk_id`=a.`id`
         INNER JOIN `smart_site`.`station` s ON r.`station_id`=s.`id`
         INNER JOIN `smart_site`.`subcontractors` l ON r.`sub_id`=l.`id`
@@ -137,7 +137,7 @@
         UPDATE `smart_site`.`riskshow` SET  `active`='待整改', `state`='有效' WHERE (`id`=#{id});
     </update>
 
-    <!--修改安全隐患状态(有效)-->
+    <!--修改安全隐患状态(无效)-->
     <update id="UpdateActiveW" parameterType="java.util.Map">
         UPDATE `smart_site`.`riskshow` SET  `active`='不整改', `state`='无效' WHERE (`id`=#{id});
     </update>
@@ -145,6 +145,21 @@
     <!--修改安全隐患计划时间-->
     <update id="UpdatePlanTime" parameterType="java.util.Map">
         UPDATE `smart_site`.`riskshow` SET  `plan_time`=#{plan_time},`integral`=#{integral} WHERE (`id`=#{id});
+    </update>
+    
+    <!--整改上报-->
+    <update id="UpdateZgUrl" parameterType="java.util.Map">
+        UPDATE `smart_site`.`riskshow` SET  `zg_url`=#{zg_url},`zg_description`=#{zg_description} WHERE (`id`=#{id});
+    </update>
+
+    <!--修改安全隐患状态(已整改)-->
+    <update id="UpdateActiveYZG" parameterType="java.util.Map">
+        UPDATE `smart_site`.`riskshow` SET  `active`='已整改' WHERE (`id`=#{id});
+    </update>
+
+    <!--修改安全隐患状态(超期未整改)-->
+    <update id="UpdateActiveCQWZG" parameterType="java.util.Map">
+        UPDATE `smart_site`.`riskshow` SET  `active`='超期未整改' WHERE (`id`=#{id});
     </update>
 
     <!--统计安全隐患数量-->
@@ -159,7 +174,7 @@
 
     <!--统计安全隐患数量_未整改-->
     <select id="CountRiskShowByWZG" parameterType="java.util.Map" resultType="int">
-        SELECT COUNT(*) FROM `smart_site`.`riskshow` WHERE `section_id`=#{section_id} and `station_id`=#{station_id} and `active`='未整改'
+        SELECT COUNT(*) FROM `smart_site`.`riskshow` WHERE `section_id`=#{section_id} and `station_id`=#{station_id} and `active`='待整改'
     </select>
 
     <!--统计安全隐患数量_超期未整改-->
