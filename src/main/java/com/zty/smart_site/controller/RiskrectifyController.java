@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
-@Api(description = "整改通知单接口")
+@Api(description = "安全整改通知单接口")
 @RestController
 @RequestMapping("riskrectify")
 @CrossOrigin

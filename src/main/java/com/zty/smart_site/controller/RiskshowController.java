@@ -227,5 +227,32 @@ public class RiskshowController {
         }
     }
 
-
+    @ApiOperation(value = "整改复查",notes = "传参:传参:id(隐患数据id,数据类型:int),status(合格/不合效,数据类型:String),fc_description(整改描述)")
+    @PostMapping("/UpdateStatus")
+    public JsonResult UpdateStatus(@RequestBody Map map){
+        JsonResult jsonResult = new JsonResult();
+        if(map.get("status").equals("合格")){
+            int i=riskshowService.UpdateStatusH(map);
+            if(i==1){
+                jsonResult.setCode(200);
+                jsonResult.setMessage("审核成功!");
+                return jsonResult;
+            }else {
+                jsonResult.setCode(20006);
+                jsonResult.setMessage("审核失败!");
+                return jsonResult;
+            }
+        }else {
+            int i=riskshowService.UpdateStatusB(map);
+            if(i==1){
+                jsonResult.setCode(200);
+                jsonResult.setMessage("审核成功!");
+                return jsonResult;
+            }else {
+                jsonResult.setCode(20006);
+                jsonResult.setMessage("审核失败!");
+                return jsonResult;
+            }
+        }
+    }
 }

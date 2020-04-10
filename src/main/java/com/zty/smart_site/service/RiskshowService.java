@@ -127,6 +127,18 @@ public class RiskshowService implements RiskshowDao {
         return riskshowDao.CountRiskShowByCQWZG(map);
     }
 
+    //修改安全隐患整改状态(合格)
+    @Override
+    public int UpdateStatusH(Map map) {
+        return riskshowDao.UpdateStatusH(map);
+    }
+
+    //修改安全隐患整改状态(不合格)
+    @Override
+    public int UpdateStatusB(Map map) {
+        return riskshowDao.UpdateStatusB(map);
+    }
+
     //统计安全隐患数量
     @Override
     public int CountRiskShow(Map map) {

@@ -110,6 +110,16 @@ public class QualityshowService implements QualityshowDao {
     }
 
     @Override
+    public int UpdateStatusH(Map map) {
+        return qualityshowDao.UpdateStatusH(map);
+    }
+
+    @Override
+    public int UpdateStatusB(Map map) {
+        return qualityshowDao.UpdateStatusB(map);
+    }
+
+    @Override
     public int CountQualityShow(Map map) {
         return qualityshowDao.CountQualityShow(map);
     }

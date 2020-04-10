@@ -15,7 +15,7 @@ import java.util.UUID;
 
 public class AliyunOSSUtil {
 
-    public static String upload(File file) {
+    public static String upload(File file,String Host) {
         /*String endpoint = ConstantProperties.OSS_END_POINT;
         String accessKeyId = ConstantProperties.OSS_ACCESS_KEY_ID;
         String accessKeySecret = ConstantProperties.OSS_ACCESS_KEY_SECRET;
@@ -27,6 +27,10 @@ public class AliyunOSSUtil {
         String accessKeySecret = "EuufkpKHommuLDd6EawJQac8togdPn";
         String bucketName = "jjjt";
 
+        String fileHost=Host;
+
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        String dateStr = format.format(new Date());
 
         if (null == file) {
             return null;
@@ -42,7 +46,9 @@ public class AliyunOSSUtil {
                 ossClient.createBucket(createBucketRequest);
             }
             //创建文件路径
-            String fileUrl = file.getName();
+            //String fileUrl = file.getName();
+
+            String fileUrl = fileHost+"/"+file.getName();
             //上传文件
             PutObjectResult result = ossClient.putObject(new PutObjectRequest(bucketName, fileUrl, file));
             //设置权限 这里是公开读

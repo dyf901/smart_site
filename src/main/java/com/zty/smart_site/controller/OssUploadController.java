@@ -18,9 +18,9 @@ public class OssUploadController {
 
     private static final org.slf4j.Logger logger = LoggerFactory.getLogger(UploadController.class);
 
-    @ApiOperation(value = "阿里云oss上传图片",notes = "")
-    @PostMapping("/OssUpload")
-    public String uploadBlog(MultipartFile file) {
+    @ApiOperation(value = "商品图片上传",notes = "")
+    @PostMapping("/CommodityUpload")
+    public String CommodityUpload(MultipartFile file) {
 
         try {
 
@@ -32,8 +32,90 @@ public class OssUploadController {
                     os.write(file.getBytes());
                     os.close();
                     file.transferTo(newFile);
+                    String Host = "commodity";
                     //上传到OSS
-                    String uploadUrl = AliyunOSSUtil.upload(newFile);
+                    String uploadUrl = AliyunOSSUtil.upload(newFile,Host);
+                    return uploadUrl;
+                }
+
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return "upload";
+    }
+
+    @ApiOperation(value = "安全隐患图片上传",notes = "")
+    @PostMapping("/RiskshowUpload")
+    public String RiskshowUpload(MultipartFile file) {
+
+        try {
+
+            if (null != file) {
+                String filename = file.getOriginalFilename();
+                if (!"".equals(filename.trim())) {
+                    File newFile = new File(filename);
+                    FileOutputStream os = new FileOutputStream(newFile);
+                    os.write(file.getBytes());
+                    os.close();
+                    file.transferTo(newFile);
+                    String Host = "report";
+                    //上传到OSS
+                    String uploadUrl = AliyunOSSUtil.upload(newFile,Host);
+                    return uploadUrl;
+                }
+
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return "upload";
+    }
+
+    @ApiOperation(value = "质量隐患图片上传",notes = "")
+    @PostMapping("/QualityshowUpload")
+    public String QualityshowUpload(MultipartFile file) {
+
+        try {
+
+            if (null != file) {
+                String filename = file.getOriginalFilename();
+                if (!"".equals(filename.trim())) {
+                    File newFile = new File(filename);
+                    FileOutputStream os = new FileOutputStream(newFile);
+                    os.write(file.getBytes());
+                    os.close();
+                    file.transferTo(newFile);
+                    String Host = "quality";
+                    //上传到OSS
+                    String uploadUrl = AliyunOSSUtil.upload(newFile,Host);
+                    return uploadUrl;
+                }
+
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return "upload";
+    }
+
+    @ApiOperation(value = "培训视频上传",notes = "")
+    @PostMapping("/VideoUpload")
+    public String VideoUpload(MultipartFile file) {
+
+        try {
+
+            if (null != file) {
+                String filename = file.getOriginalFilename();
+                if (!"".equals(filename.trim())) {
+                    File newFile = new File(filename);
+                    FileOutputStream os = new FileOutputStream(newFile);
+                    os.write(file.getBytes());
+                    os.close();
+                    file.transferTo(newFile);
+                    String Host = "video";
+                    //上传到OSS
+                    String uploadUrl = AliyunOSSUtil.upload(newFile,Host);
                     return uploadUrl;
                 }
 

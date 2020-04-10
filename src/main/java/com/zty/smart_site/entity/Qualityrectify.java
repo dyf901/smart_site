@@ -5,13 +5,10 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@ApiModel(value = "qualityshow",description = "质量隐患对象")
-public class Qualityshow {
-    @ApiModelProperty(value = "质量隐患id",name = "id")
+@ApiModel(value = "qualityrectify",description = "整改通知单对象")
+public class Qualityrectify {
+    @ApiModelProperty(value = "质量整改通知单id",name = "id")
     private int id;
-
-    @ApiModelProperty(value = "质量隐患类型id",name = "quality_id")
-    private int quality_id;
 
     @ApiModelProperty(value = "标段id",name = "section_id")
     private int section_id;
@@ -22,17 +19,8 @@ public class Qualityshow {
     @ApiModelProperty(value = "具体描述",name = "description")
     private String description;
 
-    @ApiModelProperty(value = "上传时间",name = "uptime")
-    private String uptime;
-
-    @ApiModelProperty(value = "图片地址",name = "url")
-    private String url;
-
     @ApiModelProperty(value = "状态",name = "active")
     private String active;
-
-    @ApiModelProperty(value = "质量隐患类型名称",name = "quality_name")
-    private String quality_name;
 
     @ApiModelProperty(value = "员工名称",name = "staff_name")
     private String staff_name;
@@ -52,62 +40,34 @@ public class Qualityshow {
     @ApiModelProperty(value = "责任人",name = "responsible")
     private String responsible;
 
-    @ApiModelProperty(value = "数量",name = "count")
-    private String count;
-
-    @ApiModelProperty(value = "计划整改时间",name = "plan_time")
-    private String plan_time;
-
-    @ApiModelProperty(value = "整改图片地址",name = "zg_url")
-    private String zg_url;
-
-    @ApiModelProperty(value = "工序id",name = "process_id")
+    @ApiModelProperty(value = "分包单位id",name = "process_id")
     private int process_id;
 
-    @ApiModelProperty(value = "工序名称",name = "process_name")
+    @ApiModelProperty(value = "分包单位名称",name = "process_name")
     private String process_name;
 
-    @ApiModelProperty(value = "劳务人员id",name = "staff_id")
-    private int staff_id;
+    @ApiModelProperty(value = "安全隐患记录id",name = "qualityshow_id")
+    private int qualityshow_id;
 
-    @ApiModelProperty(value = "整改描述",name = "zg_description")
-    private String zg_description;
-
-    @ApiModelProperty(value = "整改复查状态",name = "status")
-    private String status;
-
-    @ApiModelProperty(value = "复查描述",name = "fc_description")
-    private String fc_description;
-
-    public Qualityshow(){
+    public Qualityrectify(){
         super();
     }
 
-    public Qualityshow(int id, int quality_id, int section_id, int station_id, String description, String uptime, String url, String active, String quality_name, String staff_name, String station_name, String title, int sub_id, String sub_name, String responsible, String count, String plan_time, String zg_url, int process_id, String process_name, int staff_id, String zg_description, String status, String fc_description) {
+    public Qualityrectify(int id, int section_id, int station_id, String description, String active, String staff_name, String station_name, String title, int sub_id, String sub_name, String responsible, int process_id, String process_name, int qualityshow_id) {
         this.id = id;
-        this.quality_id = quality_id;
         this.section_id = section_id;
         this.station_id = station_id;
         this.description = description;
-        this.uptime = uptime;
-        this.url = url;
         this.active = active;
-        this.quality_name = quality_name;
         this.staff_name = staff_name;
         this.station_name = station_name;
         this.title = title;
         this.sub_id = sub_id;
         this.sub_name = sub_name;
         this.responsible = responsible;
-        this.count = count;
-        this.plan_time = plan_time;
-        this.zg_url = zg_url;
         this.process_id = process_id;
         this.process_name = process_name;
-        this.staff_id = staff_id;
-        this.zg_description = zg_description;
-        this.status = status;
-        this.fc_description = fc_description;
+        this.qualityshow_id = qualityshow_id;
     }
 
     public int getId() {
@@ -116,14 +76,6 @@ public class Qualityshow {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public int getQuality_id() {
-        return quality_id;
-    }
-
-    public void setQuality_id(int quality_id) {
-        this.quality_id = quality_id;
     }
 
     public int getSection_id() {
@@ -150,36 +102,12 @@ public class Qualityshow {
         this.description = description;
     }
 
-    public String getUptime() {
-        return uptime;
-    }
-
-    public void setUptime(String uptime) {
-        this.uptime = uptime;
-    }
-
-    public String getUrl() {
-        return url;
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
-    }
-
     public String getActive() {
         return active;
     }
 
     public void setActive(String active) {
         this.active = active;
-    }
-
-    public String getQuality_name() {
-        return quality_name;
-    }
-
-    public void setQuality_name(String quality_name) {
-        this.quality_name = quality_name;
     }
 
     public String getStaff_name() {
@@ -230,30 +158,6 @@ public class Qualityshow {
         this.responsible = responsible;
     }
 
-    public String getCount() {
-        return count;
-    }
-
-    public void setCount(String count) {
-        this.count = count;
-    }
-
-    public String getPlan_time() {
-        return plan_time;
-    }
-
-    public void setPlan_time(String plan_time) {
-        this.plan_time = plan_time;
-    }
-
-    public String getZg_url() {
-        return zg_url;
-    }
-
-    public void setZg_url(String zg_url) {
-        this.zg_url = zg_url;
-    }
-
     public int getProcess_id() {
         return process_id;
     }
@@ -270,65 +174,31 @@ public class Qualityshow {
         this.process_name = process_name;
     }
 
-    public int getStaff_id() {
-        return staff_id;
+    public int getQualityshow_id() {
+        return qualityshow_id;
     }
 
-    public void setStaff_id(int staff_id) {
-        this.staff_id = staff_id;
-    }
-
-    public String getZg_description() {
-        return zg_description;
-    }
-
-    public void setZg_description(String zg_description) {
-        this.zg_description = zg_description;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public String getFc_description() {
-        return fc_description;
-    }
-
-    public void setFc_description(String fc_description) {
-        this.fc_description = fc_description;
+    public void setQualityshow_id(int qualityshow_id) {
+        this.qualityshow_id = qualityshow_id;
     }
 
     @Override
     public String toString() {
-        return "Qualityshow{" +
+        return "Qualityrectify{" +
                 "id=" + id +
-                ", quality_id=" + quality_id +
                 ", section_id=" + section_id +
                 ", station_id=" + station_id +
                 ", description='" + description + '\'' +
-                ", uptime='" + uptime + '\'' +
-                ", url='" + url + '\'' +
                 ", active='" + active + '\'' +
-                ", quality_name='" + quality_name + '\'' +
                 ", staff_name='" + staff_name + '\'' +
                 ", station_name='" + station_name + '\'' +
                 ", title='" + title + '\'' +
                 ", sub_id=" + sub_id +
                 ", sub_name='" + sub_name + '\'' +
                 ", responsible='" + responsible + '\'' +
-                ", count='" + count + '\'' +
-                ", plan_time='" + plan_time + '\'' +
-                ", zg_url='" + zg_url + '\'' +
                 ", process_id=" + process_id +
                 ", process_name='" + process_name + '\'' +
-                ", staff_id=" + staff_id +
-                ", zg_description='" + zg_description + '\'' +
-                ", status='" + status + '\'' +
-                ", fc_description='" + fc_description + '\'' +
+                ", qualityshow_id=" + qualityshow_id +
                 '}';
     }
 }

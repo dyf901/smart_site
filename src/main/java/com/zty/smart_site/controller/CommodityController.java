@@ -36,7 +36,7 @@ public class CommodityController {
         return commodityService.UpdateCommodity(map)==1;
     }
 
-    @ApiOperation(value = "分页模糊查询商品信息",notes = "测试数据:{\"pageNo\":1,\"pageSize\":10,\"section_id\":1}")
+    @ApiOperation(value = "分页模糊查询商品信息",notes = "测试数据:{\"pageNo\":1,\"pageSize\":10,\"section_id\":2}")
     @PostMapping("/FindCommodity")
     public Page<Commodity> FindCommodity(@RequestBody Map map){
         Page<Commodity> page = new Page<Commodity>();

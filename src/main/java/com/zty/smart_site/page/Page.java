@@ -7,6 +7,7 @@ public class Page<T> {
     private int pageNo;
     private int pageSize;
     private Long total;
+    private int end_integral ;
 
     public List<T> getItems() {
         return items;
@@ -38,5 +39,13 @@ public class Page<T> {
 
     public void setTotal(Long total) {
         this.total = total;
+    }
+
+    public int getEnd_integral() {
+        return end_integral;
+    }
+
+    public void setEnd_integral(int end_integral) {
+        this.end_integral = end_integral;
     }
 }

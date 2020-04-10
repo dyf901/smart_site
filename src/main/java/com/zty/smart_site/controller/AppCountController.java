@@ -1,6 +1,7 @@
 package com.zty.smart_site.controller;
 
 import com.zty.smart_site.entity.JsonResult;
+import com.zty.smart_site.service.QualityshowService;
 import com.zty.smart_site.service.RiskshowService;
 import com.zty.smart_site.service.StaffService;
 import io.swagger.annotations.Api;
@@ -22,6 +23,9 @@ public class AppCountController {
 
     @Autowired
     private RiskshowService riskshowService;
+
+    @Autowired
+    private QualityshowService qualityshowService;
 
     @ApiOperation(value = "人员管理",notes = "测试数据:{\"section_id\":1,\"station_id\":1}")
     @PostMapping("/PersonCount")
@@ -69,7 +73,7 @@ public class AppCountController {
         return riskshowService.CountRiskShowByCQWZG(map);
     }
 
-    @ApiOperation(value = "安全质量隐患数据",notes = "测试数据:section_id(标段id,登录返回),station_id(站点id,下拉框选择)")
+    @ApiOperation(value = "安全隐患数据",notes = "测试数据:section_id(标段id,登录返回),station_id(站点id,下拉框选择)")
     @PostMapping("/CountRiskshow")
     public JsonResult CountRiskshow(@RequestBody Map map){
         JsonResult jsonResult=new JsonResult();
@@ -95,7 +99,33 @@ public class AppCountController {
         return jsonResult;
     }
 
-    @ApiOperation(value = "根据隐患类型查询数量总数",notes = "测试数据:section_id(标段id,登录返回),station_id(站点id,下拉框选择)")
+    @ApiOperation(value = "质量隐患数据",notes = "测试数据:section_id(标段id,登录返回),station_id(站点id,下拉框选择)")
+    @PostMapping("/CountQualityshow")
+    public JsonResult CountQualityshow(@RequestBody Map map){
+        JsonResult jsonResult=new JsonResult();
+        double i=qualityshowService.CountQualityShowByYZG(map);
+        double l=qualityshowService.CountQualityShow(map);
+        double t=(i/l)*100;
+        Map map1 = new HashMap();
+        map1.put("CountAll",qualityshowService.CountQualityShow(map));
+        map1.put("CountYZG",qualityshowService.CountQualityShowByYZG(map));
+        map1.put("CountWZG",qualityshowService.CountQualityShowByCQWZG(map));
+        map1.put("CountCQWZG",qualityshowService.CountQualityShowByCQWZG(map));
+        map1.put("CountZGL",t);
+        jsonResult.setData(map1);
+        Map map2=new HashMap();
+        map2.put("month",qualityshowService.find_month());
+        map2.put("monthTop",qualityshowService.find_qualityshow_top(map));
+        map2.put("monthMid",qualityshowService.find_qualityshow_mid(map));
+        map2.put("monthEnd",qualityshowService.find_qualityshow_end(map));
+        map2.put("monthTopY",qualityshowService.find_qualityshow_top_y(map));
+        map2.put("monthMidY",qualityshowService.find_qualityshow_mid_y(map));
+        map2.put("monthEndY",qualityshowService.find_qualityshow_end_y(map));
+        jsonResult.setData2(map2);
+        return jsonResult;
+    }
+
+    @ApiOperation(value = "根据安全隐患类型查询数量总数",notes = "测试数据:section_id(标段id,登录返回),station_id(站点id,下拉框选择)")
     @PostMapping("/CountRiskshowByRiskId")
     public JsonResult CountRiskshowByRiskId(@RequestBody Map map){
         JsonResult jsonResult = new JsonResult();
@@ -103,11 +133,27 @@ public class AppCountController {
         return jsonResult;
     }
 
-    @ApiOperation(value = "根据分包单位查询数量总数",notes = "测试数据:section_id(标段id,登录返回),station_id(站点id,下拉框选择)")
+    @ApiOperation(value = "根据分包单位查询安全隐患数量总数",notes = "测试数据:section_id(标段id,登录返回),station_id(站点id,下拉框选择)")
     @PostMapping("/CountRiskshowBySubId")
     public JsonResult CountRiskshowBySubId(@RequestBody Map map){
         JsonResult jsonResult = new JsonResult();
         jsonResult.setData(riskshowService.CountRiskshowBySubId(map));
+        return jsonResult;
+    }
+
+    @ApiOperation(value = "根据质量隐患类型查询数量总数",notes = "测试数据:section_id(标段id,登录返回),station_id(站点id,下拉框选择)")
+    @PostMapping("/CountQualityshowByRiskId")
+    public JsonResult CountQualityshowByRiskId(@RequestBody Map map){
+        JsonResult jsonResult = new JsonResult();
+        jsonResult.setData(qualityshowService.CountQualityshowByQualityId(map));
+        return jsonResult;
+    }
+
+    @ApiOperation(value = "根据分包单位查询安全隐患数量总数",notes = "测试数据:section_id(标段id,登录返回),station_id(站点id,下拉框选择)")
+    @PostMapping("/CountQualityshowBySubId")
+    public JsonResult CountQualityshowBySubId(@RequestBody Map map){
+        JsonResult jsonResult = new JsonResult();
+        jsonResult.setData(qualityshowService.CountQualityshowBySubId(map));
         return jsonResult;
     }
 }

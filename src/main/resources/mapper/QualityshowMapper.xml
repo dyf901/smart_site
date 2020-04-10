@@ -162,6 +162,16 @@
         UPDATE `smart_site`.`qualityshow` SET  `active`='超期未整改' WHERE (`id`=#{id});
     </update>
 
+    <!--修改安全隐患整改状态(合格)-->
+    <update id="UpdateStatusH" parameterType="java.util.Map">
+        UPDATE `smart_site`.`qualityshow` SET  `status`='合格',`fc_description`=#{fc_description} WHERE (`id`=#{id});
+    </update>
+
+    <!--修改安全隐患整改状态(不合格)-->
+    <update id="UpdateStatusB" parameterType="java.util.Map">
+        UPDATE `smart_site`.`qualityshow` SET  `status`='不合格',`fc_description`=#{fc_description} WHERE (`id`=#{id});
+    </update>
+
     <!--统计质量隐患数量-->
     <select id="CountQualityShow" parameterType="java.util.Map" resultType="int">
         SELECT COUNT(*) FROM `smart_site`.`qualityshow` WHERE `section_id`=#{section_id} and `station_id`=#{station_id}

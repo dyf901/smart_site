@@ -16,17 +16,18 @@ section_name            标段名称
 */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Subcontractors {
-    private int id,person_count,section_id;
+    private int id,person_count,section_id,station_id;
     private String subcontractors_name,principal,principal_phone,remark,section_name;
 
     public Subcontractors(){
         super();
     }
 
-    public Subcontractors(int id, int person_count, int section_id, String subcontractors_name, String principal, String principal_phone, String remark, String section_name) {
+    public Subcontractors(int id, int person_count, int section_id, int station_id, String subcontractors_name, String principal, String principal_phone, String remark, String section_name) {
         this.id = id;
         this.person_count = person_count;
         this.section_id = section_id;
+        this.station_id = station_id;
         this.subcontractors_name = subcontractors_name;
         this.principal = principal;
         this.principal_phone = principal_phone;
@@ -98,12 +99,21 @@ public class Subcontractors {
         this.section_name = section_name;
     }
 
+    public int getStation_id() {
+        return station_id;
+    }
+
+    public void setStation_id(int station_id) {
+        this.station_id = station_id;
+    }
+
     @Override
     public String toString() {
         return "Subcontractors{" +
                 "id=" + id +
                 ", person_count=" + person_count +
                 ", section_id=" + section_id +
+                ", station_id=" + station_id +
                 ", subcontractors_name='" + subcontractors_name + '\'' +
                 ", principal='" + principal + '\'' +
                 ", principal_phone='" + principal_phone + '\'' +

@@ -46,6 +46,6 @@
 
     <!--下拉框查询分包单位信息-->
     <select id="SelectSubcontractors" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.Subcontractors">
-        SELECT `id`,`subcontractors_name`, `section_id` FROM `smart_site`.`subcontractors` WHERE `section_id`=#{section_id}
+        SELECT `id`,`subcontractors_name`, `section_id` FROM `smart_site`.`subcontractors` WHERE `section_id`=#{section_id} and `station_id`=#{station_id}
     </select>
 </mapper>

@@ -4,10 +4,7 @@ import com.zty.smart_site.entity.JsonResult;
 import com.zty.smart_site.entity.Qualityshow;
 import com.zty.smart_site.entity.Riskshow;
 import com.zty.smart_site.page.Page;
-import com.zty.smart_site.service.AnintegralService;
-import com.zty.smart_site.service.MessageService;
-import com.zty.smart_site.service.QualityshowService;
-import com.zty.smart_site.service.StaffService;
+import com.zty.smart_site.service.*;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,7 +34,10 @@ public class QualityshowController {
     @Autowired
     private MessageService messageService;//我的信息
 
-    @ApiOperation(value = "增加质量隐患记录",notes = "传参:`title`(标题),`risk_id`(安全隐患类id,安全隐患类型下拉框), `staff_name`(员工姓名,登录时返回), `section_id`(标段id), `station_id`(站点id,下拉框查询),`sub_id`(分包单位id) `description`(详细说明), `url`(图片地址数组), `staff_id(劳务人员id,管理人员不需要传,登录返回)`,  `process_id`(工序id,下拉框返回)")
+    @Autowired
+    private QualityrectifyService qualityrectifyService;//整改通知单
+
+    @ApiOperation(value = "增加质量隐患记录",notes = "传参:`title`(标题),`quality_id`(安全隐患类id,安全隐患类型下拉框), `staff_name`(员工姓名,登录时返回), `section_id`(标段id), `station_id`(站点id,下拉框查询),`sub_id`(分包单位id) `description`(详细说明), `url1`(图片地址数组), `staff_id(劳务人员id,管理人员不需要传,登录返回)`,  `process_id`(工序id,下拉框返回)")
     @PostMapping("/InsertQualityshow")
     public JsonResult InsertQualityshow(@RequestBody Map map){
         JsonResult jsonResult = new JsonResult();
@@ -60,7 +60,7 @@ public class QualityshowController {
         }
     }
 
-    @ApiOperation(value = "删除安全隐患记录",notes = "测试数据:{\"id\":1}")
+    @ApiOperation(value = "删除质量隐患记录",notes = "测试数据:{\"id\":1}")
     @PostMapping("/DeleteQualityshow")
     public boolean DeleteQualityshow(@RequestBody Map map){
         return qualityshowService.DeleteQualityshow(map)==1;
@@ -121,7 +121,7 @@ public class QualityshowController {
         return page;
     }
 
-    @ApiOperation(value = "审核安全隐患记录",notes = "传参:id(隐患数据id,数据类型:int),integral(积分,数据类型:String),state(有效/无效,数据类型:String),staff_id(员工id安全隐患记录返回的数据,数据类型:int)")
+    @ApiOperation(value = "审核质量隐患记录",notes = "传参:id(隐患数据id,数据类型:int),integral(积分,数据类型:String),state(有效/无效,数据类型:String),staff_id(员工id安全隐患记录返回的数据,数据类型:int)")
     @PostMapping("/UpdateActive")
     public JsonResult UpdateActive(@RequestBody Map map) throws ParseException {
         JsonResult jsonResult = new JsonResult();
@@ -163,8 +163,8 @@ public class QualityshowController {
                 map.put("plan_time",qualityshow1.getPlan_time());
                 map.put("description",qualityshow1.getDescription());
                 map.put("responsible",qualityshow1.getResponsible());
-                map.put("riskshow_id",qualityshow1.getId());
-                //riskrectifyService.InsertRiskrectify(map);//增加整改通知单信息
+                map.put("qualityshow_id",qualityshow1.getId());
+                qualityrectifyService.InsertQualityrectify(map);//增加整改通知单信息
                 jsonResult.setCode(200);
                 jsonResult.setMessage("审核成功!");
                 return jsonResult;
@@ -224,6 +224,35 @@ public class QualityshowController {
             jsonResult.setCode(20006);
             jsonResult.setMessage("超过整改日期,上报失败!");
             return jsonResult;
+        }
+    }
+
+    @ApiOperation(value = "整改复查",notes = "传参:传参:id(隐患数据id,数据类型:int),status(合格/不合效,数据类型:String),fc_description(整改描述)")
+    @PostMapping("/UpdateStatus")
+    public JsonResult UpdateStatus(@RequestBody Map map){
+        JsonResult jsonResult = new JsonResult();
+        if(map.get("status").equals("合格")){
+            int i=qualityshowService.UpdateStatusH(map);
+            if(i==1){
+                jsonResult.setCode(200);
+                jsonResult.setMessage("审核成功!");
+                return jsonResult;
+            }else {
+                jsonResult.setCode(20006);
+                jsonResult.setMessage("审核失败!");
+                return jsonResult;
+            }
+        }else {
+            int i=qualityshowService.UpdateStatusB(map);
+            if(i==1){
+                jsonResult.setCode(200);
+                jsonResult.setMessage("审核成功!");
+                return jsonResult;
+            }else {
+                jsonResult.setCode(20006);
+                jsonResult.setMessage("审核失败!");
+                return jsonResult;
+            }
         }
     }
 }

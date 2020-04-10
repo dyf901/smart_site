@@ -25,17 +25,21 @@ public class Train {
     @ApiModelProperty(value = "内容", name = "content")
     private String content;
 
+    @ApiModelProperty(value = "视频地址",name = "video_url")
+    private String video_url;
+
     public Train() {
         super();
     }
 
-    public Train(int id, int type_id, int section_id, String train_name, String type_name, String content) {
+    public Train(int id, int type_id, int section_id, String train_name, String type_name, String content, String video_url) {
         this.id = id;
         this.type_id = type_id;
         this.section_id = section_id;
         this.train_name = train_name;
         this.type_name = type_name;
         this.content = content;
+        this.video_url = video_url;
     }
 
     public int getId() {
@@ -86,6 +90,17 @@ public class Train {
         this.content = content;
     }
 
+    public int getType_id() {
+        return type_id;
+    }
+
+    public String getVideo_url() {
+        return video_url;
+    }
+
+    public void setVideo_url(String video_url) {
+        this.video_url = video_url;
+    }
 
     @Override
     public String toString() {
@@ -96,6 +111,7 @@ public class Train {
                 ", train_name='" + train_name + '\'' +
                 ", type_name='" + type_name + '\'' +
                 ", content='" + content + '\'' +
+                ", video_url='" + video_url + '\'' +
                 '}';
     }
 }

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zty.smart_site.dao.QuestionsDao">
+    <!--增加题目-->
+    <insert id="InsertQuestions" parameterType="java.util.Map">
+        INSERT INTO `smart_site`.`questions` (`section_id`, `knowledge_id`, `specialty_id`, `questions_type`, `questions_content`, `select_A`, `select_B`, `select_C`, `select_D`, `answer`, `judge_answer`)
+        VALUES (#{section_id}, #{knowledge_id}, #{specialty_id}, #{questions_type}, #{questions_content}, #{select_A}, #{select_B}, #{select_C}, #{select_D}, #{answer}, #{judge_answer});
+    </insert>
+
+    <!--删除题目-->
+    <delete id="DeleteQuestions" parameterType="java.util.Map">
+        DELETE FROM `smart_site`.`questions` WHERE `id`=#{id}
+    </delete>
+
+    <!--修改题目-->
+    <update id="UpdateQuestions" parameterType="java.util.Map">
+        UPDATE `smart_site`.`questions` SET `section_id`=#{section_id}, `knowledge_id`=#{knowledge_id}, `specialty_id`=#{specialty_id}, `questions_type`=#{questions_type}, `questions_content`=#{questions_content}, `select_A`=#{select_A}, `select_B`=#{select_B}, `select_C`=#{select_C}, `select_D`=#{select_D}, `answer`=#{answer}, `judge_answer`=#{judge_answer} WHERE (`id`=#{id});
+    </update>
+
+    <!--分页模糊查询题目信息-->
+    <select id="FindQuestions" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.Questions">
+        <bind name="page" value="pageSize*(pageNo-1)"></bind>
+        SELECT  q.`id`, q.`section_id`, q.`knowledge_id`, q.`specialty_id`, q.`questions_type`, q.`questions_content`, q.`select_A`, q.`select_B`, q.`select_C`, q.`select_D`, q.`answer`, q.`judge_answer` ,k.`knowledge_name` as `knowledge_name` ,s.`specialty_name` as `specialty_name` FROM `smart_site`.`questions` q
+        INNER JOIN `smart_site`.`knowledge` k ON q.`knowledge_id`=k.`id`
+        INNER JOIN `smart_site`.`specialty` s ON q.`specialty_id`=s.`id`
+        <where>
+            q.`section_id`=#{section_id}
+            <if test="knowledge_id!=null and knowledge_id!=''">
+                q.`knowledge_id`=#{knowledge_id}
+            </if>
+            <if test="specialty_id!=null and specialty_id!=''">
+                q.`specialty_id`=#{specialty_id}
+            </if>
+            <if test="questions_type!=null and questions_type!=''">
+                q.`questions_type`=#{questions_type}
+            </if>
+        </where>
+        limit #{page},#{pageSize}
+    </select>
+
+    <!--统计总数-->
+    <select id="Total" parameterType="java.util.Map" resultType="long">
+        SELECT COUNT(*) FROM `smart_site`.`questions`
+        <where>
+            `section_id`=#{section_id}
+            <if test="knowledge_id!=null and knowledge_id!=''">
+                `knowledge_id`=#{knowledge_id}
+            </if>
+            <if test="specialty_id!=null and specialty_id!=''">
+                `specialty_id`=#{specialty_id}
+            </if>
+            <if test="questions_type!=null and questions_type!=''">
+                `questions_type`=#{questions_type}
+            </if>
+        </where>
+    </select>
+
+    <!--根据id查询题目信息-->
+    <select id="FindQuestionsById" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.Questions">
+        SELECT  q.`id`, q.`section_id`, q.`knowledge_id`, q.`specialty_id`, q.`questions_type`, q.`questions_content`, q.`select_A`, q.`select_B`, q.`select_C`, q.`select_D`, q.`answer`, q.`judge_answer` ,k.`knowledge_name` as `knowledge_name` ,s.`specialty_name` as `specialty_name` FROM `smart_site`.`questions` q
+        INNER JOIN `smart_site`.`knowledge` k ON q.`knowledge_id`=k.`id`
+        INNER JOIN `smart_site`.`specialty` s ON q.`specialty_id`=s.`id`
+        WHERE q.`id`=#{id}
+    </select>
+</mapper>

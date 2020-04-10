@@ -106,8 +106,12 @@
 
     <!--根据手机号查询员工信息-->
     <select id="FindStaffByStaff_phone" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.Staff">
-        SELECT s.`id`, s.`staff_name`, s.`staff_age`, s.`staff_img`, s.`staff_sex`, s.`staff_nation`, s.`staff_card`, s.`staff_address`, s.`staff_province`, s.`staff_phone`, s.`sos_name`, s.`sos_ship`, s.`sos_phone`, s.`entry_time`, s.`history_integral`, s.`end_integral`, s.`section_id`, s.`station_id`, s.`sub_id`, s.`worktype_id`,s.`department_id`,s.`position_id`, s.`password`, s.`picture`, s.`state`, s.`status`, s.`type`,s.`nikename`,s.`picture`, s.`train`,l.`section_name` as `section_name` FROM `smart_site`.`staff` s
-        INNER JOIN `smart_site`.`section` l ON s.`section_id`=l.`id`
+       SELECT s.`id`,s.`staff_name`,s.`staff_age`,s.`staff_img`,s.`staff_sex`,s.`staff_nation`,s.`staff_card`,s.`staff_address`,s.`staff_province`,s.`staff_phone`,s.`sos_name`,s.`sos_ship`,s.`sos_phone`,s.`entry_time`,s.`nikename`,s.`picture`,s.`history_integral`,s.`end_integral`,s.`section_id`,s.`station_id`,s.`sub_id`,s.`worktype_id`,s.`department_id`,s.`position_id`,s.`password`,s.`picture`,s.`state`,s.`status`,s.`type`,s.`train`,l.subcontractors_name as sub_name,w.worktype_name as worktype_name,d.department_name as department_name,z.station_name as station_name,j.`section_name` as `section_name`  FROM `smart_site`.`staff` s
+        INNER JOIN `smart_site`.`subcontractors` l ON s.`sub_id`=l.`id`
+        INNER JOIN `smart_site`.`worktype` w ON s.`worktype_id`=w.`id`
+        INNER JOIN `smart_site`.`department` d ON s.`department_id`=d.`id`
+        INNER JOIN `smart_site`.`station` z ON s.`station_id`=z.`id`
+        INNER JOIN `smart_site`.`section` j ON s.`section_id`=j.`id`
         WHERE `staff_phone`=#{staff_phone}
     </select>
 
@@ -119,7 +123,7 @@
 
     <!--根据id查询员工信息-->
     <select id="FindStaffById" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.Staff">
-        SELECT s.`id`,s.`staff_name`,s.`staff_age`,s.`staff_img`,s.`staff_sex`,s.`staff_nation`,s.`staff_card`,s.`staff_address`,s.`staff_province`,s.`staff_phone`,s.`sos_name`,s.`sos_ship`,s.`sos_phone`,s.`entry_time`,s.`nikename`,s.`picture`,s.`history_integral`,s.`end_integral`,s.`section_id`,s.`station_id`,s.`sub_id`,s.`worktype_id`,s.`department_id`,s.`password`,s.`picture`,s.`state`,s.`status`,s.`type`,s.`train`,l.subcontractors_name as sub_name,w.worktype_name as worktype_name,d.department_name as department_name,z.station_name as station_name,j.`section_name` as `section_name`  FROM `smart_site`.`staff` s
+        SELECT s.`id`,s.`staff_name`,s.`staff_age`,s.`staff_img`,s.`staff_sex`,s.`staff_nation`,s.`staff_card`,s.`staff_address`,s.`staff_province`,s.`staff_phone`,s.`sos_name`,s.`sos_ship`,s.`sos_phone`,s.`entry_time`,s.`nikename`,s.`picture`,s.`history_integral`,s.`end_integral`,s.`section_id`,s.`station_id`,s.`sub_id`,s.`worktype_id`,s.`department_id`,s.`position_id`,s.`password`,s.`picture`,s.`state`,s.`status`,s.`type`,s.`train`,l.subcontractors_name as sub_name,w.worktype_name as worktype_name,d.department_name as department_name,z.station_name as station_name,j.`section_name` as `section_name`  FROM `smart_site`.`staff` s
         INNER JOIN `smart_site`.`subcontractors` l ON s.`sub_id`=l.`id`
         INNER JOIN `smart_site`.`worktype` w ON s.`worktype_id`=w.`id`
         INNER JOIN `smart_site`.`department` d ON s.`department_id`=d.`id`

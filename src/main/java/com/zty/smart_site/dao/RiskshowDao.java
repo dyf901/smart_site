@@ -65,6 +65,12 @@ public interface RiskshowDao {
     //修改安全隐患状态(超期未整改)
     int UpdateActiveCQWZG(Map map);
 
+    //修改安全隐患整改状态(合格)
+    int UpdateStatusH(Map map);
+
+    //修改安全隐患整改状态(不合格)
+    int UpdateStatusB(Map map);
+
     //统计安全隐患数量
     int CountRiskShow(Map map);
 

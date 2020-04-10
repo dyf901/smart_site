@@ -28,7 +28,7 @@ public class TrainController {
 
     @ApiOperation(value = "菜单", notes = "")
     @PostMapping("/Train_Menu")
-    public List<TestData> FindByPositionId1(@RequestBody Map map) {
+    public List<TestData> FindByPositionId1(@RequestBody Map<String,Object> map) {
 
         List<TestData> testDataList = new ArrayList<>();
         List<Train> dataIns;

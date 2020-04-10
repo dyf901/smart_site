@@ -73,11 +73,17 @@ public class Riskshow {
     @ApiModelProperty(value = "整改描述",name = "zg_description")
     private String zg_description;
 
+    @ApiModelProperty(value = "整改复查状态",name = "status")
+    private String status;
+
+    @ApiModelProperty(value = "复查描述",name = "fc_description")
+    private String fc_description;
+
     public Riskshow(){
         super();
     }
 
-    public Riskshow(int id, int risk_id, int section_id, int station_id, String description, String uptime, String url, String active, String risk_name, String staff_name, String station_name, String title, int sub_id, String sub_name, String responsible, String count, String plan_time, String zg_url, int process_id, String process_name, int staff_id, String zg_description) {
+    public Riskshow(int id, int risk_id, int section_id, int station_id, String description, String uptime, String url, String active, String risk_name, String staff_name, String station_name, String title, int sub_id, String sub_name, String responsible, String count, String plan_time, String zg_url, int process_id, String process_name, int staff_id, String zg_description, String status, String fc_description) {
         this.id = id;
         this.risk_id = risk_id;
         this.section_id = section_id;
@@ -100,6 +106,8 @@ public class Riskshow {
         this.process_name = process_name;
         this.staff_id = staff_id;
         this.zg_description = zg_description;
+        this.status = status;
+        this.fc_description = fc_description;
     }
 
     public int getId() {
@@ -278,6 +286,22 @@ public class Riskshow {
         this.zg_description = zg_description;
     }
 
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getFc_description() {
+        return fc_description;
+    }
+
+    public void setFc_description(String fc_description) {
+        this.fc_description = fc_description;
+    }
+
     @Override
     public String toString() {
         return "Riskshow{" +
@@ -303,6 +327,7 @@ public class Riskshow {
                 ", process_name='" + process_name + '\'' +
                 ", staff_id=" + staff_id +
                 ", zg_description='" + zg_description + '\'' +
+                ", status='" + status + '\'' +
                 '}';
     }
 }

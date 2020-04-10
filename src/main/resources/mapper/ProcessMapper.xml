@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zty.smart_site.dao.ProcessDao">
+    <!--增加工序-->
+    <insert id="InsertProcess" parameterType="java.util.Map">
+        INSERT INTO `smart_site`.`process` (`process_name`, `section_id`, `station_id`) VALUES (#{process_name}, #{section_id}, #{station_id});
+    </insert>
+
+    <!--删除工序-->
+    <delete id="DeleteProcess" parameterType="java.util.Map">
+        DELETE FROM `smart_site`.`process` WHERE `id`=#{id}
+    </delete>
+
+    <!--修改工序-->
+    <update id="UpdateProcess" parameterType="java.util.Map">
+        UPDATE `smart_site`.`process` SET `process_name`=#{process_name}, `section_id`=#{section_id}, `station_id`=#{station_id} WHERE (`id`=#{id});
+    </update>
+
+    <!--分页模糊查询工序-->
+    <select id="FindProcess" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.Process">
+        <bind name="page" value="pageSize*(pageNo-1)"></bind>
+        SELECT p.`id`,p.`process_name`, p.`section_id`, p.`station_id`,s.`station_name` as `station_name` FROM `smart_site`.`process` p
+        INNER JOIN `smart_site`.`station` s ON p.`station_id`
+        <where>
+            p.`section_id`=#{section_id}
+            <if test="process_name!=null and process_name!=''">
+                p.`process_name`=#{process_name}
+            </if>
+        </where>
+        limit #{page},#{pageSize}
+    </select>
+
+    <!--统计总数-->
+    <select id="Total" parameterType="java.util.Map" resultType="long">
+        SELECT COUNT(*) FROM `smart_site`.`process`
+        <where>
+            `section_id`=#{section_id}
+            <if test="process_name!=null and process_name!=''">
+                `process_name`=#{process_name}
+            </if>
+        </where>
+    </select>
+
+    <!--下拉框查询工序-->
+    <select id="SelectProcess" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.Process">
+        SELECT `id`,`process_name`, `section_id`, `station_id` FROM `smart_site`.`process`
+        where `section_id`=#{section_id} and `station_id`=#{station_id}
+    </select>
+</mapper>
