@@ -28,13 +28,13 @@
         <where>
             q.`section_id`=#{section_id}
             <if test="knowledge_id!=null and knowledge_id!=''">
-                q.`knowledge_id`=#{knowledge_id}
+                and q.`knowledge_id`=#{knowledge_id}
             </if>
             <if test="specialty_id!=null and specialty_id!=''">
-                q.`specialty_id`=#{specialty_id}
+                and q.`specialty_id`=#{specialty_id}
             </if>
             <if test="questions_type!=null and questions_type!=''">
-                q.`questions_type`=#{questions_type}
+                and q.`questions_type`=#{questions_type}
             </if>
         </where>
         limit #{page},#{pageSize}
@@ -46,13 +46,13 @@
         <where>
             `section_id`=#{section_id}
             <if test="knowledge_id!=null and knowledge_id!=''">
-                `knowledge_id`=#{knowledge_id}
+                and `knowledge_id`=#{knowledge_id}
             </if>
             <if test="specialty_id!=null and specialty_id!=''">
-                `specialty_id`=#{specialty_id}
+                and `specialty_id`=#{specialty_id}
             </if>
             <if test="questions_type!=null and questions_type!=''">
-                `questions_type`=#{questions_type}
+                and `questions_type`=#{questions_type}
             </if>
         </where>
     </select>

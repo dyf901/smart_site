@@ -15,7 +15,17 @@
     </delete>
 
     <!--分页模糊查询试卷-->
-    <select id="FindExamination" parameterType="java.util.Map" resultType="com.zty.smart_site.entity">
+    <select id="FindExamination" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.Examination">
+        <bind name="page" value="pageSize*(pageNo-1)"></bind>
+        SELECT  e.`id`, e.`section_id`, e.`examinationtype_id`, e.`examination_name`, e.`questions`, e.`select_count`, e.`judge_count`, e.`gap_count`, e.`short_count`, e.`exam_time`, t.`type_name` as `type_name` FROM `smart_site`.`examination` e
+        INNER JOIN `smart_site`.`examination_type` t ON e.`examinationtype_id`=t.`id`
+        WHERE e.`section_id`=#{section_id}
+        limit #{page},#{pageSize}
+    </select>
 
+    <!--统计总数-->
+    <select id="Total" parameterType="java.util.Map" resultType="long">
+        SELECT COUNT(*) FROM `smart_site`.`examination`
+        WHERE `section_id`=#{section_id}
     </select>
 </mapper>

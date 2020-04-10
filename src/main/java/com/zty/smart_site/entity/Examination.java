@@ -16,6 +16,9 @@ public class Examination {
     @ApiModelProperty(value = "试卷类型id",name = "examinationtype_id")
     private int examinationtype_id;
 
+    @ApiModelProperty(value = "试卷类型id",name = "type_name")
+    private String type_name;
+
     @ApiModelProperty(value = "试卷名称",name = "examination_name")
     private String examination_name;
 
@@ -41,10 +44,11 @@ public class Examination {
         super();
     }
 
-    public Examination(int id, int section_id, int examinationtype_id, String examination_name, String questions, int select_count, int judge_count, int gap_count, int short_count, int exam_time) {
+    public Examination(int id, int section_id, int examinationtype_id, String type_name, String examination_name, String questions, int select_count, int judge_count, int gap_count, int short_count, int exam_time) {
         this.id = id;
         this.section_id = section_id;
         this.examinationtype_id = examinationtype_id;
+        this.type_name = type_name;
         this.examination_name = examination_name;
         this.questions = questions;
         this.select_count = select_count;
@@ -134,12 +138,21 @@ public class Examination {
         this.exam_time = exam_time;
     }
 
+    public String getType_name() {
+        return type_name;
+    }
+
+    public void setType_name(String type_name) {
+        this.type_name = type_name;
+    }
+
     @Override
     public String toString() {
-        return "Examination{" +
+        return "{" +
                 "id=" + id +
                 ", section_id=" + section_id +
                 ", examinationtype_id=" + examinationtype_id +
+                ", type_name=" + type_name +
                 ", examination_name='" + examination_name + '\'' +
                 ", questions='" + questions + '\'' +
                 ", select_count=" + select_count +
