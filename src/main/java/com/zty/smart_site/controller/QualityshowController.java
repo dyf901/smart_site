@@ -47,7 +47,7 @@ public class QualityshowController {
         //String url = StringUtils.join(list, ",");
         String url=list.toString();
         System.out.println(url);
-        map.put("url",url);
+        map.put("url",map.get("url1"));
         int i=qualityshowService.InsertQualityshow(map);
         if (i==1){
             jsonResult.setMessage("增加成功!");

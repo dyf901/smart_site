@@ -42,11 +42,13 @@ public class RiskshowController {
     public JsonResult InsertRiskshow(@RequestBody Map map){
         JsonResult jsonResult = new JsonResult();
         System.out.println(map);
-        List list = (List) map.get("url1");
+        /*List list = (List) map.get("url1");
         System.out.println("list:"+list);
         //String url = StringUtils.join(list, ",");
         String url=list.toString();
         System.out.println(url);
+        map.put("url",url);*/
+        String url= (String) map.get("url1");
         map.put("url",url);
         int i=riskshowService.InsertRiskshow(map);
         if (i==1){
