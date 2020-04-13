@@ -13,11 +13,11 @@ public class Examination {
     @ApiModelProperty(value = "标段id",name = "section_id")
     private int section_id;
 
-    @ApiModelProperty(value = "试卷类型id",name = "examinationtype_id")
-    private int examinationtype_id;
+    @ApiModelProperty(value = "试卷类型id",name = "specialty_id")
+    private int specialty_id;
 
-    @ApiModelProperty(value = "试卷类型id",name = "type_name")
-    private String type_name;
+    @ApiModelProperty(value = "试卷类型名称",name = "specialty_name")
+    private String specialty_name;
 
     @ApiModelProperty(value = "试卷名称",name = "examination_name")
     private String examination_name;
@@ -44,11 +44,11 @@ public class Examination {
         super();
     }
 
-    public Examination(int id, int section_id, int examinationtype_id, String type_name, String examination_name, String questions, int select_count, int judge_count, int gap_count, int short_count, int exam_time) {
+    public Examination(int id, int section_id, int specialty_id, String specialty_name, String examination_name, String questions, int select_count, int judge_count, int gap_count, int short_count, int exam_time) {
         this.id = id;
         this.section_id = section_id;
-        this.examinationtype_id = examinationtype_id;
-        this.type_name = type_name;
+        this.specialty_id = specialty_id;
+        this.specialty_name = specialty_name;
         this.examination_name = examination_name;
         this.questions = questions;
         this.select_count = select_count;
@@ -74,12 +74,12 @@ public class Examination {
         this.section_id = section_id;
     }
 
-    public int getExaminationtype_id() {
-        return examinationtype_id;
+    public int getSpecialty_id() {
+        return specialty_id;
     }
 
-    public void setExaminationtype_id(int examinationtype_id) {
-        this.examinationtype_id = examinationtype_id;
+    public void setSpecialty_id(int specialty_id) {
+        this.specialty_id = specialty_id;
     }
 
     public String getExamination_name() {
@@ -138,12 +138,12 @@ public class Examination {
         this.exam_time = exam_time;
     }
 
-    public String getType_name() {
-        return type_name;
+    public String getSpecialty_name() {
+        return specialty_name;
     }
 
-    public void setType_name(String type_name) {
-        this.type_name = type_name;
+    public void setSpecialty_name(String specialty_name) {
+        this.specialty_name = specialty_name;
     }
 
     @Override
@@ -151,8 +151,8 @@ public class Examination {
         return "{" +
                 "id=" + id +
                 ", section_id=" + section_id +
-                ", examinationtype_id=" + examinationtype_id +
-                ", type_name=" + type_name +
+                ", examinationtype_id=" + specialty_id +
+                ", specialty_name=" + specialty_name +
                 ", examination_name='" + examination_name + '\'' +
                 ", questions='" + questions + '\'' +
                 ", select_count=" + select_count +

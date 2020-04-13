@@ -5,8 +5,8 @@
 <mapper namespace="com.zty.smart_site.dao.ExaminationDao">
     <!--增加试卷-->
     <insert id="InsertExamination" parameterType="java.util.Map">
-        INSERT INTO `smart_site`.`examination` (`section_id`, `examinationtype_id`, `examination_name`, `questions`, `select_count`, `judge_count`, `gap_count`, `short_count`, `exam_time`)
-        VALUES (#{section_id}, #{examinationtype_id}, #{examination_name}, #{questions}, #{select_count}, #{judge_count}, #{gap_count}, #{short_count}, #{exam_time});
+        INSERT INTO `smart_site`.`examination` (`section_id`, `specialty_id`, `examination_name`, `questions`, `select_count`, `judge_count`, `gap_count`, `short_count`, `exam_time`)
+        VALUES (#{section_id}, #{specialty_id}, #{examination_name}, #{questions}, #{select_count}, #{judge_count}, #{gap_count}, #{short_count}, #{exam_time});
     </insert>
 
     <!--删除试卷-->
@@ -17,8 +17,8 @@
     <!--分页模糊查询试卷-->
     <select id="FindExamination" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.Examination">
         <bind name="page" value="pageSize*(pageNo-1)"></bind>
-        SELECT  e.`id`, e.`section_id`, e.`examinationtype_id`, e.`examination_name`, e.`questions`, e.`select_count`, e.`judge_count`, e.`gap_count`, e.`short_count`, e.`exam_time`, t.`type_name` as `type_name` FROM `smart_site`.`examination` e
-        INNER JOIN `smart_site`.`examination_type` t ON e.`examinationtype_id`=t.`id`
+        SELECT  e.`id`, e.`section_id`, e.`specialty_id`, e.`examination_name`, e.`questions`, e.`select_count`, e.`judge_count`, e.`gap_count`, e.`short_count`, e.`exam_time`, t.`specialty_name` as `specialty_name` FROM `smart_site`.`examination` e
+        INNER JOIN `smart_site`.`specialty` t ON e.`specialty_id`=t.`id`
         WHERE e.`section_id`=#{section_id}
         limit #{page},#{pageSize}
     </select>

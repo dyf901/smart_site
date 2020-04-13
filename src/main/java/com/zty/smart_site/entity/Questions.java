@@ -43,8 +43,14 @@ public class Questions {
     @ApiModelProperty(value = "选择题A选项",name = "select_D")
     private String select_D;
 
-    @ApiModelProperty(value = "选择,填空,简答题答案",name = "answer")
-    private String answer;
+    @ApiModelProperty(value = "选择题答案",name = "select_answer")
+    private String select_answer;
+
+    @ApiModelProperty(value = "填空题答案",name = "gap_answer")
+    private String gap_answer;
+
+    @ApiModelProperty(value = "简答题答案",name = "short_answer")
+    private String short_answer;
 
     @ApiModelProperty(value = "判断题答案",name = "judge_answer")
     private Boolean judge_answer;
@@ -53,7 +59,7 @@ public class Questions {
         super();
     }
 
-    public Questions(int id, int section_id, int knowledge_id, int specialty_id, String questions_type, String knowledge_name, String specialty_name, String questions_content, String select_A, String select_B, String select_C, String select_D, String answer, Boolean judge_answer) {
+    public Questions(int id, int section_id, int knowledge_id, int specialty_id, String questions_type, String knowledge_name, String specialty_name, String questions_content, String select_A, String select_B, String select_C, String select_D, String select_answer, String gap_answer, String short_answer, Boolean judge_answer) {
         this.id = id;
         this.section_id = section_id;
         this.knowledge_id = knowledge_id;
@@ -66,7 +72,9 @@ public class Questions {
         this.select_B = select_B;
         this.select_C = select_C;
         this.select_D = select_D;
-        this.answer = answer;
+        this.select_answer = select_answer;
+        this.gap_answer = gap_answer;
+        this.short_answer = short_answer;
         this.judge_answer = judge_answer;
     }
 
@@ -150,12 +158,28 @@ public class Questions {
         this.select_D = select_D;
     }
 
-    public String getAnswer() {
-        return answer;
+    public String getSelect_answer() {
+        return select_answer;
     }
 
-    public void setAnswer(String answer) {
-        this.answer = answer;
+    public void setSelect_answer(String select_answer) {
+        this.select_answer = select_answer;
+    }
+
+    public String getGap_answer() {
+        return gap_answer;
+    }
+
+    public void setGap_answer(String gap_answer) {
+        this.gap_answer = gap_answer;
+    }
+
+    public String getShort_answer() {
+        return short_answer;
+    }
+
+    public void setShort_answer(String short_answer) {
+        this.short_answer = short_answer;
     }
 
     public Boolean getJudge_answer() {
@@ -197,7 +221,9 @@ public class Questions {
                 ", select_B='" + select_B + '\'' +
                 ", select_C='" + select_C + '\'' +
                 ", select_D='" + select_D + '\'' +
-                ", answer='" + answer + '\'' +
+                ", select_answer='" + select_answer + '\'' +
+                ", gap_answer='" + gap_answer + '\'' +
+                ", short_answer='" + short_answer + '\'' +
                 ", judge_answer=" + judge_answer +
                 '}';
     }

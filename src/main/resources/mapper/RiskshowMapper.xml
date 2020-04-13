@@ -172,6 +172,11 @@
         UPDATE `smart_site`.`riskshow` SET  `status`='不合格',`fc_description`=#{fc_description} WHERE (`id`=#{id});
     </update>
 
+    <!-- 查找积分前三 -->
+    <select id="find_riskshow_awarda" resultType="java.util.Map">
+		select * from (select SUM(integral) as awarda,s.*,w.worktype_name as bz from riskshow r INNER JOIN staff s on r.staff_id=s.id INNER JOIN worktype w on w.id=s.worktype_id where (date_format(uptime,'%Y-%m')=date_format(now(),'%Y-%m')) and r.state='有效' and r.section_id=#{section_id} GROUP BY staff_id) as t ORDER BY t.awarda desc limit 3;
+	</select>
+
     <!--统计安全隐患数量-->
     <select id="CountRiskShow" parameterType="java.util.Map" resultType="int">
         SELECT COUNT(*) FROM `smart_site`.`riskshow` WHERE `section_id`=#{section_id} and `station_id`=#{station_id}

@@ -21,13 +21,13 @@ sub_name     分包单位名称
 public class Worktype {
     private int id,section_id,station_id,person_count,sub_id;
     private String worktype_name,content,remark;
-    private String section_name,station_name,sub_name;
+    private String section_name,station_name,sub_name,state;
 
     public Worktype(){
         super();
     }
 
-    public Worktype(int id, int section_id, int station_id, int person_count, int sub_id, String worktype_name, String content, String remark, String section_name, String station_name, String sub_name) {
+    public Worktype(int id, int section_id, int station_id, int person_count, int sub_id, String worktype_name, String content, String remark, String section_name, String station_name, String sub_name, String state) {
         this.id = id;
         this.section_id = section_id;
         this.station_id = station_id;
@@ -39,6 +39,7 @@ public class Worktype {
         this.section_name = section_name;
         this.station_name = station_name;
         this.sub_name = sub_name;
+        this.state = state;
     }
 
     public int getId() {
@@ -129,6 +130,14 @@ public class Worktype {
         this.sub_name = sub_name;
     }
 
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
     @Override
     public String toString() {
         return "Worktype{" +
@@ -143,6 +152,7 @@ public class Worktype {
                 ", section_name='" + section_name + '\'' +
                 ", station_name='" + station_name + '\'' +
                 ", sub_name='" + sub_name + '\'' +
+                ", state='" + state + '\'' +
                 '}';
     }
 }

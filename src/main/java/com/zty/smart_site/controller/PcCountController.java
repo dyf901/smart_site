@@ -1,5 +1,6 @@
 package com.zty.smart_site.controller;
 
+import com.zty.smart_site.entity.Riskshow;
 import com.zty.smart_site.entity.Staff;
 import com.zty.smart_site.service.RiskshowService;
 import com.zty.smart_site.service.StaffService;
@@ -110,6 +111,10 @@ public class PcCountController {
         return riskshowService.CountRiskShowByCQWZG(map);
     }
 
-
+    @ApiOperation(value = "积分前三",notes = "测试数据:{\"section_id\":1}")
+    @PostMapping("/find_riskshow_awarda")
+    public List<Riskshow> find_riskshow_awarda(@RequestBody Map map){
+        return riskshowService.find_riskshow_awarda(map);
+    }
 
 }

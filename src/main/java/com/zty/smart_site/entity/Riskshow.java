@@ -79,11 +79,14 @@ public class Riskshow {
     @ApiModelProperty(value = "复查描述",name = "fc_description")
     private String fc_description;
 
+    @ApiModelProperty(value = "awarda",name = "awarda")
+    private int awarda;
+
     public Riskshow(){
         super();
     }
 
-    public Riskshow(int id, int risk_id, int section_id, int station_id, String description, String uptime, String url, String active, String risk_name, String staff_name, String station_name, String title, int sub_id, String sub_name, String responsible, String count, String plan_time, String zg_url, int process_id, String process_name, int staff_id, String zg_description, String status, String fc_description) {
+    public Riskshow(int id, int risk_id, int section_id, int station_id, String description, String uptime, String url, String active, String risk_name, String staff_name, String station_name, String title, int sub_id, String sub_name, String responsible, String count, String plan_time, String zg_url, int process_id, String process_name, int staff_id, String zg_description, String status, String fc_description, int awarda) {
         this.id = id;
         this.risk_id = risk_id;
         this.section_id = section_id;
@@ -108,6 +111,7 @@ public class Riskshow {
         this.zg_description = zg_description;
         this.status = status;
         this.fc_description = fc_description;
+        this.awarda = awarda;
     }
 
     public int getId() {
@@ -302,6 +306,14 @@ public class Riskshow {
         this.fc_description = fc_description;
     }
 
+    public int getAwarda() {
+        return awarda;
+    }
+
+    public void setAwarda(int awarda) {
+        this.awarda = awarda;
+    }
+
     @Override
     public String toString() {
         return "Riskshow{" +
@@ -328,6 +340,8 @@ public class Riskshow {
                 ", staff_id=" + staff_id +
                 ", zg_description='" + zg_description + '\'' +
                 ", status='" + status + '\'' +
+                ", fc_description='" + fc_description + '\'' +
+                ", awarda=" + awarda +
                 '}';
     }
 }

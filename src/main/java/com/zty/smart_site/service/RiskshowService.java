@@ -216,4 +216,10 @@ public class RiskshowService implements RiskshowDao {
     public List<Riskshow> CountRiskshowBySubId(Map map) {
         return riskshowDao.CountRiskshowBySubId(map);
     }
+
+    //积分前三
+    @Override
+    public List<Riskshow> find_riskshow_awarda(Map map) {
+        return riskshowDao.find_riskshow_awarda(map);
+    }
 }

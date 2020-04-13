@@ -8,6 +8,7 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -41,6 +42,19 @@ public class Test {
         System.out.println(sdf.format(afterDate ));
         return "aaa";
     }
+
+    @ApiOperation(value = "测试ww",notes = "")
+    @PostMapping("/testww")
+    public String Testww(@RequestBody Map map) throws ParseException {
+        SimpleDateFormat format =  new SimpleDateFormat("yyyy-MM-dd");
+        String time= (String) map.get("time");
+        Date date = format.parse(time);
+        //日期转时间戳（毫秒）
+        long times=date.getTime();
+        System.out.print("Format To times:"+times);
+        return "aaa";
+    }
+
 
     @ApiOperation(value = "测试",notes = "")
     @PostMapping("/test1")

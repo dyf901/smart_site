@@ -39,6 +39,7 @@
         INNER JOIN `smart_site`.`station` l ON a.`station_id`=l.`id`
         INNER JOIN `smart_site`.`subcontractors` w ON a.`sub_id`=w.`id`
         WHERE a.`section_id`=#{section_id} and a.`staff_id`=#{staff_id}
+        order by a.`conversion_time` desc
         limit #{page},#{pageSize}
     </select>
 

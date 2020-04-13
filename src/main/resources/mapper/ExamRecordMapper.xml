@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zty.smart_site.dao.ExamRecordDao">
+    <!--增加考试记录-->
+    <insert id="InsertExamRecord" parameterType="java.util.Map">
+        INSERT INTO `smart_site`.`exam_record` (`exam_id`, `staff_id`, `section_id`, `exam_count`, `exam_time`, `exam_result`, `exam_timeC`)
+        VALUES (#{exam_id}, #{staff_id}, #{section_id}, #{exam_count}, #{exam_time}, #{exam_result}, #{exam_timeC});
+    </insert>
+    
+    <!--删除考试记录-->
+    <delete id="DeleteExamRecord" parameterType="java.util.Map">
+        DELETE FROM `smart_site`.`exam_record` WHERE `id`=#{id}
+    </delete>
+
+    <!--分页模糊查询考试记录-->
+    <select id="FindExamRecord" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.ExamRecord">
+        <bind name="page" value="pageSize*(pageNo-1)"></bind>
+        SELECT e.`id`, e.`exam_id`, e.`staff_id`, `section_id`, e.`exam_count`, e.`exam_time`, e.`exam_result`, e.`exam_timeC` FROM `smart_site`.`exam_record` e
+        INNER JOIN `smart_site`.`exam` r ON e.`exam_id`=r.`id`
+        INNER JOIN `smart_site`.`staff` s ON e.`staff_id`=s.`id`
+        WHERE e.`section_id`=#{section_id}
+        ORDER BY e.`exam_time` DESC
+        limit #{page},#{pageSize}
+    </select>
+
+    <!--统计总数-->
+    <select id="Total" parameterType="java.util.Map" resultType="long">
+        SELECT COUNT(*) `smart_site`.`exam_record` WHERE `section_id`=#{section_id}
+    </select>
+
+    <!--查询个人考试记录-->
+    <select id="FindExamRecordByStaffId" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.ExamRecord">
+        SELECT e.`id`, e.`exam_id`, e.`staff_id`, `section_id`, e.`exam_count`, e.`exam_time`, e.`exam_result`, e.`exam_timeC` FROM `smart_site`.`exam_record` e
+        INNER JOIN `smart_site`.`exam` r ON e.`exam_id`=r.`id`
+        INNER JOIN `smart_site`.`staff` s ON e.`staff_id`=s.`id`
+        WHERE e.`section_id`=#{section_id} and e.`staff_id`=#{staff_id}
+        ORDER BY e.`exam_time` DESC
+    </select>
+</mapper>
