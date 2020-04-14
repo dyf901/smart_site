@@ -1,6 +1,7 @@
 package com.zty.smart_site.controller;
 
 import com.zty.smart_site.entity.Examination;
+import com.zty.smart_site.entity.JsonResult;
 import com.zty.smart_site.page.Page;
 import com.zty.smart_site.service.ExaminationService;
 import io.swagger.annotations.Api;
@@ -8,6 +9,7 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
 @Api(description = "试卷接口")
@@ -42,5 +44,13 @@ public class ExaminationController {
         page.setTotal(examinationService.Total(map));
         page.setItems(examinationService.FindExamination(map));
         return page;
+    }
+
+    @ApiOperation(value = "根据id查询试卷",notes = "传参:examination_id")
+    @PostMapping("/FindExaminationById")
+    public JsonResult FindExaminationById(@RequestBody Map map){
+        JsonResult jsonResult = new JsonResult();
+        jsonResult.setData(examinationService.FindExaminationById(map));
+        return jsonResult;
     }
 }

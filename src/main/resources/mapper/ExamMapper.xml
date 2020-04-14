@@ -68,4 +68,6 @@
         ORDER BY e.`up_time` DESC
         limit 1;
     </select>
+
+
 </mapper>

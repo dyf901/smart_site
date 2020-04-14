@@ -48,8 +48,8 @@ public class RiskshowController {
         String url=list.toString();
         System.out.println(url);
         map.put("url",url);*/
-        String url= (String) map.get("url1");
-        map.put("url",url);
+        /*String url= (String) map.get("url1");
+        map.put("url",url);*/
         int i=riskshowService.InsertRiskshow(map);
         if (i==1){
             jsonResult.setMessage("增加成功!");

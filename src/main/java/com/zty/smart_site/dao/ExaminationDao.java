@@ -19,5 +19,6 @@ public interface ExaminationDao {
     //统计总数
     long Total(Map map);
 
-
+    //根据id查询试卷信息
+    Examination FindExaminationById(Map map);
 }

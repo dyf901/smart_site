@@ -42,12 +42,12 @@ public class QualityshowController {
     public JsonResult InsertQualityshow(@RequestBody Map map){
         JsonResult jsonResult = new JsonResult();
         System.out.println(map);
-        List list = (List) map.get("url1");
+        /*List list = (List) map.get("url1");
         System.out.println("list:"+list);
         //String url = StringUtils.join(list, ",");
         String url=list.toString();
         System.out.println(url);
-        map.put("url",map.get("url1"));
+        map.put("url",map.get("url1"));*/
         int i=qualityshowService.InsertQualityshow(map);
         if (i==1){
             jsonResult.setMessage("增加成功!");

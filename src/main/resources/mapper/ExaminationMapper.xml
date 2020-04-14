@@ -28,4 +28,11 @@
         SELECT COUNT(*) FROM `smart_site`.`examination`
         WHERE `section_id`=#{section_id}
     </select>
+
+    <!--根据id查询试卷信息-->
+    <select id="FindExaminationById" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.Examination">
+        SELECT  e.`id`, e.`section_id`, e.`specialty_id`, e.`examination_name`, e.`questions`, e.`select_count`, e.`judge_count`, e.`gap_count`, e.`short_count`, e.`exam_time`, t.`specialty_name` as `specialty_name` FROM `smart_site`.`examination` e
+        INNER JOIN `smart_site`.`specialty` t ON e.`specialty_id`=t.`id`
+        WHERE e.`id`=#{examination_id}
+    </select>
 </mapper>

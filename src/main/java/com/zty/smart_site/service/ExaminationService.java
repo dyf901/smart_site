@@ -35,4 +35,9 @@ public class ExaminationService implements ExaminationDao {
     public long Total(Map map) {
         return examinationDao.Total(map);
     }
+
+    @Override
+    public Examination FindExaminationById(Map map) {
+        return examinationDao.FindExaminationById(map);
+    }
 }
