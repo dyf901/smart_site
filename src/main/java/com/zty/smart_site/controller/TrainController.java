@@ -26,6 +26,24 @@ public class TrainController {
     @Autowired
     private TrainService trainService;
 
+    @ApiOperation(value = "增加题目",notes = "传参:")
+    @PostMapping("/InsertTrain")
+    public boolean InsertTrain(@RequestBody Map map){
+        return trainService.InsertTrain(map)==1;
+    }
+
+    @ApiOperation(value = "删除题目",notes = "传参:")
+    @PostMapping("/DeleteTrain")
+    public boolean DeleteTrain(@RequestBody Map map){
+        return trainService.DeleteTrain(map)==1;
+    }
+
+    @ApiOperation(value = "修改题目",notes = "传参:")
+    @PostMapping("/UpdateTrain")
+    public boolean UpdateTrain(@RequestBody Map map){
+        return trainService.UpdateTrain(map)==1;
+    }
+
     @ApiOperation(value = "菜单", notes = "")
     @PostMapping("/Train_Menu")
     public List<TestData> FindByPositionId1(@RequestBody Map<String,Object> map) {

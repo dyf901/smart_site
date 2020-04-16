@@ -16,7 +16,7 @@
 
     <!--修改题目-->
     <update id="UpdateQuestions" parameterType="java.util.Map">
-        UPDATE `smart_site`.`questions` SET `section_id`=#{section_id}, `knowledge_id`=#{knowledge_id}, `specialty_id`=#{specialty_id}, `questions_type`=#{questions_type}, `questions_content`=#{questions_content}, `select_A`=#{select_A}, `select_B`=#{select_B}, `select_C`=#{select_C}, `select_D`=#{select_D}, `select_answer`=#{select_answer}, `judge_answer`=#{judge_answer}, `gap_answer`=#{gap_answer}, `short_answer`=#{short_answer} WHERE (`id`=#{id});
+        UPDATE `smart_site`.`questions` SET `knowledge_id`=#{knowledge_id}, `specialty_id`=#{specialty_id}, `questions_type`=#{questions_type}, `questions_content`=#{questions_content}, `select_A`=#{select_A}, `select_B`=#{select_B}, `select_C`=#{select_C}, `select_D`=#{select_D}, `select_answer`=#{select_answer}, `judge_answer`=#{judge_answer}, `gap_answer`=#{gap_answer}, `short_answer`=#{short_answer} WHERE (`id`=#{id});
     </update>
 
     <!--分页模糊查询题目信息-->
@@ -63,5 +63,22 @@
         INNER JOIN `smart_site`.`knowledge` k ON q.`knowledge_id`=k.`id`
         INNER JOIN `smart_site`.`specialty` s ON q.`specialty_id`=s.`id`
         WHERE q.`id`=#{id}
+    </select>
+
+    <!--根据题目类型查询随机查询题目返回id数组-->
+    <select id="FindQuestionByQuestionTypeX" parameterType="java.util.Map" resultType="int">
+        SELECT `id` FROM `smart_site`.`questions` WHERE questions_type='选择题' and `section_id`=#{section_id} ORDER BY rand() limit #{countX};
+    </select>
+
+    <select id="FindQuestionByQuestionTypeP" parameterType="java.util.Map" resultType="int">
+        SELECT `id` FROM `smart_site`.`questions` WHERE questions_type='判断题' and `section_id`=#{section_id} ORDER BY rand() limit #{countP};
+    </select>
+
+    <select id="FindQuestionByQuestionTypeT" parameterType="java.util.Map" resultType="int">
+        SELECT `id` FROM `smart_site`.`questions` WHERE questions_type='填空题' and `section_id`=#{section_id} ORDER BY rand() limit #{countT};
+    </select>
+
+    <select id="FindQuestionByQuestionTypeJ" parameterType="java.util.Map" resultType="int">
+        SELECT `id` FROM `smart_site`.`questions` WHERE questions_type='简答题' and `section_id`=#{section_id} ORDER BY rand() limit #{countJ};
     </select>
 </mapper>

@@ -1,5 +1,6 @@
 package com.zty.smart_site.controller;
 
+import com.zty.smart_site.entity.ExamRecord;
 import com.zty.smart_site.entity.JsonResult;
 import com.zty.smart_site.service.ExamRecordService;
 import io.swagger.annotations.Api;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 @Api(description = "考试记录接口")
@@ -33,6 +35,12 @@ public class ExamRecordController {
         System.out.print("Format To times:"+times);
         map.put("exam_time",time);
         map.put("exam_timeC",times);
+        int f = (int) map.get("exam_count");
+        if(f>=60){
+            map.put("exam_result","合格");
+        }else{
+            map.put("exam_result","不合格");
+        }
         int i = examRecordService.InsertExamRecord(map);
         if(i==1){
             jsonResult.setCode(200);
@@ -44,5 +52,13 @@ public class ExamRecordController {
             jsonResult.setMessage("增加失败!");
             return jsonResult;
         }
+    }
+
+    @ApiOperation(value ="查询个人隐患记录",notes ="传参:staff_id(员工id)")
+    @PostMapping("/FindExamRecordByStaffId")
+    public JsonResult FindExamRecordByStaffId(@RequestBody Map map){
+        JsonResult jsonResult = new JsonResult();
+        jsonResult.setData(examRecordService.FindExamRecordByStaffId(map));
+        return jsonResult;
     }
 }

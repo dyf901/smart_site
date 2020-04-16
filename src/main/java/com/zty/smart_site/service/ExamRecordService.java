@@ -33,7 +33,7 @@ public class ExamRecordService implements ExamRecordDao {
     }
 
     @Override
-    public ExamRecord FindExamRecordByStaffId(Map map) {
+    public List<ExamRecord> FindExamRecordByStaffId(Map map) {
         return examRecordDao.FindExamRecordByStaffId(map);
     }
 }

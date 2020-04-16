@@ -23,4 +23,13 @@ public interface QuestionsDao {
 
     //根据id查询题目信息
     Questions FindQuestionsById(Map map);
+
+    //根据题目类型查询随机查询题目返回id数组
+    int[] FindQuestionByQuestionTypeX(Map map);
+
+    int[] FindQuestionByQuestionTypeP(Map map);
+
+    int[] FindQuestionByQuestionTypeT(Map map);
+
+    int[] FindQuestionByQuestionTypeJ(Map map);
 }

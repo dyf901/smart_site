@@ -48,4 +48,25 @@ public class QuestionsService implements QuestionsDao {
     public Questions FindQuestionsById(Map map) {
         return questionsDao.FindQuestionsById(map);
     }
+
+    //根据题目类型查询随机查询题目返回id数组
+    @Override
+    public int[] FindQuestionByQuestionTypeX(Map map) {
+        return questionsDao.FindQuestionByQuestionTypeX(map);
+    }
+
+    @Override
+    public int[] FindQuestionByQuestionTypeP(Map map) {
+        return questionsDao.FindQuestionByQuestionTypeP(map);
+    }
+
+    @Override
+    public int[] FindQuestionByQuestionTypeT(Map map) {
+        return questionsDao.FindQuestionByQuestionTypeT(map);
+    }
+
+    @Override
+    public int[] FindQuestionByQuestionTypeJ(Map map) {
+        return questionsDao.FindQuestionByQuestionTypeJ(map);
+    }
 }

@@ -22,13 +22,13 @@ public class QuestionsController {
     @Autowired
     private QuestionsService questionsService;
 
-    @ApiOperation(value = "增加题目",notes = "测试数据:")
+    @ApiOperation(value = "增加题目",notes = "传参:`section_id`(标段id), `knowledge_id`(下拉框返回), `specialty_id`(下拉框返回), `questions_type`(题目类型), `questions_content`(题目内容), `select_A`(选择题选项), `select_B`, `select_C`, `select_D`, `select_answer`(选择题答案), `judge_answer`(判断题答案), `gap_answer`(填空题答案), `short_answer`(简答题答案)")
     @PostMapping("/InsertQuestions")
     public boolean InsertQuestions(@RequestBody Map map){
         return questionsService.InsertQuestions(map)==1;
     }
 
-    @ApiOperation(value = "删除题目",notes = "测试数据:")
+    @ApiOperation(value = "删除题目",notes = "传参:id(题目id)")
     @PostMapping("/DeleteQuestions")
     public boolean DeleteQuestions(@RequestBody Map map){
         return questionsService.DeleteQuestions(map)==1;
