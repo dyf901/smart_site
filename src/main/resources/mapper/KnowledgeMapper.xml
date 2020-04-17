@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zty.smart_site.dao.KnowledgeDao">
+    <!--增加知识类型-->
+    <insert id="InsertKnowledge" parameterType="java.util.Map">
+        INSERT INTO `smart_site`.`knowledge` (`knowledge_name`, `section_id`) VALUES (#{knowledge_name}, #{section_id});
+    </insert>
+
+    <!--删除知识类型-->
+    <delete id="DeleteKnowledge" parameterType="java.util.Map">
+        DELETE FROM `smart_site`.`knowledge` WHERE `id`=#{id}
+    </delete>
+
+    <!--修改知识类型-->
+    <update id="UpdateKnowledge" parameterType="java.util.Map">
+        UPDATE `smart_site`.`knowledge` SET `knowledge_name`=#{knowledge_name} WHERE (`id`=#{id});
+    </update>
+
+    <!--分页查询知识类型-->
+    <select id="FindKnowledge" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.Knowledge">
+        <bind name="page" value="pageSize*(pageNo-1)"></bind>
+        SELECT `id`, `knowledge_name`, `section_id` FROM `smart_site`.`knowledge`
+        WHERE `section_id`=#{section_id}
+        limit #{page},#{pageSize}
+    </select>
+
+    <!--统计总数-->
+    <select id="Total" parameterType="java.util.Map" resultType="long">
+        SELECT COUNT(*) FROM `smart_site`.`knowledge`
+        WHERE `section_id`=#{section_id}
+    </select>
+
+    <!--下拉框查询知识类型-->
+    <select id="SelectKnowledge" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.Knowledge">
+        SELECT `id`, `knowledge_name` FROM `smart_site`.`knowledge` WHERE `section_id`=#{section_id}
+    </select>
+</mapper>
