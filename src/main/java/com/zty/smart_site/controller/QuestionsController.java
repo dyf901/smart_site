@@ -11,6 +11,7 @@ import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Arrays;
 import java.util.Map;
 import java.util.jar.JarEntry;
 
@@ -22,9 +23,23 @@ public class QuestionsController {
     @Autowired
     private QuestionsService questionsService;
 
-    @ApiOperation(value = "增加题目",notes = "传参:`section_id`(标段id), `knowledge_id`(下拉框返回), `specialty_id`(下拉框返回), `questions_type`(题目类型), `questions_content`(题目内容), `select_A`(选择题选项), `select_B`, `select_C`, `select_D`, `select_answer`(选择题答案), `judge_answer`(判断题答案), `gap_answer`(填空题答案), `short_answer`(简答题答案)")
+    @ApiOperation(value = "增加题目",notes = "传参:`section_id`(标段id), `knowledge_id`(下拉框返回), `specialty_id`(下拉框返回), `questions_type`(题目类型), `questions_content`(题目内容), `select_A`(选择题选项), `select_B`, `select_C`, `select_D`, `select_answer`(选择题答案), `judge_answer`(判断题答案), `gap_answer1`(填空题答案), `short_answer`(简答题答案)")
     @PostMapping("/InsertQuestions")
     public boolean InsertQuestions(@RequestBody Map map){
+        System.out.println("map:"+map);
+//        String gap_answer = (String) map.get("gap_answer1");
+//        String short_answer = (String) map.get("short_answer1");
+//        map.put("gap_answer",gap_answer);
+//        map.put("short_answer",short_answer);
+        String str = (String) map.get("gap_answer1");
+        String[] arr = str.split(","); // 用,分割
+        System.out.println("arr"+Arrays.toString(arr)); // [0, 1, 2, 3, 4, 5]
+        map.put("gap_answer",Arrays.toString(arr));
+
+        String strs = (String) map.get("short_answer1");
+        String[] arrs = strs.split(","); // 用,分割
+        System.out.println("arrs"+Arrays.toString(arrs)); // [0, 1, 2, 3, 4, 5]
+        map.put("short_answer",Arrays.toString(arrs));
         return questionsService.InsertQuestions(map)==1;
     }
 

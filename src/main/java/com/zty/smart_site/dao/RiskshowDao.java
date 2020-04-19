@@ -47,6 +47,8 @@ public interface RiskshowDao {
     //统计总数_整改复查
     long Total_ZGFC(Map map);
 
+    //
+
     //修改安全隐患状态(有效)
     int UpdateActiveY(Map map);
 
