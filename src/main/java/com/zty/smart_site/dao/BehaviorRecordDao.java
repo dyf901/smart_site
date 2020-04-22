@@ -28,4 +28,7 @@ public interface BehaviorRecordDao {
 
     //统计个人记录总数
     long TotalByStaff_id(Map map);
+
+    //测试
+    List<BehaviorRecord> ceshi(Map map);
 }

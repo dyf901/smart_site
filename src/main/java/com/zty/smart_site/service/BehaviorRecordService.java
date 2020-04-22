@@ -54,4 +54,9 @@ public class BehaviorRecordService implements BehaviorRecordDao {
     public long TotalByStaff_id(Map map) {
         return behaviorRecordDao.TotalByStaff_id(map);
     }
+
+    @Override
+    public List<BehaviorRecord> ceshi(Map map) {
+        return behaviorRecordDao.ceshi(map);
+    }
 }

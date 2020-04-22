@@ -5,15 +5,15 @@ import com.zty.smart_site.entity.*;
 import com.zty.smart_site.service.*;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.apache.poi.hssf.usermodel.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Api(description = "测试")
 @RestController
@@ -31,6 +31,11 @@ public class Test {
 
     @Autowired
     private TrainService trainService;
+
+    @Autowired
+    private BehaviorRecordService behaviorRecordService;
+
+
 
     @ApiOperation(value = "测试",notes = "")
     @GetMapping("/test")
@@ -113,4 +118,49 @@ public class Test {
         return testDataList;
     }
 
+
+    @ApiOperation(value = "导出excel",notes = "")
+    @GetMapping("/testE")
+    public void downloadAllClassmate(HttpServletResponse response) throws IOException {
+        HSSFWorkbook workbook = new HSSFWorkbook();
+        HSSFSheet sheet = workbook.createSheet("信息表");
+
+        Map map = new HashMap();
+        map.put("staff_id",5);
+        //List<Teacher> classmateList = teacherservice.teacherinfor();
+        List<BehaviorRecord> list = behaviorRecordService.ceshi(map);
+        String fileName = "userinf"  + ".xls";//设置要导出的文件的名字
+        //新增数据行，并且设置单元格数据
+
+        int rowNum = 1;
+
+        String[] headers = { "行为记录id", "员工id", "行为id", "标段id", "站点id", "上传时间"};
+        //headers表示excel表中第一行的表头
+
+        HSSFRow row = sheet.createRow(0);
+        //在excel表中添加表头
+
+        for(int i=0;i<headers.length;i++){
+            HSSFCell cell = row.createCell(i);
+            HSSFRichTextString text = new HSSFRichTextString(headers[i]);
+            cell.setCellValue(text);
+        }
+
+        //在表中存放查询到的数据放入对应的列
+        for (BehaviorRecord behaviorRecord: list) {
+            HSSFRow row1 = sheet.createRow(rowNum);
+            row1.createCell(0).setCellValue(behaviorRecord.getId());
+            row1.createCell(1).setCellValue(behaviorRecord.getStaff_id());
+            row1.createCell(2).setCellValue(behaviorRecord.getBehavior_id());
+            row1.createCell(3).setCellValue(behaviorRecord.getSection_id());
+            row1.createCell(4).setCellValue(behaviorRecord.getStation_id());
+            row1.createCell(5).setCellValue(behaviorRecord.getUptime());
+            rowNum++;
+        }
+
+        response.setContentType("application/octet-stream");
+        response.setHeader("Content-disposition", "attachment;filename=" + fileName);
+        response.flushBuffer();
+        workbook.write(response.getOutputStream());
+    }
 }

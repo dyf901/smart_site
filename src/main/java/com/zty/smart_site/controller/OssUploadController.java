@@ -126,4 +126,31 @@ public class OssUploadController {
         return "upload";
     }
 
+    @ApiOperation(value = "PDF上传",notes = "")
+    @PostMapping("/PDFUpload")
+    public String PDFUpload(MultipartFile file) {
+
+        try {
+
+            if (null != file) {
+                String filename = file.getOriginalFilename();
+                if (!"".equals(filename.trim())) {
+                    File newFile = new File(filename);
+                    FileOutputStream os = new FileOutputStream(newFile);
+                    os.write(file.getBytes());
+                    os.close();
+                    file.transferTo(newFile);
+                    String Host = "video";
+                    //上传到OSS
+                    String uploadUrl = AliyunOSSUtil.upload(newFile,Host);
+                    return uploadUrl;
+                }
+
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return "upload";
+    }
+
 }

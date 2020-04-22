@@ -68,7 +68,7 @@ public class ceshi {
             //开始画二维码
             MatrixToImageWriter.writeToFile(bitMatrix, "jpg", qrcFile);
 
-            //在二维码中加入图片
+            /*//在二维码中加入图片
             CreatrQrCode creatrQrCode = new CreatrQrCode(); //LogoConfig中设置Logo的属性
             addLogo_QRCode(qrcFile, logoFile, creatrQrCode);
 
@@ -84,7 +84,7 @@ public class ceshi {
             String text = "my name is Shi Linwei";
 
             //在二维码下方添加文字（文字居中）
-            pressText(text, newImageWithText, targetImage, fontStyle, Color.red, font,  width,  height) ;
+            pressText(text, newImageWithText, targetImage, fontStyle, Color.red, font,  width,  height) ;*/
 
         } catch (Exception e) {
             e.printStackTrace();
