@@ -4,6 +4,7 @@ import com.zty.smart_site.entity.JsonResult;
 import com.zty.smart_site.entity.TestData;
 import com.zty.smart_site.entity.Train;
 import com.zty.smart_site.entity.TrainType;
+import com.zty.smart_site.page.Page;
 import com.zty.smart_site.service.TrainService;
 import com.zty.smart_site.service.TrainTypeService;
 import io.swagger.annotations.Api;
@@ -26,22 +27,33 @@ public class TrainController {
     @Autowired
     private TrainService trainService;
 
-    @ApiOperation(value = "增加题目",notes = "传参:")
+    @ApiOperation(value = "增加培训内容",notes = "传参:")
     @PostMapping("/InsertTrain")
     public boolean InsertTrain(@RequestBody Map map){
         return trainService.InsertTrain(map)==1;
     }
 
-    @ApiOperation(value = "删除题目",notes = "传参:")
+    @ApiOperation(value = "删除培训内容",notes = "传参:")
     @PostMapping("/DeleteTrain")
     public boolean DeleteTrain(@RequestBody Map map){
         return trainService.DeleteTrain(map)==1;
     }
 
-    @ApiOperation(value = "修改题目",notes = "传参:")
+    @ApiOperation(value = "修改培训内容",notes = "传参:")
     @PostMapping("/UpdateTrain")
     public boolean UpdateTrain(@RequestBody Map map){
         return trainService.UpdateTrain(map)==1;
+    }
+
+    @ApiOperation(value = "分页模糊查询",notes = "")
+    @PostMapping("/FindTrain")
+    public Page<Train> FindTrain(@RequestBody Map map){
+        Page<Train> page = new Page<Train>();
+        page.setPageNo((Integer) map.get("pageNo"));
+        page.setPageSize((Integer) map.get("pageSize"));
+        page.setTotal(trainService.Total(map));
+        page.setItems(trainService.FindTrain(map));
+        return page;
     }
 
     @ApiOperation(value = "菜单", notes = "")

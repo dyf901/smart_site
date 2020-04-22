@@ -123,6 +123,50 @@ public class RiskshowController {
         return page;
     }
 
+    @ApiOperation(value = "分页模糊查询隐患记录_检查记录_PC",notes = "")
+    @PostMapping("/FindRiskshow_JCJL_PC")
+    public Page<Riskshow> FindRiskshow_JCJL_PC(@RequestBody Map map){
+        Page<Riskshow> page = new Page<Riskshow>();
+        page.setPageNo((Integer) map.get("pageNo"));
+        page.setPageSize((Integer) map.get("pageSize"));
+        page.setTotal(riskshowService.Total_JCJL_PC(map));
+        page.setItems(riskshowService.FindRiskshow_JCJL_PC(map));
+        return page;
+    }
+
+    @ApiOperation(value = "分页模糊查询隐患记录_待整改_PC",notes = "")
+    @PostMapping("/FindRiskshow_DZG_PC")
+    public Page<Riskshow> FindRiskshow_DZG_PC(@RequestBody Map map){
+        Page<Riskshow> page = new Page<Riskshow>();
+        page.setPageNo((Integer) map.get("pageNo"));
+        page.setPageSize((Integer) map.get("pageSize"));
+        page.setTotal(riskshowService.Total_DGZ_PC(map));
+        page.setItems(riskshowService.FindRiskshow_DZG_PC(map));
+        return page;
+    }
+
+    @ApiOperation(value = "分页模糊查询隐患记录_已整改_PC",notes = "")
+    @PostMapping("/FindRiskshow_YZG_PC")
+    public Page<Riskshow> FindRiskshow_YZG_PC(@RequestBody Map map){
+        Page<Riskshow> page = new Page<Riskshow>();
+        page.setPageNo((Integer) map.get("pageNo"));
+        page.setPageSize((Integer) map.get("pageSize"));
+        page.setTotal(riskshowService.Total_YZG_PC(map));
+        page.setItems(riskshowService.FindRiskshow_YZG_PC(map));
+        return page;
+    }
+
+    @ApiOperation(value = "分页模糊查询隐患记录_整改待验_PC",notes = "")
+    @PostMapping("/FindRiskshow_ZGDY_PC")
+    public Page<Riskshow> FindRiskshow_ZGDY_PC(@RequestBody Map map){
+        Page<Riskshow> page = new Page<Riskshow>();
+        page.setPageNo((Integer) map.get("pageNo"));
+        page.setPageSize((Integer) map.get("pageSize"));
+        page.setTotal(riskshowService.Total_ZGDY_PC(map));
+        page.setItems(riskshowService.FindRiskshow_ZGDY_PC(map));
+        return page;
+    }
+
     @ApiOperation(value = "审核安全隐患记录",notes = "传参:id(隐患数据id,数据类型:int),integral(积分,数据类型:String),state(有效/无效,数据类型:String),staff_id(员工id安全隐患记录返回的数据,数据类型:int)")
     @PostMapping("/UpdateActive")
     public JsonResult UpdateActive(@RequestBody Map map) throws ParseException {

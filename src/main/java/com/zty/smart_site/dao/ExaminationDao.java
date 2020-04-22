@@ -21,4 +21,7 @@ public interface ExaminationDao {
 
     //根据id查询试卷信息
     Examination FindExaminationById(Map map);
+
+    //下拉框查询试卷信息
+    List<Examination> SelectExamination(Map map);
 }

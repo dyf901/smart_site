@@ -132,6 +132,82 @@
         SELECT COUNT(*) FROM `smart_site`.`qualityshow` where `section_id`=#{section_id} and `station_id`=#{station_id} and `state`='有效' and `active`='已整改'
     </select>
 
+    <!--分页模糊查询隐患记录_检查记录_PC-->
+    <select id="FindQualityshow_JCJL_PC" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.Qualityshow">
+        <bind name="page" value="pageSize*(pageNo-1)"></bind>
+        SELECT r.`id`, r.`quality_id`, r.`staff_id`, r.`process_id`, r.`section_id`, r.`station_id`, r.`sub_id`, r.`responsible`, r.`description`, r.`uptime`, r.`url`, r.`active`,r.`title`,a.`quality_category` as quality_name,s.`station_name` as station_name,l.`subcontractors_name` as `sub_name`,p.`process_name` as `process_name`,z.`staff_name`  as `staff_name` FROM `smart_site`.`qualityshow` r
+        INNER JOIN `smart_site`.`quality` a ON r.`quality_id`=a.`id`
+        INNER JOIN `smart_site`.`station` s ON r.`station_id`=s.`id`
+        INNER JOIN `smart_site`.`subcontractors` l ON r.`sub_id`=l.`id`
+        INNER JOIN `smart_site`.`process` p ON r.`process_id`=p.`id`
+        INNER JOIN `smart_site`.`staff` z ON r.`staff_id`=z.`id`
+        where r.`section_id`=#{section_id}
+        limit #{page},#{pageSize}
+    </select>
+
+    <!--统计总数-->
+    <select id="Total_JCJL_PC" parameterType="java.util.Map" resultType="long">
+        SELECT COUNT(*) FROM `smart_site`.`riskshow`
+        where `section_id`=#{section_id}
+    </select>
+
+    <!--分页模糊查询隐患记录_待整改_PC-->
+    <select id="FindQualityshow_DZG_PC" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.Qualityshow">
+        <bind name="page" value="pageSize*(pageNo-1)"></bind>
+        SELECT r.`id`, r.`quality_id`, r.`staff_id`, r.`process_id`, r.`section_id`, r.`station_id`, r.`sub_id`, r.`responsible`, r.`description`, r.`uptime`, r.`url`, r.`active`,r.`title`,a.`quality_category` as quality_name,s.`station_name` as station_name,l.`subcontractors_name` as `sub_name`,p.`process_name` as `process_name`,z.`staff_name`  as `staff_name` FROM `smart_site`.`qualityshow` r
+        INNER JOIN `smart_site`.`quality` a ON r.`quality_id`=a.`id`
+        INNER JOIN `smart_site`.`station` s ON r.`station_id`=s.`id`
+        INNER JOIN `smart_site`.`subcontractors` l ON r.`sub_id`=l.`id`
+        INNER JOIN `smart_site`.`process` p ON r.`process_id`=p.`id`
+        INNER JOIN `smart_site`.`staff` z ON r.`staff_id`=z.`id`
+        where r.`section_id`=#{section_id} and r.`state`='有效' and r.`active`='未整改'
+        limit #{page},#{pageSize}
+    </select>
+
+    <!--统计总数-->
+    <select id="Total_DGZ_PC" parameterType="java.util.Map" resultType="long">
+        SELECT COUNT(*) FROM `smart_site`.`riskshow`
+        where `section_id`=#{section_id} and r.`state`='有效' and r.`active`='未整改'
+    </select>
+
+    <!--分页模糊查询隐患记录_已整改_PC-->
+    <select id="FindQualityshow_YZG_PC" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.Qualityshow">
+        <bind name="page" value="pageSize*(pageNo-1)"></bind>
+        SELECT r.`id`, r.`quality_id`, r.`staff_id`, r.`process_id`, r.`section_id`, r.`station_id`, r.`sub_id`, r.`responsible`, r.`description`, r.`uptime`, r.`url`, r.`active`,r.`title`,a.`quality_category` as quality_name,s.`station_name` as station_name,l.`subcontractors_name` as `sub_name`,p.`process_name` as `process_name`,z.`staff_name`  as `staff_name` FROM `smart_site`.`qualityshow` r
+        INNER JOIN `smart_site`.`quality` a ON r.`quality_id`=a.`id`
+        INNER JOIN `smart_site`.`station` s ON r.`station_id`=s.`id`
+        INNER JOIN `smart_site`.`subcontractors` l ON r.`sub_id`=l.`id`
+        INNER JOIN `smart_site`.`process` p ON r.`process_id`=p.`id`
+        INNER JOIN `smart_site`.`staff` z ON r.`staff_id`=z.`id`
+        where r.`section_id`=#{section_id} and r.`state`='有效' and r.`active`='已整改'
+        limit #{page},#{pageSize}
+    </select>
+
+    <!--统计总数-->
+    <select id="Total_YZG_PC" parameterType="java.util.Map" resultType="long">
+        SELECT COUNT(*) FROM `smart_site`.`riskshow`
+        where `section_id`=#{section_id} and `state`='有效' and `active`='已整改'
+    </select>
+
+    <!--分页模糊查询隐患记录_整改待验_PC-->
+    <select id="FindQualityshow_ZGDY_PC" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.Qualityshow">
+        <bind name="page" value="pageSize*(pageNo-1)"></bind>
+        SELECT r.`id`, r.`quality_id`, r.`staff_id`, r.`process_id`, r.`section_id`, r.`station_id`, r.`sub_id`, r.`responsible`, r.`description`, r.`uptime`, r.`url`, r.`active`,r.`title`,a.`quality_category` as quality_name,s.`station_name` as station_name,l.`subcontractors_name` as `sub_name`,p.`process_name` as `process_name`,z.`staff_name`  as `staff_name` FROM `smart_site`.`qualityshow` r
+        INNER JOIN `smart_site`.`quality` a ON r.`quality_id`=a.`id`
+        INNER JOIN `smart_site`.`station` s ON r.`station_id`=s.`id`
+        INNER JOIN `smart_site`.`subcontractors` l ON r.`sub_id`=l.`id`
+        INNER JOIN `smart_site`.`process` p ON r.`process_id`=p.`id`
+        INNER JOIN `smart_site`.`staff` z ON r.`staff_id`=z.`id`
+        where r.`section_id`=#{section_id} and r.`state`='有效' and r.`active`='已整改' and r.`status`='待检查'
+        limit #{page},#{pageSize}
+    </select>
+
+    <!--统计总数-->
+    <select id="Total_ZGDY_PC" parameterType="java.util.Map" resultType="long">
+        SELECT COUNT(*) FROM `smart_site`.`qualityshow`
+        where `section_id`=#{section_id} and `state`='有效' and `active`='已整改' and `status`='待检查'
+    </select>
+
     <!--修改质量隐患状态(有效)-->
     <update id="UpdateActiveY" parameterType="java.util.Map">
         UPDATE `smart_site`.`qualityshow` SET  `active`='待整改', `state`='有效' WHERE (`id`=#{id});

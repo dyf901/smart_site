@@ -80,6 +80,46 @@ public class QualityshowService implements QualityshowDao {
     }
 
     @Override
+    public List<Qualityshow> FindQualityshow_JCJL_PC(Map map) {
+        return qualityshowDao.FindQualityshow_JCJL_PC(map);
+    }
+
+    @Override
+    public long Total_JCJL_PC(Map map) {
+        return qualityshowDao.Total_JCJL_PC(map);
+    }
+
+    @Override
+    public List<Qualityshow> FindQualityshow_DZG_PC(Map map) {
+        return qualityshowDao.FindQualityshow_DZG_PC(map);
+    }
+
+    @Override
+    public long Total_DGZ_PC(Map map) {
+        return qualityshowDao.Total_DGZ_PC(map);
+    }
+
+    @Override
+    public List<Qualityshow> FindQualityshow_YZG_PC(Map map) {
+        return qualityshowDao.FindQualityshow_YZG_PC(map);
+    }
+
+    @Override
+    public long Total_YZG_PC(Map map) {
+        return qualityshowDao.Total_YZG_PC(map);
+    }
+
+    @Override
+    public List<Qualityshow> FindQualityshow_ZGDY_PC(Map map) {
+        return qualityshowDao.FindQualityshow_ZGDY_PC(map);
+    }
+
+    @Override
+    public long Total_ZGDY_PC(Map map) {
+        return qualityshowDao.Total_ZGDY_PC(map);
+    }
+
+    @Override
     public int UpdateActiveY(Map map) {
         return qualityshowDao.UpdateActiveY(map);
     }

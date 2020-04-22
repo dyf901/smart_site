@@ -40,4 +40,9 @@ public class ExaminationService implements ExaminationDao {
     public Examination FindExaminationById(Map map) {
         return examinationDao.FindExaminationById(map);
     }
+
+    @Override
+    public List<Examination> SelectExamination(Map map) {
+        return examinationDao.SelectExamination(map);
+    }
 }

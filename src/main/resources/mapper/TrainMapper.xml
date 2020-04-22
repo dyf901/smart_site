@@ -26,7 +26,7 @@
         <where>
             t.`section_id`=#{section_id}
             <if test="type_id!=null and type_id!=''">
-                t.`type_id`=#{type_id}
+                and t.`type_id`=#{type_id}
             </if>
         </where>
         limit #{page},#{pageSize}
@@ -60,4 +60,6 @@
         INNER JOIN `smart_site`.`train_type` s ON t.`type_id`=s.`id`
         where t.`id`=#{id}
     </select>
+
+
 </mapper>

@@ -15,7 +15,7 @@ import java.util.Arrays;
 import java.util.Map;
 import java.util.jar.JarEntry;
 
-@Api(description = "试卷题目接口")
+@Api(description = "题目接口")
 @RestController
 @RequestMapping("questions")
 @CrossOrigin

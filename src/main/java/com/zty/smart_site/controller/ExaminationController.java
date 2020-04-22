@@ -83,4 +83,10 @@ public class ExaminationController {
         jsonResult.setData(examinationService.FindExaminationById(map));
         return jsonResult;
     }
+
+    @ApiOperation(value = "下拉框查询试卷",notes = "传参:标段id")
+    @PostMapping("/SelectExamination")
+    public List<Examination> SelectExamination(@RequestBody Map map){
+        return examinationService.SelectExamination(map);
+    }
 }

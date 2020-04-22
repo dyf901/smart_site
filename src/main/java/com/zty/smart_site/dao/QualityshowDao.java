@@ -2,6 +2,7 @@ package com.zty.smart_site.dao;
 
 import com.zty.smart_site.entity.Qualityshow;
 import com.zty.smart_site.entity.Qualityshow;
+import com.zty.smart_site.entity.Riskshow;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -47,6 +48,30 @@ public interface QualityshowDao {
 
     //统计总数_整改复查
     long Total_ZGFC(Map map);
+
+    //分页模糊查询隐患记录_检查记录_PC
+    List<Qualityshow> FindQualityshow_JCJL_PC(Map map);
+
+    //统计总数
+    long Total_JCJL_PC(Map map);
+
+    //分页模糊查询隐患记录_待整改_PC
+    List<Qualityshow> FindQualityshow_DZG_PC(Map map);
+
+    //统计总数
+    long Total_DGZ_PC(Map map);
+
+    //分页模糊查询隐患记录_已整改_PC
+    List<Qualityshow> FindQualityshow_YZG_PC(Map map);
+
+    //统计总数
+    long Total_YZG_PC(Map map);
+
+    //分页模糊查询隐患记录_整改待验_PC
+    List<Qualityshow> FindQualityshow_ZGDY_PC(Map map);
+
+    //统计总数
+    long Total_ZGDY_PC(Map map);
 
     //修改安全隐患状态(有效)
     int UpdateActiveY(Map map);

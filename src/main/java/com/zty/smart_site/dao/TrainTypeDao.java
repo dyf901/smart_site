@@ -27,4 +27,7 @@ public interface TrainTypeDao {
 
     //根据id查询信息
     TrainType FindTrainTypeById(Long id);
+
+    //下拉框查询培训类型
+    List<TrainType> SelectTrainType(Map map);
 }

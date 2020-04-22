@@ -35,4 +35,10 @@
         INNER JOIN `smart_site`.`specialty` t ON e.`specialty_id`=t.`id`
         WHERE e.`id`=#{examination_id}
     </select>
+
+    <!--下拉框查询试卷信息-->
+    <select id="SelectExamination" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.Examination">
+        SELECT  `id`, `examination_name` FROM `smart_site`.`examination`
+        WHERE `section_id`=#{section_id}
+    </select>
 </mapper>

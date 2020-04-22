@@ -91,6 +91,54 @@ public class RiskshowService implements RiskshowDao {
         return riskshowDao.Total_ZGFC(map);
     }
 
+    //分页模糊查询隐患记录_检查记录_PC
+    @Override
+    public List<Riskshow> FindRiskshow_JCJL_PC(Map map) {
+        return riskshowDao.FindRiskshow_JCJL_PC(map);
+    }
+
+    //统计总数
+    @Override
+    public long Total_JCJL_PC(Map map) {
+        return riskshowDao.Total_JCJL_PC(map);
+    }
+
+    //分页模糊查询隐患记录_待整改_PC
+    @Override
+    public List<Riskshow> FindRiskshow_DZG_PC(Map map) {
+        return riskshowDao.FindRiskshow_DZG_PC(map);
+    }
+
+    //统计总数
+    @Override
+    public long Total_DGZ_PC(Map map) {
+        return riskshowDao.Total_DGZ_PC(map);
+    }
+
+    //分页模糊查询隐患记录_已整改_PC
+    @Override
+    public List<Riskshow> FindRiskshow_YZG_PC(Map map) {
+        return riskshowDao.FindRiskshow_YZG_PC(map);
+    }
+
+    //统计总数
+    @Override
+    public long Total_YZG_PC(Map map) {
+        return riskshowDao.Total_YZG_PC(map);
+    }
+
+    //分页模糊查询隐患记录_整改待验_PC
+    @Override
+    public List<Riskshow> FindRiskshow_ZGDY_PC(Map map) {
+        return riskshowDao.FindRiskshow_ZGDY_PC(map);
+    }
+
+    //统计总数
+    @Override
+    public long Total_ZGDY_PC(Map map) {
+        return riskshowDao.Total_ZGDY_PC(map);
+    }
+
     //修改安全隐患状态(有效)
     @Override
     public int UpdateActiveY(Map map) {
