@@ -5,21 +5,21 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@ApiModel(value = "train_type",description = "培训类型")
-public class TrainType {
+@ApiModel(value = "genre_type",description = "培训类型")
+public class TrainGenre {
     @ApiModelProperty(value = "ID",name = "id")
     private int id;
 
-    @ApiModelProperty(value = "类型名称",name = "type_name")
-    private String type_name;
+    @ApiModelProperty(value = "类型名称",name = "genre_name")
+    private String genre_name;
 
-    public TrainType(){
+    public TrainGenre(){
         super();
     }
 
-    public TrainType(int id, String type_name) {
+    public TrainGenre(int id, String genre_name) {
         this.id = id;
-        this.type_name = type_name;
+        this.genre_name = genre_name;
     }
 
     public int getId() {
@@ -30,19 +30,19 @@ public class TrainType {
         this.id = id;
     }
 
-    public String getType_name() {
-        return type_name;
+    public String getGenre_name() {
+        return genre_name;
     }
 
-    public void setType_name(String type_name) {
-        this.type_name = type_name;
+    public void setGenre_name(String genre_name) {
+        this.genre_name = genre_name;
     }
 
     @Override
     public String toString() {
-        return "TrainType{" +
+        return "TrainGenre{" +
                 "id=" + id +
-                ", type_name='" + type_name + '\'' +
+                ", genre_name='" + genre_name + '\'' +
                 '}';
     }
 }

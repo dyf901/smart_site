@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zty.smart_site.dao.TrainCommonalityDao">
+    <!--增加公共课程-->
+    <insert id="InsertTrainCommonality" parameterType="java.util.Map">
+        INSERT INTO `smart_site`.`train_commonality` (`type_id`, `genre_id`, `commonality_name`, `content`, `video_url`) VALUES (#{type_id}, #{genre_id}, #{commonality_name}, #{content}, #{video_url});
+    </insert>
+
+    <!--删除公共课程-->
+    <delete id="DeleteTrainCommonality" parameterType="java.util.Map">
+        DELETE FROM `smart_site`.`train_commonality` WHERE `id`=#{id}
+    </delete>
+
+    <!--修改公共课程-->
+    <update id="UpdateTrainCommonality" parameterType="java.util.Map">
+        UPDATE `smart_site`.`train_commonality` SET `type_id`=#{type_id}, `genre_id`=#{genre_id}, `commonality_name`=#{commonality_name}, `content`=#{content}, `video_url`=#{video_url} WHERE (`id`=#{id});
+    </update>
+
+    <!--分页模糊查询公共课程-->
+    <select id="FindTrainCommonality" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.TrainCommonality">
+        <bind name="page" value="pageSize*(pageNo-1)"></bind>
+        SELECT t.`id`, t.`type_id`, t.`genre_id`, t.`commonality_name`, t.`content`, t.`video_url` FROM
+        `smart_site`.`train_commonality` t
+        INNER JOIN `smart_site`.`train_genre` g ON t.`genre_id`=g.`id`
+        INNER JOIN `smart_site`.`train_type` l ON t.`type_id`=l.`id`
+        <where>
+            <if test="type_id!=null and type_id!=''">
+                t.`type_id`=#{type_id}
+            </if>
+            <if test="genre_id!=null and genre_id!=''">
+                and t.`genre_id`=#{genre_id}
+            </if>
+        </where>
+        limit #{page},#{pageSize}
+    </select>
+
+    <!--统计总数-->
+    <select id="Total" parameterType="java.util.Map" resultType="long">
+        SELECT COUNT(*) FROM `smart_site`.`train_commonality`
+        <where>
+            <if test="type_id!=null and type_id!=''">
+                `type_id`=#{type_id}
+            </if>
+            <if test="genre_id!=null and genre_id!=''">
+                and `genre_id`=#{genre_id}
+            </if>
+        </where>
+    </select>
+</mapper>

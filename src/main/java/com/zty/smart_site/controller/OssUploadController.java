@@ -140,7 +140,7 @@ public class OssUploadController {
                     os.write(file.getBytes());
                     os.close();
                     file.transferTo(newFile);
-                    String Host = "video";
+                    String Host = "pdf";
                     //上传到OSS
                     String uploadUrl = AliyunOSSUtil.upload(newFile,Host);
                     return uploadUrl;
