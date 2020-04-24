@@ -54,6 +54,6 @@
 
     <!--下拉框查询培训类型-->
     <select id="SelectTrainType" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.TrainType">
-        SELECT `id`,`type_name` FROM `smart_site`.`train_type` WHERE `section_id`=#{section_id}
+        SELECT `id`,`type_name` FROM `smart_site`.`train_type`
     </select>
 </mapper>

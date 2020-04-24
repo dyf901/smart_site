@@ -17,8 +17,8 @@ public class TrainCommonality {
     @ApiModelProperty(value = "建造类型id", name = "genre_id")
     private int genre_id;
 
-    @ApiModelProperty(value = "培训名称", name = "train_name")
-    private String train_name;
+    @ApiModelProperty(value = "培训名称", name = "commonality_name")
+    private String commonality_name;
 
     @ApiModelProperty(value = "培训类型名称", name = "type_name")
     private String type_name;
@@ -36,11 +36,11 @@ public class TrainCommonality {
         super();
     }
 
-    public TrainCommonality(int id, int type_id, int genre_id, String train_name, String type_name, String genre_name, String content, String video_url) {
+    public TrainCommonality(int id, int type_id, int genre_id, String commonality_name, String type_name, String genre_name, String content, String video_url) {
         this.id = id;
         this.type_id = type_id;
         this.genre_id = genre_id;
-        this.train_name = train_name;
+        this.commonality_name = commonality_name;
         this.type_name = type_name;
         this.genre_name = genre_name;
         this.content = content;
@@ -71,12 +71,12 @@ public class TrainCommonality {
         this.genre_id = genre_id;
     }
 
-    public String getTrain_name() {
-        return train_name;
+    public String getCommonality_name() {
+        return commonality_name;
     }
 
-    public void setTrain_name(String train_name) {
-        this.train_name = train_name;
+    public void setCommonality_name(String commonality_name) {
+        this.commonality_name = commonality_name;
     }
 
     public String getType_name() {
@@ -117,7 +117,7 @@ public class TrainCommonality {
                 "id=" + id +
                 ", type_id=" + type_id +
                 ", genre_id=" + genre_id +
-                ", train_name='" + train_name + '\'' +
+                ", commonality_name='" + commonality_name + '\'' +
                 ", type_name='" + type_name + '\'' +
                 ", genre_name='" + genre_name + '\'' +
                 ", content='" + content + '\'' +

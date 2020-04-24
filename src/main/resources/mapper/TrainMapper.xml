@@ -5,7 +5,7 @@
 <mapper namespace="com.zty.smart_site.dao.TrainDao">
     <!--增加培训内容-->
     <insert id="InsertTrain" parameterType="java.util.Map">
-        INSERT INTO `smart_site`.`train` (`type_id`, `train_name`, `content`, `section_id`,`video_url`) VALUES (#{type_id}, #{train_name}, #{content}, #{section_id},#{video_url});
+        INSERT INTO `smart_site`.`train` (`train_name`, `content`, `section_id`,`video_url`) VALUES (#{train_name}, #{content}, #{section_id},#{video_url});
     </insert>
 
     <!--删除培训内容-->
@@ -15,32 +15,21 @@
 
     <!--修改培训内容-->
     <update id="UpdateTrain" parameterType="java.util.Map">
-        UPDATE `smart_site`.`train` SET `type_id`=#{type_id}, `train_name`=#{train_name}, `content`=#{content}, `video_url`=#{video_url} WHERE (`id`=#{id});
+        UPDATE `smart_site`.`train` SET `train_name`=#{train_name}, `content`=#{content}, `video_url`=#{video_url} WHERE (`id`=#{id});
     </update>
 
     <!--分页模糊查询培训内容-->
     <select id="FindTrain" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.Train">
         <bind name="page" value="pageSize*(pageNo-1)"></bind>
-        SELECT t.`id`, t.`type_id`, t.`train_name`, t.`content`, t.`section_id`,t.`video_url`, s.`type_name` as `type_name` FROM `smart_site`.`train` t
-        INNER JOIN `smart_site`.`train_type` s ON t.`type_id`=s.`id`
-        <where>
-            t.`section_id`=#{section_id}
-            <if test="type_id!=null and type_id!=''">
-                and t.`type_id`=#{type_id}
-            </if>
-        </where>
+        SELECT t.`id`, t.`train_name`, t.`content`, t.`section_id`,t.`video_url` FROM `smart_site`.`train` t
+        WHERE t.`section_id`=#{section_id}
         limit #{page},#{pageSize}
     </select>
 
     <!--统计总数-->
     <select id="Total" parameterType="java.util.Map" resultType="long">
         SELECT COUNT(*) FROM `smart_site`.`train`
-        <where>
-            `section_id`=#{section_id}
-            <if test="type_id!=null and type_id!=''">
-               and `type_id`=#{type_id}
-            </if>
-        </where>
+        WHERE `section_id`=#{section_id}
     </select>
 
     <!--根据type_id查询培训内容(返回id数组)-->
@@ -61,5 +50,9 @@
         where t.`id`=#{id}
     </select>
 
-
+    <!--根据标段id查询所有培训内容-->
+    <select id="FindTrainAll" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.Train">
+        SELECT t.`id`, t.`type_id`, t.`train_name`, t.`content`, t.`section_id`,t.`video_url` FROM `smart_site`.`train` t
+        WHERE t.`section_id`=#{section_id}
+    </select>
 </mapper>

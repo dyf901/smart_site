@@ -167,7 +167,7 @@
     <!--统计总数-->
     <select id="Total_DGZ_PC" parameterType="java.util.Map" resultType="long">
         SELECT COUNT(*) FROM `smart_site`.`riskshow`
-        where `section_id`=#{section_id} and r.`state`='有效' and r.`active`='未整改'
+        where `section_id`=#{section_id} and `state`='有效' and `active`='未整改'
     </select>
 
     <!--分页模糊查询隐患记录_已整改_PC-->

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zty.smart_site.dao.TrainGenreDao">
+    <!--增加建造类型-->
+    <insert id="InsertTrainGenre" parameterType="java.util.Map">
+        INSERT INTO `smart_site`.`train_genre` (genre_name`) VALUES (#{genre_name});
+    </insert>
+
+    <!--删除建造类型-->
+    <delete id="DeleteTrainGenre" parameterType="java.util.Map">
+        DELETE FROM `smart_site`.`train_genre` WHERE `id`=#{id}
+    </delete>
+
+    <!--修改建造类型-->
+    <update id="UpdateTrainGenre" parameterType="java.util.Map">
+        UPDATE `smart_site`.`train_genre` SET `genre_name`=#{genre_name} WHERE (`id`=#{id});
+    </update>
+
+    <!--分页模糊查询建造类型-->
+    <select id="FindTrainGenre" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.TrainGenre">
+        <bind name="page" value="pageSize*(pageNo-1)"></bind>
+        SELECT `id`,`genre_name` FROM `smart_site`.`train_genre`
+        limit #{page},#{pageSize}
+    </select>
+
+    <!--统计总数-->
+    <select id="Total" parameterType="java.util.Map" resultType="long">
+        SELECT COUNT(*) FROM `smart_site`.`train_genre`
+    </select>
+
+    <!--下拉框查询建造类型-->
+    <select id="SelectTrainGenre" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.TrainGenre">
+        SELECT `id`,`genre_name` FROM `smart_site`.`train_genre`
+    </select>
+</mapper>

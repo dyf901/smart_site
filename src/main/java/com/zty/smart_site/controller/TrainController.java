@@ -30,6 +30,8 @@ public class TrainController {
     @ApiOperation(value = "增加培训内容",notes = "传参:")
     @PostMapping("/InsertTrain")
     public boolean InsertTrain(@RequestBody Map map){
+        System.out.println(map);
+        map.put("train_name",map.get("commonality_name"));
         return trainService.InsertTrain(map)==1;
     }
 
@@ -54,6 +56,14 @@ public class TrainController {
         page.setTotal(trainService.Total(map));
         page.setItems(trainService.FindTrain(map));
         return page;
+    }
+
+    @ApiOperation(value ="培训内容App",notes ="")
+    @PostMapping("/FindTrainAll")
+    public JsonResult FindTrainAll(@RequestBody Map map){
+        JsonResult jsonResult = new JsonResult();
+        jsonResult.setData(trainService.FindTrainAll(map));
+        return jsonResult;
     }
 
     @ApiOperation(value = "菜单", notes = "")

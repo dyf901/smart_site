@@ -30,4 +30,7 @@ public interface TrainDao {
 
     //根据id查询培训内容富文本
     Train FindTrainByIdX(Map map);
+
+    //根据标段id查询所有培训内容
+    List<Train> FindTrainAll(Map map);
 }
