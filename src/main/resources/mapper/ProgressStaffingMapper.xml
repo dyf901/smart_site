@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zty.smart_site.dao.ProgressStaffingDao">
+    <!--增加编制进度-->
+    <insert id="InsertProgressStaffing" parameterType="java.util.Map">
+        INSERT INTO `smart_site`.`progress_staffing` (`section_id`, `progress_name`, `duration`, `start_time`, `end_time`, `remark`, `fatherid`, `leave`) VALUES (#{section_id}, #{progress_name}, #{duration}, #{start_time}, #{end_time}, #{remark}, #{fatherid}, #{leave});
+    </insert>
+
+    <!--删除编制进度-->
+    <delete id="DeleteProgressStaffing" parameterType="java.util.Map">
+        DELETE FROM `smart_site`.`progress_staffing` WHERE `id`=#{id}
+    </delete>
+
+    <!--修改编制进度-->
+    <update id="UpdateProgressStaffing" parameterType="java.util.Map">
+        UPDATE `smart_site`.`progress_staffing` SET `progress_name`=#{progress_name}, `duration`=#{duration}, `start_time`=#{start_time}, `end_time`=#{end_time}, `remark`=#{remark} WHERE (`id`=#{id});
+    </update>
+
+    <!--根据标段id查询-->
+    <select id="FindProgressStaffingBySectionId" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.ProgressStaffing">
+        SELECT `id`, `section_id`, `progress_name`, `duration`, `start_time`, `end_time`, `remark`, `fatherid`, `leave` FROM `smart_site`.`progress_staffing`
+        <where>
+            `section_id`=#{section_id}
+            <if test="leave!=null and leave!=''">
+                and `leave`=#{leave}
+            </if>
+            <if test="fatherid!=null and fatherid!=''">
+                and `fatherid`=#{fatherid}
+            </if>
+        </where>
+    </select>
+</mapper>

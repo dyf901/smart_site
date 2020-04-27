@@ -8,6 +8,8 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -53,4 +55,32 @@ public class TrainGenreController {
     public List<TrainGenre> SelectTrainGenre(@RequestBody Map map){
         return trainGenreService.SelectTrainGenre(map);
     }
+
+
+    /*public Page Cbl(@RequestBody Map map) {
+        String token = map.get("token").toString();
+        User u = userDao.getUserByToken(token);
+        Page p = new Page();
+        p.setToken(token);
+        List<Integer> l = userQxDao.getUq(u.getId());
+        List<Page> lq = new ArrayList<>();
+        for (int i : l) {
+            if (qxDao.getQx(i).getLevel() == 1) {
+                Page pa = new Page();
+                pa.setToken(qxDao.getQx(i).getName());
+                pa.setIcon(qxDao.getQx(i).getIcon());
+                List<Qx> li = new ArrayList<>();
+                for (int in : l) {
+                    Map m = new HashMap();
+                    m.put("level", qxDao.getQx(i).getId());
+                    m.put("id", in);
+                    li.addAll(qxDao.getQx3(m));
+                }
+                pa.setList(li);
+                lq.add(pa);
+            }
+        }
+        p.setList(lq);
+        return p;
+    }*/
 }
