@@ -207,6 +207,17 @@
         SELECT COUNT(*) FROM `smart_site`.`riskshow`
         where `section_id`=#{section_id} and `state`='有效' and `active`='已整改' and `status`='待检查'
     </select>
+
+    <!--分页模糊查询隐患记录_整改待验_PC-->
+    <select id="FindRiskshowByStaffIdALL" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.Riskshow">
+        SELECT r.`id`, r.`risk_id`, r.`staff_id`, r.`process_id`, r.`section_id`, r.`station_id`, r.`sub_id`, r.`responsible`, r.`description`, r.`uptime`, r.`url`, r.`active`,r.`title`,a.`risk_category` as risk_name,s.`station_name` as station_name,l.`subcontractors_name` as `sub_name`,p.`process_name` as `process_name`,z.`staff_name`  as `staff_name` FROM `smart_site`.`riskshow` r
+        INNER JOIN `smart_site`.`risk` a ON r.`risk_id`=a.`id`
+        INNER JOIN `smart_site`.`station` s ON r.`station_id`=s.`id`
+        INNER JOIN `smart_site`.`subcontractors` l ON r.`sub_id`=l.`id`
+        INNER JOIN `smart_site`.`process` p ON r.`process_id`=p.`id`
+        INNER JOIN `smart_site`.`staff` z ON r.`staff_id`=z.`id`
+        where r.`staff_id`=#{staff_id}
+    </select>
     
     <!--修改安全隐患状态(有效)-->
     <update id="UpdateActiveY" parameterType="java.util.Map">

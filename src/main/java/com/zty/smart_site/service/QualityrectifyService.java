@@ -48,4 +48,14 @@ public class QualityrectifyService implements QualityrectifyDao {
     public Qualityrectify FindQualityrectifyByqualityshowId(Map map) {
         return qualityrectifyDao.FindQualityrectifyByqualityshowId(map);
     }
+
+    @Override
+    public List<Qualityrectify> FindQualityrectifyPC(Map map) {
+        return qualityrectifyDao.FindQualityrectifyPC(map);
+    }
+
+    @Override
+    public long TotalPC(Map map) {
+        return qualityrectifyDao.TotalPC(map);
+    }
 }

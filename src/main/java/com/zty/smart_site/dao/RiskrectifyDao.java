@@ -25,4 +25,10 @@ public interface RiskrectifyDao {
 
     //根据riskshow_id查询整改通知单信息
     Riskrectify FindRiskrectifyByriskshowId(Map map);
+
+    //分页模糊查询整改通知单信息
+    List<Riskrectify> FindRiskrectifyPC(Map map);
+
+    //统计总数
+    long TotalPC(Map map);
 }

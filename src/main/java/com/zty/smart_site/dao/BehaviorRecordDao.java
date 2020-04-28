@@ -31,4 +31,7 @@ public interface BehaviorRecordDao {
 
     //测试
     List<BehaviorRecord> ceshi(Map map);
+
+    //分页查询个人行为记录
+    List<BehaviorRecord> FindBehaviorRecordByStaffIdALL(Map map);
 }

@@ -59,4 +59,9 @@ public class BehaviorRecordService implements BehaviorRecordDao {
     public List<BehaviorRecord> ceshi(Map map) {
         return behaviorRecordDao.ceshi(map);
     }
+
+    @Override
+    public List<BehaviorRecord> FindBehaviorRecordByStaffIdALL(Map map) {
+        return behaviorRecordDao.FindBehaviorRecordByStaffIdALL(map);
+    }
 }

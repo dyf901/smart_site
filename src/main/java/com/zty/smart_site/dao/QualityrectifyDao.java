@@ -23,4 +23,10 @@ public interface QualityrectifyDao {
 
     //根据qualityshow_id查询整改通知单信息
     Qualityrectify FindQualityrectifyByqualityshowId(Map map);
+
+    //分页模糊查询整改通知单信息PC
+    List<Qualityrectify> FindQualityrectifyPC(Map map);
+
+    //统计总数PC
+    long TotalPC(Map map);
 }

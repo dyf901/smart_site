@@ -47,4 +47,14 @@ public class RiskrectifyService implements RiskrectifyDao {
     public Riskrectify FindRiskrectifyByriskshowId(Map map) {
         return riskrectifyDao.FindRiskrectifyByriskshowId(map);
     }
+
+    @Override
+    public List<Riskrectify> FindRiskrectifyPC(Map map) {
+        return riskrectifyDao.FindRiskrectifyPC(map);
+    }
+
+    @Override
+    public long TotalPC(Map map) {
+        return riskrectifyDao.TotalPC(map);
+    }
 }

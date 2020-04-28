@@ -48,4 +48,9 @@ public class ConversionsService implements ConversionsDao {
     public long TotalByStaff(Map map) {
         return conversionsDao.TotalByStaff(map);
     }
+
+    @Override
+    public List<Conversions> FindConversionsByStaffIdALL(Map map) {
+        return conversionsDao.FindConversionsByStaffIdALL(map);
+    }
 }

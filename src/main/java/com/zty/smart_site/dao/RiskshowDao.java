@@ -71,6 +71,9 @@ public interface RiskshowDao {
     //统计总数
     long Total_ZGDY_PC(Map map);
 
+    //分页模糊查询隐患记录_整改待验_PC
+    List<Riskshow> FindRiskshowByStaffIdALL(Map map);
+
     //修改安全隐患状态(有效)
     int UpdateActiveY(Map map);
 

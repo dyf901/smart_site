@@ -52,7 +52,7 @@
 
     <!--根据标段id查询所有培训内容-->
     <select id="FindTrainAll" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.Train">
-        SELECT t.`id`, t.`type_id`, t.`train_name`, t.`content`, t.`section_id`,t.`video_url` FROM `smart_site`.`train` t
+        SELECT t.`id`, t.`train_name`, t.`content`, t.`section_id`,t.`video_url` FROM `smart_site`.`train` t
         WHERE t.`section_id`=#{section_id}
     </select>
 </mapper>

@@ -44,6 +44,17 @@ public class QualityrectifyController {
         return page;
     }
 
+    @ApiOperation(value = "分页模糊查询整改通知单信息PC",notes = "测试数据:")
+    @PostMapping("/FindQualityrectifyPC")
+    public Page<Qualityrectify> FindQualityrectifyPC(@RequestBody Map map){
+        Page<Qualityrectify> page = new Page<Qualityrectify>();
+        page.setPageNo((Integer) map.get("pageNo"));
+        page.setPageSize((Integer) map.get("pageSize"));
+        page.setTotal(qualityrectifyService.TotalPC(map));
+        page.setItems(qualityrectifyService.FindQualityrectifyPC(map));
+        return page;
+    }
+
     @ApiOperation(value = "根据riskshow_id查询整改通知单信息",notes = "传参:qualityshow_id(安全隐患记录id)")
     @PostMapping("/FindQualityrectifyByqualityshowId")
     public JsonResult FindQualityrectifyByqualityshowId(@RequestBody Map map){

@@ -120,6 +120,11 @@ public class QualityshowService implements QualityshowDao {
     }
 
     @Override
+    public List<Qualityshow> FindQualityshowByStaffIdALL(Map map) {
+        return qualityshowDao.FindQualityshowByStaffIdALL(map);
+    }
+
+    @Override
     public int UpdateActiveY(Map map) {
         return qualityshowDao.UpdateActiveY(map);
     }

@@ -139,6 +139,11 @@ public class RiskshowService implements RiskshowDao {
         return riskshowDao.Total_ZGDY_PC(map);
     }
 
+    @Override
+    public List<Riskshow> FindRiskshowByStaffIdALL(Map map) {
+        return riskshowDao.FindRiskshowByStaffIdALL(map);
+    }
+
     //修改安全隐患状态(有效)
     @Override
     public int UpdateActiveY(Map map) {

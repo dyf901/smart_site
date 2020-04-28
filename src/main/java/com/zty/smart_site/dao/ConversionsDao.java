@@ -25,4 +25,7 @@ public interface ConversionsDao {
 
     //统计个人总数
     long TotalByStaff(Map map);
+
+    //分页模糊查询个人兑换记录
+    List<Conversions> FindConversionsByStaffIdALL(Map map);
 }

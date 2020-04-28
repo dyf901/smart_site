@@ -58,6 +58,17 @@ public class RiskrectifyController {
         return page;
     }
 
+    @ApiOperation(value = "分页模糊查询整改通知单信息PC",notes = "测试数据:")
+    @PostMapping("/FindRiskrectifyPC")
+    public Page<Riskrectify> FindRiskrectifyPC(@RequestBody Map map){
+        Page<Riskrectify> page = new Page<Riskrectify>();
+        page.setPageNo((Integer) map.get("pageNo"));
+        page.setPageSize((Integer) map.get("pageSize"));
+        page.setTotal(riskrectifyService.TotalPC(map));
+        page.setItems(riskrectifyService.FindRiskrectifyPC(map));
+        return page;
+    }
+
     @ApiOperation(value = "根据riskshow_id查询整改通知单信息",notes = "传参:riskshow_id(安全隐患记录id)")
     @PostMapping("/FindRiskrectifyByriskshowId")
     public JsonResult FindRiskrectifyByriskshowId(@RequestBody Map map){

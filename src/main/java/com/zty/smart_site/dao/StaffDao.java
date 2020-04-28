@@ -53,6 +53,9 @@ public interface StaffDao {
     //根据Id查询员工信息
     Staff FindStaffById(Map map);
 
+    //根据Id查询员工信息
+    Staff FindStaffByStaffIdAll(Map map);
+
     //根绝站点,PositionId查询安全隐患负责人
     Staff FindStaffByPositionId(Map map);
 

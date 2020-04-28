@@ -21,4 +21,7 @@ public interface ExamRecordDao {
     //查询个人考试记录
     List<ExamRecord> FindExamRecordByStaffId(Map map);
 
+    //查询个人考试记录
+    List<ExamRecord> FindExamRecordByStaffIdALL(Map map);
+
 }

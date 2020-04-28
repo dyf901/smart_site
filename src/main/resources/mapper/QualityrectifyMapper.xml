@@ -34,6 +34,22 @@
         SELECT COUNT(*) FROM `smart_site`.`qualityrectify` WHERE `section_id`=#{section_id} and `station_id`=#{station_id}
     </select>
 
+    <!--分页模糊查询整改通知单信息-->
+    <select id="FindQualityrectifyPC" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.Qualityrectify">
+        <bind name="page" value="pageSize*(pageNo-1)"></bind>
+        SELECT r.`id`, r.`title`, r.`section_id`, r.`station_id`, r.`sub_id`, r.`staff_name`, r.`responsible`, r.`up_time`,r.`plan_time`, r.`description`, r.`active`, l.`station_name` as `station_name`, f.`subcontractors_name` as `sub_name` FROM `smart_site`.`qualityrectify` r
+        INNER JOIN `smart_site`.`station` l ON r.`station_id`=l.`id`
+        INNER JOIN `smart_site`.`subcontractors` f ON r.`sub_id`=f.`id`
+        WHERE r.`section_id`=#{section_id}
+        order by r.`up_time` desc
+        limit #{page},#{pageSize}
+    </select>
+
+    <!--统计总数-->
+    <select id="TotalPC" parameterType="java.util.Map" resultType="long">
+        SELECT COUNT(*) FROM `smart_site`.`qualityrectify` WHERE `section_id`=#{section_id}
+    </select>
+
     <!--根据qualityshow_id查询-->
     <select id="FindQualityrectifyByqualityshowId" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.Qualityrectify">
         SELECT r.`id`, r.`title`, r.`section_id`, r.`station_id`, r.`sub_id`, r.`staff_name`, r.`responsible`, r.`up_time`,r.`plan_time`, r.`description`, r.`active`, l.`station_name` as `station_name`, f.`subcontractors_name` as `sub_name` FROM `smart_site`.`qualityrectify` r

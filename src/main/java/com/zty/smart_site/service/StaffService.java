@@ -103,6 +103,11 @@ public class StaffService implements StaffDao {
         return staffDao.FindStaffById(map);
     }
 
+    @Override
+    public Staff FindStaffByStaffIdAll(Map map) {
+        return staffDao.FindStaffByStaffIdAll(map);
+    }
+
     //根绝position_id查询负责人信息
     @Override
     public Staff FindStaffByPositionId(Map map) {

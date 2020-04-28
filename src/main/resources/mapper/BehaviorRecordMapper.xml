@@ -78,4 +78,14 @@
         INNER JOIN `smart_site`.`section` d ON b.`section_id`=d.`id`
         WHERE b.`staff_id`=#{staff_id}
     </select>
+
+    <!--分页查询个人行为记录-->
+    <select id="FindBehaviorRecordByStaffIdALL" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.BehaviorRecord">
+        SELECT b.`id`, b.`staff_id`, b.`behavior_id`, b.`section_id`, b.`station_id`, b.`uptime`, b.`remark`, s.`staff_name` as staff_name, a.`behavior_name` as behavior_name,l.station_name as station_name,d.section_name as section_name FROM `smart_site`.`behavior_record` b
+        INNER JOIN `smart_site`.`staff` s ON b.`staff_id`=s.`id`
+        INNER JOIN `smart_site`.`behavior` a ON b.`behavior_id`=a.`id`
+        INNER JOIN `smart_site`.`station` l ON b.`station_id`=l.`id`
+        INNER JOIN `smart_site`.`section` d ON b.`section_id`=d.`id`
+        WHERE b.`staff_id`=#{staff_id}
+    </select>
 </mapper>
