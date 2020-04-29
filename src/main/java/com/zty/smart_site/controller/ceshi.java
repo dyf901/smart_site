@@ -13,6 +13,7 @@ import java.awt.*;
 import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 import static com.zty.smart_site.util.CreatrQrCode.addLogo_QRCode;
 import static com.zty.smart_site.util.CreatrQrCode.pressText;
@@ -59,8 +60,10 @@ public class ceshi {
             //画二维码，记得调用multiFormatWriter.encode()时最后要带上hints参数，不然上面设置无效
             BitMatrix bitMatrix = multiFormatWriter.encode(s, BarcodeFormat.QR_CODE, width, height, hints);
 
+            String uuid = UUID.randomUUID().toString().replaceAll("-", "");
+            String tempFileName = uuid + ".jpg";
             //qrcFile用来存放生成的二维码图片（无logo，无文字）
-            File qrcFile = new File(path,"wutu.jpg");
+            File qrcFile = new File(path,tempFileName);
 
             //logoFile准备放在二维码中的图片(path:图片路径,图片名称)
             File logoFile = new File(path,"shilinwei.jpg");

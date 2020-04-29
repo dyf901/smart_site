@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zty.smart_site.dao.TrainRecordDao">
+    <!--增加展馆培训记录-->
+    <insert id="InsertTrainRecord" parameterType="java.util.Map">
+        INSERT INTO `smart_site`.`train_record` (`staff_name`, `train_name`, `section_id`) VALUES (#{staff_name}, #{train_name}, #{section_id});
+    </insert>
+
+    <!--分页查询展馆培训记录-->
+    <select id="FindTrainRecord" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.TrainRecord">
+        <bind name="page" value="pageSize*(pageNo-1)"></bind>
+        SELECT `id`, `staff_name`, `train_name`, `section_id` FROM `smart_site`.`train_record`
+        limit #{page},#{pageSize}
+    </select>
+
+    <!--统计总数-->
+    <select id="Total" resultType="long">
+        SELECT COUNT(*) FROM `smart_site`.`train_record`
+    </select>
+</mapper>
