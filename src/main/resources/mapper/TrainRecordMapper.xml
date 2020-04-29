@@ -5,18 +5,25 @@
 <mapper namespace="com.zty.smart_site.dao.TrainRecordDao">
     <!--增加展馆培训记录-->
     <insert id="InsertTrainRecord" parameterType="java.util.Map">
-        INSERT INTO `smart_site`.`train_record` (`staff_name`, `train_name`, `section_id`) VALUES (#{staff_name}, #{train_name}, #{section_id});
+        INSERT INTO `smart_site`.`train_record` (`staff_name`, `train_name`, `section_id`,`uptime`,`staff_img`) VALUES (#{staff_name}, #{train_name}, #{section_id},now(),#{staff_img});
     </insert>
 
     <!--分页查询展馆培训记录-->
     <select id="FindTrainRecord" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.TrainRecord">
         <bind name="page" value="pageSize*(pageNo-1)"></bind>
-        SELECT `id`, `staff_name`, `train_name`, `section_id` FROM `smart_site`.`train_record`
+        SELECT `id`, `staff_name`, `train_name`, `section_id`,`uptime` FROM `smart_site`.`train_record`
+        where `section_id`=#{section_id}
         limit #{page},#{pageSize}
     </select>
 
     <!--统计总数-->
-    <select id="Total" resultType="long">
-        SELECT COUNT(*) FROM `smart_site`.`train_record`
+    <select id="Total" parameterType="java.util.Map" resultType="long">
+        SELECT COUNT(*) FROM `smart_site`.`train_record` where `section_id`=#{section_id}
+    </select>
+
+    <!--根据培训名称查询培训记录-->
+    <select id="FindTrainRecordByTrainName" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.TrainRecord">
+        SELECT `id`, `staff_name`, `train_name`, `section_id`,`uptime`,`staff_img` FROM `smart_site`.`train_record`
+        where `section_id`=#{section_id} and `train_name`=#{train_name}
     </select>
 </mapper>

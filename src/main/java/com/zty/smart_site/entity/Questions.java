@@ -19,6 +19,9 @@ public class Questions {
     @ApiModelProperty(value = "专业id",name = "specialty_id")
     private int specialty_id;
 
+    @ApiModelProperty(value = "专业id",name = "count")
+    private int count;
+
     @ApiModelProperty(value = "题目类型(选择,填空,判断,简答)",name = "questions_type")
     private String questions_type;
 
@@ -59,11 +62,12 @@ public class Questions {
         super();
     }
 
-    public Questions(int id, int section_id, int knowledge_id, int specialty_id, String questions_type, String knowledge_name, String specialty_name, String questions_content, String select_A, String select_B, String select_C, String select_D, String select_answer, String gap_answer, String short_answer, Boolean judge_answer) {
+    public Questions(int id, int section_id, int knowledge_id, int specialty_id, int count, String questions_type, String knowledge_name, String specialty_name, String questions_content, String select_A, String select_B, String select_C, String select_D, String select_answer, String gap_answer, String short_answer, Boolean judge_answer) {
         this.id = id;
         this.section_id = section_id;
         this.knowledge_id = knowledge_id;
         this.specialty_id = specialty_id;
+        this.count = count;
         this.questions_type = questions_type;
         this.knowledge_name = knowledge_name;
         this.specialty_name = specialty_name;
@@ -206,13 +210,22 @@ public class Questions {
         this.specialty_name = specialty_name;
     }
 
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
+    }
+
     @Override
     public String toString() {
-        return "{" +
+        return "Questions{" +
                 "id=" + id +
                 ", section_id=" + section_id +
                 ", knowledge_id=" + knowledge_id +
                 ", specialty_id=" + specialty_id +
+                ", count=" + count +
                 ", questions_type='" + questions_type + '\'' +
                 ", knowledge_name='" + knowledge_name + '\'' +
                 ", specialty_name='" + specialty_name + '\'' +

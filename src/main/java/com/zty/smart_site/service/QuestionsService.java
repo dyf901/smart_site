@@ -69,4 +69,20 @@ public class QuestionsService implements QuestionsDao {
     public int[] FindQuestionByQuestionTypeJ(Map map) {
         return questionsDao.FindQuestionByQuestionTypeJ(map);
     }
+
+    //统计试题总数
+    @Override
+    public int CountAll(Map map) {
+        return questionsDao.CountAll(map);
+    }
+
+    @Override
+    public List<Questions> CountByKnowledge(Map map) {
+        return questionsDao.CountByKnowledge(map);
+    }
+
+    @Override
+    public List<Questions> CountBySpecialty(Map map) {
+        return questionsDao.CountBySpecialty(map);
+    }
 }

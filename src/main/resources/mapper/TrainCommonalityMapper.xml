@@ -47,4 +47,9 @@
             </if>
         </where>
     </select>
+
+    <!--统计总课程数-->
+    <select id="CountAll" parameterType="java.util.Map" resultType="int">
+        SELECT COUNT(*) FROM `smart_site`.`train_commonality`
+    </select>
 </mapper>

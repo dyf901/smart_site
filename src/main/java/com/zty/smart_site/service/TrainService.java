@@ -56,4 +56,9 @@ public class TrainService implements TrainDao {
     public List<Train> FindTrainAll(Map map) {
         return trainDao.FindTrainAll(map);
     }
+
+    @Override
+    public int CountAll(Map map) {
+        return trainDao.CountAll(map);
+    }
 }

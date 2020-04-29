@@ -45,4 +45,9 @@ public class ExaminationService implements ExaminationDao {
     public List<Examination> SelectExamination(Map map) {
         return examinationDao.SelectExamination(map);
     }
+
+    @Override
+    public int CountAll(Map map) {
+        return examinationDao.CountAll(map);
+    }
 }

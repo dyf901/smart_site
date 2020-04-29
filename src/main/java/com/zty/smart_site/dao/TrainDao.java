@@ -33,4 +33,6 @@ public interface TrainDao {
 
     //根据标段id查询所有培训内容
     List<Train> FindTrainAll(Map map);
+
+    int CountAll(Map map);
 }

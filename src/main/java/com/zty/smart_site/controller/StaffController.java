@@ -184,7 +184,7 @@ public class StaffController {
             json.put("id", 1);
             json.put("type", "peixun");*/
             map.put("staff_id", map.get("id"));
-            map.put("type", "培训");
+            map.put("type", 2);
 
             JSONObject json = new JSONObject(map);
 

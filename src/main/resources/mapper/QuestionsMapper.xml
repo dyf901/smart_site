@@ -81,4 +81,25 @@
     <select id="FindQuestionByQuestionTypeJ" parameterType="java.util.Map" resultType="int">
         SELECT `id` FROM `smart_site`.`questions` WHERE questions_type='简答题' and `section_id`=#{section_id} ORDER BY rand() limit #{countJ};
     </select>
+
+    <!--统计试题总数-->
+    <select id="CountAll" parameterType="java.util.Map" resultType="int">
+        SELECT COUNT(*) FROM `smart_site`.`questions` WHERE `section_id`=#{section_id}
+    </select>
+
+    <select id="CountByKnowledge" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.Questions">
+        SELECT q.`knowledge_id`, k.`knowledge_name` as `knowledge_name`,COUNT(*) as `count` FROM `smart_site`.`questions` q
+        INNER JOIN `smart_site`.`knowledge` k ON q.`knowledge_id`=k.`id`
+        INNER JOIN `smart_site`.`specialty` s ON q.`specialty_id`=s.`id`
+		WHERE q.`section_id`=#{section_id}
+        GROUP BY q.`knowledge_id`
+    </select>
+
+    <select id="CountBySpecialty" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.Questions">
+        SELECT  q.`specialty_id`,s.`specialty_name` as `specialty_name`,COUNT(*) as `count` FROM `smart_site`.`questions` q
+        INNER JOIN `smart_site`.`knowledge` k ON q.`knowledge_id`=k.`id`
+        INNER JOIN `smart_site`.`specialty` s ON q.`specialty_id`=s.`id`
+        WHERE q.`section_id`=#{section_id}
+        GROUP BY q.`specialty_id`
+    </select>
 </mapper>

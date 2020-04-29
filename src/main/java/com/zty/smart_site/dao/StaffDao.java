@@ -85,4 +85,7 @@ public interface StaffDao {
 
     //按照年龄端分组查询(单独站点)
     List<Staff> CountByStaffAge(Map map);
+
+    //统计总数
+    int CountAll(Map map);
 }

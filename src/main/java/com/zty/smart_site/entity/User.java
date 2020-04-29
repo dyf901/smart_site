@@ -16,13 +16,13 @@ section_name            标段名称
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class User {
     private int id,section_id;
-    private String username,password,create_time,end_time,section_name;
+    private String username,password,create_time,end_time,section_name,user_menu;
 
     public User(){
         super();
     }
 
-    public User(int id, int section_id, String username, String password, String create_time, String end_time, String section_name) {
+    public User(int id, int section_id, String username, String password, String create_time, String end_time, String section_name, String user_menu) {
         this.id = id;
         this.section_id = section_id;
         this.username = username;
@@ -30,6 +30,7 @@ public class User {
         this.create_time = create_time;
         this.end_time = end_time;
         this.section_name = section_name;
+        this.user_menu = user_menu;
     }
 
     public int getId() {
@@ -88,9 +89,17 @@ public class User {
         this.section_name = section_name;
     }
 
+    public String getUser_menu() {
+        return user_menu;
+    }
+
+    public void setUser_menu(String user_menu) {
+        this.user_menu = user_menu;
+    }
+
     @Override
     public String toString() {
-        return "User{" +
+        return "{" +
                 "id=" + id +
                 ", section_id=" + section_id +
                 ", username='" + username + '\'' +
@@ -98,6 +107,7 @@ public class User {
                 ", create_time='" + create_time + '\'' +
                 ", end_time='" + end_time + '\'' +
                 ", section_name='" + section_name + '\'' +
+                ", user_menu='" + user_menu + '\'' +
                 '}';
     }
 }

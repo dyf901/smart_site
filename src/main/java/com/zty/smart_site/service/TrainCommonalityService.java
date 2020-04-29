@@ -42,4 +42,9 @@ public class TrainCommonalityService implements TrainCommonalityDao {
     public long Total(Map map) {
         return trainCommonalityDao.Total(map);
     }
+
+    @Override
+    public int CountAll() {
+        return trainCommonalityDao.CountAll();
+    }
 }

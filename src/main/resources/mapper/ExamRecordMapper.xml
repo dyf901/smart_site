@@ -47,4 +47,14 @@
         WHERE e.`staff_id`=#{staff_id}
         ORDER BY e.`exam_time` DESC
     </select>
+
+    <!--统计考试通过人数-->
+    <select id="CountT" parameterType="java.util.Map" resultType="int">
+        SELECT COUNT(*) FROM `smart_site`.`exam_record` WHERE `exam_result`='合格' and `section_id`=#{section_id}
+    </select>
+
+    <!--统计考试通过人数-->
+    <select id="CountAll" parameterType="java.util.Map" resultType="int">
+        SELECT COUNT(*) FROM `smart_site`.`exam_record` WHERE `section_id`=#{section_id}
+    </select>
 </mapper>

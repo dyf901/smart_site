@@ -41,4 +41,14 @@ public class ExamRecordService implements ExamRecordDao {
     public List<ExamRecord> FindExamRecordByStaffIdALL(Map map) {
         return examRecordDao.FindExamRecordByStaffIdALL(map);
     }
+
+    @Override
+    public int CountT(Map map) {
+        return examRecordDao.CountT(map);
+    }
+
+    @Override
+    public int CountAll(Map map) {
+        return examRecordDao.CountAll(map);
+    }
 }

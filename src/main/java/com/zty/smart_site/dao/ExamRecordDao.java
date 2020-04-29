@@ -24,4 +24,7 @@ public interface ExamRecordDao {
     //查询个人考试记录
     List<ExamRecord> FindExamRecordByStaffIdALL(Map map);
 
+    int CountT(Map map);
+
+    int CountAll(Map map);
 }

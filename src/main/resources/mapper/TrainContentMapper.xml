@@ -7,4 +7,9 @@
     <select id="FindTrainContent" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.TrainContent">
         SELECT `id`, `train_name`, `content`, `img_url` FROM `smart_site`.`train_content` WHERE `id`=#{id}
     </select>
+
+    <!--查询全部展馆体验-->
+    <select id="FindTrainContentAll" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.TrainContent">
+        SELECT `id`, `train_name`, `content`, `img_url` FROM `smart_site`.`train_content`
+    </select>
 </mapper>

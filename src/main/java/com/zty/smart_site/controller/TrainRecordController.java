@@ -10,9 +10,10 @@ import org.apache.poi.ss.formula.functions.T;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
-@Api(description = "培训内容接口")
+@Api(description = "展馆培训接口")
 @RestController
 @RequestMapping("TrainRecord")
 @CrossOrigin
@@ -42,8 +43,14 @@ public class TrainRecordController {
         Page<TrainRecord> page = new Page<TrainRecord>();
         page.setPageNo((Integer) map.get("pageNo"));
         page.setPageSize((Integer) map.get("pageSize"));
-        page.setTotal(trainRecordService.Total());
+        page.setTotal(trainRecordService.Total(map));
         page.setItems(trainRecordService.FindTrainRecord(map));
         return page;
+    }
+
+    @ApiOperation(value = "根据培训名称查询全部培训记录",notes = "")
+    @PostMapping("/FindTrainRecordByTrainName")
+    public List<TrainRecord> FindTrainRecordByTrainName(@RequestBody Map map){
+        return trainRecordService.FindTrainRecordByTrainName(map);
     }
 }

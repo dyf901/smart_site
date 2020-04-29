@@ -210,4 +210,9 @@
         INNER JOIN `smart_site`.`section` j ON s.`section_id`=j.`id`
         WHERE s.`id`=#{staff_id}
     </select>
+
+    <!--统计总数-->
+    <select id="CountAll" parameterType="java.util.Map" resultType="int">
+        SELECT COUNT(*) FROM `smart_site`.`staff` WHERE section_id=#{section_id}
+    </select>
 </mapper>

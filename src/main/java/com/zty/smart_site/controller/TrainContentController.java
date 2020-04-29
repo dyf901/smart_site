@@ -7,9 +7,10 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
-@Api(description = "培训内容")
+@Api(description = "展馆体验接口")
 @RestController
 @RequestMapping("traincontent")
 @CrossOrigin
@@ -21,5 +22,11 @@ public class TrainContentController {
     @PostMapping("/FindTrainContent")
     public TrainContent FindTrainContent(@RequestBody Map map){
         return trainContentService.FindTrainContent(map);
+    }
+
+    @ApiOperation(value = "查询全部展馆体验",notes = "")
+    @PostMapping("/FindTrainContentAll")
+    public List<TrainContent> FindTrainContentAll(@RequestBody Map map){
+        return trainContentService.FindTrainContentAll();
     }
 }

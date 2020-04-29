@@ -13,5 +13,7 @@ public interface TrainRecordDao {
     List<TrainRecord> FindTrainRecord(Map map);
 
     //统计总数
-    long Total();
+    long Total(Map map);
+
+    List<TrainRecord> FindTrainRecordByTrainName(Map map);
 }

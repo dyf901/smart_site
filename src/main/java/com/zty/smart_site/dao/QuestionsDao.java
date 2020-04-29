@@ -32,4 +32,13 @@ public interface QuestionsDao {
     int[] FindQuestionByQuestionTypeT(Map map);
 
     int[] FindQuestionByQuestionTypeJ(Map map);
+
+    //统计题目总数
+    int CountAll(Map map);
+
+    //按照知识分类
+    List<Questions> CountByKnowledge(Map map);
+
+    //按照专业分类
+    List<Questions> CountBySpecialty(Map map);
 }

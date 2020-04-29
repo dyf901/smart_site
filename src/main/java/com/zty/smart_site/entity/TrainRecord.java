@@ -13,21 +13,29 @@ public class TrainRecord {
     @ApiModelProperty(value = "标段id",name = "section_id")
     private int section_id;
 
-    @ApiModelProperty(value = "积分id",name = "staff_name")
+    @ApiModelProperty(value = "考试人员",name = "staff_name")
     private String staff_name;
 
-    @ApiModelProperty(value = "积分id",name = "train_name")
+    @ApiModelProperty(value = "培训内容",name = "train_name")
     private String train_name;
+
+    @ApiModelProperty(value = "上传时间",name = "uptime")
+    private String uptime;
+
+    @ApiModelProperty(value = "员工图片",name = "staff_img")
+    private String Staff_img;
 
     public TrainRecord(){
         super();
     }
 
-    public TrainRecord(int id, int section_id, String staff_name, String train_name) {
+    public TrainRecord(int id, int section_id, String staff_name, String train_name, String uptime, String staff_img) {
         this.id = id;
         this.section_id = section_id;
         this.staff_name = staff_name;
         this.train_name = train_name;
+        this.uptime = uptime;
+        Staff_img = staff_img;
     }
 
     public int getId() {
@@ -62,13 +70,31 @@ public class TrainRecord {
         this.train_name = train_name;
     }
 
+    public String getUptime() {
+        return uptime;
+    }
+
+    public void setUptime(String uptime) {
+        this.uptime = uptime;
+    }
+
+    public String getStaff_img() {
+        return Staff_img;
+    }
+
+    public void setStaff_img(String staff_img) {
+        Staff_img = staff_img;
+    }
+
     @Override
     public String toString() {
-        return "{" +
+        return "TrainRecord{" +
                 "id=" + id +
                 ", section_id=" + section_id +
                 ", staff_name='" + staff_name + '\'' +
                 ", train_name='" + train_name + '\'' +
+                ", uptime='" + uptime + '\'' +
+                ", Staff_img='" + Staff_img + '\'' +
                 '}';
     }
 }

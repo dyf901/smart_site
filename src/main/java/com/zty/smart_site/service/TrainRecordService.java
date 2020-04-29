@@ -24,7 +24,12 @@ public class TrainRecordService implements TrainRecordDao {
     }
 
     @Override
-    public long Total() {
-        return trainRecordDao.Total();
+    public long Total(Map map) {
+        return trainRecordDao.Total(map);
+    }
+
+    @Override
+    public List<TrainRecord> FindTrainRecordByTrainName(Map map) {
+        return trainRecordDao.FindTrainRecordByTrainName(map);
     }
 }

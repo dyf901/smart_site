@@ -24,4 +24,7 @@ public interface ExaminationDao {
 
     //下拉框查询试卷信息
     List<Examination> SelectExamination(Map map);
+
+    //统计总数
+    int CountAll(Map map);
 }
