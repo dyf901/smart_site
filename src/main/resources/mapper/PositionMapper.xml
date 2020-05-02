@@ -29,4 +29,9 @@
     <select id="Total" parameterType="java.util.Map" resultType="long">
         SELECT COUNT(*) FROM `smart_site`.`position`
     </select>
+
+    <!--下拉框查询职务信息-->
+    <select id="SelectPosition" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.Position">
+        SELECT `id`,`position_name`, `remark` FROM `smart_site`.`position`
+    </select>
 </mapper>

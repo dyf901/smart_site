@@ -42,4 +42,9 @@ public class PositionService implements PositionDao {
     public long Total(Map map) {
         return positionDao.Total(map);
     }
+
+    @Override
+    public List<Position> SelectPosition(Map map) {
+        return positionDao.SelectPosition(map);
+    }
 }

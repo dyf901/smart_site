@@ -88,4 +88,7 @@ public interface StaffDao {
 
     //统计总数
     int CountAll(Map map);
+
+    //上传员工二维码
+    int InsertStaffCode(Map map);
 }

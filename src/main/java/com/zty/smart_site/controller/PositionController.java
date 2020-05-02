@@ -8,6 +8,7 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
 @Api(description = "职务接口")
@@ -45,5 +46,11 @@ public class PositionController {
         page.setTotal(positionService.Total(map));
         page.setItems(positionService.FindPosition(map));
         return page;
+    }
+
+    @ApiOperation(value = "下拉框查询职务信息",notes = "{\"pageNo\":1,\"pageSize\":10}")
+    @PostMapping("/SelectPosition")
+    public List<Position> SelectPosition(@RequestBody Map map){
+        return positionService.SelectPosition(map);
     }
 }

@@ -3,12 +3,14 @@ package com.zty.smart_site.controller;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.zty.smart_site.entity.*;
 import com.zty.smart_site.service.*;
+import com.zty.smart_site.util.ExportWordUtils;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.apache.poi.hssf.usermodel.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.text.ParseException;
@@ -162,5 +164,15 @@ public class Test {
         response.setHeader("Content-disposition", "attachment;filename=" + fileName);
         response.flushBuffer();
         workbook.write(response.getOutputStream());
+    }
+
+    @ApiOperation(value = "导出word",notes = "")
+    @PostMapping("/export")
+    public void export(HttpServletRequest request, HttpServletResponse response,@RequestBody Map map){
+        /*Map<String,Object> params = new HashMap<>();
+        params.put("title","这是标题");
+        params.put("name","李四");*/
+        //这里是我说的一行代码
+        ExportWordUtils.exportWord("word/export.docx","F:/test","aaa.docx",map,request,response);
     }
 }

@@ -22,4 +22,7 @@ public interface PositionDao {
 
     //统计总数
     long Total(Map map);
+
+    //下拉框查询职务信息
+    List<Position> SelectPosition(Map map);
 }

@@ -173,4 +173,10 @@ public class StaffService implements StaffDao {
     public int CountAll(Map map) {
         return staffDao.CountAll(map);
     }
+
+    //上传员工二维码
+    @Override
+    public int InsertStaffCode(Map map) {
+        return staffDao.InsertStaffCode(map);
+    }
 }

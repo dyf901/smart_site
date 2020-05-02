@@ -193,7 +193,8 @@ public class StaffController {
             String content = "http://www.baidu.com";
 
             //存放logo的文件夹
-            String path = "D:/ceshi/";
+            //String path = "D:/ceshi/";  //本地
+            String path = "/root/img/";   //服务器
 
             MultiFormatWriter
                     multiFormatWriter = new MultiFormatWriter();
@@ -218,9 +219,11 @@ public class StaffController {
 
             String uuid = UUID.randomUUID().toString().replaceAll("-", "");
             String tempFileName = uuid + ".jpg";
+            map.put("staff_code",tempFileName);
             //qrcFile用来存放生成的二维码图片（无logo，无文字）
             File qrcFile = new File(path,tempFileName);
 
+            staffService.InsertStaffCode(map);
             //logoFile准备放在二维码中的图片(path:图片路径,图片名称)
             File logoFile = new File(path,"shilinwei.jpg");
 

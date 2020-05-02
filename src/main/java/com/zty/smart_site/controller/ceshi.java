@@ -7,16 +7,11 @@ import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.client.j2se.MatrixToImageWriter;
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
-import com.zty.smart_site.util.CreatrQrCode;
 
-import java.awt.*;
 import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
-
-import static com.zty.smart_site.util.CreatrQrCode.addLogo_QRCode;
-import static com.zty.smart_site.util.CreatrQrCode.pressText;
 
 public class ceshi {
     public static void main(String args[]) {
