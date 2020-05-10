@@ -5,30 +5,17 @@
 <mapper namespace="com.zty.smart_site.dao.ProgressStaffingDao">
     <!--增加编制进度-->
     <insert id="InsertProgressStaffing" parameterType="java.util.Map">
-        INSERT INTO `smart_site`.`progress_staffing` (`section_id`, `progress_name`, `duration`, `start_time`, `end_time`, `remark`, `fatherid`, `leave`) VALUES (#{section_id}, #{progress_name}, #{duration}, #{start_time}, #{end_time}, #{remark}, #{fatherid}, #{leave});
+        INSERT INTO `smart_site`.`progress_staffing` (`section_id`, `progress_name`, `duration`, `start_time`, `end_time`, `remark`, `fatherid`, `isparent`)
+        VALUES (#{section_id}, #{progress_name}, #{duration}, #{start_time}, #{end_time}, #{remark}, #{fatherid}, #{isparent});
     </insert>
 
-    <!--删除编制进度-->
-    <delete id="DeleteProgressStaffing" parameterType="java.util.Map">
-        DELETE FROM `smart_site`.`progress_staffing` WHERE `id`=#{id}
-    </delete>
-
-    <!--修改编制进度-->
-    <update id="UpdateProgressStaffing" parameterType="java.util.Map">
-        UPDATE `smart_site`.`progress_staffing` SET `progress_name`=#{progress_name}, `duration`=#{duration}, `start_time`=#{start_time}, `end_time`=#{end_time}, `remark`=#{remark} WHERE (`id`=#{id});
+    <!--修改父节点状态-->
+    <update id="UpdateIsParent" parameterType="java.util.Map">
+        UPDATE `smart_site`.`progress_staffing` SET `isparent`='true' WHERE (`id`=#{id});
     </update>
 
-    <!--根据标段id查询-->
+    <!--查找编制进度-->
     <select id="FindProgressStaffingBySectionId" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.ProgressStaffing">
-        SELECT `id`, `section_id`, `progress_name`, `duration`, `start_time`, `end_time`, `remark`, `fatherid`, `leave` FROM `smart_site`.`progress_staffing`
-        <where>
-            `section_id`=#{section_id}
-            <if test="leave!=null and leave!=''">
-                and `leave`=#{leave}
-            </if>
-            <if test="fatherid!=null and fatherid!=''">
-                and `fatherid`=#{fatherid}
-            </if>
-        </where>
+        SELECT `id`, `section_id`, `progress_name`, `duration`, `start_time`, `end_time`, `remark`, `fatherid`, `isparent` FROM `smart_site`.`progress_staffing` WHERE  `section_id`=#{section_id}
     </select>
 </mapper>

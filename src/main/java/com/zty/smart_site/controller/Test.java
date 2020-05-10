@@ -2,8 +2,10 @@ package com.zty.smart_site.controller;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.zty.smart_site.entity.*;
+import com.zty.smart_site.page.Tree;
 import com.zty.smart_site.service.*;
 import com.zty.smart_site.util.ExportWordUtils;
+import com.zty.smart_site.util.MenuTreeUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.apache.poi.hssf.usermodel.*;
@@ -36,6 +38,9 @@ public class Test {
 
     @Autowired
     private BehaviorRecordService behaviorRecordService;
+
+    @Autowired
+    private ProgressStaffingService progressStaffingService;
 
 
 
@@ -173,6 +178,37 @@ public class Test {
         params.put("title","这是标题");
         params.put("name","李四");*/
         //这里是我说的一行代码
+        System.out.println("请求进来了-------------->");
         ExportWordUtils.exportWord("word/export.docx","F:/test","aaa.docx",map,request,response);
+        System.out.println("请求结束了-------------->");
+    }
+
+
+    @ApiOperation(value = "树形图",notes = "")
+    @PostMapping("/tree")
+    public Object findPage() {
+
+        Map<String, Object> returnMap = new HashMap<>();
+        Map map = new HashMap();
+        map.put("section_id",2);
+        List<ProgressStaffing> lists = progressStaffingService.FindProgressStaffingBySectionId(map);//所有数据未转化成树结构
+
+        MenuTreeUtil menuTree = new MenuTreeUtil();//定义工具类
+        List<Tree> lt = new ArrayList<Tree>();//定义实体类
+        for (int i = 0; i < lists.size(); i++) {//遍历获取数据
+            Tree t = new Tree(); //转化成对象
+            t.setId(lists.get(i).getId());//将数据赋给实体类
+            t.setLabel(lists.get(i).getProgress_name());
+            t.setFatherid(lists.get(i).getFatherid());
+            t.setIsparent(lists.get(i).getIsparent());
+            t.setDuration(lists.get(i).getDuration());
+            t.setStart_time(lists.get(i).getStart_time());
+            t.setEnd_time(lists.get(i).getEnd_time());
+            lt.add(t);
+        }
+        System.out.println(lt);
+        List<Object> menuList = menuTree.menuList(lt);//所有数据转化成树结构
+        returnMap.put("list", menuList);
+        return returnMap;
     }
 }

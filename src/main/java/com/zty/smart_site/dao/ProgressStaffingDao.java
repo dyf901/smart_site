@@ -9,11 +9,8 @@ public interface ProgressStaffingDao {
     //增加编制进度
     int InsertProgressStaffing(Map map);
 
-    //删除编制进度
-    int DeleteProgressStaffing(Map map);
-
-    //修改编制进度
-    int UpdateProgressStaffing(Map map);
+    //修改节点状态
+    int UpdateIsParent(Map map);
 
     //根据标段id查询
     List<ProgressStaffing> FindProgressStaffingBySectionId(Map map);

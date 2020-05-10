@@ -6,9 +6,7 @@ import org.springframework.util.Assert;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.OutputStream;
+import java.io.*;
 import java.net.URLEncoder;
 import java.util.Map;
 
@@ -57,10 +55,24 @@ public class ExportWordUtils {
             OutputStream out = response.getOutputStream();
             doc.write(out);
             out.close();
+
+            /*BufferedInputStream bis =
+                    new BufferedInputStream(
+                            new FileInputStream(
+                                    new File("F:/test/" + fileName)));//   /root/img/    E:/test/
+            int num;
+            byte[] b = new byte[1024];
+
+            while ((num = bis.read(b)) != -1) {
+                response.getOutputStream().write(b, 0, num);
+            }
+            response.getOutputStream().flush();*/
+
+
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            delFileWord(temDir,fileName);//这一步看具体需求，要不要删
+            //delFileWord(temDir,fileName);//这一步看具体需求，要不要删
         }
     }
     /**

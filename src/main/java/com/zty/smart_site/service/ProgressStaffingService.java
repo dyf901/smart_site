@@ -19,16 +19,9 @@ public class ProgressStaffingService implements ProgressStaffingDao {
         return progressStaffingDao.InsertProgressStaffing(map);
     }
 
-    //删除编制进度
     @Override
-    public int DeleteProgressStaffing(Map map) {
-        return progressStaffingDao.DeleteProgressStaffing(map);
-    }
-
-    //修改编制进度
-    @Override
-    public int UpdateProgressStaffing(Map map) {
-        return progressStaffingDao.UpdateProgressStaffing(map);
+    public int UpdateIsParent(Map map) {
+        return progressStaffingDao.UpdateIsParent(map);
     }
 
     //根据标段id查询

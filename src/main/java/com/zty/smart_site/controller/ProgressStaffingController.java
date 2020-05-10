@@ -21,19 +21,11 @@ public class ProgressStaffingController {
     @ApiOperation(value = "增加编制进度",notes = "")
     @PostMapping("/InsertProgressStaffing")
     public boolean InsertProgressStaffing(@RequestBody Map map){
+
+            progressStaffingService.UpdateIsParent(map);
+
+
         return progressStaffingService.InsertProgressStaffing(map)==1;
-    }
-
-    @ApiOperation(value = "删除编制进度",notes = "")
-    @PostMapping("/DeleteProgressStaffing")
-    public boolean DeleteProgressStaffing(@RequestBody Map map){
-        return progressStaffingService.DeleteProgressStaffing(map)==1;
-    }
-
-    @ApiOperation(value = "修改编制进度",notes = "")
-    @PostMapping("/UpdateProgressStaffing")
-    public boolean UpdateProgressStaffing(@RequestBody Map map){
-        return progressStaffingService.UpdateProgressStaffing(map)==1;
     }
 
     @ApiOperation(value = "根据标段id查询编制进度",notes = "")

@@ -1,20 +1,19 @@
-package com.zty.smart_site.entity;
+package com.zty.smart_site.page;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
-@JsonInclude(JsonInclude.Include.NON_NULL)
-@ApiModel(value = "progress_staffing",description = "进度编制")
-public class ProgressStaffing {
+@ApiModel(value = "tree",description = "树形图对象")
+public class Tree {
     @ApiModelProperty(value = "进度编制id",name = "id")
     private int id;
 
     @ApiModelProperty(value = "标段id",name = "section_id")
     private int section_id;
 
-    @ApiModelProperty(value = "进度名称",name = "progress_name")
-    private String progress_name;
+    @ApiModelProperty(value = "进度名称",name = "label")
+    private String label;
 
     @ApiModelProperty(value = "工期",name = "duration")
     private int duration;
@@ -34,14 +33,14 @@ public class ProgressStaffing {
     @ApiModelProperty(value = "是否是父节点",name = "isparent")
     private String isparent;
 
-    public ProgressStaffing(){
+    public Tree(){
         super();
     }
 
-    public ProgressStaffing(int id, int section_id, String progress_name, int duration, String start_time, String end_time, String remark, int fatherid, String isparent) {
+    public Tree(int id, int section_id, String label, int duration, String start_time, String end_time, String remark, int fatherid, String isparent) {
         this.id = id;
         this.section_id = section_id;
-        this.progress_name = progress_name;
+        this.label = label;
         this.duration = duration;
         this.start_time = start_time;
         this.end_time = end_time;
@@ -66,12 +65,12 @@ public class ProgressStaffing {
         this.section_id = section_id;
     }
 
-    public String getProgress_name() {
-        return progress_name;
+    public String getLabel() {
+        return label;
     }
 
-    public void setProgress_name(String progress_name) {
-        this.progress_name = progress_name;
+    public void setLabel(String label) {
+        this.label = label;
     }
 
     public int getDuration() {
@@ -127,13 +126,13 @@ public class ProgressStaffing {
         return "{" +
                 "id=" + id +
                 ", section_id=" + section_id +
-                ", progress_name='" + progress_name + '\'' +
+                ", lable='" + label + '\'' +
                 ", duration=" + duration +
                 ", start_time='" + start_time + '\'' +
                 ", end_time='" + end_time + '\'' +
                 ", remark='" + remark + '\'' +
                 ", fatherid=" + fatherid +
-                ", isparent=" + isparent +
+                ", isparent='" + isparent + '\'' +
                 '}';
     }
 }

@@ -23,6 +23,7 @@ public class AliyunOSSUtil {
         String fileHost = ConstantProperties.OSS_FILE_HOST;*/
 
         String endpoint = "http://oss-cn-shanghai.aliyuncs.com";
+        //String endpoint = "http://oss-cn-shanghai-internal.aliyuncs.com";
         String accessKeyId = "LTAI4Fjcn7J9c5aCVFTYabqE";
         String accessKeySecret = "EuufkpKHommuLDd6EawJQac8togdPn";
         String bucketName = "jjjt";
