@@ -31,37 +31,37 @@ public class LoginController {
     @Autowired
     private TitleService titleService;//图标
 
-    @ApiOperation(value = "PC登陆",notes = "测试数据:{\"username\":\"admin\",\"password\":\"123456\"}")
+    @ApiOperation(value = "PC登陆" , notes = "测试数据:{\"username\":\"admin\",\"password\":\"123456\"}")
     @PostMapping("/LoginPc")
     public JsonResult LoginPc(@RequestBody Map map) throws ParseException {
         JsonResult jsonResult = new JsonResult(ResultCode.USER_NOT_EXIST);
         User user = userService.FindUserByUsername(map);//根据用户名查询用户信息
-        if (user!=null){
-            if (user.getPassword().equals(map.get("password"))){
+        if (user != null) {
+            if (user.getPassword().equals(map.get("password"))) {
                 // 获取当前时间
                 Date date = new Date();
                 //如果想比较日期则写成"yyyy-MM-dd"就可以了
-                SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
                 //将字符串形式的时间转化为Date类型的时间
-                Date a=sdf.parse(user.getEnd_time());
-                Date b= sdf.parse(sdf.format(date));
-		if(a.getTime()-b.getTime()>=0) {
-		    jsonResult.setData(user);
-            jsonResult.setMessage("登录成功!");
-            jsonResult.setCode(200);
-            return jsonResult;
-        }else {
-            jsonResult.setMessage("账户已过期,请联系厂家!");
-            jsonResult.setCode(20004);
-            return jsonResult;
+                Date a = sdf.parse(user.getEnd_time());
+                Date b = sdf.parse(sdf.format(date));
+                if (a.getTime() - b.getTime() >= 0) {
+                    jsonResult.setData(user);
+                    jsonResult.setMessage("登录成功!");
+                    jsonResult.setCode(200);
+                    return jsonResult;
+                } else {
+                    jsonResult.setMessage("账户已过期,请联系厂家!");
+                    jsonResult.setCode(20004);
+                    return jsonResult;
 
-        }
-            }else {
+                }
+            } else {
                 jsonResult.setMessage("密码错误,登录失败!");
                 jsonResult.setCode(20003);
                 return jsonResult;
             }
-        }else {
+        } else {
             jsonResult.setMessage("用户名不存在!");
             jsonResult.setCode(20001);
             return jsonResult;
@@ -93,27 +93,27 @@ public class LoginController {
         }
     }*/
 
-    @ApiOperation(value = "App登录",notes = "测试数据:{\"staff_phone\":\"13100000000\",\n" +
+    @ApiOperation(value = "App登录" , notes = "测试数据:{\"staff_phone\":\"13100000000\",\n" +
             "\"password\":\"123456\"}")
     @PostMapping("/LoginApp")
-    public JsonResult LoginApp1(@RequestBody Map map){
+    public JsonResult LoginApp1(@RequestBody Map map) {
         JsonResult jsonResult = new JsonResult(ResultCode.USER_NOT_EXIST);
         System.out.println(map);
         Staff staff = staffService.FindStaffByStaff_phone(map);
         System.out.println(staff);
-        if(staff!=null){
-            map.put("position_id",staff.getPosition_id());
-            if (staff.getPassword().equals(map.get("password"))){
+        if (staff != null) {
+            map.put("position_id" , staff.getPosition_id());
+            if (staff.getPassword().equals(map.get("password"))) {
                 jsonResult.setMessage("登录成功!");
                 jsonResult.setData(staff);
                 jsonResult.setCode(200);
                 return jsonResult;
-            }else {
+            } else {
                 jsonResult.setMessage("密码错误,登录失败!");
                 jsonResult.setCode(20003);
                 return jsonResult;
             }
-        }else {
+        } else {
             jsonResult.setMessage("用户不存在!");
             jsonResult.setCode(20001);
             return jsonResult;

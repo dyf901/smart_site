@@ -21,25 +21,25 @@ public class TrainRecordController {
     @Autowired
     private TrainRecordService trainRecordService;
 
-    @ApiOperation(value = "增加展馆培训内容",notes = "")
+    @ApiOperation(value = "增加展馆培训内容" , notes = "")
     @PostMapping("/InsertTrainRecord")
-    public JsonResult InsertTrainRecord(@RequestBody Map map){
+    public JsonResult InsertTrainRecord(@RequestBody Map map) {
         JsonResult jsonResult = new JsonResult();
-        int i=trainRecordService.InsertTrainRecord(map);
-        if (i==1){
+        int i = trainRecordService.InsertTrainRecord(map);
+        if (i == 1) {
             jsonResult.setCode(200);
             jsonResult.setMessage("增加成功!");
             return jsonResult;
-        }else {
+        } else {
             jsonResult.setCode(20006);
             jsonResult.setMessage("增加失败!");
             return jsonResult;
         }
     }
 
-    @ApiOperation(value = "分页查询展馆培训记录",notes = "")
+    @ApiOperation(value = "分页查询展馆培训记录" , notes = "")
     @PostMapping("/FindTrainRecord")
-    public Page<TrainRecord> FindTrainRecord(@RequestBody Map map){
+    public Page<TrainRecord> FindTrainRecord(@RequestBody Map map) {
         Page<TrainRecord> page = new Page<TrainRecord>();
         page.setPageNo((Integer) map.get("pageNo"));
         page.setPageSize((Integer) map.get("pageSize"));
@@ -48,9 +48,9 @@ public class TrainRecordController {
         return page;
     }
 
-    @ApiOperation(value = "根据培训名称查询全部培训记录",notes = "")
+    @ApiOperation(value = "根据培训名称查询全部培训记录" , notes = "")
     @PostMapping("/FindTrainRecordByTrainName")
-    public List<TrainRecord> FindTrainRecordByTrainName(@RequestBody Map map){
+    public List<TrainRecord> FindTrainRecordByTrainName(@RequestBody Map map) {
         return trainRecordService.FindTrainRecordByTrainName(map);
     }
 }

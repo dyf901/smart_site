@@ -5,7 +5,8 @@
 <mapper namespace="com.zty.smart_site.dao.UserDao">
     <!--增加用户信息-->
     <insert id="InsertUser" parameterType="java.util.Map">
-        INSERT INTO `smart_site`.`user` (`username`, `password`, `create_time`, `end_time`, `section_id`) VALUES (#{username}, #{password}, now(), #{end_time}, #{section_id});
+        INSERT INTO `smart_site`.`user` (`username`, `password`, `create_time`, `end_time`, `section_id`) VALUES
+        (#{username}, #{password}, now(), #{end_time}, #{section_id});
     </insert>
 
     <!--删除用户信息-->
@@ -20,7 +21,8 @@
 
     <!--根据username查询用户信息-->
     <select id="FindUserByUsername" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.User">
-        SELECT u.`username`, u.`password`, u.`create_time`, u.`end_time`, u.`section_id`,u.`user_menu`,s.`section_name` as `section_name` FROM `smart_site`.`user` u
+        SELECT u.`username`, u.`password`, u.`create_time`, u.`end_time`, u.`section_id`,u.`user_menu`,s.`section_name`
+        as `section_name` FROM `smart_site`.`user` u
         INNER JOIN `smart_site`.`section` s ON u.`section_id`=s.`id`
         WHERE `username`=#{username}
     </select>

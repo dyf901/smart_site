@@ -22,15 +22,15 @@ public class AnintegralController {
     @Autowired
     private StaffService staffService;
 
-    @ApiOperation(value = "分页查询积分明细",notes = "测试数据:{\"pageNo\":1,\"pageSize\":10,\"staff_id\":3}")
+    @ApiOperation(value = "分页查询积分明细" , notes = "测试数据:{\"pageNo\":1,\"pageSize\":10,\"staff_id\":3}")
     @PostMapping("/FindAnintegral")
-    public Page<Anintegral> FindAnintegral(@RequestBody Map map){
+    public Page<Anintegral> FindAnintegral(@RequestBody Map map) {
         Page<Anintegral> page = new Page<Anintegral>();
         page.setPageNo((Integer) map.get("pageNo"));
         page.setPageSize((Integer) map.get("pageSize"));
         page.setTotal(anintegralService.Total(map));
         page.setItems(anintegralService.FindAnintegral(map));
-        map.put("id",map.get("staff_id"));
+        map.put("id" , map.get("staff_id"));
         page.setEnd_integral(staffService.FindStaffById(map).getEnd_integral());
         return page;
     }

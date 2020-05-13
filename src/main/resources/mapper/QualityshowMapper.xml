@@ -5,8 +5,10 @@
 <mapper namespace="com.zty.smart_site.dao.QualityshowDao">
     <!--增加质量隐患信息记录-->
     <insert id="InsertQualityshow" parameterType="java.util.Map">
-        INSERT INTO `smart_site`.`qualityshow` (`title`, `staff_id`, `quality_id`, `section_id`, `station_id`, `process_id`, `sub_id`, `responsible`, `description`, `uptime`, `url`)
-        VALUES (#{title}, #{staff_id}, #{quality_id}, #{section_id}, #{station_id}, #{process_id}, #{sub_id}, #{responsible}, #{description}, now(), #{url});
+        INSERT INTO `smart_site`.`qualityshow` (`title`, `staff_id`, `quality_id`, `section_id`, `station_id`,
+        `process_id`, `sub_id`, `responsible`, `description`, `uptime`, `url`)
+        VALUES (#{title}, #{staff_id}, #{quality_id}, #{section_id}, #{station_id}, #{process_id}, #{sub_id},
+        #{responsible}, #{description}, now(), #{url});
     </insert>
 
     <!--删除质量隐患记录-->
@@ -16,7 +18,10 @@
 
     <!--根据id查询质量隐患记录-->
     <select id="FindQualityshowById" resultType="com.zty.smart_site.entity.Qualityshow" parameterType="java.util.Map">
-        SELECT r.`id`, r.`quality_id`, r.`staff_id`, r.`process_id`, r.`section_id`, r.`station_id`, r.`sub_id`, r.`responsible`, r.`description`, r.`uptime`, r.`plan_time`,r.`url`, r.`active`,r.`title`,a.`quality_category` as quality_name,s.`station_name` as station_name,l.`subcontractors_name` as `sub_name`,p.`process_name` as `process_name`,z.`staff_name`  as `staff_name` FROM `smart_site`.`qualityshow` r
+        SELECT r.`id`, r.`quality_id`, r.`staff_id`, r.`process_id`, r.`section_id`, r.`station_id`, r.`sub_id`,
+        r.`responsible`, r.`description`, r.`uptime`, r.`plan_time`,r.`url`, r.`active`,r.`title`,a.`quality_category`
+        as quality_name,s.`station_name` as station_name,l.`subcontractors_name` as `sub_name`,p.`process_name` as
+        `process_name`,z.`staff_name` as `staff_name` FROM `smart_site`.`qualityshow` r
         INNER JOIN `smart_site`.`quality` a ON r.`quality_id`=a.`id`
         INNER JOIN `smart_site`.`station` s ON r.`station_id`=s.`id`
         INNER JOIN `smart_site`.`subcontractors` l ON r.`sub_id`=l.`id`
@@ -28,7 +33,10 @@
     <!--分页模糊查询质量隐患记录-->
     <select id="FindQualityshow" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.Qualityshow">
         <bind name="page" value="pageSize*(pageNo-1)"></bind>
-        SELECT r.`id`, r.`quality_id`, r.`staff_id`, r.`process_id`, r.`section_id`, r.`station_id`, r.`sub_id`, r.`responsible`, r.`description`, r.`uptime`, r.`url`, r.`active`,r.`title`,a.`quality_category` as quality_name,s.`station_name` as station_name,l.`subcontractors_name` as `sub_name`,p.`process_name` as `process_name`,z.`staff_name`  as `staff_name` FROM `smart_site`.`qualityshow` r
+        SELECT r.`id`, r.`quality_id`, r.`staff_id`, r.`process_id`, r.`section_id`, r.`station_id`, r.`sub_id`,
+        r.`responsible`, r.`description`, r.`uptime`, r.`url`, r.`active`,r.`title`,a.`quality_category` as
+        quality_name,s.`station_name` as station_name,l.`subcontractors_name` as `sub_name`,p.`process_name` as
+        `process_name`,z.`staff_name` as `staff_name` FROM `smart_site`.`qualityshow` r
         INNER JOIN `smart_site`.`quality` a ON r.`quality_id`=a.`id`
         INNER JOIN `smart_site`.`station` s ON r.`station_id`=s.`id`
         INNER JOIN `smart_site`.`subcontractors` l ON r.`sub_id`=l.`id`
@@ -63,7 +71,10 @@
     <!--分页模糊查询质量隐患记录_检查记录-->
     <select id="FindQualityshow_JCJL" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.Qualityshow">
         <bind name="page" value="pageSize*(pageNo-1)"></bind>
-        SELECT r.`id`, r.`quality_id`, r.`staff_id`, r.`process_id`, r.`section_id`, r.`station_id`, r.`sub_id`, r.`responsible`, r.`description`, r.`uptime`, r.`url`, r.`active`,r.`title`,a.`quality_category` as quality_name,s.`station_name` as station_name,l.`subcontractors_name` as `sub_name`,p.`process_name` as `process_name`,z.`staff_name`  as `staff_name` FROM `smart_site`.`qualityshow` r
+        SELECT r.`id`, r.`quality_id`, r.`staff_id`, r.`process_id`, r.`section_id`, r.`station_id`, r.`sub_id`,
+        r.`responsible`, r.`description`, r.`uptime`, r.`url`, r.`active`,r.`title`,a.`quality_category` as
+        quality_name,s.`station_name` as station_name,l.`subcontractors_name` as `sub_name`,p.`process_name` as
+        `process_name`,z.`staff_name` as `staff_name` FROM `smart_site`.`qualityshow` r
         INNER JOIN `smart_site`.`quality` a ON r.`quality_id`=a.`id`
         INNER JOIN `smart_site`.`station` s ON r.`station_id`=s.`id`
         INNER JOIN `smart_site`.`subcontractors` l ON r.`sub_id`=l.`id`
@@ -75,13 +86,17 @@
 
     <!--统计总数-->
     <select id="Total_JCJL" parameterType="java.util.Map" resultType="long">
-        SELECT COUNT(*) FROM `smart_site`.`qualityshow` where `section_id`=#{section_id} and `station_id`=#{station_id} and `state`='待审核'
+        SELECT COUNT(*) FROM `smart_site`.`qualityshow` where `section_id`=#{section_id} and `station_id`=#{station_id}
+        and `state`='待审核'
     </select>
 
     <!--分页模糊查询质量隐患记录_无效记录-->
     <select id="FindQualityshow_WXJL" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.Qualityshow">
         <bind name="page" value="pageSize*(pageNo-1)"></bind>
-        SELECT r.`id`, r.`quality_id`, r.`staff_id`, r.`process_id`, r.`section_id`, r.`station_id`, r.`sub_id`, r.`responsible`, r.`description`, r.`uptime`, r.`url`, r.`active`,r.`title`,a.`quality_category` as quality_name,s.`station_name` as station_name,l.`subcontractors_name` as `sub_name`,p.`process_name` as `process_name`,z.`staff_name`  as `staff_name` FROM `smart_site`.`qualityshow` r
+        SELECT r.`id`, r.`quality_id`, r.`staff_id`, r.`process_id`, r.`section_id`, r.`station_id`, r.`sub_id`,
+        r.`responsible`, r.`description`, r.`uptime`, r.`url`, r.`active`,r.`title`,a.`quality_category` as
+        quality_name,s.`station_name` as station_name,l.`subcontractors_name` as `sub_name`,p.`process_name` as
+        `process_name`,z.`staff_name` as `staff_name` FROM `smart_site`.`qualityshow` r
         INNER JOIN `smart_site`.`quality` a ON r.`quality_id`=a.`id`
         INNER JOIN `smart_site`.`station` s ON r.`station_id`=s.`id`
         INNER JOIN `smart_site`.`subcontractors` l ON r.`sub_id`=l.`id`
@@ -93,13 +108,17 @@
 
     <!--统计总数_无效记录-->
     <select id="Total_WXJL" parameterType="java.util.Map" resultType="long">
-        SELECT COUNT(*) FROM `smart_site`.`qualityshow` where `section_id`=#{section_id} and `station_id`=#{station_id} and `state`='无效'
+        SELECT COUNT(*) FROM `smart_site`.`qualityshow` where `section_id`=#{section_id} and `station_id`=#{station_id}
+        and `state`='无效'
     </select>
 
     <!--分页模糊查询质量隐患记录_待整改-->
     <select id="FindQualityshow_DZG" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.Qualityshow">
         <bind name="page" value="pageSize*(pageNo-1)"></bind>
-        SELECT r.`id`, r.`quality_id`, r.`staff_id`, r.`process_id`, r.`section_id`, r.`station_id`, r.`sub_id`, r.`responsible`, r.`description`, r.`uptime`,r.`plan_time`, r.`url`, r.`active`,r.`title`,a.`quality_category` as quality_name,s.`station_name` as station_name,l.`subcontractors_name` as `sub_name`,p.`process_name` as `process_name`,z.`staff_name`  as `staff_name` FROM `smart_site`.`qualityshow` r
+        SELECT r.`id`, r.`quality_id`, r.`staff_id`, r.`process_id`, r.`section_id`, r.`station_id`, r.`sub_id`,
+        r.`responsible`, r.`description`, r.`uptime`,r.`plan_time`, r.`url`, r.`active`,r.`title`,a.`quality_category`
+        as quality_name,s.`station_name` as station_name,l.`subcontractors_name` as `sub_name`,p.`process_name` as
+        `process_name`,z.`staff_name` as `staff_name` FROM `smart_site`.`qualityshow` r
         INNER JOIN `smart_site`.`quality` a ON r.`quality_id`=a.`id`
         INNER JOIN `smart_site`.`station` s ON r.`station_id`=s.`id`
         INNER JOIN `smart_site`.`subcontractors` l ON r.`sub_id`=l.`id`
@@ -111,13 +130,17 @@
 
     <!--统计总数_待整改-->
     <select id="Total_DZG" parameterType="java.util.Map" resultType="long">
-        SELECT COUNT(*) FROM `smart_site`.`qualityshow` where `section_id`=#{section_id} and `station_id`=#{station_id} and `state`='有效' and `active`='待整改'
+        SELECT COUNT(*) FROM `smart_site`.`qualityshow` where `section_id`=#{section_id} and `station_id`=#{station_id}
+        and `state`='有效' and `active`='待整改'
     </select>
 
     <!--分页模糊查询质量隐患记录_整改复查-->
     <select id="FindQualityshow_ZGFC" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.Qualityshow">
         <bind name="page" value="pageSize*(pageNo-1)"></bind>
-        SELECT r.`id`, r.`quality_id`, r.`staff_id`, r.`process_id`, r.`section_id`, r.`station_id`, r.`sub_id`, r.`responsible`, r.`description`, r.`uptime`, r.`url`, r.`active`,r.`title`,a.`quality_category` as quality_name,s.`station_name` as station_name,l.`subcontractors_name` as `sub_name`,p.`process_name` as `process_name`,z.`staff_name`  as `staff_name` FROM `smart_site`.`qualityshow` r
+        SELECT r.`id`, r.`quality_id`, r.`staff_id`, r.`process_id`, r.`section_id`, r.`station_id`, r.`sub_id`,
+        r.`responsible`, r.`description`, r.`uptime`, r.`url`, r.`active`,r.`title`,a.`quality_category` as
+        quality_name,s.`station_name` as station_name,l.`subcontractors_name` as `sub_name`,p.`process_name` as
+        `process_name`,z.`staff_name` as `staff_name` FROM `smart_site`.`qualityshow` r
         INNER JOIN `smart_site`.`quality` a ON r.`quality_id`=a.`id`
         INNER JOIN `smart_site`.`station` s ON r.`station_id`=s.`id`
         INNER JOIN `smart_site`.`subcontractors` l ON r.`sub_id`=l.`id`
@@ -129,13 +152,18 @@
 
     <!--统计总数_整改复查-->
     <select id="Total_ZGFC" parameterType="java.util.Map" resultType="long">
-        SELECT COUNT(*) FROM `smart_site`.`qualityshow` where `section_id`=#{section_id} and `station_id`=#{station_id} and `state`='有效' and `active`='已整改'
+        SELECT COUNT(*) FROM `smart_site`.`qualityshow` where `section_id`=#{section_id} and `station_id`=#{station_id}
+        and `state`='有效' and `active`='已整改'
     </select>
 
     <!--分页模糊查询隐患记录_检查记录_PC-->
-    <select id="FindQualityshow_JCJL_PC" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.Qualityshow">
+    <select id="FindQualityshow_JCJL_PC" parameterType="java.util.Map"
+            resultType="com.zty.smart_site.entity.Qualityshow">
         <bind name="page" value="pageSize*(pageNo-1)"></bind>
-        SELECT r.`id`, r.`quality_id`, r.`staff_id`, r.`process_id`, r.`section_id`, r.`station_id`, r.`sub_id`, r.`responsible`, r.`description`, r.`uptime`, r.`url`, r.`active`,r.`title`,a.`quality_category` as quality_name,s.`station_name` as station_name,l.`subcontractors_name` as `sub_name`,p.`process_name` as `process_name`,z.`staff_name`  as `staff_name` FROM `smart_site`.`qualityshow` r
+        SELECT r.`id`, r.`quality_id`, r.`staff_id`, r.`process_id`, r.`section_id`, r.`station_id`, r.`sub_id`,
+        r.`responsible`, r.`description`, r.`uptime`, r.`url`, r.`active`,r.`title`,a.`quality_category` as
+        quality_name,s.`station_name` as station_name,l.`subcontractors_name` as `sub_name`,p.`process_name` as
+        `process_name`,z.`staff_name` as `staff_name` FROM `smart_site`.`qualityshow` r
         INNER JOIN `smart_site`.`quality` a ON r.`quality_id`=a.`id`
         INNER JOIN `smart_site`.`station` s ON r.`station_id`=s.`id`
         INNER JOIN `smart_site`.`subcontractors` l ON r.`sub_id`=l.`id`
@@ -152,9 +180,13 @@
     </select>
 
     <!--分页模糊查询隐患记录_待整改_PC-->
-    <select id="FindQualityshow_DZG_PC" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.Qualityshow">
+    <select id="FindQualityshow_DZG_PC" parameterType="java.util.Map"
+            resultType="com.zty.smart_site.entity.Qualityshow">
         <bind name="page" value="pageSize*(pageNo-1)"></bind>
-        SELECT r.`id`, r.`quality_id`, r.`staff_id`, r.`process_id`, r.`section_id`, r.`station_id`, r.`sub_id`, r.`responsible`, r.`description`, r.`uptime`, r.`url`, r.`active`,r.`title`,a.`quality_category` as quality_name,s.`station_name` as station_name,l.`subcontractors_name` as `sub_name`,p.`process_name` as `process_name`,z.`staff_name`  as `staff_name` FROM `smart_site`.`qualityshow` r
+        SELECT r.`id`, r.`quality_id`, r.`staff_id`, r.`process_id`, r.`section_id`, r.`station_id`, r.`sub_id`,
+        r.`responsible`, r.`description`, r.`uptime`, r.`url`, r.`active`,r.`title`,a.`quality_category` as
+        quality_name,s.`station_name` as station_name,l.`subcontractors_name` as `sub_name`,p.`process_name` as
+        `process_name`,z.`staff_name` as `staff_name` FROM `smart_site`.`qualityshow` r
         INNER JOIN `smart_site`.`quality` a ON r.`quality_id`=a.`id`
         INNER JOIN `smart_site`.`station` s ON r.`station_id`=s.`id`
         INNER JOIN `smart_site`.`subcontractors` l ON r.`sub_id`=l.`id`
@@ -171,9 +203,13 @@
     </select>
 
     <!--分页模糊查询隐患记录_已整改_PC-->
-    <select id="FindQualityshow_YZG_PC" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.Qualityshow">
+    <select id="FindQualityshow_YZG_PC" parameterType="java.util.Map"
+            resultType="com.zty.smart_site.entity.Qualityshow">
         <bind name="page" value="pageSize*(pageNo-1)"></bind>
-        SELECT r.`id`, r.`quality_id`, r.`staff_id`, r.`process_id`, r.`section_id`, r.`station_id`, r.`sub_id`, r.`responsible`, r.`description`, r.`uptime`, r.`url`, r.`active`,r.`title`,a.`quality_category` as quality_name,s.`station_name` as station_name,l.`subcontractors_name` as `sub_name`,p.`process_name` as `process_name`,z.`staff_name`  as `staff_name` FROM `smart_site`.`qualityshow` r
+        SELECT r.`id`, r.`quality_id`, r.`staff_id`, r.`process_id`, r.`section_id`, r.`station_id`, r.`sub_id`,
+        r.`responsible`, r.`description`, r.`uptime`, r.`url`, r.`active`,r.`title`,a.`quality_category` as
+        quality_name,s.`station_name` as station_name,l.`subcontractors_name` as `sub_name`,p.`process_name` as
+        `process_name`,z.`staff_name` as `staff_name` FROM `smart_site`.`qualityshow` r
         INNER JOIN `smart_site`.`quality` a ON r.`quality_id`=a.`id`
         INNER JOIN `smart_site`.`station` s ON r.`station_id`=s.`id`
         INNER JOIN `smart_site`.`subcontractors` l ON r.`sub_id`=l.`id`
@@ -190,9 +226,13 @@
     </select>
 
     <!--分页模糊查询隐患记录_整改待验_PC-->
-    <select id="FindQualityshow_ZGDY_PC" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.Qualityshow">
+    <select id="FindQualityshow_ZGDY_PC" parameterType="java.util.Map"
+            resultType="com.zty.smart_site.entity.Qualityshow">
         <bind name="page" value="pageSize*(pageNo-1)"></bind>
-        SELECT r.`id`, r.`quality_id`, r.`staff_id`, r.`process_id`, r.`section_id`, r.`station_id`, r.`sub_id`, r.`responsible`, r.`description`, r.`uptime`, r.`url`, r.`active`,r.`title`,a.`quality_category` as quality_name,s.`station_name` as station_name,l.`subcontractors_name` as `sub_name`,p.`process_name` as `process_name`,z.`staff_name`  as `staff_name` FROM `smart_site`.`qualityshow` r
+        SELECT r.`id`, r.`quality_id`, r.`staff_id`, r.`process_id`, r.`section_id`, r.`station_id`, r.`sub_id`,
+        r.`responsible`, r.`description`, r.`uptime`, r.`url`, r.`active`,r.`title`,a.`quality_category` as
+        quality_name,s.`station_name` as station_name,l.`subcontractors_name` as `sub_name`,p.`process_name` as
+        `process_name`,z.`staff_name` as `staff_name` FROM `smart_site`.`qualityshow` r
         INNER JOIN `smart_site`.`quality` a ON r.`quality_id`=a.`id`
         INNER JOIN `smart_site`.`station` s ON r.`station_id`=s.`id`
         INNER JOIN `smart_site`.`subcontractors` l ON r.`sub_id`=l.`id`
@@ -209,8 +249,12 @@
     </select>
 
     <!--分页模糊查询隐患记录_整改待验_PC-->
-    <select id="FindQualityshowByStaffIdALL" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.Qualityshow">
-        SELECT r.`id`, r.`quality_id`, r.`staff_id`, r.`process_id`, r.`section_id`, r.`station_id`, r.`sub_id`, r.`responsible`, r.`description`, r.`uptime`, r.`url`, r.`active`,r.`title`,a.`quality_category` as quality_name,s.`station_name` as station_name,l.`subcontractors_name` as `sub_name`,p.`process_name` as `process_name`,z.`staff_name`  as `staff_name` FROM `smart_site`.`qualityshow` r
+    <select id="FindQualityshowByStaffIdALL" parameterType="java.util.Map"
+            resultType="com.zty.smart_site.entity.Qualityshow">
+        SELECT r.`id`, r.`quality_id`, r.`staff_id`, r.`process_id`, r.`section_id`, r.`station_id`, r.`sub_id`,
+        r.`responsible`, r.`description`, r.`uptime`, r.`url`, r.`active`,r.`title`,a.`quality_category` as
+        quality_name,s.`station_name` as station_name,l.`subcontractors_name` as `sub_name`,p.`process_name` as
+        `process_name`,z.`staff_name` as `staff_name` FROM `smart_site`.`qualityshow` r
         INNER JOIN `smart_site`.`quality` a ON r.`quality_id`=a.`id`
         INNER JOIN `smart_site`.`station` s ON r.`station_id`=s.`id`
         INNER JOIN `smart_site`.`subcontractors` l ON r.`sub_id`=l.`id`
@@ -221,42 +265,42 @@
 
     <!--修改质量隐患状态(有效)-->
     <update id="UpdateActiveY" parameterType="java.util.Map">
-        UPDATE `smart_site`.`qualityshow` SET  `active`='待整改', `state`='有效' WHERE (`id`=#{id});
+        UPDATE `smart_site`.`qualityshow` SET `active`='待整改', `state`='有效' WHERE (`id`=#{id});
     </update>
 
     <!--修改质量隐患状态(无效)-->
     <update id="UpdateActiveW" parameterType="java.util.Map">
-        UPDATE `smart_site`.`qualityshow` SET  `active`='不整改', `state`='无效' WHERE (`id`=#{id});
+        UPDATE `smart_site`.`qualityshow` SET `active`='不整改', `state`='无效' WHERE (`id`=#{id});
     </update>
 
     <!--修改质量隐患计划时间-->
     <update id="UpdatePlanTime" parameterType="java.util.Map">
-        UPDATE `smart_site`.`qualityshow` SET  `plan_time`=#{plan_time},`integral`=#{integral} WHERE (`id`=#{id});
+        UPDATE `smart_site`.`qualityshow` SET `plan_time`=#{plan_time},`integral`=#{integral} WHERE (`id`=#{id});
     </update>
 
     <!--整改上报-->
     <update id="UpdateZgUrl" parameterType="java.util.Map">
-        UPDATE `smart_site`.`qualityshow` SET  `zg_url`=#{zg_url},`zg_description`=#{zg_description} WHERE (`id`=#{id});
+        UPDATE `smart_site`.`qualityshow` SET `zg_url`=#{zg_url},`zg_description`=#{zg_description} WHERE (`id`=#{id});
     </update>
 
     <!--修改质量隐患状态(已整改)-->
     <update id="UpdateActiveYZG" parameterType="java.util.Map">
-        UPDATE `smart_site`.`qualityshow` SET  `active`='已整改' WHERE (`id`=#{id});
+        UPDATE `smart_site`.`qualityshow` SET `active`='已整改' WHERE (`id`=#{id});
     </update>
 
     <!--修改质量隐患状态(超期未整改)-->
     <update id="UpdateActiveCQWZG" parameterType="java.util.Map">
-        UPDATE `smart_site`.`qualityshow` SET  `active`='超期未整改' WHERE (`id`=#{id});
+        UPDATE `smart_site`.`qualityshow` SET `active`='超期未整改' WHERE (`id`=#{id});
     </update>
 
     <!--修改安全隐患整改状态(合格)-->
     <update id="UpdateStatusH" parameterType="java.util.Map">
-        UPDATE `smart_site`.`qualityshow` SET  `status`='合格',`fc_description`=#{fc_description} WHERE (`id`=#{id});
+        UPDATE `smart_site`.`qualityshow` SET `status`='合格',`fc_description`=#{fc_description} WHERE (`id`=#{id});
     </update>
 
     <!--修改安全隐患整改状态(不合格)-->
     <update id="UpdateStatusB" parameterType="java.util.Map">
-        UPDATE `smart_site`.`qualityshow` SET  `status`='不合格',`fc_description`=#{fc_description} WHERE (`id`=#{id});
+        UPDATE `smart_site`.`qualityshow` SET `status`='不合格',`fc_description`=#{fc_description} WHERE (`id`=#{id});
     </update>
 
     <!--统计质量隐患数量-->
@@ -266,56 +310,72 @@
 
     <!--统计质量隐患数量_已整改-->
     <select id="CountQualityShowByYZG" parameterType="java.util.Map" resultType="int">
-        SELECT COUNT(*) FROM `smart_site`.`qualityshow` WHERE `section_id`=#{section_id} and `station_id`=#{station_id} and `active`='已整改'
+        SELECT COUNT(*) FROM `smart_site`.`qualityshow` WHERE `section_id`=#{section_id} and `station_id`=#{station_id}
+        and `active`='已整改'
     </select>
 
     <!--统计质量隐患数量_未整改-->
     <select id="CountQualityShowByWZG" parameterType="java.util.Map" resultType="int">
-        SELECT COUNT(*) FROM `smart_site`.`qualityshow` WHERE `section_id`=#{section_id} and `station_id`=#{station_id} and `active`='待整改'
+        SELECT COUNT(*) FROM `smart_site`.`qualityshow` WHERE `section_id`=#{section_id} and `station_id`=#{station_id}
+        and `active`='待整改'
     </select>
 
     <!--统计质量隐患数量_超期未整改-->
     <select id="CountQualityShowByCQWZG" parameterType="java.util.Map" resultType="int">
-        SELECT COUNT(*) FROM `smart_site`.`qualityshow` WHERE `section_id`=#{section_id} and `station_id`=#{station_id} and `active`='超期未整改'
+        SELECT COUNT(*) FROM `smart_site`.`qualityshow` WHERE `section_id`=#{section_id} and `station_id`=#{station_id}
+        and `active`='超期未整改'
     </select>
 
     <!-- 返回本月的月份 -->
     <select id="find_month" resultType="int">
-		select MONTH(CURDATE());
-	</select>
+        select MONTH(CURDATE());
+    </select>
 
     <!-- 查询当月上旬数据的条数 -->
     <select id="find_qualityshow_top" resultType="int" parameterType="java.util.Map">
-		SELECT count(*) from `smart_site`.`qualityshow` where uptime between (select DATE_ADD(curdate(),interval -day(curdate())+1 day)) and (select DATE_ADD(curdate(),interval -day(curdate())+10 day)) and section_id=#{section_id} and station_id=#{station_id}
-	</select>
+        SELECT count(*) from `smart_site`.`qualityshow` where uptime between (select DATE_ADD(curdate(),interval
+        -day(curdate())+1 day)) and (select DATE_ADD(curdate(),interval -day(curdate())+10 day)) and
+        section_id=#{section_id} and station_id=#{station_id}
+    </select>
 
     <!-- 查询当月中旬数据的条数 -->
     <select id="find_qualityshow_mid" resultType="int" parameterType="java.util.Map">
-		SELECT count(*) from `smart_site`.`qualityshow` where uptime between (select DATE_ADD(curdate(),interval -day(curdate())+10 day)) and (select DATE_ADD(curdate(),interval -day(curdate())+20 day)) and section_id=#{section_id} and station_id=#{station_id}
-	</select>
+        SELECT count(*) from `smart_site`.`qualityshow` where uptime between (select DATE_ADD(curdate(),interval
+        -day(curdate())+10 day)) and (select DATE_ADD(curdate(),interval -day(curdate())+20 day)) and
+        section_id=#{section_id} and station_id=#{station_id}
+    </select>
 
     <!-- 查询当月下旬数据的条数 -->
     <select id="find_qualityshow_end" resultType="int" parameterType="java.util.Map">
-		SELECT count(*) from `smart_site`.`qualityshow` where uptime between (select DATE_ADD(curdate(),interval -day(curdate())+20 day)) and (select DATE_ADD(curdate(),interval -day(curdate())+31 day)) and section_id=#{section_id} and station_id=#{station_id}
-	</select>
+        SELECT count(*) from `smart_site`.`qualityshow` where uptime between (select DATE_ADD(curdate(),interval
+        -day(curdate())+20 day)) and (select DATE_ADD(curdate(),interval -day(curdate())+31 day)) and
+        section_id=#{section_id} and station_id=#{station_id}
+    </select>
 
     <!-- 查询当月上旬有效数据的条数 -->
     <select id="find_qualityshow_top_y" resultType="int" parameterType="java.util.Map">
-		SELECT count(*) from `smart_site`.`qualityshow` where uptime between (select DATE_ADD(curdate(),interval -day(curdate())+1 day)) and (select DATE_ADD(curdate(),interval -day(curdate())+10 day)) and state='有效' and section_id=#{section_id} and station_id=#{station_id}
-	</select>
+        SELECT count(*) from `smart_site`.`qualityshow` where uptime between (select DATE_ADD(curdate(),interval
+        -day(curdate())+1 day)) and (select DATE_ADD(curdate(),interval -day(curdate())+10 day)) and state='有效' and
+        section_id=#{section_id} and station_id=#{station_id}
+    </select>
 
     <!-- 查询当月中旬有效数据的条数 -->
     <select id="find_qualityshow_mid_y" resultType="int" parameterType="java.util.Map">
-		SELECT count(*) from `smart_site`.`qualityshow` where uptime between (select DATE_ADD(curdate(),interval -day(curdate())+10 day)) and (select DATE_ADD(curdate(),interval -day(curdate())+20 day)) and state='有效' and section_id=#{section_id} and station_id=#{station_id}
-	</select>
+        SELECT count(*) from `smart_site`.`qualityshow` where uptime between (select DATE_ADD(curdate(),interval
+        -day(curdate())+10 day)) and (select DATE_ADD(curdate(),interval -day(curdate())+20 day)) and state='有效' and
+        section_id=#{section_id} and station_id=#{station_id}
+    </select>
 
     <!-- 查询当月下旬有效数据的条数 -->
     <select id="find_qualityshow_end_y" resultType="int" parameterType="java.util.Map">
-		SELECT count(*) from `smart_site`.`qualityshow` where uptime between (select DATE_ADD(curdate(),interval -day(curdate())+20 day)) and (select DATE_ADD(curdate(),interval -day(curdate())+31 day)) and state='有效' and section_id=#{section_id} and station_id=#{station_id}
-	</select>
+        SELECT count(*) from `smart_site`.`qualityshow` where uptime between (select DATE_ADD(curdate(),interval
+        -day(curdate())+20 day)) and (select DATE_ADD(curdate(),interval -day(curdate())+31 day)) and state='有效' and
+        section_id=#{section_id} and station_id=#{station_id}
+    </select>
 
     <!--根据隐患类型查询数量总数-->
-    <select id="CountQualityshowByQualityId" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.Qualityshow">
+    <select id="CountQualityshowByQualityId" parameterType="java.util.Map"
+            resultType="com.zty.smart_site.entity.Qualityshow">
         SELECT Count(*) as `count`,a.`quality_category` as quality_name FROM `smart_site`.`qualityshow` r
         INNER JOIN `smart_site`.`quality` a ON r.`quality_id`=a.`id`
         WHERE r.`section_id`=#{section_id} and r.`station_id`=#{station_id}
@@ -323,7 +383,8 @@
     </select>
 
     <!--根据分包单位查询数量总数-->
-    <select id="CountQualityshowBySubId" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.Qualityshow">
+    <select id="CountQualityshowBySubId" parameterType="java.util.Map"
+            resultType="com.zty.smart_site.entity.Qualityshow">
         SELECT Count(*) as `count`,l.`subcontractors_name` as `sub_name` FROM `smart_site`.`qualityshow` r
         INNER JOIN `smart_site`.`subcontractors` l ON r.`sub_id`=l.`id`
         WHERE r.`section_id`=#{section_id} and r.`station_id`=#{station_id}

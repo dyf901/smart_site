@@ -18,15 +18,15 @@ public class TrainContentController {
     @Autowired
     private TrainContentService trainContentService;
 
-    @ApiOperation(value = "根据id查询培训内容",notes = "")
+    @ApiOperation(value = "根据id查询培训内容" , notes = "")
     @PostMapping("/FindTrainContent")
-    public TrainContent FindTrainContent(@RequestBody Map map){
+    public TrainContent FindTrainContent(@RequestBody Map map) {
         return trainContentService.FindTrainContent(map);
     }
 
-    @ApiOperation(value = "查询全部展馆体验",notes = "")
+    @ApiOperation(value = "查询全部展馆体验" , notes = "")
     @PostMapping("/FindTrainContentAll")
-    public List<TrainContent> FindTrainContentAll(@RequestBody Map map){
+    public List<TrainContent> FindTrainContentAll(@RequestBody Map map) {
         return trainContentService.FindTrainContentAll();
     }
 }

@@ -5,8 +5,10 @@
 <mapper namespace="com.zty.smart_site.dao.ProgressStaffingDao">
     <!--增加编制进度-->
     <insert id="InsertProgressStaffing" parameterType="java.util.Map">
-        INSERT INTO `smart_site`.`progress_staffing` (`section_id`, `progress_name`, `duration`, `start_time`, `end_time`, `remark`, `fatherid`, `isparent`)
-        VALUES (#{section_id}, #{progress_name}, #{duration}, #{start_time}, #{end_time}, #{remark}, #{fatherid}, #{isparent});
+        INSERT INTO `smart_site`.`progress_staffing` (`section_id`, `progress_name`, `duration`, `start_time`,
+        `end_time`, `remark`, `fatherid`, `isparent`)
+        VALUES (#{section_id}, #{progress_name}, #{duration}, #{start_time}, #{end_time}, #{remark}, #{fatherid},
+        #{isparent});
     </insert>
 
     <!--修改父节点状态-->
@@ -15,7 +17,9 @@
     </update>
 
     <!--查找编制进度-->
-    <select id="FindProgressStaffingBySectionId" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.ProgressStaffing">
-        SELECT `id`, `section_id`, `progress_name`, `duration`, `start_time`, `end_time`, `remark`, `fatherid`, `isparent` FROM `smart_site`.`progress_staffing` WHERE  `section_id`=#{section_id}
+    <select id="FindProgressStaffingBySectionId" parameterType="java.util.Map"
+            resultType="com.zty.smart_site.entity.ProgressStaffing">
+        SELECT `id`, `section_id`, `progress_name`, `duration`, `start_time`, `end_time`, `remark`, `fatherid`,
+        `isparent` FROM `smart_site`.`progress_staffing` WHERE `section_id`=#{section_id}
     </select>
 </mapper>

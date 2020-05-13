@@ -25,11 +25,11 @@ public class AliyunSmsUtils {
 
     public static SendSmsResponse sendSms(String telephone, String code) throws ClientException {
         //可自助调整超时时间
-        System.setProperty("sun.net.client.defaultConnectTimeout", "10000");
-        System.setProperty("sun.net.client.defaultReadTimeout", "10000");
+        System.setProperty("sun.net.client.defaultConnectTimeout" , "10000");
+        System.setProperty("sun.net.client.defaultReadTimeout" , "10000");
         //初始化acsClient,暂不支持region化
-        IClientProfile profile = DefaultProfile.getProfile("cn-hangzhou", accessKeyId, accessKeySecret);
-        DefaultProfile.addEndpoint("cn-hangzhou", "cn-hangzhou", product, domain);
+        IClientProfile profile = DefaultProfile.getProfile("cn-hangzhou" , accessKeyId, accessKeySecret);
+        DefaultProfile.addEndpoint("cn-hangzhou" , "cn-hangzhou" , product, domain);
         IAcsClient acsClient = new DefaultAcsClient(profile);
         //组装请求对象-具体描述见控制台-文档部分内容
         SendSmsRequest request = new SendSmsRequest();
@@ -48,9 +48,9 @@ public class AliyunSmsUtils {
         request.setOutId("yourOutId");
         //hint 此处可能会抛出异常，注意catch
         SendSmsResponse sendSmsResponse = acsClient.getAcsResponse(request);
-        if(sendSmsResponse.getCode()!= null && sendSmsResponse.getCode().equals("OK")){
+        if (sendSmsResponse.getCode() != null && sendSmsResponse.getCode().equals("OK")) {
             System.out.println("短信发送成功！");
-        }else {
+        } else {
             System.out.println("短信发送失败！");
         }
         return sendSmsResponse;

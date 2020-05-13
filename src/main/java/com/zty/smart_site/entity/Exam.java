@@ -5,54 +5,54 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@ApiModel(value = "exam",description = "考试表对象")
+@ApiModel(value = "exam" , description = "考试表对象")
 public class Exam {
-    @ApiModelProperty(value = "考试id",name = "id")
+    @ApiModelProperty(value = "考试id" , name = "id")
     private int id;
 
-    @ApiModelProperty(value = "发布时间",name = "exam_name")
+    @ApiModelProperty(value = "发布时间" , name = "exam_name")
     private String exam_name;
 
-    @ApiModelProperty(value = "标段id",name = "section_id")
+    @ApiModelProperty(value = "标段id" , name = "section_id")
     private int section_id;
 
-    @ApiModelProperty(value = "试卷类型id",name = "specialty_id")
+    @ApiModelProperty(value = "试卷类型id" , name = "specialty_id")
     private int specialty_id;
 
-    @ApiModelProperty(value = "试卷类型名称",name = "specialty_name")
+    @ApiModelProperty(value = "试卷类型名称" , name = "specialty_name")
     private String specialty_name;
 
-    @ApiModelProperty(value = "试卷id",name = "examination_id")
+    @ApiModelProperty(value = "试卷id" , name = "examination_id")
     private int examination_id;
 
-    @ApiModelProperty(value = "试卷名称",name = "examination_name")
+    @ApiModelProperty(value = "试卷名称" , name = "examination_name")
     private String examination_name;
 
-    @ApiModelProperty(value = "工种id",name = "worktype_id")
+    @ApiModelProperty(value = "工种id" , name = "worktype_id")
     private int worktype_id;
 
-    @ApiModelProperty(value = "工种名称",name = "worktype_name")
+    @ApiModelProperty(value = "工种名称" , name = "worktype_name")
     private String worktype_name;
 
-    @ApiModelProperty(value = "考试时间",name = "exam_time")
+    @ApiModelProperty(value = "考试时间" , name = "exam_time")
     private int exam_time;
 
-    @ApiModelProperty(value = "开始时间",name = "worktype_name")
+    @ApiModelProperty(value = "开始时间" , name = "worktype_name")
     private String start_time;
 
-    @ApiModelProperty(value = "结束时间",name = "worktype_name")
+    @ApiModelProperty(value = "结束时间" , name = "worktype_name")
     private String end_time;
 
-    @ApiModelProperty(value = "发布时间",name = "worktype_name")
+    @ApiModelProperty(value = "发布时间" , name = "worktype_name")
     private String up_time;
 
-    @ApiModelProperty(value = "开始时间戳",name = "start_timeC")
+    @ApiModelProperty(value = "开始时间戳" , name = "start_timeC")
     private Long start_timeC;
 
-    @ApiModelProperty(value = "结束时间戳",name = "end_timeC")
+    @ApiModelProperty(value = "结束时间戳" , name = "end_timeC")
     private Long end_timeC;
 
-    public Exam(){
+    public Exam() {
         super();
     }
 

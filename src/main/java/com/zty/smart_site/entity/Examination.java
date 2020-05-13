@@ -5,42 +5,42 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@ApiModel(value = "examination",description = "试卷表对象")
+@ApiModel(value = "examination" , description = "试卷表对象")
 public class Examination {
-    @ApiModelProperty(value = "试卷id",name = "id")
+    @ApiModelProperty(value = "试卷id" , name = "id")
     private int id;
 
-    @ApiModelProperty(value = "标段id",name = "section_id")
+    @ApiModelProperty(value = "标段id" , name = "section_id")
     private int section_id;
 
-    @ApiModelProperty(value = "试卷类型id",name = "specialty_id")
+    @ApiModelProperty(value = "试卷类型id" , name = "specialty_id")
     private int specialty_id;
 
-    @ApiModelProperty(value = "试卷类型名称",name = "specialty_name")
+    @ApiModelProperty(value = "试卷类型名称" , name = "specialty_name")
     private String specialty_name;
 
-    @ApiModelProperty(value = "试卷名称",name = "examination_name")
+    @ApiModelProperty(value = "试卷名称" , name = "examination_name")
     private String examination_name;
 
-    @ApiModelProperty(value = "题目(数组)",name = "questions")
+    @ApiModelProperty(value = "题目(数组)" , name = "questions")
     private String questions;
 
-    @ApiModelProperty(value = "选择题分数(每道题)",name = "select_count")
+    @ApiModelProperty(value = "选择题分数(每道题)" , name = "select_count")
     private int select_count;
 
-    @ApiModelProperty(value = "判断题分数",name = "judge_count")
+    @ApiModelProperty(value = "判断题分数" , name = "judge_count")
     private int judge_count;
 
-    @ApiModelProperty(value = "填空题分数",name = "gap_count")
+    @ApiModelProperty(value = "填空题分数" , name = "gap_count")
     private int gap_count;
 
-    @ApiModelProperty(value = "简答题答案",name = "short_count")
+    @ApiModelProperty(value = "简答题答案" , name = "short_count")
     private int short_count;
 
-    @ApiModelProperty(value = "考试时间",name = "exam_time")
+    @ApiModelProperty(value = "考试时间" , name = "exam_time")
     private int exam_time;
 
-    public Examination(){
+    public Examination() {
         super();
     }
 

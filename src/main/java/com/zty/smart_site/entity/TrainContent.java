@@ -5,21 +5,21 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@ApiModel(value = "TrainContent", description = "馆内培训内容")
+@ApiModel(value = "TrainContent" , description = "馆内培训内容")
 public class TrainContent {
-    @ApiModelProperty(value = "培训内容id", name = "id")
+    @ApiModelProperty(value = "培训内容id" , name = "id")
     private int id;
 
-    @ApiModelProperty(value = "培训名称", name = "train_name")
+    @ApiModelProperty(value = "培训名称" , name = "train_name")
     private String train_name;
 
-    @ApiModelProperty(value = "详细介绍", name = "content")
+    @ApiModelProperty(value = "详细介绍" , name = "content")
     private String content;
 
-    @ApiModelProperty(value = "培训图片", name = "img_url")
+    @ApiModelProperty(value = "培训图片" , name = "img_url")
     private String img_url;
 
-    public TrainContent(){
+    public TrainContent() {
         super();
     }
 

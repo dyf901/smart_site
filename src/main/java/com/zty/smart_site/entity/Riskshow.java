@@ -5,84 +5,84 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@ApiModel(value = "riskshow",description = "安全隐患对象")
+@ApiModel(value = "riskshow" , description = "安全隐患对象")
 public class Riskshow {
-    @ApiModelProperty(value = "安全隐患id",name = "id")
+    @ApiModelProperty(value = "安全隐患id" , name = "id")
     private int id;
 
-    @ApiModelProperty(value = "安全隐患类型id",name = "risk_id")
+    @ApiModelProperty(value = "安全隐患类型id" , name = "risk_id")
     private int risk_id;
 
-    @ApiModelProperty(value = "标段id",name = "section_id")
+    @ApiModelProperty(value = "标段id" , name = "section_id")
     private int section_id;
 
-    @ApiModelProperty(value = "站点id",name = "station_id")
+    @ApiModelProperty(value = "站点id" , name = "station_id")
     private int station_id;
 
-    @ApiModelProperty(value = "具体描述",name = "description")
+    @ApiModelProperty(value = "具体描述" , name = "description")
     private String description;
 
-    @ApiModelProperty(value = "上传时间",name = "uptime")
+    @ApiModelProperty(value = "上传时间" , name = "uptime")
     private String uptime;
 
-    @ApiModelProperty(value = "图片地址",name = "url")
+    @ApiModelProperty(value = "图片地址" , name = "url")
     private String url;
 
-    @ApiModelProperty(value = "状态",name = "active")
+    @ApiModelProperty(value = "状态" , name = "active")
     private String active;
 
-    @ApiModelProperty(value = "安全隐患类型名称",name = "risk_name")
+    @ApiModelProperty(value = "安全隐患类型名称" , name = "risk_name")
     private String risk_name;
 
-    @ApiModelProperty(value = "员工名称",name = "staff_name")
+    @ApiModelProperty(value = "员工名称" , name = "staff_name")
     private String staff_name;
 
-    @ApiModelProperty(value = "站点名称",name = "station_name")
+    @ApiModelProperty(value = "站点名称" , name = "station_name")
     private String station_name;
 
-    @ApiModelProperty(value = "标题",name = "title")
+    @ApiModelProperty(value = "标题" , name = "title")
     private String title;
 
-    @ApiModelProperty(value = "分包单位id",name = "sub_id")
+    @ApiModelProperty(value = "分包单位id" , name = "sub_id")
     private int sub_id;
 
-    @ApiModelProperty(value = "分包单位名称",name = "sub_name")
+    @ApiModelProperty(value = "分包单位名称" , name = "sub_name")
     private String sub_name;
 
-    @ApiModelProperty(value = "责任人",name = "responsible")
+    @ApiModelProperty(value = "责任人" , name = "responsible")
     private String responsible;
 
-    @ApiModelProperty(value = "数量",name = "count")
+    @ApiModelProperty(value = "数量" , name = "count")
     private String count;
 
-    @ApiModelProperty(value = "计划整改时间",name = "plan_time")
+    @ApiModelProperty(value = "计划整改时间" , name = "plan_time")
     private String plan_time;
 
-    @ApiModelProperty(value = "整改图片地址",name = "zg_url")
+    @ApiModelProperty(value = "整改图片地址" , name = "zg_url")
     private String zg_url;
 
-    @ApiModelProperty(value = "工序id",name = "process_id")
+    @ApiModelProperty(value = "工序id" , name = "process_id")
     private int process_id;
 
-    @ApiModelProperty(value = "工序名称",name = "process_name")
+    @ApiModelProperty(value = "工序名称" , name = "process_name")
     private String process_name;
 
-    @ApiModelProperty(value = "劳务人员id",name = "staff_id")
+    @ApiModelProperty(value = "劳务人员id" , name = "staff_id")
     private int staff_id;
 
-    @ApiModelProperty(value = "整改描述",name = "zg_description")
+    @ApiModelProperty(value = "整改描述" , name = "zg_description")
     private String zg_description;
 
-    @ApiModelProperty(value = "整改复查状态",name = "status")
+    @ApiModelProperty(value = "整改复查状态" , name = "status")
     private String status;
 
-    @ApiModelProperty(value = "复查描述",name = "fc_description")
+    @ApiModelProperty(value = "复查描述" , name = "fc_description")
     private String fc_description;
 
-    @ApiModelProperty(value = "awarda",name = "awarda")
+    @ApiModelProperty(value = "awarda" , name = "awarda")
     private int awarda;
 
-    public Riskshow(){
+    public Riskshow() {
         super();
     }
 

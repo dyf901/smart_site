@@ -4,8 +4,8 @@ import java.awt.Color;
 
 /**
  * logo配置类
- * @author Administrator
  *
+ * @author Administrator
  */
 public class LogoConfig {
 

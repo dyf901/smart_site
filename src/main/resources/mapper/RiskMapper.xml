@@ -5,7 +5,11 @@
 <mapper namespace="com.zty.smart_site.dao.RiskDao">
     <!--增加安全隐患类型-->
     <insert id="InsertRisk" parameterType="java.util.Map">
-        INSERT INTO `smart_site`.`risk` (`section_id`,`station_id`, `risk_category`, `risk_description`, `risk_grade`, `risk_duration`, `construction`, `construction_person`, `construction_phone`, `supervisor`, `supervisor_person`, `supervisor_phone`) VALUES (#{section_id},#{station_id}, #{risk_category}, #{risk_description}, #{risk_grade}, #{risk_duration}, #{construction}, #{construction_person}, #{construction_phone}, #{supervisor}, #{supervisor_person}, #{supervisor_phone});
+        INSERT INTO `smart_site`.`risk` (`section_id`,`station_id`, `risk_category`, `risk_description`, `risk_grade`,
+        `risk_duration`, `construction`, `construction_person`, `construction_phone`, `supervisor`, `supervisor_person`,
+        `supervisor_phone`) VALUES (#{section_id},#{station_id}, #{risk_category}, #{risk_description}, #{risk_grade},
+        #{risk_duration}, #{construction}, #{construction_person}, #{construction_phone}, #{supervisor},
+        #{supervisor_person}, #{supervisor_phone});
     </insert>
 
     <!--删除安全隐患类型-->
@@ -15,13 +19,19 @@
 
     <!--修改安全隐患类型-->
     <update id="UpdateRisk" parameterType="java.util.Map">
-        UPDATE `smart_site`.`risk` SET `risk_category`=#{risk_category}, `risk_description`=#{risk_description}, `risk_grade`=#{risk_grade}, `risk_duration`=#{risk_duration}, `construction`=#{construction}, `construction_person`=#{construction_person}, `construction_phone`=#{construction_phone}, `supervisor`=#{supervisor}, `supervisor_person`=#{supervisor_person}, `supervisor_phone`=#{supervisor_phone} WHERE (`id`=#{id});
+        UPDATE `smart_site`.`risk` SET `risk_category`=#{risk_category}, `risk_description`=#{risk_description},
+        `risk_grade`=#{risk_grade}, `risk_duration`=#{risk_duration}, `construction`=#{construction},
+        `construction_person`=#{construction_person}, `construction_phone`=#{construction_phone},
+        `supervisor`=#{supervisor}, `supervisor_person`=#{supervisor_person}, `supervisor_phone`=#{supervisor_phone}
+        WHERE (`id`=#{id});
     </update>
 
     <!--分页模糊查询安全隐患类型-->
     <select id="FindRisk" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.Risk">
         <bind name="page" value="pageSize*(pageNo-1)"></bind>
-        SELECT r.`id`, r.`section_id`, r.`risk_category`, r.`risk_description`, r.`risk_grade`, r.`risk_duration`, r.`construction`, r.`construction_person`, r.`construction_phone`, r.`supervisor`, r.`supervisor_person`, r.`supervisor_phone`,s.`station_name` as `station_name` FROM `smart_site`.`risk` r
+        SELECT r.`id`, r.`section_id`, r.`risk_category`, r.`risk_description`, r.`risk_grade`, r.`risk_duration`,
+        r.`construction`, r.`construction_person`, r.`construction_phone`, r.`supervisor`, r.`supervisor_person`,
+        r.`supervisor_phone`,s.`station_name` as `station_name` FROM `smart_site`.`risk` r
         INNER JOIN `smart_site`.`station` s on r.`station_id`=s.`id`
         <where>
             r.`section_id`=#{section_id}
@@ -36,10 +46,11 @@
     <select id="Total" parameterType="java.util.Map" resultType="long">
         SELECT COUNT(*) FROM `smart_site`.`risk` WHERE `section_id`=#{section_id}
     </select>
-    
+
     <!--下拉框查询安全隐患类型-->
     <select id="SelectRisk" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.Risk">
-        SELECT `id` , `risk_category` FROM `smart_site`.`risk` WHERE `section_id`=#{section_id} and `station_id`=#{station_id}
+        SELECT `id` , `risk_category` FROM `smart_site`.`risk` WHERE `section_id`=#{section_id} and
+        `station_id`=#{station_id}
     </select>
 
 </mapper>

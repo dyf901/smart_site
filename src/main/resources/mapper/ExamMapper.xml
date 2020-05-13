@@ -5,8 +5,10 @@
 <mapper namespace="com.zty.smart_site.dao.ExamDao">
     <!--增加考试-->
     <insert id="InsertExam" parameterType="java.util.Map">
-        INSERT INTO `smart_site`.`exam` (`exam_name`, `section_id`, `specialty_id`, `examination_id`, `exam_time`, `start_time`, `end_time`, `up_time` ,`start_timeC` ,`end_timeC`)
-        VALUES (#{exam_name}, #{section_id}, #{specialty_id}, #{examination_id}, #{exam_time}, #{start_time}, #{end_time}, now() ,#{start_timeC} ,#{end_timeC});
+        INSERT INTO `smart_site`.`exam` (`exam_name`, `section_id`, `specialty_id`, `examination_id`, `exam_time`,
+        `start_time`, `end_time`, `up_time` ,`start_timeC` ,`end_timeC`)
+        VALUES (#{exam_name}, #{section_id}, #{specialty_id}, #{examination_id}, #{exam_time}, #{start_time},
+        #{end_time}, now() ,#{start_timeC} ,#{end_timeC});
     </insert>
 
     <!--删除考试-->
@@ -16,17 +18,22 @@
 
     <!--修改考试-->
     <update id="UpdateExam" parameterType="java.util.Map">
-        UPDATE `smart_site`.`exam` SET  `exam_name`=#{exam_name}, `specialty_id`=#{specialty_id}, `examination_id`=#{examination_id}, `exam_time`= #{exam_time}, `start_time`=#{start_time}, `end_time`=#{end_time}, `up_time`=now(), `start_timeC`=#{start_timeC}, `end_timeC`=#{end_timeC} WHERE (`id`=#{id});
+        UPDATE `smart_site`.`exam` SET `exam_name`=#{exam_name}, `specialty_id`=#{specialty_id},
+        `examination_id`=#{examination_id}, `exam_time`= #{exam_time}, `start_time`=#{start_time},
+        `end_time`=#{end_time}, `up_time`=now(), `start_timeC`=#{start_timeC}, `end_timeC`=#{end_timeC} WHERE
+        (`id`=#{id});
     </update>
 
     <!--分页模糊查询考试-->
     <select id="FindExam" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.Exam">
         <bind name="page" value="pageSize*(pageNo-1)"></bind>
-        SELECT e.`id`, e.`exam_name`, e.`section_id`, e.`specialty_id`, e.`examination_id`, e.`worktype_id`, e.`exam_time`, e.`start_time`, e.`end_time`, e.`up_time`, e.`start_timeC`, e.`end_timeC`,l.`specialty_name` as `specialty_name`, x.`examination_name` as `examination_name`  FROM `smart_site`.`exam` e
+        SELECT e.`id`, e.`exam_name`, e.`section_id`, e.`specialty_id`, e.`examination_id`, e.`worktype_id`,
+        e.`exam_time`, e.`start_time`, e.`end_time`, e.`up_time`, e.`start_timeC`, e.`end_timeC`,l.`specialty_name` as
+        `specialty_name`, x.`examination_name` as `examination_name` FROM `smart_site`.`exam` e
         INNER JOIN `smart_site`.`specialty` l ON e.`specialty_id`=l.`id`
         INNER JOIN `smart_site`.`examination` x ON e.`examination_id`=x.`id`
         <where>
-                e.`section_id`=#{section_id}
+            e.`section_id`=#{section_id}
             <if test="exam_name!=null and exam_name!=''">
                 and e.`exam_name`like concat("%",#{exam_name},"%")
             </if>
@@ -39,7 +46,7 @@
     <select id="Total" parameterType="java.util.Map" resultType="long">
         SELECT COUNT(*) FROM `smart_site`.`exam`
         <where>
-                `section_id`=#{section_id}
+            `section_id`=#{section_id}
             <if test="exam_name!=null and exam_name!=''">
                 and `exam_name`like concat("%",#{exam_name},"%")
             </if>
@@ -48,7 +55,9 @@
 
     <!--最新考试App-->
     <select id="FindExamNew" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.Exam">
-        SELECT e.`id`, e.`exam_name`, e.`section_id`, e.`specialty_id`, e.`examination_id`,  e.`exam_time`, e.`start_time`, e.`end_time`, e.`up_time`, e.`start_timeC`, e.`end_timeC`,l.`specialty_name` as `specialty_name`, x.`examination_name` as `examination_name`  FROM `smart_site`.`exam` e
+        SELECT e.`id`, e.`exam_name`, e.`section_id`, e.`specialty_id`, e.`examination_id`, e.`exam_time`,
+        e.`start_time`, e.`end_time`, e.`up_time`, e.`start_timeC`, e.`end_timeC`,l.`specialty_name` as
+        `specialty_name`, x.`examination_name` as `examination_name` FROM `smart_site`.`exam` e
         INNER JOIN `smart_site`.`specialty` l ON e.`specialty_id`=l.`id`
         INNER JOIN `smart_site`.`examination` x ON e.`examination_id`=x.`id`
         WHERE e.`section_id`=#{section_id}
@@ -58,7 +67,9 @@
 
     <!--最新考试_公众号-->
     <select id="FindExamNewG" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.Exam">
-        SELECT e.`id`, e.`exam_name`, e.`section_id`, e.`specialty_id`, e.`examination_id`, e.`exam_time`, e.`start_time`, e.`end_time`, e.`up_time`, e.`start_timeC`, e.`end_timeC`,l.`specialty_name` as `specialty_name`, x.`examination_name` as `examination_name`  FROM `smart_site`.`exam` e
+        SELECT e.`id`, e.`exam_name`, e.`section_id`, e.`specialty_id`, e.`examination_id`, e.`exam_time`,
+        e.`start_time`, e.`end_time`, e.`up_time`, e.`start_timeC`, e.`end_timeC`,l.`specialty_name` as
+        `specialty_name`, x.`examination_name` as `examination_name` FROM `smart_site`.`exam` e
         INNER JOIN `smart_site`.`specialty` l ON e.`specialty_id`=l.`id`
         INNER JOIN `smart_site`.`examination` x ON e.`examination_id`=x.`id`
         INNER JOIN `smart_site`.`worktype` w ON e.`worktype_id`=w.`id`

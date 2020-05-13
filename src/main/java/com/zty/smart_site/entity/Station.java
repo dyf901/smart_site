@@ -1,6 +1,7 @@
 package com.zty.smart_site.entity;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+
 /*
 站点表实体类
 STATION     	站点表
@@ -17,11 +18,11 @@ section_name            标段名称
 */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Station {
-    private int id,station_time,section_id;
-    private String station_name,start_time,end_time,station_principal,station_area,section_name;
-    private String userId,groupId,deviceKey;
+    private int id, station_time, section_id;
+    private String station_name, start_time, end_time, station_principal, station_area, section_name;
+    private String userId, groupId, deviceKey;
 
-    public Station(){
+    public Station() {
         super();
     }
 

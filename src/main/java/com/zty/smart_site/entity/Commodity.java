@@ -1,6 +1,7 @@
 package com.zty.smart_site.entity;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+
 /*
 商品实体类
 commodity   商品表
@@ -16,10 +17,10 @@ active              状态
 */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Commodity {
-    private int id,commodity_price,section_id;
-    private String commodity_name,commodity_img,up_time,active;
+    private int id, commodity_price, section_id;
+    private String commodity_name, commodity_img, up_time, active;
 
-    public Commodity(){
+    public Commodity() {
         super();
     }
 

@@ -5,15 +5,15 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@ApiModel(value = "genre_type",description = "培训类型")
+@ApiModel(value = "genre_type" , description = "培训类型")
 public class TrainGenre {
-    @ApiModelProperty(value = "ID",name = "id")
+    @ApiModelProperty(value = "ID" , name = "id")
     private int id;
 
-    @ApiModelProperty(value = "类型名称",name = "genre_name")
+    @ApiModelProperty(value = "类型名称" , name = "genre_name")
     private String genre_name;
 
-    public TrainGenre(){
+    public TrainGenre() {
         super();
     }
 

@@ -1,6 +1,7 @@
 package com.zty.smart_site.entity;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+
 /*
 部门表实体类
 department    	部门表
@@ -16,10 +17,10 @@ section_name            标段名称
 */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Department {
-    private int id,percount,section_id;
-    private String department_name,depthead,headphone,remark,section_name;
+    private int id, percount, section_id;
+    private String department_name, depthead, headphone, remark, section_name;
 
-    public Department(){
+    public Department() {
         super();
     }
 

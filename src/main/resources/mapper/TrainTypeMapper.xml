@@ -15,7 +15,7 @@
 
     <!--修改培训类型-->
     <update id="UpdateTrainType" parameterType="java.util.Map">
-        UPDATE `smart_site`.`train_type` SET  `type_name`=#{type_name} WHERE (`id`=#{id});
+        UPDATE `smart_site`.`train_type` SET `type_name`=#{type_name} WHERE (`id`=#{id});
     </update>
 
     <!--分页模糊查询培训类型-->

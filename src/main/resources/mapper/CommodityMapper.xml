@@ -5,7 +5,8 @@
 <mapper namespace="com.zty.smart_site.dao.CommodityDao">
     <!--增加商品信息-->
     <insert id="InsertCommodity" parameterType="java.util.Map">
-        INSERT INTO `smart_site`.`commodity` (`commodity_name`, `commodity_price`, `commodity_img`, `up_time`, `section_id`) VALUES (#{commodity_name}, #{commodity_price}, #{commodity_img},now(), #{section_id});
+        INSERT INTO `smart_site`.`commodity` (`commodity_name`, `commodity_price`, `commodity_img`, `up_time`,
+        `section_id`) VALUES (#{commodity_name}, #{commodity_price}, #{commodity_img},now(), #{section_id});
     </insert>
 
     <!--删除商品信息-->
@@ -15,13 +16,15 @@
 
     <!--修改商品信息-->
     <update id="UpdateCommodity" parameterType="java.util.Map">
-        UPDATE `smart_site`.`commodity` SET  `commodity_name`=#{commodity_name}, `commodity_price`=#{commodity_price}, `commodity_img`=#{commodity_img} WHERE (`id`=#{id});
+        UPDATE `smart_site`.`commodity` SET `commodity_name`=#{commodity_name}, `commodity_price`=#{commodity_price},
+        `commodity_img`=#{commodity_img} WHERE (`id`=#{id});
     </update>
 
     <!--分页模糊查询商品信息-->
     <select id="FindCommodity" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.Commodity">
         <bind name="page" value="pageSize*(pageNo-1)"></bind>
-        SELECT `id`, `commodity_name`, `commodity_price`, `commodity_img`, `section_id`, `up_time`, `active` FROM `smart_site`.`commodity`
+        SELECT `id`, `commodity_name`, `commodity_price`, `commodity_img`, `section_id`, `up_time`, `active` FROM
+        `smart_site`.`commodity`
         <where>
             `section_id`=#{section_id}
             <if test="commodity_name!=null and commodity_name!=''">
@@ -30,7 +33,7 @@
         </where>
         limit #{page},#{pageSize}
     </select>
-    
+
     <!--统计总数-->
     <select id="Total" parameterType="java.util.Map" resultType="long">
         SELECT COUNT(*) FROM `smart_site`.`commodity`
@@ -44,6 +47,7 @@
 
     <!--根据id查询商品信息-->
     <select id="FindCommodityById" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.Commodity">
-        SELECT `id`, `commodity_name`, `commodity_price`, `commodity_img`, `section_id`, `up_time`, `active` FROM `smart_site`.`commodity` where `id`=#{commodity_id}
+        SELECT `id`, `commodity_name`, `commodity_price`, `commodity_img`, `section_id`, `up_time`, `active` FROM
+        `smart_site`.`commodity` where `id`=#{commodity_id}
     </select>
 </mapper>

@@ -15,7 +15,7 @@
 
     <!--修改职务信息-->
     <update id="UpdatePosition" parameterType="java.util.Map">
-        UPDATE `smart_site`.`position` SET  `position_name`=#{position_name}, `remark`=#{remark} WHERE (`id`=#{id});
+        UPDATE `smart_site`.`position` SET `position_name`=#{position_name}, `remark`=#{remark} WHERE (`id`=#{id});
     </update>
 
     <!--分页模糊查询职务信息-->

@@ -21,27 +21,27 @@ public class SpecialtyController {
     @Autowired
     private SpecialtyService specialtyService;//专业分类
 
-    @ApiOperation(value = "增加专业类型",notes = "传参:")
+    @ApiOperation(value = "增加专业类型" , notes = "传参:")
     @PostMapping("/InsertSpecialty")
-    public boolean InsertSpecialty(@RequestBody Map map){
-        return specialtyService.InsertSpecialty(map)==1;
+    public boolean InsertSpecialty(@RequestBody Map map) {
+        return specialtyService.InsertSpecialty(map) == 1;
     }
 
-    @ApiOperation(value = "删除专业分类",notes = "传参:")
+    @ApiOperation(value = "删除专业分类" , notes = "传参:")
     @PostMapping("/DeleteSpecialty")
-    public boolean DeleteSpecialty(@RequestBody Map map){
-        return specialtyService.DeleteSpecialty(map)==1;
+    public boolean DeleteSpecialty(@RequestBody Map map) {
+        return specialtyService.DeleteSpecialty(map) == 1;
     }
 
-    @ApiOperation(value = "修改专业分类",notes = "传参:")
+    @ApiOperation(value = "修改专业分类" , notes = "传参:")
     @PostMapping("/UpdateSpecialty")
-    public boolean UpdateSpecialty(@RequestBody Map map){
-        return specialtyService.UpdateSpecialty(map)==1;
+    public boolean UpdateSpecialty(@RequestBody Map map) {
+        return specialtyService.UpdateSpecialty(map) == 1;
     }
 
-    @ApiOperation(value = "分页查询专业分类",notes = "传参:")
+    @ApiOperation(value = "分页查询专业分类" , notes = "传参:")
     @PostMapping("/FindSpecialty")
-    public Page<Specialty> FindSpecialty(@RequestBody Map map){
+    public Page<Specialty> FindSpecialty(@RequestBody Map map) {
         Page<Specialty> page = new Page<Specialty>();
         page.setPageNo((Integer) map.get("pageNo"));
         page.setPageSize((Integer) map.get("pageSize"));
@@ -50,9 +50,9 @@ public class SpecialtyController {
         return page;
     }
 
-    @ApiOperation(value = "下拉框查询专业分类",notes = "传参:section_id")
+    @ApiOperation(value = "下拉框查询专业分类" , notes = "传参:section_id")
     @PostMapping("/SelectSpecialty")
-    public List<Specialty> SelectSpecialty(@RequestBody Map map){
+    public List<Specialty> SelectSpecialty(@RequestBody Map map) {
         return specialtyService.SelectSpecialty(map);
     }
 }

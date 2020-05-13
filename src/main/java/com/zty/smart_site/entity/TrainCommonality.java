@@ -5,31 +5,31 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@ApiModel(value = "train_commonality", description = "培训对象")
+@ApiModel(value = "train_commonality" , description = "培训对象")
 public class TrainCommonality {
 
-    @ApiModelProperty(value = "ID", name = "id")
+    @ApiModelProperty(value = "ID" , name = "id")
     private int id;
 
-    @ApiModelProperty(value = "培训类型id", name = "type_id")
+    @ApiModelProperty(value = "培训类型id" , name = "type_id")
     private int type_id;
 
-    @ApiModelProperty(value = "建造类型id", name = "genre_id")
+    @ApiModelProperty(value = "建造类型id" , name = "genre_id")
     private int genre_id;
 
-    @ApiModelProperty(value = "培训名称", name = "commonality_name")
+    @ApiModelProperty(value = "培训名称" , name = "commonality_name")
     private String commonality_name;
 
-    @ApiModelProperty(value = "培训类型名称", name = "type_name")
+    @ApiModelProperty(value = "培训类型名称" , name = "type_name")
     private String type_name;
 
-    @ApiModelProperty(value = "建造类型名称", name = "genre_name")
+    @ApiModelProperty(value = "建造类型名称" , name = "genre_name")
     private String genre_name;
 
-    @ApiModelProperty(value = "内容", name = "content")
+    @ApiModelProperty(value = "内容" , name = "content")
     private String content;
 
-    @ApiModelProperty(value = "视频地址",name = "video_url")
+    @ApiModelProperty(value = "视频地址" , name = "video_url")
     private String video_url;
 
     public TrainCommonality() {

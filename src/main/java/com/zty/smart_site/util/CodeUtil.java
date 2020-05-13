@@ -8,7 +8,7 @@ public class CodeUtil {
         return newcode;
     }
 
-    public static void setNewcode(){
-        newcode = (int)(Math.random()*(999999-100000)+100000);  //每次调用生成一位四位数的随机数
+    public static void setNewcode() {
+        newcode = (int) (Math.random() * (999999 - 100000) + 100000);  //每次调用生成一位四位数的随机数
     }
 }

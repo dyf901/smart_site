@@ -5,7 +5,9 @@
 <mapper namespace="com.zty.smart_site.dao.SectionDao">
     <!--增加标段信息-->
     <insert id="InsertSection" parameterType="java.util.Map">
-        INSERT INTO `smart_site`.`section` (`section_name`, `section_time`, `start_time`, `end_time`, `section_principal`) VALUES (#{section_name}, #{section_time}, #{start_time}, #{end_time}, #{section_principal});
+        INSERT INTO `smart_site`.`section` (`section_name`, `section_time`, `start_time`, `end_time`,
+        `section_principal`) VALUES (#{section_name}, #{section_time}, #{start_time}, #{end_time},
+        #{section_principal});
     </insert>
 
     <!--删除标段信息-->
@@ -15,13 +17,15 @@
 
     <!--修改标段信息-->
     <update id="UpdateSection" parameterType="java.util.Map">
-        UPDATE `smart_site`.`section` SET `section_name`=#{section_name}, `section_time`=#{section_time}, `start_time`=#{start_time}, `end_time`=#{end_time}, `section_principal`=#{section_principal} WHERE (`id`=#{id});
+        UPDATE `smart_site`.`section` SET `section_name`=#{section_name}, `section_time`=#{section_time},
+        `start_time`=#{start_time}, `end_time`=#{end_time}, `section_principal`=#{section_principal} WHERE (`id`=#{id});
     </update>
 
     <!--分页模糊查询标段信息-->
     <select id="FindSectioon" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.Section">
         <bind name="page" value="pageSize*(pageNo-1)"></bind>
-        SELECT  `id`, `section_name`, `section_time`, `start_time`, `end_time`, `section_principal` FROM `smart_site`.`section`
+        SELECT `id`, `section_name`, `section_time`, `start_time`, `end_time`, `section_principal` FROM
+        `smart_site`.`section`
         <where>
             <if test="section_name!=null and section_name!=''">
                 section_name like concat("%",#{section_name},"%")

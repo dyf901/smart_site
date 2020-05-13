@@ -5,51 +5,51 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@ApiModel(value = "qualityrectify",description = "整改通知单对象")
+@ApiModel(value = "qualityrectify" , description = "整改通知单对象")
 public class Qualityrectify {
-    @ApiModelProperty(value = "质量整改通知单id",name = "id")
+    @ApiModelProperty(value = "质量整改通知单id" , name = "id")
     private int id;
 
-    @ApiModelProperty(value = "标段id",name = "section_id")
+    @ApiModelProperty(value = "标段id" , name = "section_id")
     private int section_id;
 
-    @ApiModelProperty(value = "站点id",name = "station_id")
+    @ApiModelProperty(value = "站点id" , name = "station_id")
     private int station_id;
 
-    @ApiModelProperty(value = "具体描述",name = "description")
+    @ApiModelProperty(value = "具体描述" , name = "description")
     private String description;
 
-    @ApiModelProperty(value = "状态",name = "active")
+    @ApiModelProperty(value = "状态" , name = "active")
     private String active;
 
-    @ApiModelProperty(value = "员工名称",name = "staff_name")
+    @ApiModelProperty(value = "员工名称" , name = "staff_name")
     private String staff_name;
 
-    @ApiModelProperty(value = "站点名称",name = "station_name")
+    @ApiModelProperty(value = "站点名称" , name = "station_name")
     private String station_name;
 
-    @ApiModelProperty(value = "标题",name = "title")
+    @ApiModelProperty(value = "标题" , name = "title")
     private String title;
 
-    @ApiModelProperty(value = "分包单位id",name = "sub_id")
+    @ApiModelProperty(value = "分包单位id" , name = "sub_id")
     private int sub_id;
 
-    @ApiModelProperty(value = "分包单位名称",name = "sub_name")
+    @ApiModelProperty(value = "分包单位名称" , name = "sub_name")
     private String sub_name;
 
-    @ApiModelProperty(value = "责任人",name = "responsible")
+    @ApiModelProperty(value = "责任人" , name = "responsible")
     private String responsible;
 
-    @ApiModelProperty(value = "分包单位id",name = "process_id")
+    @ApiModelProperty(value = "分包单位id" , name = "process_id")
     private int process_id;
 
-    @ApiModelProperty(value = "分包单位名称",name = "process_name")
+    @ApiModelProperty(value = "分包单位名称" , name = "process_name")
     private String process_name;
 
-    @ApiModelProperty(value = "安全隐患记录id",name = "qualityshow_id")
+    @ApiModelProperty(value = "安全隐患记录id" , name = "qualityshow_id")
     private int qualityshow_id;
 
-    public Qualityrectify(){
+    public Qualityrectify() {
         super();
     }
 

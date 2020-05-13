@@ -17,7 +17,7 @@ import java.util.UUID;
 @RequestMapping("img")
 @CrossOrigin
 public class UploadController {
-    @ApiOperation(value = "上传图片",notes = "")
+    @ApiOperation(value = "上传图片" , notes = "")
     @PostMapping("upload")
     public String picture(@RequestParam("file") MultipartFile file) {
         String oldFileName = file.getOriginalFilename();
@@ -36,7 +36,7 @@ public class UploadController {
         return "false";
     }
 
-    @ApiOperation(value = "下载图片", notes = "测试数据:{\"img_url\":\"安全行为之星系统.pdf\"}")
+    @ApiOperation(value = "下载图片" , notes = "测试数据:{\"img_url\":\"安全行为之星系统.pdf\"}")
     @GetMapping("/download_img")
     public void find_img(@RequestParam String img_url, HttpServletResponse response) {
         System.out.println(img_url);
@@ -59,12 +59,12 @@ public class UploadController {
         }
     }
 
-    @ApiOperation(value = "base64", notes = "测试数据:")
+    @ApiOperation(value = "base64" , notes = "测试数据:")
     @PostMapping("/base64_img")
     public String GenerateImage(@RequestBody Map map) {// 对字节数组字符串进行Base64解码并生成图片
         System.out.println(map.get("imgStr"));
         String imgStr1 = (String) map.get("imgStr");
-        String imgStr = imgStr1.replaceAll(" ", "+");
+        String imgStr = imgStr1.replaceAll(" " , "+");
         System.out.println("asd:" + imgStr);
         String dataPrix = ""; //base64格式前头
         String data = "";//实体部分数据
@@ -96,7 +96,7 @@ public class UploadController {
         } else {
             return "添加失败!";
         }
-        String uuid = UUID.randomUUID().toString().replaceAll("-", "");
+        String uuid = UUID.randomUUID().toString().replaceAll("-" , "");
         String tempFileName = uuid + suffix;
         String imgFilePath = "/root/img/" + tempFileName;//新生成的图片地址   //   /root/img/    E:/test/
         //String imgFilePath = "/img/wisdom_site/"+tempFileName;//新生成图片的服务器地址
@@ -105,8 +105,8 @@ public class UploadController {
         //BASE64Decoder decoder = new BASE64Decoder();
         try {
             // Base64解码
-            byte[] bytes = Base64.decodeBase64(imgStr.replace("data:image/png;base64,", ""));// decoder.decodeBuffer(imgStr);
-            imgStr = imgStr.replace("base64,", "");
+            byte[] bytes = Base64.decodeBase64(imgStr.replace("data:image/png;base64," , ""));// decoder.decodeBuffer(imgStr);
+            imgStr = imgStr.replace("base64," , "");
             for (int i = 0; i < bytes.length; ++i) {
                 if (bytes[i] < 0) {// 调整异常数据
                     bytes[i] += 256;

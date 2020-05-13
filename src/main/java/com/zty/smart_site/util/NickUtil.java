@@ -19,7 +19,6 @@ public class NickUtil {
         int charLength = charStr.length();
 
 
-
         for (int i = 0; i < 16; i++) {
 
             int index = random.nextInt(charLength);
@@ -27,7 +26,6 @@ public class NickUtil {
             valSb.append(charStr.charAt(index));
 
         }
-
 
 
         nickname = valSb.toString();

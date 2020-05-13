@@ -5,39 +5,39 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@ApiModel(value = "exam_record",description = "考试记录表对象")
+@ApiModel(value = "exam_record" , description = "考试记录表对象")
 public class ExamRecord {
-    @ApiModelProperty(value = "考试记录id",name = "id")
+    @ApiModelProperty(value = "考试记录id" , name = "id")
     private int id;
 
-    @ApiModelProperty(value = "考试id",name = "exam_id")
+    @ApiModelProperty(value = "考试id" , name = "exam_id")
     private int exam_id;
 
-    @ApiModelProperty(value = "考试名称",notes = "exam_name")
+    @ApiModelProperty(value = "考试名称" , notes = "exam_name")
     private String exam_name;
 
-    @ApiModelProperty(value = "员工id",name = "staff_id")
+    @ApiModelProperty(value = "员工id" , name = "staff_id")
     private int staff_id;
 
-    @ApiModelProperty(value = "考试名称",notes = "staff_name")
+    @ApiModelProperty(value = "考试名称" , notes = "staff_name")
     private String staff_name;
 
-    @ApiModelProperty(value = "员工id",name = "section_id")
+    @ApiModelProperty(value = "员工id" , name = "section_id")
     private int section_id;
 
-    @ApiModelProperty(value = "考试分数",name = "exam_count")
+    @ApiModelProperty(value = "考试分数" , name = "exam_count")
     private int exam_count;
 
-    @ApiModelProperty(value = "考试时间",name = "exam_time")
+    @ApiModelProperty(value = "考试时间" , name = "exam_time")
     private String exam_time;
 
-    @ApiModelProperty(value = "考试结果",name = "exam_result")
+    @ApiModelProperty(value = "考试结果" , name = "exam_result")
     private String exam_result;
 
-    @ApiModelProperty(value = "考试时间戳",name = "exam_timeC")
+    @ApiModelProperty(value = "考试时间戳" , name = "exam_timeC")
     private Long exam_timeC;
 
-    public ExamRecord(){
+    public ExamRecord() {
         super();
     }
 

@@ -1,6 +1,7 @@
 package com.zty.smart_site.entity;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+
 /*
 工种表实体类
 worktype   		工种表
@@ -19,11 +20,11 @@ sub_name     分包单位名称
 */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Worktype {
-    private int id,section_id,station_id,person_count,sub_id;
-    private String worktype_name,content,remark;
-    private String section_name,station_name,sub_name,state;
+    private int id, section_id, station_id, person_count, sub_id;
+    private String worktype_name, content, remark;
+    private String section_name, station_name, sub_name, state;
 
-    public Worktype(){
+    public Worktype() {
         super();
     }
 

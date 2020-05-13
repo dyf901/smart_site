@@ -19,27 +19,27 @@ public class TrainCommonalityController {
     @Autowired
     private TrainCommonalityService trainCommonalityService;//公共课程
 
-    @ApiOperation(value = "增加工程课程",notes = "")
+    @ApiOperation(value = "增加工程课程" , notes = "")
     @PostMapping("/InsertTrainCommonality")
-    public boolean InsertTrainCommonality(@RequestBody Map map){
-        return trainCommonalityService.InsertTrainCommonality(map)==1;
+    public boolean InsertTrainCommonality(@RequestBody Map map) {
+        return trainCommonalityService.InsertTrainCommonality(map) == 1;
     }
 
-    @ApiOperation(value = "删除公共课程",notes = "")
+    @ApiOperation(value = "删除公共课程" , notes = "")
     @PostMapping("/DeleteTrainCommonality")
-    public boolean DeleteTrainCommonality(@RequestBody Map map){
-        return trainCommonalityService.DeleteTrainCommonality(map)==1;
+    public boolean DeleteTrainCommonality(@RequestBody Map map) {
+        return trainCommonalityService.DeleteTrainCommonality(map) == 1;
     }
 
-    @ApiOperation(value = "修改公共课程",notes = "")
+    @ApiOperation(value = "修改公共课程" , notes = "")
     @PostMapping("/UpdateTrainCommonality")
-    public boolean UpdateTrainCommonality(@RequestBody Map map){
-        return trainCommonalityService.DeleteTrainCommonality(map)==1;
+    public boolean UpdateTrainCommonality(@RequestBody Map map) {
+        return trainCommonalityService.DeleteTrainCommonality(map) == 1;
     }
 
-    @ApiOperation(value = "分页模糊查询公共课程",notes = "")
+    @ApiOperation(value = "分页模糊查询公共课程" , notes = "")
     @PostMapping("/FindTrainCommonality")
-    public Page<TrainCommonality> FindTrainCommonality(@RequestBody Map map){
+    public Page<TrainCommonality> FindTrainCommonality(@RequestBody Map map) {
         Page<TrainCommonality> page = new Page<TrainCommonality>();
         page.setPageNo((Integer) map.get("pageNo"));
         page.setPageSize((Integer) map.get("pageSize"));

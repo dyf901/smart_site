@@ -1,6 +1,7 @@
 package com.zty.smart_site.entity;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+
 /*
 分包单位实体类
 subcontractors     分包单位实体类
@@ -16,10 +17,10 @@ section_name            标段名称
 */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Subcontractors {
-    private int id,person_count,section_id,station_id;
-    private String subcontractors_name,principal,principal_phone,remark,section_name,state;
+    private int id, person_count, section_id, station_id;
+    private String subcontractors_name, principal, principal_phone, remark, section_name, state;
 
-    public Subcontractors(){
+    public Subcontractors() {
         super();
     }
 

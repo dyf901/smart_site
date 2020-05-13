@@ -5,60 +5,60 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@ApiModel(value = "questions",description = "题目表对象")
+@ApiModel(value = "questions" , description = "题目表对象")
 public class Questions {
-    @ApiModelProperty(value = "题目id",name = "id")
+    @ApiModelProperty(value = "题目id" , name = "id")
     private int id;
 
-    @ApiModelProperty(value = "标段id",name = "section_id")
+    @ApiModelProperty(value = "标段id" , name = "section_id")
     private int section_id;
 
-    @ApiModelProperty(value = "知识id",name = "knowledge_id")
+    @ApiModelProperty(value = "知识id" , name = "knowledge_id")
     private int knowledge_id;
 
-    @ApiModelProperty(value = "专业id",name = "specialty_id")
+    @ApiModelProperty(value = "专业id" , name = "specialty_id")
     private int specialty_id;
 
-    @ApiModelProperty(value = "专业id",name = "count")
+    @ApiModelProperty(value = "专业id" , name = "count")
     private int count;
 
-    @ApiModelProperty(value = "题目类型(选择,填空,判断,简答)",name = "questions_type")
+    @ApiModelProperty(value = "题目类型(选择,填空,判断,简答)" , name = "questions_type")
     private String questions_type;
 
-    @ApiModelProperty(value = "知识名称",name = "knowledge_name")
+    @ApiModelProperty(value = "知识名称" , name = "knowledge_name")
     private String knowledge_name;
 
-    @ApiModelProperty(value = "专业名称",name = "specialty_name")
+    @ApiModelProperty(value = "专业名称" , name = "specialty_name")
     private String specialty_name;
 
-    @ApiModelProperty(value = "题目内容",name = "questions_content")
+    @ApiModelProperty(value = "题目内容" , name = "questions_content")
     private String questions_content;
 
-    @ApiModelProperty(value = "选择题A选项",name = "select_A")
+    @ApiModelProperty(value = "选择题A选项" , name = "select_A")
     private String select_A;
 
-    @ApiModelProperty(value = "选择题A选项",name = "select_B")
+    @ApiModelProperty(value = "选择题A选项" , name = "select_B")
     private String select_B;
 
-    @ApiModelProperty(value = "选择题A选项",name = "select_C")
+    @ApiModelProperty(value = "选择题A选项" , name = "select_C")
     private String select_C;
 
-    @ApiModelProperty(value = "选择题A选项",name = "select_D")
+    @ApiModelProperty(value = "选择题A选项" , name = "select_D")
     private String select_D;
 
-    @ApiModelProperty(value = "选择题答案",name = "select_answer")
+    @ApiModelProperty(value = "选择题答案" , name = "select_answer")
     private String select_answer;
 
-    @ApiModelProperty(value = "填空题答案",name = "gap_answer")
+    @ApiModelProperty(value = "填空题答案" , name = "gap_answer")
     private String gap_answer;
 
-    @ApiModelProperty(value = "简答题答案",name = "short_answer")
+    @ApiModelProperty(value = "简答题答案" , name = "short_answer")
     private String short_answer;
 
-    @ApiModelProperty(value = "判断题答案",name = "judge_answer")
+    @ApiModelProperty(value = "判断题答案" , name = "judge_answer")
     private Boolean judge_answer;
 
-    public Questions(){
+    public Questions() {
         super();
     }
 

@@ -1,6 +1,7 @@
 package com.zty.smart_site.entity;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+
 /*
 兑换记录实体类
 conversion     兑换表
@@ -20,10 +21,10 @@ sub_name            分包单位名称
 */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Conversions {
-    private int id,staff_id,commodity_id,section_id,station_id,sub_id;
-    private String conversion_time,active,staff_name,commodity_name,station_name,sub_name,commodity_img;
+    private int id, staff_id, commodity_id, section_id, station_id, sub_id;
+    private String conversion_time, active, staff_name, commodity_name, station_name, sub_name, commodity_img;
 
-    public Conversions(){
+    public Conversions() {
         super();
     }
 

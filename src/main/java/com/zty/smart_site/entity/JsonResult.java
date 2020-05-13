@@ -9,7 +9,7 @@ public class JsonResult {
     private Object data5;
     private Integer code;
 
-    public JsonResult(int userNotExist){
+    public JsonResult(int userNotExist) {
         super();
     }
 

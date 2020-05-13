@@ -5,7 +5,10 @@
 <mapper namespace="com.zty.smart_site.dao.RiskrectifyDao">
     <!--增加整改通知单-->
     <insert id="InsertRiskrectify" parameterType="java.util.Map">
-        INSERT INTO `smart_site`.`riskrectify` (`title`, `section_id`, `station_id`, `sub_id`, `process_id`,`riskshow_id`, `staff_name`, `responsible`, `up_time`,`plan_time`, `description`) VALUES (#{title}, #{section_id}, #{station_id}, #{sub_id},#{process_id},#{riskshow_id}, #{staff_name}, #{responsible}, now(), #{plan_time},#{description});
+        INSERT INTO `smart_site`.`riskrectify` (`title`, `section_id`, `station_id`, `sub_id`,
+        `process_id`,`riskshow_id`, `staff_name`, `responsible`, `up_time`,`plan_time`, `description`) VALUES (#{title},
+        #{section_id}, #{station_id}, #{sub_id},#{process_id},#{riskshow_id}, #{staff_name}, #{responsible}, now(),
+        #{plan_time},#{description});
     </insert>
 
     <!--删除整改通知单-->
@@ -15,13 +18,16 @@
 
     <!--修改整改通知单-->
     <update id="UpdateRiskrectify" parameterType="java.util.Map">
-        UPDATE `smart_site`.`riskrectify` SET `title`=#{title}, `staff_name`=#{staff_name}, `responsible`=#{responsible}, `description`=#{description} WHERE (`id`=#{id});
+        UPDATE `smart_site`.`riskrectify` SET `title`=#{title}, `staff_name`=#{staff_name},
+        `responsible`=#{responsible}, `description`=#{description} WHERE (`id`=#{id});
     </update>
 
     <!--分页模糊查询整改通知单信息-->
     <select id="FindRiskrectify" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.Riskrectify">
         <bind name="page" value="pageSize*(pageNo-1)"></bind>
-        SELECT r.`id`, r.`title`, r.`section_id`, r.`station_id`, r.`sub_id`, r.`staff_name`, r.`responsible`, r.`up_time`,r.`plan_time`, r.`description`, r.`active`, l.`station_name` as `station_name`, f.`subcontractors_name` as `sub_name` FROM `smart_site`.`riskrectify` r
+        SELECT r.`id`, r.`title`, r.`section_id`, r.`station_id`, r.`sub_id`, r.`staff_name`, r.`responsible`,
+        r.`up_time`,r.`plan_time`, r.`description`, r.`active`, l.`station_name` as `station_name`,
+        f.`subcontractors_name` as `sub_name` FROM `smart_site`.`riskrectify` r
         INNER JOIN `smart_site`.`station` l ON r.`station_id`=l.`id`
         INNER JOIN `smart_site`.`subcontractors` f ON r.`sub_id`=f.`id`
         WHERE r.`section_id`=#{section_id} and r.`station_id`=#{station_id}
@@ -36,8 +42,11 @@
 
 
     <!--根据riskshow_id查询-->
-    <select id="FindRiskrectifyByriskshowId" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.Riskrectify">
-        SELECT r.`id`, r.`title`, r.`section_id`, r.`station_id`, r.`sub_id`, r.`staff_name`, r.`responsible`, r.`up_time`,r.`plan_time`, r.`description`, r.`active`, l.`station_name` as `station_name`, f.`subcontractors_name` as `sub_name` FROM `smart_site`.`riskrectify` r
+    <select id="FindRiskrectifyByriskshowId" parameterType="java.util.Map"
+            resultType="com.zty.smart_site.entity.Riskrectify">
+        SELECT r.`id`, r.`title`, r.`section_id`, r.`station_id`, r.`sub_id`, r.`staff_name`, r.`responsible`,
+        r.`up_time`,r.`plan_time`, r.`description`, r.`active`, l.`station_name` as `station_name`,
+        f.`subcontractors_name` as `sub_name` FROM `smart_site`.`riskrectify` r
         INNER JOIN `smart_site`.`station` l ON r.`station_id`=l.`id`
         INNER JOIN `smart_site`.`subcontractors` f ON r.`sub_id`=f.`id`
         where r.`riskshow_id`=#{riskshow_id}
@@ -46,7 +55,9 @@
     <!--分页模糊查询整改通知单信息-->
     <select id="FindRiskrectifyPC" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.Riskrectify">
         <bind name="page" value="pageSize*(pageNo-1)"></bind>
-        SELECT r.`id`, r.`title`, r.`section_id`, r.`station_id`, r.`sub_id`, r.`staff_name`, r.`responsible`, r.`up_time`,r.`plan_time`, r.`description`, r.`active`, l.`station_name` as `station_name`, f.`subcontractors_name` as `sub_name` FROM `smart_site`.`riskrectify` r
+        SELECT r.`id`, r.`title`, r.`section_id`, r.`station_id`, r.`sub_id`, r.`staff_name`, r.`responsible`,
+        r.`up_time`,r.`plan_time`, r.`description`, r.`active`, l.`station_name` as `station_name`,
+        f.`subcontractors_name` as `sub_name` FROM `smart_site`.`riskrectify` r
         INNER JOIN `smart_site`.`station` l ON r.`station_id`=l.`id`
         INNER JOIN `smart_site`.`subcontractors` f ON r.`sub_id`=f.`id`
         WHERE r.`section_id`=#{section_id}

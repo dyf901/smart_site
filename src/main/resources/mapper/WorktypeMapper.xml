@@ -5,7 +5,8 @@
 <mapper namespace="com.zty.smart_site.dao.WorktypeDao">
     <!--增加工种-->
     <insert id="InsertWorktype" parameterType="java.util.Map">
-        INSERT INTO `smart_site`.`worktype` (`worktype_name`, `content`, `section_id`, `station_id`, `sub_id`, `remark`) VALUES (#{worktype_name}, #{content}, #{section_id}, #{station_id}, #{sub_id},#{remark});
+        INSERT INTO `smart_site`.`worktype` (`worktype_name`, `content`, `section_id`, `station_id`, `sub_id`, `remark`)
+        VALUES (#{worktype_name}, #{content}, #{section_id}, #{station_id}, #{sub_id},#{remark});
     </insert>
 
     <!--删除工种-->
@@ -15,7 +16,8 @@
 
     <!--修改工种-->
     <update id="UpdateWorktype" parameterType="java.util.Map">
-        UPDATE `smart_site`.`worktype` SET `worktype_name`=#{worktype_name}, `content`=#{content}, `remark`=#{remark} WHERE (`id`=#{id});
+        UPDATE `smart_site`.`worktype` SET `worktype_name`=#{worktype_name}, `content`=#{content}, `remark`=#{remark}
+        WHERE (`id`=#{id});
     </update>
 
     <!--修改工种人数-->
@@ -26,7 +28,9 @@
     <!--分页模糊查询工种信息-->
     <select id="FindWorktype" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.Worktype">
         <bind name="page" value="pageSize*(pageNo-1)"></bind>
-        SELECT w.`id`,w.`worktype_name`, w.`content`, w.`section_id`, w.`station_id`,w.`sub_id`, w.`person_count`, w.`remark`,s.section_name as section_name,l.station_name as station_name,a.subcontractors_name as sub_name  FROM `smart_site`.`worktype` w
+        SELECT w.`id`,w.`worktype_name`, w.`content`, w.`section_id`, w.`station_id`,w.`sub_id`, w.`person_count`,
+        w.`remark`,s.section_name as section_name,l.station_name as station_name,a.subcontractors_name as sub_name FROM
+        `smart_site`.`worktype` w
         INNER JOIN `smart_site`.`section` s ON w.`section_id`=s.`id`
         INNER JOIN `smart_site`.`station` l ON w.`station_id`=l.`id`
         INNER JOIN `smart_site`.`subcontractors` a ON w.`sub_id`=a.`id`
@@ -64,6 +68,7 @@
 
     <!--根据worktype_id查询工种信息-->
     <select id="FindWorktypeByWorktypeId" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.Worktype">
-        SELECT `id`,`worktype_name`, `content`, `section_id`, `station_id`, `person_count`, `remark` FROM `smart_site`.`worktype` where id=#{worktype_id}
+        SELECT `id`,`worktype_name`, `content`, `section_id`, `station_id`, `person_count`, `remark` FROM
+        `smart_site`.`worktype` where id=#{worktype_id}
     </select>
 </mapper>

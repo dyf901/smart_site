@@ -5,7 +5,8 @@
 <mapper namespace="com.zty.smart_site.dao.BehaviorDao">
     <!--增加行为类型-->
     <insert id="InsertBehavior" parameterType="java.util.Map">
-        INSERT INTO `smart_site`.`behavior` (`behavior_name`,`section_id`,`detail`, `remark`) VALUES (#{behavior_name}, #{section_id}, #{detail}, #{remark});
+        INSERT INTO `smart_site`.`behavior` (`behavior_name`,`section_id`,`detail`, `remark`) VALUES (#{behavior_name},
+        #{section_id}, #{detail}, #{remark});
     </insert>
 
     <!--删除行为类型-->
@@ -15,9 +16,10 @@
 
     <!--修改行为类型信息-->
     <update id="UpdateBehavior" parameterType="java.util.Map">
-        UPDATE `smart_site`.`behavior` SET `behavior_name`=#{behavior_name}, `detail`=#{detail}, `remark`=#{remark} WHERE (`id`=#{id});
+        UPDATE `smart_site`.`behavior` SET `behavior_name`=#{behavior_name}, `detail`=#{detail}, `remark`=#{remark}
+        WHERE (`id`=#{id});
     </update>
-    
+
     <!--分页模糊查询-->
     <select id="FindBehavior" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.Behavior">
         <bind name="page" value="pageSize*(pageNo-1)"></bind>

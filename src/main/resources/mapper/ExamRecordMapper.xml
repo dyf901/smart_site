@@ -5,10 +5,11 @@
 <mapper namespace="com.zty.smart_site.dao.ExamRecordDao">
     <!--增加考试记录-->
     <insert id="InsertExamRecord" parameterType="java.util.Map">
-        INSERT INTO `smart_site`.`exam_record` (`exam_id`, `staff_id`, `section_id`, `exam_count`, `exam_time`, `exam_result`, `exam_timeC`)
+        INSERT INTO `smart_site`.`exam_record` (`exam_id`, `staff_id`, `section_id`, `exam_count`, `exam_time`,
+        `exam_result`, `exam_timeC`)
         VALUES (#{exam_id}, #{staff_id}, #{section_id}, #{exam_count}, #{exam_time}, #{exam_result}, #{exam_timeC});
     </insert>
-    
+
     <!--删除考试记录-->
     <delete id="DeleteExamRecord" parameterType="java.util.Map">
         DELETE FROM `smart_site`.`exam_record` WHERE `id`=#{id}
@@ -17,7 +18,8 @@
     <!--分页模糊查询考试记录-->
     <select id="FindExamRecord" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.ExamRecord">
         <bind name="page" value="pageSize*(pageNo-1)"></bind>
-        SELECT e.`id`, e.`exam_id`, e.`staff_id`, `section_id`, e.`exam_count`, e.`exam_time`, e.`exam_result`, e.`exam_timeC` FROM `smart_site`.`exam_record` e
+        SELECT e.`id`, e.`exam_id`, e.`staff_id`, `section_id`, e.`exam_count`, e.`exam_time`, e.`exam_result`,
+        e.`exam_timeC` FROM `smart_site`.`exam_record` e
         INNER JOIN `smart_site`.`exam` r ON e.`exam_id`=r.`id`
         INNER JOIN `smart_site`.`staff` s ON e.`staff_id`=s.`id`
         WHERE e.`section_id`=#{section_id}
@@ -31,8 +33,10 @@
     </select>
 
     <!--查询个人考试记录-->
-    <select id="FindExamRecordByStaffId" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.ExamRecord">
-        SELECT e.`id`, e.`exam_id`, e.`staff_id`, e.`section_id`, e.`exam_count`, e.`exam_time`, e.`exam_result`, e.`exam_timeC`,r.`exam_name` as `exam_name`,s.`staff_name` as `staff_name` FROM `smart_site`.`exam_record` e
+    <select id="FindExamRecordByStaffId" parameterType="java.util.Map"
+            resultType="com.zty.smart_site.entity.ExamRecord">
+        SELECT e.`id`, e.`exam_id`, e.`staff_id`, e.`section_id`, e.`exam_count`, e.`exam_time`, e.`exam_result`,
+        e.`exam_timeC`,r.`exam_name` as `exam_name`,s.`staff_name` as `staff_name` FROM `smart_site`.`exam_record` e
         INNER JOIN `smart_site`.`exam` r ON e.`exam_id`=r.`id`
         INNER JOIN `smart_site`.`staff` s ON e.`staff_id`=s.`id`
         WHERE e.`staff_id`=#{staff_id}
@@ -40,8 +44,10 @@
     </select>
 
     <!--查询个人考试记录-->
-    <select id="FindExamRecordByStaffIdALL" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.ExamRecord">
-        SELECT e.`id`, e.`exam_id`, e.`staff_id`, e.`section_id`, e.`exam_count`, e.`exam_time`, e.`exam_result`, e.`exam_timeC`,r.`exam_name` as `exam_name`,s.`staff_name` as `staff_name` FROM `smart_site`.`exam_record` e
+    <select id="FindExamRecordByStaffIdALL" parameterType="java.util.Map"
+            resultType="com.zty.smart_site.entity.ExamRecord">
+        SELECT e.`id`, e.`exam_id`, e.`staff_id`, e.`section_id`, e.`exam_count`, e.`exam_time`, e.`exam_result`,
+        e.`exam_timeC`,r.`exam_name` as `exam_name`,s.`staff_name` as `staff_name` FROM `smart_site`.`exam_record` e
         INNER JOIN `smart_site`.`exam` r ON e.`exam_id`=r.`id`
         INNER JOIN `smart_site`.`staff` s ON e.`staff_id`=s.`id`
         WHERE e.`staff_id`=#{staff_id}

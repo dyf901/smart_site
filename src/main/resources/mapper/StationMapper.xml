@@ -5,7 +5,9 @@
 <mapper namespace="com.zty.smart_site.dao.StationDao">
     <!--增加站点信息-->
     <insert id="InsertStation" parameterType="java.util.Map">
-        INSERT INTO `smart_site`.`station` (`section_id`, `station_name`, `station_time`, `start_time`, `end_time`, `station_principal`, `station_area`) VALUES (#{section_id}, #{station_name}, #{station_time}, #{start_time}, #{end_time}, #{station_principal}, #{station_area});
+        INSERT INTO `smart_site`.`station` (`section_id`, `station_name`, `station_time`, `start_time`, `end_time`,
+        `station_principal`, `station_area`) VALUES (#{section_id}, #{station_name}, #{station_time}, #{start_time},
+        #{end_time}, #{station_principal}, #{station_area});
     </insert>
 
     <!--删除站点信息-->
@@ -15,13 +17,16 @@
 
     <!--修改站点信息-->
     <update id="UpdateStation" parameterType="java.util.Map">
-        UPDATE `smart_site`.`station` SET `station_name`=#{station_name}, `station_time`=#{station_time}, `start_time`=#{start_time}, `end_time`=#{end_time}, `station_principal`=#{station_principal}, `station_area`=#{station_area} WHERE (`id`=#{id});
+        UPDATE `smart_site`.`station` SET `station_name`=#{station_name}, `station_time`=#{station_time},
+        `start_time`=#{start_time}, `end_time`=#{end_time}, `station_principal`=#{station_principal},
+        `station_area`=#{station_area} WHERE (`id`=#{id});
     </update>
 
     <!--分页模糊查询站点信息-->
     <select id="FindStation" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.Station">
         <bind name="page" value="pageSize*(pageNo-1)"></bind>
-        SELECT s.`id`, s.`section_id`, s.`station_name`, s.`station_time`, s.`start_time`, s.`end_time`, s.`station_principal`, s.`station_area`,d.`section_name` as section_name FROM `smart_site`.`station` s
+        SELECT s.`id`, s.`section_id`, s.`station_name`, s.`station_time`, s.`start_time`, s.`end_time`,
+        s.`station_principal`, s.`station_area`,d.`section_name` as section_name FROM `smart_site`.`station` s
         INNER JOIN `smart_site`.`section` d ON s.`section_id`=d.`id`
         <where>
             s.section_id=#{section_id}
@@ -44,6 +49,7 @@
 
     <!--下拉框查询站点信息-->
     <select id="SelectStation" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.Station">
-        SELECT `id`, `section_id`, `station_name`, `station_time`, `start_time`, `end_time`, `station_principal`, `station_area`, `userId`, `groupId`, `deviceKey`  FROM `smart_site`.`station` WHERE `section_id`=#{section_id}
+        SELECT `id`, `section_id`, `station_name`, `station_time`, `start_time`, `end_time`, `station_principal`,
+        `station_area`, `userId`, `groupId`, `deviceKey` FROM `smart_site`.`station` WHERE `section_id`=#{section_id}
     </select>
 </mapper>

@@ -5,27 +5,27 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@ApiModel(value = "TrainRecord",description = "培训记录")
+@ApiModel(value = "TrainRecord" , description = "培训记录")
 public class TrainRecord {
-    @ApiModelProperty(value = "培训记录id",name = "id")
+    @ApiModelProperty(value = "培训记录id" , name = "id")
     private int id;
 
-    @ApiModelProperty(value = "标段id",name = "section_id")
+    @ApiModelProperty(value = "标段id" , name = "section_id")
     private int section_id;
 
-    @ApiModelProperty(value = "考试人员",name = "staff_name")
+    @ApiModelProperty(value = "考试人员" , name = "staff_name")
     private String staff_name;
 
-    @ApiModelProperty(value = "培训内容",name = "train_name")
+    @ApiModelProperty(value = "培训内容" , name = "train_name")
     private String train_name;
 
-    @ApiModelProperty(value = "上传时间",name = "uptime")
+    @ApiModelProperty(value = "上传时间" , name = "uptime")
     private String uptime;
 
-    @ApiModelProperty(value = "员工图片",name = "staff_img")
+    @ApiModelProperty(value = "员工图片" , name = "staff_img")
     private String Staff_img;
 
-    public TrainRecord(){
+    public TrainRecord() {
         super();
     }
 

@@ -30,13 +30,13 @@ public class ConstantProperties implements InitializingBean {
 
 
     @Override
-    public void afterPropertiesSet() throws Exception{
+    public void afterPropertiesSet() throws Exception {
 
-        OSS_END_POINT=oss_file_endpoint;
-        OSS_ACCESS_KEY_ID=oss_file_keyid;
-        OSS_ACCESS_KEY_SECRET=oss_file_keysecret;
-        OSS_BUCKET_NAME=oss_file_bucketname;
-        OSS_FILE_HOST=oss_file_filehost;
+        OSS_END_POINT = oss_file_endpoint;
+        OSS_ACCESS_KEY_ID = oss_file_keyid;
+        OSS_ACCESS_KEY_SECRET = oss_file_keysecret;
+        OSS_BUCKET_NAME = oss_file_bucketname;
+        OSS_FILE_HOST = oss_file_filehost;
 
     }
 }

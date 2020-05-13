@@ -24,13 +24,13 @@ public class TitleController {
     @Autowired
     private TitleService titleService;//图标
 
-    @ApiOperation(value = "对应图标",notes = "测试数据:{\"position_id\":1}")
+    @ApiOperation(value = "对应图标" , notes = "测试数据:{\"position_id\":1}")
     @PostMapping("/FindById")
-    public JsonResult FindByPositionId(@RequestBody Map map){
+    public JsonResult FindByPositionId(@RequestBody Map map) {
         JsonResult jsonResult = new JsonResult();
-        List<Long> longs= positionTitleService.FindByPositionId(map);
-        List list =new ArrayList();
-        for (Long l:longs){
+        List<Long> longs = positionTitleService.FindByPositionId(map);
+        List list = new ArrayList();
+        for (Long l : longs) {
             Title title = titleService.FindById(l);
             list.add(title);
             System.out.println(title);

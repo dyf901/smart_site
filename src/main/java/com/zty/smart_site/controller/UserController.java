@@ -16,21 +16,21 @@ public class UserController {
     @Autowired
     private UserService userService;//用户
 
-    @ApiOperation(value = "增加用户信息",notes = "测试数据:{\"username\":\"交捷交通\",\"password\":\"admin\",\"end_time\":\"2020-5-20\",\"section_id\":1}")
+    @ApiOperation(value = "增加用户信息" , notes = "测试数据:{\"username\":\"交捷交通\",\"password\":\"admin\",\"end_time\":\"2020-5-20\",\"section_id\":1}")
     @PostMapping("/InsertUser")
-    public boolean InsertUser(@RequestBody Map map){
-        return userService.InsertUser(map)==1;
+    public boolean InsertUser(@RequestBody Map map) {
+        return userService.InsertUser(map) == 1;
     }
 
-    @ApiOperation(value = "删除用户信息",notes = "测试数据:{{\"id\":1}}")
+    @ApiOperation(value = "删除用户信息" , notes = "测试数据:{{\"id\":1}}")
     @PostMapping("DeleteUser")
-    public boolean DeleteUser(@RequestBody Map map){
-        return userService.DeleteUser(map)==1;
+    public boolean DeleteUser(@RequestBody Map map) {
+        return userService.DeleteUser(map) == 1;
     }
 
-    @ApiOperation(value = "修改使用期限(到期时间)",notes = "测试数据:{\"end_time\":\"2020-5-20\",\"id\":1}")
+    @ApiOperation(value = "修改使用期限(到期时间)" , notes = "测试数据:{\"end_time\":\"2020-5-20\",\"id\":1}")
     @PostMapping("UpdateUser")
-    public boolean UpdateUser(@RequestBody Map map){
-        return userService.UpdateUser(map)==1;
+    public boolean UpdateUser(@RequestBody Map map) {
+        return userService.UpdateUser(map) == 1;
     }
 }

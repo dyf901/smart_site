@@ -5,24 +5,24 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@ApiModel(value = "anintegral",description = "积分明细对象")
+@ApiModel(value = "anintegral" , description = "积分明细对象")
 public class Anintegral {
-    @ApiModelProperty(value = "积分id",name = "id")
+    @ApiModelProperty(value = "积分id" , name = "id")
     private int id;
 
-    @ApiModelProperty(value = "内容",name = "content")
+    @ApiModelProperty(value = "内容" , name = "content")
     private String content;
 
-    @ApiModelProperty(value = "上传时间",name="up_time")
+    @ApiModelProperty(value = "上传时间" , name = "up_time")
     private String up_time;
 
-    @ApiModelProperty(value = "用户id",name = "staff_id")
+    @ApiModelProperty(value = "用户id" , name = "staff_id")
     private int staff_id;
 
-    @ApiModelProperty(value = "上传时间",name="integral")
+    @ApiModelProperty(value = "上传时间" , name = "integral")
     private String integral;
 
-    public Anintegral(){
+    public Anintegral() {
         super();
     }
 

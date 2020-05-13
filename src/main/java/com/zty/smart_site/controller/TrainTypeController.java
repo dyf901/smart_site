@@ -19,27 +19,27 @@ public class TrainTypeController {
     @Autowired
     private TrainTypeService trainTypeService;
 
-    @ApiOperation(value = "增加培训类型",notes = "传参:")
+    @ApiOperation(value = "增加培训类型" , notes = "传参:")
     @PostMapping("/InsertTrainType")
-    public boolean InsertTrainType(@RequestBody Map map){
-        return trainTypeService.InsertTrainType(map)==1;
+    public boolean InsertTrainType(@RequestBody Map map) {
+        return trainTypeService.InsertTrainType(map) == 1;
     }
 
-    @ApiOperation(value = "删除培训类型",notes = "传参:")
+    @ApiOperation(value = "删除培训类型" , notes = "传参:")
     @PostMapping("/DeleteTrainType")
-    public boolean DeleteTrainType(@RequestBody Map map){
-        return trainTypeService.DeleteTrainType(map)==1;
+    public boolean DeleteTrainType(@RequestBody Map map) {
+        return trainTypeService.DeleteTrainType(map) == 1;
     }
 
-    @ApiOperation(value = "修改培训类型",notes = "传参:")
+    @ApiOperation(value = "修改培训类型" , notes = "传参:")
     @PostMapping("/UpdateTrainType")
-    public boolean UpdateTrainType(@RequestBody Map map){
-        return trainTypeService.UpdateTrainType(map)==1;
+    public boolean UpdateTrainType(@RequestBody Map map) {
+        return trainTypeService.UpdateTrainType(map) == 1;
     }
 
-    @ApiOperation(value = "分页模糊查询培训类型",notes = "")
+    @ApiOperation(value = "分页模糊查询培训类型" , notes = "")
     @PostMapping("/FindTrainType")
-    public Page<TrainType> FindTrainType(@RequestBody Map map){
+    public Page<TrainType> FindTrainType(@RequestBody Map map) {
         Page<TrainType> page = new Page<TrainType>();
         page.setPageNo((Integer) map.get("pageNo"));
         page.setPageSize((Integer) map.get("pageSize"));
@@ -48,9 +48,9 @@ public class TrainTypeController {
         return page;
     }
 
-    @ApiOperation(value = "下拉框查询培训类型",notes = "")
+    @ApiOperation(value = "下拉框查询培训类型" , notes = "")
     @PostMapping("/SelectTrainType")
-    public List<TrainType> SelectTrainType(@RequestBody Map map){
+    public List<TrainType> SelectTrainType(@RequestBody Map map) {
         return trainTypeService.SelectTrainType(map);
     }
 }

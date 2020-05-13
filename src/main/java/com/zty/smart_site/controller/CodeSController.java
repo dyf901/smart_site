@@ -32,9 +32,9 @@ public class CodeSController {
     @Autowired
     private StaffService staffService;
 
-    @ApiOperation(value = "查询个人所有信息",notes = "")
+    @ApiOperation(value = "查询个人所有信息" , notes = "")
     @PostMapping("/FindALL")
-    public JsonResult FindALL(@RequestBody Map map){
+    public JsonResult FindALL(@RequestBody Map map) {
         JsonResult jsonResult = new JsonResult();
         jsonResult.setData(staffService.FindStaffByStaffIdAll(map));
         jsonResult.setData2(behaviorRecordService.FindBehaviorRecordByStaffIdALL(map));

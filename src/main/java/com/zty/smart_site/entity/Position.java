@@ -1,6 +1,7 @@
 package com.zty.smart_site.entity;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+
 /*
 菜单表实体类
 position            菜单表
@@ -12,9 +13,9 @@ remark					备注
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Position {
     private int id;
-    private String position_name,remark;
+    private String position_name, remark;
 
-    public Position(){
+    public Position() {
         super();
     }
 

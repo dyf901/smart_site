@@ -25,9 +25,18 @@ import java.util.ResourceBundle;
 public class Demo {
     */
 /**
-     * 根据自定义的内容和图片名称生成二维码图片
-     * 参考：https://blog.csdn.net/amberwangfeng/article/details/78657889
-     *//*
+ * 根据自定义的内容和图片名称生成二维码图片
+ * 参考：https://blog.csdn.net/amberwangfeng/article/details/78657889
+ * <p>
+ * 给二维码添加logo
+ * <p>
+ * 给二维码下方附加说明文字
+ *
+ * @param pressText 文字
+ * @param newImg    带文字的图片
+ * @param image     需要添加文字的图片
+ * @为图片添加文字
+ *//*
 
     public static void main(String[] args ){
         String content = "http://api.sd-che.com:8080/ssm/fxck.html?"+"userId="+423+"&userType="+1;
@@ -71,8 +80,8 @@ public class Demo {
     }
     */
 /**
-     * 给二维码添加logo
-     *//*
+ * 给二维码添加logo
+ *//*
 
     public static BufferedImage addLogo_QRCode(BufferedImage barCodeImage, File logoPic, LogoConfig logoConfig) {
         try {
@@ -110,12 +119,12 @@ public class Demo {
 
     */
 /**
-     * 给二维码下方附加说明文字
-     * @param pressText 文字
-     * @param newImg    带文字的图片
-     * @param image     需要添加文字的图片
-     * @为图片添加文字
-     *//*
+ * 给二维码下方附加说明文字
+ * @param pressText 文字
+ * @param newImg    带文字的图片
+ * @param image     需要添加文字的图片
+ * @为图片添加文字
+ *//*
 
     public static void pressText(String pressText, String newImg, BufferedImage image, int fontStyle, Color color, int fontSize, int width, int height) {
 

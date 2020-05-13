@@ -1,6 +1,7 @@
 package com.zty.smart_site.entity;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+
 /*
 菜单表实体类
 MENU    		菜单表
@@ -11,9 +12,9 @@ menu_url     			菜单路由
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Menu {
     private int id;
-    private String menu_name,menu_url;
+    private String menu_name, menu_url;
 
-    public Menu(){
+    public Menu() {
         super();
     }
 

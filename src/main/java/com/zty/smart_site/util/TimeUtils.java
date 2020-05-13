@@ -14,11 +14,11 @@ public class TimeUtils {
     }
 
     public static String timeslashData(String time) {
-        if (time.length()<10){
+        if (time.length() < 10) {
             return "";
         }
-        if (time.length()>10){
-            time=""+Long.parseLong(time)/1000;
+        if (time.length() > 10) {
+            time = "" + Long.parseLong(time) / 1000;
         }
         SimpleDateFormat sdr = new SimpleDateFormat("yyyy-MM-dd");
         @SuppressWarnings("unused")
@@ -28,12 +28,13 @@ public class TimeUtils {
         return times;
 
     }
+
     public static String timeData(String time) {
-        if (time.length()<10){
+        if (time.length() < 10) {
             return "";
         }
-        if (time.length()>10){
-            time=""+Long.parseLong(time)/1000;
+        if (time.length() > 10) {
+            time = "" + Long.parseLong(time) / 1000;
         }
         SimpleDateFormat sdr = new SimpleDateFormat("yyyy.MM.dd");
         @SuppressWarnings("unused")
@@ -43,12 +44,13 @@ public class TimeUtils {
         return times;
 
     }
+
     public static String toDate(String time) {
-        if (time.length()<10){
+        if (time.length() < 10) {
             return "";
         }
-        if (time.length()>10){
-            time=""+Long.parseLong(time)/1000;
+        if (time.length() > 10) {
+            time = "" + Long.parseLong(time) / 1000;
         }
         SimpleDateFormat sdr = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         @SuppressWarnings("unused")

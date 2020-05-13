@@ -5,7 +5,8 @@
 <mapper namespace="com.zty.smart_site.dao.ProcessDao">
     <!--增加工序-->
     <insert id="InsertProcess" parameterType="java.util.Map">
-        INSERT INTO `smart_site`.`process` (`process_name`, `section_id`, `station_id`) VALUES (#{process_name}, #{section_id}, #{station_id});
+        INSERT INTO `smart_site`.`process` (`process_name`, `section_id`, `station_id`) VALUES (#{process_name},
+        #{section_id}, #{station_id});
     </insert>
 
     <!--删除工序-->
@@ -15,13 +16,15 @@
 
     <!--修改工序-->
     <update id="UpdateProcess" parameterType="java.util.Map">
-        UPDATE `smart_site`.`process` SET `process_name`=#{process_name}, `section_id`=#{section_id}, `station_id`=#{station_id} WHERE (`id`=#{id});
+        UPDATE `smart_site`.`process` SET `process_name`=#{process_name}, `section_id`=#{section_id},
+        `station_id`=#{station_id} WHERE (`id`=#{id});
     </update>
 
     <!--分页模糊查询工序-->
     <select id="FindProcess" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.Process">
         <bind name="page" value="pageSize*(pageNo-1)"></bind>
-        SELECT p.`id`,p.`process_name`, p.`section_id`, p.`station_id`,s.`station_name` as `station_name` FROM `smart_site`.`process` p
+        SELECT p.`id`,p.`process_name`, p.`section_id`, p.`station_id`,s.`station_name` as `station_name` FROM
+        `smart_site`.`process` p
         INNER JOIN `smart_site`.`station` s ON p.`station_id`
         <where>
             p.`section_id`=#{section_id}

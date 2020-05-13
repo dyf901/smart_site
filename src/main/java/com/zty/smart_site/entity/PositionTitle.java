@@ -1,6 +1,7 @@
 package com.zty.smart_site.entity;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+
 /*
 菜单图标表实体类
 position_title          菜单图标表
@@ -10,9 +11,9 @@ title_id            图标id
 */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class PositionTitle {
-    private int id,position_id,title_id;
+    private int id, position_id, title_id;
 
-    public PositionTitle(){
+    public PositionTitle() {
         super();
     }
 

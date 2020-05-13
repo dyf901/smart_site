@@ -1,6 +1,7 @@
 package com.zty.smart_site.entity;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+
 /*
 标段表实体类
 SECTION     	标段表
@@ -13,10 +14,10 @@ section_principal     	项目经理
 */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Section {
-    private int id,section_time;
-    private String section_name,start_time,end_time,section_principal;
+    private int id, section_time;
+    private String section_name, start_time, end_time, section_principal;
 
-    public Section(){
+    public Section() {
         super();
     }
 

@@ -11,7 +11,7 @@ public class Base64Image {
 
         String strImg = "post过来的base64图片编码";
         //tomcat下 使用base64上传 会将+变成空格，所以转图片前要进行转换
-        strImg = strImg.replaceAll(" ", "+");
+        strImg = strImg.replaceAll(" " , "+");
         GenerateImage(strImg, "D:\\wangyc.jpg");
 
         // 测试从图片文件转换为Base64编码

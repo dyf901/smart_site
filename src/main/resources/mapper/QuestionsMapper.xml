@@ -5,8 +5,11 @@
 <mapper namespace="com.zty.smart_site.dao.QuestionsDao">
     <!--增加题目-->
     <insert id="InsertQuestions" parameterType="java.util.Map">
-        INSERT INTO `smart_site`.`questions` (`section_id`, `knowledge_id`, `specialty_id`, `questions_type`, `questions_content`, `select_A`, `select_B`, `select_C`, `select_D`, `select_answer`, `judge_answer`, `gap_answer`, `short_answer`)
-        VALUES (#{section_id}, #{knowledge_id}, #{specialty_id}, #{questions_type}, #{questions_content}, #{select_A}, #{select_B}, #{select_C}, #{select_D}, #{select_answer}, #{judge_answer}, #{gap_answer}, #{short_answer});
+        INSERT INTO `smart_site`.`questions` (`section_id`, `knowledge_id`, `specialty_id`, `questions_type`,
+        `questions_content`, `select_A`, `select_B`, `select_C`, `select_D`, `select_answer`, `judge_answer`,
+        `gap_answer`, `short_answer`)
+        VALUES (#{section_id}, #{knowledge_id}, #{specialty_id}, #{questions_type}, #{questions_content}, #{select_A},
+        #{select_B}, #{select_C}, #{select_D}, #{select_answer}, #{judge_answer}, #{gap_answer}, #{short_answer});
     </insert>
 
     <!--删除题目-->
@@ -16,13 +19,19 @@
 
     <!--修改题目-->
     <update id="UpdateQuestions" parameterType="java.util.Map">
-        UPDATE `smart_site`.`questions` SET `knowledge_id`=#{knowledge_id}, `specialty_id`=#{specialty_id}, `questions_type`=#{questions_type}, `questions_content`=#{questions_content}, `select_A`=#{select_A}, `select_B`=#{select_B}, `select_C`=#{select_C}, `select_D`=#{select_D}, `select_answer`=#{select_answer}, `judge_answer`=#{judge_answer}, `gap_answer`=#{gap_answer}, `short_answer`=#{short_answer} WHERE (`id`=#{id});
+        UPDATE `smart_site`.`questions` SET `knowledge_id`=#{knowledge_id}, `specialty_id`=#{specialty_id},
+        `questions_type`=#{questions_type}, `questions_content`=#{questions_content}, `select_A`=#{select_A},
+        `select_B`=#{select_B}, `select_C`=#{select_C}, `select_D`=#{select_D}, `select_answer`=#{select_answer},
+        `judge_answer`=#{judge_answer}, `gap_answer`=#{gap_answer}, `short_answer`=#{short_answer} WHERE (`id`=#{id});
     </update>
 
     <!--分页模糊查询题目信息-->
     <select id="FindQuestions" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.Questions">
         <bind name="page" value="pageSize*(pageNo-1)"></bind>
-        SELECT  q.`id`, q.`section_id`, q.`knowledge_id`, q.`specialty_id`, q.`questions_type`, q.`questions_content`, q.`select_A`, q.`select_B`, q.`select_C`, q.`select_D`, q.`select_answer`, q.`judge_answer`, q.`gap_answer`, q.`short_answer`,k.`knowledge_name` as `knowledge_name` ,s.`specialty_name` as `specialty_name` FROM `smart_site`.`questions` q
+        SELECT q.`id`, q.`section_id`, q.`knowledge_id`, q.`specialty_id`, q.`questions_type`, q.`questions_content`,
+        q.`select_A`, q.`select_B`, q.`select_C`, q.`select_D`, q.`select_answer`, q.`judge_answer`, q.`gap_answer`,
+        q.`short_answer`,k.`knowledge_name` as `knowledge_name` ,s.`specialty_name` as `specialty_name` FROM
+        `smart_site`.`questions` q
         INNER JOIN `smart_site`.`knowledge` k ON q.`knowledge_id`=k.`id`
         INNER JOIN `smart_site`.`specialty` s ON q.`specialty_id`=s.`id`
         <where>
@@ -59,7 +68,10 @@
 
     <!--根据id查询题目信息-->
     <select id="FindQuestionsById" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.Questions">
-        SELECT  q.`id`, q.`section_id`, q.`knowledge_id`, q.`specialty_id`, q.`questions_type`, q.`questions_content`, q.`select_A`, q.`select_B`, q.`select_C`, q.`select_D`, q.`select_answer`, q.`judge_answer`, q.`gap_answer`, q.`short_answer`,k.`knowledge_name` as `knowledge_name` ,s.`specialty_name` as `specialty_name` FROM `smart_site`.`questions` q
+        SELECT q.`id`, q.`section_id`, q.`knowledge_id`, q.`specialty_id`, q.`questions_type`, q.`questions_content`,
+        q.`select_A`, q.`select_B`, q.`select_C`, q.`select_D`, q.`select_answer`, q.`judge_answer`, q.`gap_answer`,
+        q.`short_answer`,k.`knowledge_name` as `knowledge_name` ,s.`specialty_name` as `specialty_name` FROM
+        `smart_site`.`questions` q
         INNER JOIN `smart_site`.`knowledge` k ON q.`knowledge_id`=k.`id`
         INNER JOIN `smart_site`.`specialty` s ON q.`specialty_id`=s.`id`
         WHERE q.`id`=#{id}
@@ -67,19 +79,23 @@
 
     <!--根据题目类型查询随机查询题目返回id数组-->
     <select id="FindQuestionByQuestionTypeX" parameterType="java.util.Map" resultType="int">
-        SELECT `id` FROM `smart_site`.`questions` WHERE questions_type='选择题' and `section_id`=#{section_id} ORDER BY rand() limit #{countX};
+        SELECT `id` FROM `smart_site`.`questions` WHERE questions_type='选择题' and `section_id`=#{section_id} ORDER BY
+        rand() limit #{countX};
     </select>
 
     <select id="FindQuestionByQuestionTypeP" parameterType="java.util.Map" resultType="int">
-        SELECT `id` FROM `smart_site`.`questions` WHERE questions_type='判断题' and `section_id`=#{section_id} ORDER BY rand() limit #{countP};
+        SELECT `id` FROM `smart_site`.`questions` WHERE questions_type='判断题' and `section_id`=#{section_id} ORDER BY
+        rand() limit #{countP};
     </select>
 
     <select id="FindQuestionByQuestionTypeT" parameterType="java.util.Map" resultType="int">
-        SELECT `id` FROM `smart_site`.`questions` WHERE questions_type='填空题' and `section_id`=#{section_id} ORDER BY rand() limit #{countT};
+        SELECT `id` FROM `smart_site`.`questions` WHERE questions_type='填空题' and `section_id`=#{section_id} ORDER BY
+        rand() limit #{countT};
     </select>
 
     <select id="FindQuestionByQuestionTypeJ" parameterType="java.util.Map" resultType="int">
-        SELECT `id` FROM `smart_site`.`questions` WHERE questions_type='简答题' and `section_id`=#{section_id} ORDER BY rand() limit #{countJ};
+        SELECT `id` FROM `smart_site`.`questions` WHERE questions_type='简答题' and `section_id`=#{section_id} ORDER BY
+        rand() limit #{countJ};
     </select>
 
     <!--统计试题总数-->
@@ -88,15 +104,17 @@
     </select>
 
     <select id="CountByKnowledge" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.Questions">
-        SELECT q.`knowledge_id`, k.`knowledge_name` as `knowledge_name`,COUNT(*) as `count` FROM `smart_site`.`questions` q
+        SELECT q.`knowledge_id`, k.`knowledge_name` as `knowledge_name`,COUNT(*) as `count` FROM
+        `smart_site`.`questions` q
         INNER JOIN `smart_site`.`knowledge` k ON q.`knowledge_id`=k.`id`
         INNER JOIN `smart_site`.`specialty` s ON q.`specialty_id`=s.`id`
-		WHERE q.`section_id`=#{section_id}
+        WHERE q.`section_id`=#{section_id}
         GROUP BY q.`knowledge_id`
     </select>
 
     <select id="CountBySpecialty" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.Questions">
-        SELECT  q.`specialty_id`,s.`specialty_name` as `specialty_name`,COUNT(*) as `count` FROM `smart_site`.`questions` q
+        SELECT q.`specialty_id`,s.`specialty_name` as `specialty_name`,COUNT(*) as `count` FROM `smart_site`.`questions`
+        q
         INNER JOIN `smart_site`.`knowledge` k ON q.`knowledge_id`=k.`id`
         INNER JOIN `smart_site`.`specialty` s ON q.`specialty_id`=s.`id`
         WHERE q.`section_id`=#{section_id}

@@ -1,6 +1,7 @@
 package com.zty.smart_site.entity;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+
 /*
 图标表实体类
 title       图标表
@@ -11,9 +12,9 @@ title_img       图标图片
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Title {
     private int id;
-    private String title_name,title_img;
+    private String title_name, title_img;
 
-    public Title(){
+    public Title() {
         super();
     }
 

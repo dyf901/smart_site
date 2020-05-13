@@ -25,42 +25,42 @@ public class ConversionsController {
     @Autowired
     private StaffService staffService;//劳务人员
 
-    @ApiOperation(value = "增加兑换记录",notes = "测试数据:{\"id\":3,\"commodity_id\":1,\"section_id\":1,\"station_id\":1,\"sub_id\":1,\"commodity_price\":10}")
+    @ApiOperation(value = "增加兑换记录" , notes = "测试数据:{\"id\":3,\"commodity_id\":1,\"section_id\":1,\"station_id\":1,\"sub_id\":1,\"commodity_price\":10}")
     @PostMapping("/InsertConversions")
-    public JsonResult InsertConversions(@RequestBody Map map){
+    public JsonResult InsertConversions(@RequestBody Map map) {
         JsonResult jsonResult = new JsonResult();
         System.out.println(map);
-        Staff staff=staffService.FindStaffById(map);
-        int t= (int) map.get("commodity_price");
-        map.put("staff_id",staff.getId());
-        if (staff.getEnd_integral()>t){
-            int i=conversionsService.InsertConversions(map);
-            if (i==1){
+        Staff staff = staffService.FindStaffById(map);
+        int t = (int) map.get("commodity_price");
+        map.put("staff_id" , staff.getId());
+        if (staff.getEnd_integral() > t) {
+            int i = conversionsService.InsertConversions(map);
+            if (i == 1) {
                 staffService.UpdateStaffEnd_integral(map);
                 jsonResult.setMessage("兑换成功!");
                 jsonResult.setCode(200);
                 return jsonResult;
-            }else {
+            } else {
                 jsonResult.setMessage("信息有误兑换失败!");
                 jsonResult.setCode(20006);
                 return jsonResult;
             }
-        }else {
+        } else {
             jsonResult.setMessage("积分不足兑换失败!");
             jsonResult.setCode(20006);
             return jsonResult;
         }
     }
 
-    @ApiOperation(value = "删除兑换记录",notes = "测试数据:{\"id\":3}")
+    @ApiOperation(value = "删除兑换记录" , notes = "测试数据:{\"id\":3}")
     @PostMapping("/DeleteConversions")
-    public boolean DeleteConversions(@RequestBody Map map){
-        return conversionsService.DeleteConversions(map)==1;
+    public boolean DeleteConversions(@RequestBody Map map) {
+        return conversionsService.DeleteConversions(map) == 1;
     }
 
-    @ApiOperation(value = "分页模糊查询兑换记录",notes = "测试数据:{\"pageNo\":1,\"pageSize\":10,\"section_id\":1}")
+    @ApiOperation(value = "分页模糊查询兑换记录" , notes = "测试数据:{\"pageNo\":1,\"pageSize\":10,\"section_id\":1}")
     @PostMapping("/FindConversions")
-    public Page<Conversions> FindConversions(@RequestBody Map map){
+    public Page<Conversions> FindConversions(@RequestBody Map map) {
         Page<Conversions> page = new Page<Conversions>();
 
         page.setPageNo((Integer) map.get("pageNo"));
@@ -70,9 +70,9 @@ public class ConversionsController {
         return page;
     }
 
-    @ApiOperation(value = "分页模糊查询个人兑换记录",notes = "测试数据:{\"pageNo\":1,\"pageSize\":10,\"section_id\":1,\"staff_id\":3}")
+    @ApiOperation(value = "分页模糊查询个人兑换记录" , notes = "测试数据:{\"pageNo\":1,\"pageSize\":10,\"section_id\":1,\"staff_id\":3}")
     @PostMapping("/FindConversionsByStaffId")
-    public Page<Conversions> FindConversionsByStaffId(@RequestBody Map map){
+    public Page<Conversions> FindConversionsByStaffId(@RequestBody Map map) {
         Page<Conversions> page = new Page<Conversions>();
         page.setPageNo((Integer) map.get("pageNo"));
         page.setPageSize((Integer) map.get("pageSize"));

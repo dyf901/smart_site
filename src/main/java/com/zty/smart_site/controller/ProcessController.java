@@ -19,27 +19,27 @@ public class ProcessController {
     @Autowired
     private ProcessService processService;
 
-    @ApiOperation(value = "增加工序",notes = "")
+    @ApiOperation(value = "增加工序" , notes = "")
     @PostMapping("/InsertProcess")
-    public Boolean InsertProcess(@RequestBody Map map){
-        return processService.InsertProcess(map)==1;
+    public Boolean InsertProcess(@RequestBody Map map) {
+        return processService.InsertProcess(map) == 1;
     }
 
-    @ApiOperation(value = "删除工序",notes = "")
+    @ApiOperation(value = "删除工序" , notes = "")
     @PostMapping("/DeleteProcess")
-    public Boolean DeleteProcess(@RequestBody Map map){
-        return processService.DeleteProcess(map)==1;
+    public Boolean DeleteProcess(@RequestBody Map map) {
+        return processService.DeleteProcess(map) == 1;
     }
 
-    @ApiOperation(value = "修改工序",notes = "")
+    @ApiOperation(value = "修改工序" , notes = "")
     @PostMapping("/UpdateProcess")
-    public Boolean UpdateProcess(@RequestBody Map map){
-        return processService.UpdateProcess(map)==1;
+    public Boolean UpdateProcess(@RequestBody Map map) {
+        return processService.UpdateProcess(map) == 1;
     }
 
-    @ApiOperation(value = "分页模糊查询工序",notes = "测试数据:{\"pageNo\":1,\"pageSize\":10,\"section_id\":2}")
+    @ApiOperation(value = "分页模糊查询工序" , notes = "测试数据:{\"pageNo\":1,\"pageSize\":10,\"section_id\":2}")
     @PostMapping("/FindProcess")
-    public Page<Process> FindProcess(@RequestBody Map map){
+    public Page<Process> FindProcess(@RequestBody Map map) {
         Page<Process> page = new Page<Process>();
         page.setPageNo((Integer) map.get("pageNo"));
         page.setPageSize((Integer) map.get("pageSize"));
@@ -48,9 +48,9 @@ public class ProcessController {
         return page;
     }
 
-    @ApiOperation(value = "下拉框查询工序",notes = "")
+    @ApiOperation(value = "下拉框查询工序" , notes = "")
     @PostMapping("/SelectProcess")
-    public JsonResult SelectProcess(@RequestBody Map map){
+    public JsonResult SelectProcess(@RequestBody Map map) {
         JsonResult jsonResult = new JsonResult();
         jsonResult.setData(processService.SelectProcess(map));
         return jsonResult;

@@ -12,10 +12,10 @@ uptime      时间
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Code {
-    private int id,code;
-    private String phone,uptime;
+    private int id, code;
+    private String phone, uptime;
 
-    public Code(){
+    public Code() {
         super();
     }
 

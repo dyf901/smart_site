@@ -1,6 +1,7 @@
 package com.zty.smart_site.entity;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+
 /*
 标段菜单表实体类
 SECTION_MENU    标段菜单表
@@ -10,9 +11,9 @@ menu_id         		菜单id
 */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class SectionMenu {
-    private int id,section_id,menu_id;
+    private int id, section_id, menu_id;
 
-    public SectionMenu(){
+    public SectionMenu() {
         super();
     }
 

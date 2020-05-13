@@ -1,6 +1,7 @@
 package com.zty.smart_site.entity;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+
 /*
 用户表实体类
 USER    		用户表
@@ -15,10 +16,10 @@ section_name            标段名称
 */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class User {
-    private int id,section_id;
-    private String username,password,create_time,end_time,section_name,user_menu;
+    private int id, section_id;
+    private String username, password, create_time, end_time, section_name, user_menu;
 
-    public User(){
+    public User() {
         super();
     }
 

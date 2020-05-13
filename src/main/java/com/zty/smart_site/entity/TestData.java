@@ -7,17 +7,17 @@ import io.swagger.annotations.ApiModelProperty;
 import java.util.List;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@ApiModel(value = "train_type", description = "培训类型")
+@ApiModel(value = "train_type" , description = "培训类型")
 public class TestData {
 
-    @ApiModelProperty(value = "ID", name = "id")
+    @ApiModelProperty(value = "ID" , name = "id")
     private int id;
 
-    @ApiModelProperty(value = "类型名称", name = "type_name")
+    @ApiModelProperty(value = "类型名称" , name = "type_name")
     private String type_name;
 
 
-    @ApiModelProperty(value = "类型名称", name = "type_name")
+    @ApiModelProperty(value = "类型名称" , name = "type_name")
     private List<Train> dataIn;
 
 

@@ -5,7 +5,8 @@
 <mapper namespace="com.zty.smart_site.dao.BehaviorRecordDao">
     <!--增加行为记录-->
     <insert id="InsertBehaviorRecord" parameterType="java.util.Map">
-        INSERT INTO `smart_site`.`behavior_record` (`staff_id`, `behavior_id`, `section_id`, `station_id`, `uptime`, `remark`) VALUES (#{staff_id}, #{behavior_id}, #{section_id}, #{station_id}, now(), #{remark});
+        INSERT INTO `smart_site`.`behavior_record` (`staff_id`, `behavior_id`, `section_id`, `station_id`, `uptime`,
+        `remark`) VALUES (#{staff_id}, #{behavior_id}, #{section_id}, #{station_id}, now(), #{remark});
     </insert>
 
     <!--删除行为记录-->
@@ -21,7 +22,9 @@
     <!--分页模糊查询行为记录-->
     <select id="FindBehaviorRecord" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.BehaviorRecord">
         <bind name="page" value="pageSize*(pageNo-1)"></bind>
-        SELECT b.`id`, b.`staff_id`, b.`behavior_id`, b.`section_id`, b.`station_id`, b.`uptime`, b.`remark`, s.`staff_name` as staff_name, a.`behavior_name` as behavior_name,l.station_name as station_name,d.section_name as section_name FROM `smart_site`.`behavior_record` b
+        SELECT b.`id`, b.`staff_id`, b.`behavior_id`, b.`section_id`, b.`station_id`, b.`uptime`, b.`remark`,
+        s.`staff_name` as staff_name, a.`behavior_name` as behavior_name,l.station_name as station_name,d.section_name
+        as section_name FROM `smart_site`.`behavior_record` b
         INNER JOIN `smart_site`.`staff` s ON b.`staff_id`=s.`id`
         INNER JOIN `smart_site`.`behavior` a ON b.`behavior_id`=a.`id`
         INNER JOIN `smart_site`.`station` l ON b.`station_id`=l.`id`
@@ -53,9 +56,12 @@
     </select>
 
     <!--分页查询个人行为记录-->
-    <select id="FindBehaviorRecordByStaff_id" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.BehaviorRecord">
+    <select id="FindBehaviorRecordByStaff_id" parameterType="java.util.Map"
+            resultType="com.zty.smart_site.entity.BehaviorRecord">
         <bind name="page" value="pageSize*(pageNo-1)"></bind>
-        SELECT b.`id`, b.`staff_id`, b.`behavior_id`, b.`section_id`, b.`station_id`, b.`uptime`, b.`remark`, s.`staff_name` as staff_name, a.`behavior_name` as behavior_name,l.station_name as station_name,d.section_name as section_name FROM `smart_site`.`behavior_record` b
+        SELECT b.`id`, b.`staff_id`, b.`behavior_id`, b.`section_id`, b.`station_id`, b.`uptime`, b.`remark`,
+        s.`staff_name` as staff_name, a.`behavior_name` as behavior_name,l.station_name as station_name,d.section_name
+        as section_name FROM `smart_site`.`behavior_record` b
         INNER JOIN `smart_site`.`staff` s ON b.`staff_id`=s.`id`
         INNER JOIN `smart_site`.`behavior` a ON b.`behavior_id`=a.`id`
         INNER JOIN `smart_site`.`station` l ON b.`station_id`=l.`id`
@@ -71,7 +77,9 @@
 
     <!--测试-->
     <select id="ceshi" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.BehaviorRecord">
-        SELECT b.`id`, b.`staff_id`, b.`behavior_id`, b.`section_id`, b.`station_id`, b.`uptime`, b.`remark`, s.`staff_name` as staff_name, a.`behavior_name` as behavior_name,l.station_name as station_name,d.section_name as section_name FROM `smart_site`.`behavior_record` b
+        SELECT b.`id`, b.`staff_id`, b.`behavior_id`, b.`section_id`, b.`station_id`, b.`uptime`, b.`remark`,
+        s.`staff_name` as staff_name, a.`behavior_name` as behavior_name,l.station_name as station_name,d.section_name
+        as section_name FROM `smart_site`.`behavior_record` b
         INNER JOIN `smart_site`.`staff` s ON b.`staff_id`=s.`id`
         INNER JOIN `smart_site`.`behavior` a ON b.`behavior_id`=a.`id`
         INNER JOIN `smart_site`.`station` l ON b.`station_id`=l.`id`
@@ -80,8 +88,11 @@
     </select>
 
     <!--分页查询个人行为记录-->
-    <select id="FindBehaviorRecordByStaffIdALL" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.BehaviorRecord">
-        SELECT b.`id`, b.`staff_id`, b.`behavior_id`, b.`section_id`, b.`station_id`, b.`uptime`, b.`remark`, s.`staff_name` as staff_name, a.`behavior_name` as behavior_name,l.station_name as station_name,d.section_name as section_name FROM `smart_site`.`behavior_record` b
+    <select id="FindBehaviorRecordByStaffIdALL" parameterType="java.util.Map"
+            resultType="com.zty.smart_site.entity.BehaviorRecord">
+        SELECT b.`id`, b.`staff_id`, b.`behavior_id`, b.`section_id`, b.`station_id`, b.`uptime`, b.`remark`,
+        s.`staff_name` as staff_name, a.`behavior_name` as behavior_name,l.station_name as station_name,d.section_name
+        as section_name FROM `smart_site`.`behavior_record` b
         INNER JOIN `smart_site`.`staff` s ON b.`staff_id`=s.`id`
         INNER JOIN `smart_site`.`behavior` a ON b.`behavior_id`=a.`id`
         INNER JOIN `smart_site`.`station` l ON b.`station_id`=l.`id`

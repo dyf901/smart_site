@@ -1,6 +1,7 @@
 package com.zty.smart_site.entity;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+
 /*
 行为记录实体类
 behavior_record   行为记录表
@@ -19,11 +20,11 @@ station_name              站点名称
 */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class BehaviorRecord {
-    private int id,staff_id,behavior_id,section_id,station_id;
-    private String uptime,remark;
-    private String staff_name,behavior_name,section_name,station_name;
+    private int id, staff_id, behavior_id, section_id, station_id;
+    private String uptime, remark;
+    private String staff_name, behavior_name, section_name, station_name;
 
-    public BehaviorRecord(){
+    public BehaviorRecord() {
         super();
     }
 

@@ -27,29 +27,29 @@ public class TrainController {
     @Autowired
     private TrainService trainService;
 
-    @ApiOperation(value = "增加培训内容",notes = "传参:")
+    @ApiOperation(value = "增加培训内容" , notes = "传参:")
     @PostMapping("/InsertTrain")
-    public boolean InsertTrain(@RequestBody Map map){
+    public boolean InsertTrain(@RequestBody Map map) {
         System.out.println(map);
-        map.put("train_name",map.get("commonality_name"));
-        return trainService.InsertTrain(map)==1;
+        map.put("train_name" , map.get("commonality_name"));
+        return trainService.InsertTrain(map) == 1;
     }
 
-    @ApiOperation(value = "删除培训内容",notes = "传参:")
+    @ApiOperation(value = "删除培训内容" , notes = "传参:")
     @PostMapping("/DeleteTrain")
-    public boolean DeleteTrain(@RequestBody Map map){
-        return trainService.DeleteTrain(map)==1;
+    public boolean DeleteTrain(@RequestBody Map map) {
+        return trainService.DeleteTrain(map) == 1;
     }
 
-    @ApiOperation(value = "修改培训内容",notes = "传参:")
+    @ApiOperation(value = "修改培训内容" , notes = "传参:")
     @PostMapping("/UpdateTrain")
-    public boolean UpdateTrain(@RequestBody Map map){
-        return trainService.UpdateTrain(map)==1;
+    public boolean UpdateTrain(@RequestBody Map map) {
+        return trainService.UpdateTrain(map) == 1;
     }
 
-    @ApiOperation(value = "分页模糊查询",notes = "")
+    @ApiOperation(value = "分页模糊查询" , notes = "")
     @PostMapping("/FindTrain")
-    public Page<Train> FindTrain(@RequestBody Map map){
+    public Page<Train> FindTrain(@RequestBody Map map) {
         Page<Train> page = new Page<Train>();
         page.setPageNo((Integer) map.get("pageNo"));
         page.setPageSize((Integer) map.get("pageSize"));
@@ -58,17 +58,17 @@ public class TrainController {
         return page;
     }
 
-    @ApiOperation(value ="培训内容App",notes ="")
+    @ApiOperation(value = "培训内容App" , notes = "")
     @PostMapping("/FindTrainAll")
-    public JsonResult FindTrainAll(@RequestBody Map map){
+    public JsonResult FindTrainAll(@RequestBody Map map) {
         JsonResult jsonResult = new JsonResult();
         jsonResult.setData(trainService.FindTrainAll(map));
         return jsonResult;
     }
 
-    @ApiOperation(value = "菜单", notes = "")
+    @ApiOperation(value = "菜单" , notes = "")
     @PostMapping("/Train_Menu")
-    public List<TestData> FindByPositionId1(@RequestBody Map<String,Object> map) {
+    public List<TestData> FindByPositionId1(@RequestBody Map<String, Object> map) {
 
         List<TestData> testDataList = new ArrayList<>();
         List<Train> dataIns;
@@ -100,7 +100,7 @@ public class TrainController {
 //                System.out.println("l1:"+l1);
                 System.out.println("train:" + l1 + ":asd:" + train.toString());
 
-                    dataIns.add(train);
+                dataIns.add(train);
 
 
             }
@@ -115,7 +115,7 @@ public class TrainController {
         return testDataList;
     }
 
-    @ApiOperation(value = "根据id查询培训内容", notes = "传参:id(内容id)")
+    @ApiOperation(value = "根据id查询培训内容" , notes = "传参:id(内容id)")
     @PostMapping("/FindTrainByIdX")
     public JsonResult FindTrainByIdX(@RequestBody Map map) {
         JsonResult jsonResult = new JsonResult();

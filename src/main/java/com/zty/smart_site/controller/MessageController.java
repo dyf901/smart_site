@@ -18,9 +18,9 @@ public class MessageController {
     @Autowired
     private MessageService messageService;//我的信息
 
-    @ApiOperation(value = "分页模糊查询",notes = "测试数据:")
+    @ApiOperation(value = "分页模糊查询" , notes = "测试数据:")
     @PostMapping("/FindMessage")
-    public Page<Message> FindMessage(@RequestBody Map map){
+    public Page<Message> FindMessage(@RequestBody Map map) {
         Page<Message> page = new Page<Message>();
         page.setPageNo((Integer) map.get("pageNo"));
         page.setPageSize((Integer) map.get("pageSize"));

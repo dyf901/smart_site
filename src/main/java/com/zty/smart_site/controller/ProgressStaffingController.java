@@ -18,19 +18,19 @@ public class ProgressStaffingController {
     @Autowired
     private ProgressStaffingService progressStaffingService;
 
-    @ApiOperation(value = "增加编制进度",notes = "")
+    @ApiOperation(value = "增加编制进度" , notes = "")
     @PostMapping("/InsertProgressStaffing")
-    public boolean InsertProgressStaffing(@RequestBody Map map){
+    public boolean InsertProgressStaffing(@RequestBody Map map) {
 
-            progressStaffingService.UpdateIsParent(map);
+        progressStaffingService.UpdateIsParent(map);
 
 
-        return progressStaffingService.InsertProgressStaffing(map)==1;
+        return progressStaffingService.InsertProgressStaffing(map) == 1;
     }
 
-    @ApiOperation(value = "根据标段id查询编制进度",notes = "")
+    @ApiOperation(value = "根据标段id查询编制进度" , notes = "")
     @PostMapping("/FindProgressStaffingBySectionId")
-    public List<ProgressStaffing> FindProgressStaffingBySectionId(@RequestBody Map map){
+    public List<ProgressStaffing> FindProgressStaffingBySectionId(@RequestBody Map map) {
         return progressStaffingService.FindProgressStaffingBySectionId(map);
     }
 }

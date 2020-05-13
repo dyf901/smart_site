@@ -41,120 +41,120 @@ worktype_name           工种名称
 age_duan                年龄段
 */
 //@JsonInclude(JsonInclude.Include.NON_NULL)
-@ApiModel(value="staff", description="劳务人员对象")
+@ApiModel(value = "staff" , description = "劳务人员对象")
 public class Staff {
-    @ApiModelProperty(value="劳务人员id",name="id")
+    @ApiModelProperty(value = "劳务人员id" , name = "id")
     private int id;
 
-    @ApiModelProperty(value="年龄",name="staff_age")
+    @ApiModelProperty(value = "年龄" , name = "staff_age")
     private int staff_age;
 
-    @ApiModelProperty(value="历史积分",name="history_integral")
+    @ApiModelProperty(value = "历史积分" , name = "history_integral")
     private int history_integral;
 
-    @ApiModelProperty(value="剩余积分",name="end_integral")
+    @ApiModelProperty(value = "剩余积分" , name = "end_integral")
     private int end_integral;
 
-    @ApiModelProperty(value="标段id",name="section_id")
+    @ApiModelProperty(value = "标段id" , name = "section_id")
     private int section_id;
 
-    @ApiModelProperty(value="分包单位id",name="sub_id")
+    @ApiModelProperty(value = "分包单位id" , name = "sub_id")
     private int sub_id;
 
-    @ApiModelProperty(value="工种id",name="worktype_id")
+    @ApiModelProperty(value = "工种id" , name = "worktype_id")
     private int worktype_id;
 
-    @ApiModelProperty(value="站点id",name="station_id")
+    @ApiModelProperty(value = "站点id" , name = "station_id")
     private int station_id;
 
-    @ApiModelProperty(value="统计人数",name="count")
+    @ApiModelProperty(value = "统计人数" , name = "count")
     private int count;
 
-    @ApiModelProperty(value="菜单id",name="position_id")
+    @ApiModelProperty(value = "菜单id" , name = "position_id")
     private int position_id;
 
-    @ApiModelProperty(value="姓名",name="staff_name")
+    @ApiModelProperty(value = "姓名" , name = "staff_name")
     private String staff_name;
 
-    @ApiModelProperty(value="照片",name="staff_img")
+    @ApiModelProperty(value = "照片" , name = "staff_img")
     private String staff_img;
 
-    @ApiModelProperty(value="性别",name="staff_sex")
+    @ApiModelProperty(value = "性别" , name = "staff_sex")
     private String staff_sex;
 
-    @ApiModelProperty(value="民族",name="staff_nation")
+    @ApiModelProperty(value = "民族" , name = "staff_nation")
     private String staff_nation;
 
-    @ApiModelProperty(value="身份证号",name="staff_card")
+    @ApiModelProperty(value = "身份证号" , name = "staff_card")
     private String staff_card;
 
-    @ApiModelProperty(value="身份证地址",name="staff_address")
+    @ApiModelProperty(value = "身份证地址" , name = "staff_address")
     private String staff_address;
 
-    @ApiModelProperty(value="省份",name="staff_province")
+    @ApiModelProperty(value = "省份" , name = "staff_province")
     private String staff_province;
 
-    @ApiModelProperty(value="手机号",name="staff_phone")
+    @ApiModelProperty(value = "手机号" , name = "staff_phone")
     private String staff_phone;
 
-    @ApiModelProperty(value="紧急联系人姓名",name="sos_name")
+    @ApiModelProperty(value = "紧急联系人姓名" , name = "sos_name")
     private String sos_name;
 
-    @ApiModelProperty(value="紧急联系人关系",name="sos_ship")
+    @ApiModelProperty(value = "紧急联系人关系" , name = "sos_ship")
     private String sos_ship;
 
-    @ApiModelProperty(value="紧急联系人号码",name="sos_phone")
+    @ApiModelProperty(value = "紧急联系人号码" , name = "sos_phone")
     private String sos_phone;
 
-    @ApiModelProperty(value="入职时间",name="entry_time")
+    @ApiModelProperty(value = "入职时间" , name = "entry_time")
     private String entry_time;
 
-    @ApiModelProperty(value="密码",name="password")
+    @ApiModelProperty(value = "密码" , name = "password")
     private String password;
 
-    @ApiModelProperty(value="头像",name="picture")
+    @ApiModelProperty(value = "头像" , name = "picture")
     private String picture;
 
-    @ApiModelProperty(value="在职状态('0' 离职  '1'在职)",name="state")
+    @ApiModelProperty(value = "在职状态('0' 离职  '1'在职)" , name = "state")
     private String state;
 
-    @ApiModelProperty(value="实名认证状态('0' 未认证  '1' 已认证)",name="status")
+    @ApiModelProperty(value = "实名认证状态('0' 未认证  '1' 已认证)" , name = "status")
     private String status;
 
-    @ApiModelProperty(value="员工类型",name="type")
+    @ApiModelProperty(value = "员工类型" , name = "type")
     private String type;
 
-    @ApiModelProperty(value="培训状态('0' 未培训  '1'培训)",name="train")
+    @ApiModelProperty(value = "培训状态('0' 未培训  '1'培训)" , name = "train")
     private String train;
 
-    @ApiModelProperty(value="标段名称",name="section_name")
+    @ApiModelProperty(value = "标段名称" , name = "section_name")
     private String section_name;
 
-    @ApiModelProperty(value="站点名称",name="station_name")
+    @ApiModelProperty(value = "站点名称" , name = "station_name")
     private String station_name;
 
-    @ApiModelProperty(value="分包单位名称",name="sub_name")
+    @ApiModelProperty(value = "分包单位名称" , name = "sub_name")
     private String sub_name;
 
-    @ApiModelProperty(value="工种名称",name="worktype_name")
+    @ApiModelProperty(value = "工种名称" , name = "worktype_name")
     private String worktype_name;
 
-    @ApiModelProperty(value="人员年龄段",name="age_duan")
+    @ApiModelProperty(value = "人员年龄段" , name = "age_duan")
     private String age_duan;
 
-    @ApiModelProperty(value = "部门id",name = "department_id")
+    @ApiModelProperty(value = "部门id" , name = "department_id")
     private int department_id;
 
-    @ApiModelProperty(value = "部门名称",name = "department_name")
+    @ApiModelProperty(value = "部门名称" , name = "department_name")
     private String department_name;
 
-    @ApiModelProperty(value = "昵称",name="nikename")
+    @ApiModelProperty(value = "昵称" , name = "nikename")
     private String nikename;
 
-    @ApiModelProperty(value = "员工二维码",name="staff_code")
+    @ApiModelProperty(value = "员工二维码" , name = "staff_code")
     private String staff_code;
 
-    public Staff(){
+    public Staff() {
         super();
     }
 

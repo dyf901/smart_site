@@ -5,24 +5,24 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@ApiModel(value = "process",description = "工序表对象")
+@ApiModel(value = "process" , description = "工序表对象")
 public class Process {
-    @ApiModelProperty(value = "题目id",name = "id")
+    @ApiModelProperty(value = "题目id" , name = "id")
     private int id;
 
-    @ApiModelProperty(value = "标段id",name = "section_id")
+    @ApiModelProperty(value = "标段id" , name = "section_id")
     private int section_id;
 
-    @ApiModelProperty(value = "站点id",name = "station_id")
+    @ApiModelProperty(value = "站点id" , name = "station_id")
     private int station_id;
 
-    @ApiModelProperty(value = "站点id",name = "station_name")
+    @ApiModelProperty(value = "站点id" , name = "station_name")
     private String station_name;
 
-    @ApiModelProperty(value = "工序名称",name = "process_name")
+    @ApiModelProperty(value = "工序名称" , name = "process_name")
     private String process_name;
 
-    public Process(){
+    public Process() {
         super();
     }
 

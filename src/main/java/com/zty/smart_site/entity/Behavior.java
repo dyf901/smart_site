@@ -1,6 +1,7 @@
 package com.zty.smart_site.entity;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+
 /*
 行为记录实体类
 behavior        行为类型表
@@ -15,10 +16,10 @@ section_name            标段名称
 */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Behavior {
-    private int id,section_id;
-    private String behavior_name,detail,remark,section_name;
+    private int id, section_id;
+    private String behavior_name, detail, remark, section_name;
 
-    public Behavior(){
+    public Behavior() {
         super();
     }
 

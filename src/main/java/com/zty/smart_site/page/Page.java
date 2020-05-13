@@ -7,7 +7,7 @@ public class Page<T> {
     private int pageNo;
     private int pageSize;
     private Long total;
-    private int end_integral ;
+    private int end_integral;
 
     public List<T> getItems() {
         return items;

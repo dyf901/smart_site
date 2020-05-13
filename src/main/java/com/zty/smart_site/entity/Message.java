@@ -3,30 +3,30 @@ package com.zty.smart_site.entity;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
-@ApiModel(value="message", description="我的信息")
+@ApiModel(value = "message" , description = "我的信息")
 public class Message {
-    @ApiModelProperty(value="ID",name="id")
+    @ApiModelProperty(value = "ID" , name = "id")
     private int id;
 
-    @ApiModelProperty(value="人员id",name="staff_id")
+    @ApiModelProperty(value = "人员id" , name = "staff_id")
     private int staff_id;
 
-    @ApiModelProperty(value="站点id",name="station_id")
+    @ApiModelProperty(value = "站点id" , name = "station_id")
     private int station_id;
 
-    @ApiModelProperty(value="站点名称",name="station_name")
+    @ApiModelProperty(value = "站点名称" , name = "station_name")
     private String station_name;
 
-    @ApiModelProperty(value="时间",name="uptime")
+    @ApiModelProperty(value = "时间" , name = "uptime")
     private String uptime;
 
-    @ApiModelProperty(value="时间",name="nowtime")
+    @ApiModelProperty(value = "时间" , name = "nowtime")
     private String nowtime;
 
-    @ApiModelProperty(value = "时间戳",name = "noC")
+    @ApiModelProperty(value = "时间戳" , name = "noC")
     private String noC;
 
-    public Message(){
+    public Message() {
         super();
     }
 

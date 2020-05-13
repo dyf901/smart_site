@@ -5,7 +5,8 @@
 <mapper namespace="com.zty.smart_site.dao.ConversionsDao">
     <!--增加兑换记录-->
     <insert id="InsertConversions" parameterType="java.util.Map">
-        INSERT INTO `smart_site`.`conversion` (`staff_id`, `commodity_id`, `section_id`, `station_id`, `sub_id`, `conversion_time`) VALUES (#{staff_id}, #{commodity_id}, #{section_id}, #{station_id}, #{sub_id}, now());
+        INSERT INTO `smart_site`.`conversion` (`staff_id`, `commodity_id`, `section_id`, `station_id`, `sub_id`,
+        `conversion_time`) VALUES (#{staff_id}, #{commodity_id}, #{section_id}, #{station_id}, #{sub_id}, now());
     </insert>
 
     <!--删除兑换记录-->
@@ -16,7 +17,9 @@
     <!--分页模糊查询兑换记录-->
     <select id="FindConversions" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.Conversions">
         <bind name="page" value="pageSize*(pageNo-1)"></bind>
-        SELECT a.`id`, a.`staff_id`, a.`commodity_id`, a.`section_id`, a.`station_id`, a.`sub_id`, a.`conversion_time`, a.`active`,s.staff_name as staff_name,b.commodity_name as commodity_name,b.commodity_img as commodity_img,l.station_name as station_name,w.subcontractors_name as sub_name FROM `smart_site`.`conversion` a
+        SELECT a.`id`, a.`staff_id`, a.`commodity_id`, a.`section_id`, a.`station_id`, a.`sub_id`, a.`conversion_time`,
+        a.`active`,s.staff_name as staff_name,b.commodity_name as commodity_name,b.commodity_img as
+        commodity_img,l.station_name as station_name,w.subcontractors_name as sub_name FROM `smart_site`.`conversion` a
         INNER JOIN `smart_site`.`staff` s ON a.`staff_id`=s.`id`
         INNER JOIN `smart_site`.`commodity` b ON a.`commodity_id`=b.`id`
         INNER JOIN `smart_site`.`station` l ON a.`station_id`=l.`id`
@@ -31,9 +34,12 @@
     </select>
 
     <!--分页模糊查询个人兑换记录-->
-    <select id="FindConversionsByStaffId" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.Conversions">
+    <select id="FindConversionsByStaffId" parameterType="java.util.Map"
+            resultType="com.zty.smart_site.entity.Conversions">
         <bind name="page" value="pageSize*(pageNo-1)"></bind>
-        SELECT a.`id`, a.`staff_id`, a.`commodity_id`, a.`section_id`, a.`station_id`, a.`sub_id`, a.`conversion_time`, a.`active`,s.staff_name as staff_name,b.commodity_name as commodity_name,b.commodity_img as commodity_img,l.station_name as station_name,w.subcontractors_name as sub_name FROM `smart_site`.`conversion` a
+        SELECT a.`id`, a.`staff_id`, a.`commodity_id`, a.`section_id`, a.`station_id`, a.`sub_id`, a.`conversion_time`,
+        a.`active`,s.staff_name as staff_name,b.commodity_name as commodity_name,b.commodity_img as
+        commodity_img,l.station_name as station_name,w.subcontractors_name as sub_name FROM `smart_site`.`conversion` a
         INNER JOIN `smart_site`.`staff` s ON a.`staff_id`=s.`id`
         INNER JOIN `smart_site`.`commodity` b ON a.`commodity_id`=b.`id`
         INNER JOIN `smart_site`.`station` l ON a.`station_id`=l.`id`
@@ -49,8 +55,11 @@
     </select>
 
     <!--分页模糊查询个人兑换记录-->
-    <select id="FindConversionsByStaffIdALL" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.Conversions">
-        SELECT a.`id`, a.`staff_id`, a.`commodity_id`, a.`section_id`, a.`station_id`, a.`sub_id`, a.`conversion_time`, a.`active`,s.staff_name as staff_name,b.commodity_name as commodity_name,b.commodity_img as commodity_img,l.station_name as station_name,w.subcontractors_name as sub_name FROM `smart_site`.`conversion` a
+    <select id="FindConversionsByStaffIdALL" parameterType="java.util.Map"
+            resultType="com.zty.smart_site.entity.Conversions">
+        SELECT a.`id`, a.`staff_id`, a.`commodity_id`, a.`section_id`, a.`station_id`, a.`sub_id`, a.`conversion_time`,
+        a.`active`,s.staff_name as staff_name,b.commodity_name as commodity_name,b.commodity_img as
+        commodity_img,l.station_name as station_name,w.subcontractors_name as sub_name FROM `smart_site`.`conversion` a
         INNER JOIN `smart_site`.`staff` s ON a.`staff_id`=s.`id`
         INNER JOIN `smart_site`.`commodity` b ON a.`commodity_id`=b.`id`
         INNER JOIN `smart_site`.`station` l ON a.`station_id`=l.`id`

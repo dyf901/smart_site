@@ -5,7 +5,10 @@
 <mapper namespace="com.zty.smart_site.dao.QualityrectifyDao">
     <!--增加整改通知单-->
     <insert id="InsertQualityrectify" parameterType="java.util.Map">
-        INSERT INTO `smart_site`.`qualityrectify` (`title`, `section_id`, `station_id`, `sub_id`, `process_id`,`qualityshow_id`, `staff_name`, `responsible`, `up_time`,`plan_time`, `description`) VALUES (#{title}, #{section_id}, #{station_id}, #{sub_id},#{process_id},#{qualityshow_id}, #{staff_name}, #{responsible}, now(), #{plan_time},#{description});
+        INSERT INTO `smart_site`.`qualityrectify` (`title`, `section_id`, `station_id`, `sub_id`,
+        `process_id`,`qualityshow_id`, `staff_name`, `responsible`, `up_time`,`plan_time`, `description`) VALUES
+        (#{title}, #{section_id}, #{station_id}, #{sub_id},#{process_id},#{qualityshow_id}, #{staff_name},
+        #{responsible}, now(), #{plan_time},#{description});
     </insert>
 
     <!--删除整改通知单-->
@@ -15,13 +18,16 @@
 
     <!--修改整改通知单-->
     <update id="UpdateQualityrectify" parameterType="java.util.Map">
-        UPDATE `smart_site`.`qualityrectify` SET `title`=#{title}, `staff_name`=#{staff_name}, `responsible`=#{responsible}, `description`=#{description} WHERE (`id`=#{id});
+        UPDATE `smart_site`.`qualityrectify` SET `title`=#{title}, `staff_name`=#{staff_name},
+        `responsible`=#{responsible}, `description`=#{description} WHERE (`id`=#{id});
     </update>
 
     <!--分页模糊查询整改通知单信息-->
     <select id="FindQualityrectify" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.Qualityrectify">
         <bind name="page" value="pageSize*(pageNo-1)"></bind>
-        SELECT r.`id`, r.`title`, r.`section_id`, r.`station_id`, r.`sub_id`, r.`staff_name`, r.`responsible`, r.`up_time`,r.`plan_time`, r.`description`, r.`active`, l.`station_name` as `station_name`, f.`subcontractors_name` as `sub_name` FROM `smart_site`.`qualityrectify` r
+        SELECT r.`id`, r.`title`, r.`section_id`, r.`station_id`, r.`sub_id`, r.`staff_name`, r.`responsible`,
+        r.`up_time`,r.`plan_time`, r.`description`, r.`active`, l.`station_name` as `station_name`,
+        f.`subcontractors_name` as `sub_name` FROM `smart_site`.`qualityrectify` r
         INNER JOIN `smart_site`.`station` l ON r.`station_id`=l.`id`
         INNER JOIN `smart_site`.`subcontractors` f ON r.`sub_id`=f.`id`
         WHERE r.`section_id`=#{section_id} and r.`station_id`=#{station_id}
@@ -31,13 +37,17 @@
 
     <!--统计总数-->
     <select id="Total" parameterType="java.util.Map" resultType="long">
-        SELECT COUNT(*) FROM `smart_site`.`qualityrectify` WHERE `section_id`=#{section_id} and `station_id`=#{station_id}
+        SELECT COUNT(*) FROM `smart_site`.`qualityrectify` WHERE `section_id`=#{section_id} and
+        `station_id`=#{station_id}
     </select>
 
     <!--分页模糊查询整改通知单信息-->
-    <select id="FindQualityrectifyPC" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.Qualityrectify">
+    <select id="FindQualityrectifyPC" parameterType="java.util.Map"
+            resultType="com.zty.smart_site.entity.Qualityrectify">
         <bind name="page" value="pageSize*(pageNo-1)"></bind>
-        SELECT r.`id`, r.`title`, r.`section_id`, r.`station_id`, r.`sub_id`, r.`staff_name`, r.`responsible`, r.`up_time`,r.`plan_time`, r.`description`, r.`active`, l.`station_name` as `station_name`, f.`subcontractors_name` as `sub_name` FROM `smart_site`.`qualityrectify` r
+        SELECT r.`id`, r.`title`, r.`section_id`, r.`station_id`, r.`sub_id`, r.`staff_name`, r.`responsible`,
+        r.`up_time`,r.`plan_time`, r.`description`, r.`active`, l.`station_name` as `station_name`,
+        f.`subcontractors_name` as `sub_name` FROM `smart_site`.`qualityrectify` r
         INNER JOIN `smart_site`.`station` l ON r.`station_id`=l.`id`
         INNER JOIN `smart_site`.`subcontractors` f ON r.`sub_id`=f.`id`
         WHERE r.`section_id`=#{section_id}
@@ -51,8 +61,11 @@
     </select>
 
     <!--根据qualityshow_id查询-->
-    <select id="FindQualityrectifyByqualityshowId" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.Qualityrectify">
-        SELECT r.`id`, r.`title`, r.`section_id`, r.`station_id`, r.`sub_id`, r.`staff_name`, r.`responsible`, r.`up_time`,r.`plan_time`, r.`description`, r.`active`, l.`station_name` as `station_name`, f.`subcontractors_name` as `sub_name` FROM `smart_site`.`qualityrectify` r
+    <select id="FindQualityrectifyByqualityshowId" parameterType="java.util.Map"
+            resultType="com.zty.smart_site.entity.Qualityrectify">
+        SELECT r.`id`, r.`title`, r.`section_id`, r.`station_id`, r.`sub_id`, r.`staff_name`, r.`responsible`,
+        r.`up_time`,r.`plan_time`, r.`description`, r.`active`, l.`station_name` as `station_name`,
+        f.`subcontractors_name` as `sub_name` FROM `smart_site`.`qualityrectify` r
         INNER JOIN `smart_site`.`station` l ON r.`station_id`=l.`id`
         INNER JOIN `smart_site`.`subcontractors` f ON r.`sub_id`=f.`id`
         where r.`qualityshow_id`=#{qualityshow_id}

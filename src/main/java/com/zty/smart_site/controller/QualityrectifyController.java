@@ -21,21 +21,21 @@ public class QualityrectifyController {
     @Autowired
     private QualityrectifyService qualityrectifyService;//整改通知单
 
-    @ApiOperation(value = "删除整改通知单",notes = "测试数据:")
+    @ApiOperation(value = "删除整改通知单" , notes = "测试数据:")
     @PostMapping("/DeleteQualityrectify")
-    public boolean DeleteQualityrectify(@RequestBody Map map){
-        return qualityrectifyService.DeleteQualityrectify(map)==1;
+    public boolean DeleteQualityrectify(@RequestBody Map map) {
+        return qualityrectifyService.DeleteQualityrectify(map) == 1;
     }
 
-    @ApiOperation(value = "修改整改通知单",notes = "测试数据:")
+    @ApiOperation(value = "修改整改通知单" , notes = "测试数据:")
     @PostMapping("/UpdateQualityrectify")
-    public boolean UpdateQualityrectify(@RequestBody Map map){
-        return qualityrectifyService.UpdateQualityrectify(map)==1;
+    public boolean UpdateQualityrectify(@RequestBody Map map) {
+        return qualityrectifyService.UpdateQualityrectify(map) == 1;
     }
 
-    @ApiOperation(value = "分页模糊查询整改通知单信息",notes = "测试数据:")
+    @ApiOperation(value = "分页模糊查询整改通知单信息" , notes = "测试数据:")
     @PostMapping("/FindQualityrectify")
-    public Page<Qualityrectify> FindQualityrectify(@RequestBody Map map){
+    public Page<Qualityrectify> FindQualityrectify(@RequestBody Map map) {
         Page<Qualityrectify> page = new Page<Qualityrectify>();
         page.setPageNo((Integer) map.get("pageNo"));
         page.setPageSize((Integer) map.get("pageSize"));
@@ -44,9 +44,9 @@ public class QualityrectifyController {
         return page;
     }
 
-    @ApiOperation(value = "分页模糊查询整改通知单信息PC",notes = "测试数据:")
+    @ApiOperation(value = "分页模糊查询整改通知单信息PC" , notes = "测试数据:")
     @PostMapping("/FindQualityrectifyPC")
-    public Page<Qualityrectify> FindQualityrectifyPC(@RequestBody Map map){
+    public Page<Qualityrectify> FindQualityrectifyPC(@RequestBody Map map) {
         Page<Qualityrectify> page = new Page<Qualityrectify>();
         page.setPageNo((Integer) map.get("pageNo"));
         page.setPageSize((Integer) map.get("pageSize"));
@@ -55,9 +55,9 @@ public class QualityrectifyController {
         return page;
     }
 
-    @ApiOperation(value = "根据riskshow_id查询整改通知单信息",notes = "传参:qualityshow_id(安全隐患记录id)")
+    @ApiOperation(value = "根据riskshow_id查询整改通知单信息" , notes = "传参:qualityshow_id(安全隐患记录id)")
     @PostMapping("/FindQualityrectifyByqualityshowId")
-    public JsonResult FindQualityrectifyByqualityshowId(@RequestBody Map map){
+    public JsonResult FindQualityrectifyByqualityshowId(@RequestBody Map map) {
         JsonResult jsonResult = new JsonResult();
         jsonResult.setCode(200);
         jsonResult.setData(qualityrectifyService.FindQualityrectifyByqualityshowId(map));

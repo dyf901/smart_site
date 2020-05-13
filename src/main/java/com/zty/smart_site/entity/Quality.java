@@ -22,51 +22,51 @@ supervisor_phone        监理责任人电话
 
 */
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@ApiModel(value = "quality",description = "质量隐患类型对象")
+@ApiModel(value = "quality" , description = "质量隐患类型对象")
 public class Quality {
-    @ApiModelProperty(value="安全隐患类型id",name="id")
+    @ApiModelProperty(value = "安全隐患类型id" , name = "id")
     private int id;
 
-    @ApiModelProperty(value = "标段id",name="section_id")
+    @ApiModelProperty(value = "标段id" , name = "section_id")
     private int section_id;
 
-    @ApiModelProperty(value = "站点id",name="station_id")
+    @ApiModelProperty(value = "站点id" , name = "station_id")
     private int station_id;
 
-    @ApiModelProperty(value = "风险源类别",name="quality_category")
+    @ApiModelProperty(value = "风险源类别" , name = "quality_category")
     private String quality_category;
 
-    @ApiModelProperty(value = "具体风险描述",name="quality_description")
+    @ApiModelProperty(value = "具体风险描述" , name = "quality_description")
     private String quality_description;
 
-    @ApiModelProperty(value = "风险等级",name="quality_grade")
+    @ApiModelProperty(value = "风险等级" , name = "quality_grade")
     private String quality_grade;
 
-    @ApiModelProperty(value = "风险预计持续时段",name="quality_duration")
+    @ApiModelProperty(value = "风险预计持续时段" , name = "quality_duration")
     private String quality_duration;
 
-    @ApiModelProperty(value = "施工控制设施",name="construction")
+    @ApiModelProperty(value = "施工控制设施" , name = "construction")
     private String construction;
 
-    @ApiModelProperty(value = "施工责任人",name="construction_person")
+    @ApiModelProperty(value = "施工责任人" , name = "construction_person")
     private String construction_person;
 
-    @ApiModelProperty(value = "施工责任人电话",name="construction_phone")
+    @ApiModelProperty(value = "施工责任人电话" , name = "construction_phone")
     private String construction_phone;
 
-    @ApiModelProperty(value = "监理控制设施",name="supervisor")
+    @ApiModelProperty(value = "监理控制设施" , name = "supervisor")
     private String supervisor;
 
-    @ApiModelProperty(value = "监理责任人",name="supervisor_person")
+    @ApiModelProperty(value = "监理责任人" , name = "supervisor_person")
     private String supervisor_person;
 
-    @ApiModelProperty(value = "监理责任人电话",name="supervisor_phone")
+    @ApiModelProperty(value = "监理责任人电话" , name = "supervisor_phone")
     private String supervisor_phone;
 
-    @ApiModelProperty(value = "站点名称",name="station_name")
+    @ApiModelProperty(value = "站点名称" , name = "station_name")
     private String station_name;
 
-    public Quality(){
+    public Quality() {
         super();
     }
 

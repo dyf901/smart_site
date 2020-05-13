@@ -22,12 +22,12 @@ public class ceshi {
 
 
             Map<String, Object> map = new HashMap<String, Object>();
-            map.put("id", 1);
-            map.put("type", "培训");
+            map.put("id" , 1);
+            map.put("type" , "培训");
 
             JSONObject json = new JSONObject(map);
 
-            String s=json.toJSONString();
+            String s = json.toJSONString();
             //二维码表示的内容
             String content = "http://www.baidu.com";
 
@@ -43,7 +43,7 @@ public class ceshi {
             //设置UTF-8， 防止中文乱码
             hints.put(EncodeHintType.CHARACTER_SET, "UTF-8");
             //设置二维码四周白色区域的大小
-            hints.put(EncodeHintType.MARGIN,0);
+            hints.put(EncodeHintType.MARGIN, 0);
             //设置二维码的容错性
             hints.put(EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.H);
 
@@ -55,16 +55,16 @@ public class ceshi {
             //画二维码，记得调用multiFormatWriter.encode()时最后要带上hints参数，不然上面设置无效
             BitMatrix bitMatrix = multiFormatWriter.encode(s, BarcodeFormat.QR_CODE, width, height, hints);
 
-            String uuid = UUID.randomUUID().toString().replaceAll("-", "");
+            String uuid = UUID.randomUUID().toString().replaceAll("-" , "");
             String tempFileName = uuid + ".jpg";
             //qrcFile用来存放生成的二维码图片（无logo，无文字）
-            File qrcFile = new File(path,tempFileName);
+            File qrcFile = new File(path, tempFileName);
 
             //logoFile准备放在二维码中的图片(path:图片路径,图片名称)
-            File logoFile = new File(path,"shilinwei.jpg");
+            File logoFile = new File(path, "shilinwei.jpg");
 
             //开始画二维码
-            MatrixToImageWriter.writeToFile(bitMatrix, "jpg", qrcFile);
+            MatrixToImageWriter.writeToFile(bitMatrix, "jpg" , qrcFile);
 
             /*//在二维码中加入图片
             CreatrQrCode creatrQrCode = new CreatrQrCode(); //LogoConfig中设置Logo的属性
