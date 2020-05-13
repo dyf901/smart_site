@@ -25,6 +25,12 @@ public class ProgressStaffing {
     @ApiModelProperty(value = "结束时间" , name = "end_time")
     private String end_time;
 
+    @ApiModelProperty(value = "实际开始时间" , name = "practical_start")
+    private String practical_start;
+
+    @ApiModelProperty(value = "实际结束时间" , name = "practical_end")
+    private String practical_end;
+
     @ApiModelProperty(value = "备注" , name = "remark")
     private String remark;
 
@@ -38,13 +44,15 @@ public class ProgressStaffing {
         super();
     }
 
-    public ProgressStaffing(int id, int section_id, String progress_name, int duration, String start_time, String end_time, String remark, int fatherid, String isparent) {
+    public ProgressStaffing(int id, int section_id, String progress_name, int duration, String start_time, String end_time, String practical_start, String practical_end, String remark, int fatherid, String isparent) {
         this.id = id;
         this.section_id = section_id;
         this.progress_name = progress_name;
         this.duration = duration;
         this.start_time = start_time;
         this.end_time = end_time;
+        this.practical_start = practical_start;
+        this.practical_end = practical_end;
         this.remark = remark;
         this.fatherid = fatherid;
         this.isparent = isparent;
@@ -122,6 +130,22 @@ public class ProgressStaffing {
         this.isparent = isparent;
     }
 
+    public String getPractical_start() {
+        return practical_start;
+    }
+
+    public void setPractical_start(String practical_start) {
+        this.practical_start = practical_start;
+    }
+
+    public String getPractical_end() {
+        return practical_end;
+    }
+
+    public void setPractical_end(String practical_end) {
+        this.practical_end = practical_end;
+    }
+
     @Override
     public String toString() {
         return "{" +
@@ -131,9 +155,11 @@ public class ProgressStaffing {
                 ", duration=" + duration +
                 ", start_time='" + start_time + '\'' +
                 ", end_time='" + end_time + '\'' +
+                ", practical_start='" + practical_start + '\'' +
+                ", practical_end='" + practical_end + '\'' +
                 ", remark='" + remark + '\'' +
                 ", fatherid=" + fatherid +
-                ", isparent=" + isparent +
+                ", isparent='" + isparent + '\'' +
                 '}';
     }
 }
