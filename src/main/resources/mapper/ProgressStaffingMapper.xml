@@ -6,8 +6,8 @@
     <!--增加编制进度-->
     <insert id="InsertProgressStaffing" parameterType="java.util.Map">
         INSERT INTO `smart_site`.`progress_staffing` (`section_id`, `progress_name`, `duration`, `start_time`,
-        `end_time`, `remark`, `fatherid`, `isparent`)
-        VALUES (#{section_id}, #{progress_name}, #{duration}, #{start_time}, #{end_time}, #{remark}, #{fatherid},
+        `end_time`, `practical_start`, `practical_end`, `remark`, `fatherid`, `isparent`)
+        VALUES (#{section_id}, #{progress_name}, #{duration}, #{start_time}, #{end_time}, #{practical_start}, #{practical_end}, #{remark}, #{fatherid},
         #{isparent});
     </insert>
 
@@ -16,10 +16,27 @@
         UPDATE `smart_site`.`progress_staffing` SET `isparent`='true' WHERE (`id`=#{id});
     </update>
 
+    <!--修改实际开始时间-->
+    <update id="UpdatePracticalStart" parameterType="int">
+        UPDATE `smart_site`.`progress_staffing` SET `practical_start`=now() WHERE (`id`=#{id});
+    </update>
+
+    <!--修改实际开始时间-->
+    <update id="UpdatePracticalEnd" parameterType="int">
+        UPDATE `smart_site`.`progress_staffing` SET `practical_end`=now() WHERE (`id`=#{id});
+    </update>
+
     <!--查找编制进度-->
     <select id="FindProgressStaffingBySectionId" parameterType="java.util.Map"
             resultType="com.zty.smart_site.entity.ProgressStaffing">
-        SELECT `id`, `section_id`, `progress_name`, `duration`, `start_time`, `end_time`, `remark`, `fatherid`,
+        SELECT `id`, `section_id`, `progress_name`, `duration`, `start_time`, `end_time`, `practical_start`, `practical_end`, `remark`, `fatherid`,
         `isparent` FROM `smart_site`.`progress_staffing` WHERE `section_id`=#{section_id}
     </select>
+
+    <!--根据id查询编制进度-->
+    <select id="FindById" parameterType="int" resultType="com.zty.smart_site.entity.ProgressStaffing">
+        SELECT `id`, `section_id`, `progress_name`, `duration`, `start_time`, `end_time`, `practical_start`, `practical_end`, `remark`, `fatherid`,
+        `isparent` FROM `smart_site`.`progress_staffing` WHERE `id`=#{id}
+    </select>
+
 </mapper>
