@@ -35,6 +35,12 @@ public class Demo {
  * @param pressText 文字
  * @param newImg    带文字的图片
  * @param image     需要添加文字的图片
+ * @为图片添加文字 给二维码添加logo
+ * <p>
+ * 给二维码下方附加说明文字
+ * @param pressText 文字
+ * @param newImg    带文字的图片
+ * @param image     需要添加文字的图片
  * @为图片添加文字
  *//*
 

@@ -25,7 +25,8 @@ public class MenuTreeUtil {
                 mapArr.put("duration" , x.getDuration());
                 mapArr.put("start_time" , x.getStart_time());
                 mapArr.put("end_time" , x.getEnd_time());
-
+                mapArr.put("practical_start" , x.getPractical_start());
+                mapArr.put("practical_end" , x.getPractical_end());
 
                 mapArr.put("child" , menuChild(x.getId()));  //去子集查找遍历
                 list.add(mapArr);
@@ -46,6 +47,8 @@ public class MenuTreeUtil {
                 childArray.put("duration" , a.getDuration());
                 childArray.put("start_time" , a.getStart_time());
                 childArray.put("end_time" , a.getEnd_time());
+                childArray.put("practical_start" , a.getPractical_start());
+                childArray.put("practical_end" , a.getPractical_end());
                 childArray.put("child" , menuChild(a.getId()));
                 lists.add(childArray);
             }

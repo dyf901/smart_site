@@ -54,7 +54,7 @@ public class Test {
         return "aaa";
     }
 
-    @ApiOperation(value = "测试ww" , notes = "")
+    @ApiOperation(value = "时间戳" , notes = "")
     @PostMapping("/testww")
     public String Testww(@RequestBody Map map) throws ParseException {
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
@@ -203,6 +203,8 @@ public class Test {
             t.setDuration(lists.get(i).getDuration());
             t.setStart_time(lists.get(i).getStart_time());
             t.setEnd_time(lists.get(i).getEnd_time());
+            t.setPractical_start(lists.get(i).getPractical_start());
+            t.setPractical_end(lists.get(i).getPractical_end());
             lt.add(t);
         }
         System.out.println(lt);

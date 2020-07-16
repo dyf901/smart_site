@@ -63,6 +63,41 @@ public class CreatrQrCode {
  * @param fontSize
  * @param width
  * @param height
+ * @为图片添加文字 给二维码图片添加Logo
+ * @param qrPic
+ * @param logoPic
+ * <p>
+ * 读取二维码图片，并构建绘图对象
+ * <p>
+ * 读取Logo图片
+ * @param pressText 文字
+ * @param newImg    带文字的图片
+ * @param targetImg 需要添加文字的图片
+ * @param fontStyle
+ * @param color
+ * @param fontSize
+ * @param width
+ * @param height
+ * @为图片添加文字 Creates a default config with on color {@link #BLACK} and off color
+ * {@link #WHITE}, generating normal black-on-white barcodes.
+ * 在颜色{@ link #黑}和颜色上创建一个默认配置
+ * {@link # WHITE}，生成正常的黑白条码。
+ * <p>
+ * 给二维码图片添加Logo
+ * @param qrPic
+ * @param logoPic
+ * <p>
+ * 读取二维码图片，并构建绘图对象
+ * <p>
+ * 读取Logo图片
+ * @param pressText 文字
+ * @param newImg    带文字的图片
+ * @param targetImg 需要添加文字的图片
+ * @param fontStyle
+ * @param color
+ * @param fontSize
+ * @param width
+ * @param height
  * @为图片添加文字
  *//*
 

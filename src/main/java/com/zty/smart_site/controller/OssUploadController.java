@@ -1,5 +1,9 @@
 package com.zty.smart_site.controller;
 
+import com.aliyun.oss.OSS;
+import com.aliyun.oss.OSSClient;
+import com.aliyun.oss.OSSException;
+import com.aliyun.oss.model.*;
 import com.zty.smart_site.util.AliyunOSSUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -10,6 +14,9 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.UUID;
 
 @Api(description = "阿里云oss图片接口")
 @RestController
@@ -36,6 +43,7 @@ public class OssUploadController {
                     String Host = "commodity";
                     //上传到OSS
                     String uploadUrl = AliyunOSSUtil.upload(newFile, Host);
+                    newFile.delete();
                     return uploadUrl;
                 }
 
@@ -63,6 +71,7 @@ public class OssUploadController {
                     String Host = "report";
                     //上传到OSS
                     String uploadUrl = AliyunOSSUtil.upload(newFile, Host);
+                    newFile.delete();
                     return uploadUrl;
                 }
 
@@ -90,6 +99,7 @@ public class OssUploadController {
                     String Host = "quality";
                     //上传到OSS
                     String uploadUrl = AliyunOSSUtil.upload(newFile, Host);
+                    newFile.delete();
                     return uploadUrl;
                 }
 
@@ -117,6 +127,7 @@ public class OssUploadController {
                     String Host = "video";
                     //上传到OSS
                     String uploadUrl = AliyunOSSUtil.upload(newFile, Host);
+                    newFile.delete();
                     return uploadUrl;
                 }
 
@@ -144,6 +155,7 @@ public class OssUploadController {
                     String Host = "pdf";
                     //上传到OSS
                     String uploadUrl = AliyunOSSUtil.upload(newFile, Host);
+                    newFile.delete();
                     return uploadUrl;
                 }
 
@@ -153,5 +165,4 @@ public class OssUploadController {
         }
         return "upload";
     }
-
 }
