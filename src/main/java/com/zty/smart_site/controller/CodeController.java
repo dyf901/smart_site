@@ -31,25 +31,25 @@ public class CodeController {
     @PostMapping("/gain_code")
     public JsonResult add_userapp(@RequestBody Map map) throws ClientException {
         JsonResult jsonResult = new JsonResult();
-        setNewcode();
+        setNewcode();//通过随机数生成验证码
         String code = Integer.toString(getNewcode());
-        String phone = (String) map.get("staff_phone");
+        String phone = (String) map.get("staff_phone");//获取前端手机号
         map.put("phone" , phone);
         map.put("code" , code);
-        SendSmsResponse response = sendSms(phone, code);
-        Code code1 = codeService.FindCodeByPhone(map);
+        SendSmsResponse response = sendSms(phone, code);//发送短信
+        Code code1 = codeService.FindCodeByPhone(map);//根据号码查询表内有无对应验证码
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date now = new Date();
         System.out.println("当前时间：" + sdf.format(now));
         Date afterDate = new Date(now.getTime() + 300000);
-        map.put("uptime" , sdf.format(afterDate));
+        map.put("uptime" , sdf.format(afterDate));//把验证码有效时间存入数据库
         System.out.println(sdf.format(afterDate));
         //根据短信返回的Code判断短信发送结果
         if (response.getCode().equals("OK")) {
             if (code1 == null) {
-                codeService.InsertCode(map);
+                codeService.InsertCode(map);//验证码表内无对应号码,添加验证码
             } else {
-                codeService.UpdateCode(map);
+                codeService.UpdateCode(map);//验证码表内有对应号码,修改验证码
             }
             jsonResult.setMessage("验证码已发送");
             jsonResult.setCode(200);

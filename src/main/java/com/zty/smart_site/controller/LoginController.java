@@ -31,7 +31,47 @@ public class LoginController {
     @Autowired
     private TitleService titleService;//图标
 
-    @ApiOperation(value = "PC登陆" , notes = "测试数据:{\"username\":\"admin\",\"password\":\"123456\"}")
+    @Autowired
+    private CodeService codeService;//验证码
+
+
+    @ApiOperation(value = "PC登陆" , notes = "测试数据:{\"code\":\"123456\",\"staff_phone\":\"13100000000\"}")
+    @PostMapping("/LoginPc")
+    public JsonResult ForgetPassword(@RequestBody Map map) throws ParseException {
+        JsonResult jsonResult = new JsonResult();
+        Staff staff = staffService.FindStaffByStaff_phone(map);
+        map.put("id" , staff.getId());
+        map.put("phone" , map.get("staff_phone"));
+        Code code = codeService.FindCodeByPhone(map);
+        int c = code.getCode();
+        int d = (int) map.get("code");
+        if (d == c) {
+            // 获取当前时间d
+            Date date = new Date();
+            //如果想比较日期则写成"yyyy-MM-dd"就可以了
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            //将字符串形式的时间转化为Date类型的时间
+            Date a = sdf.parse(code.getUptime());
+            Date b = sdf.parse(sdf.format(date));
+            if (a.getTime() - b.getTime() >= 0) {
+                staffService.UpdateStaffPassword(map);
+                jsonResult.setCode(200);
+                jsonResult.setMessage("登录成功!");
+                jsonResult.setData(staff);//返回用户实体类
+                return jsonResult;
+            } else {
+                jsonResult.setCode(20006);
+                jsonResult.setMessage("验证码失效,请重新获取!");
+                return jsonResult;
+            }
+        } else {
+            jsonResult.setCode(20006);
+            jsonResult.setMessage("验证码错误,修改失败!");
+            return jsonResult;
+        }
+    }
+
+    /*@ApiOperation(value = "PC登陆" , notes = "测试数据:{\"username\":\"admin\",\"password\":\"123456\"}")
     @PostMapping("/LoginPc")
     public JsonResult LoginPc(@RequestBody Map map) throws ParseException {
         JsonResult jsonResult = new JsonResult(ResultCode.USER_NOT_EXIST);
@@ -66,7 +106,7 @@ public class LoginController {
             jsonResult.setCode(20001);
             return jsonResult;
         }
-    }
+    }*/
 
     /*@ApiOperation(value = "App登录(管理人员)",notes = "测试数据:{\"admin_phone\":\"13100000000\",\n" +
             "\"password\":\"123456\"}")
@@ -99,7 +139,7 @@ public class LoginController {
     public JsonResult LoginApp1(@RequestBody Map map) {
         JsonResult jsonResult = new JsonResult(ResultCode.USER_NOT_EXIST);
         System.out.println(map);
-        Staff staff = staffService.FindStaffByStaff_phone(map);
+        Staff staff = staffService.FindStaffByStaff_phone(map);//根据号码查询对应的员工信息
         System.out.println(staff);
         if (staff != null) {
             map.put("position_id" , staff.getPosition_id());

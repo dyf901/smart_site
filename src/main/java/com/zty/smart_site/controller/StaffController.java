@@ -133,10 +133,9 @@ public class StaffController {
                 return jsonResult;
             } else {
                 jsonResult.setCode(20006);
-                jsonResult.setMessage("验证码失效,请重新申请!");
+                jsonResult.setMessage("验证码失效,请重新获取!");
                 return jsonResult;
             }
-
         } else {
             jsonResult.setCode(20006);
             jsonResult.setMessage("验证码错误,修改失败!");

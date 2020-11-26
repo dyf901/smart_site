@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zty.smart_site.dao.EnvironmentDao">
+    <!--增加数据-->
+    <insert id="InsertEnvironment" parameterType="java.util.Map">
+        INSERT INTO `smart_site`.`environment` (`deviceId`, `pm25`, `pm10`, `noise`, `tem`, `hum`, `wp`, `ws`, `wd`, `tsp`, `atm`, `datatime`) VALUES 
+        (#{deviceId}, #{pm25}, #{pm10}, #{noise}, #{tem}, #{hum}, #{wp}, #{ws}, #{wd}, #{tsp}, #{atm}, #{datatime});
+    </insert>
+
+    <!--查询扬尘检测仪数据-->
+    <select id="FindEnvironment" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.Environment">
+       SELECT `pm25`, `pm10`, `noise`, `tem`, `hum`, `wp`, `ws`, `wd`, `tsp`, `atm` FROM `smart_site`.`environment`
+       ORDER BY `datatime` DESC
+       limit 1
+    </select>
+</mapper>
