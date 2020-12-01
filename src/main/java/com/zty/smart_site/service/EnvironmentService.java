@@ -22,4 +22,11 @@ public class EnvironmentService implements EnvironmentDao {
     public Environment FindEnvironment(Map map) {
         return environmentDao.FindEnvironment(map);
     }
+
+    //删除所有数据
+    @Override
+    public int DeleteEnvironment() {
+        return environmentDao.DeleteEnvironment();
+    }
+
 }

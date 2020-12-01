@@ -1,6 +1,7 @@
 package com.zty.smart_site.dao;
 
 import com.zty.smart_site.entity.Staff;
+import com.zty.smart_site.entity.Value;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -91,4 +92,7 @@ public interface StaffDao {
 
     //上传员工二维码
     int InsertStaffCode(Map map);
+
+    //人员趋势分析
+    List<Value> StaffQs(Map map);
 }

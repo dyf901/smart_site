@@ -32,6 +32,7 @@
         d.`remark`,s.`section_name` as section_name FROM `smart_site`.`department` d
         INNER JOIN `smart_site`.`section` s ON s.`id`=d.`section_id`
         <where>
+            d.`state`='显示' and
             d.`section_id`=#{section_id}
             <if test="department_name!=null and department_name!=''">
                 and d.`department_name` like concat("%",#{department_name},"%")
@@ -44,6 +45,7 @@
     <select id="Total" parameterType="java.util.Map" resultType="long">
         SELECT COUNT(*) FROM `smart_site`.`department`
         <where>
+            `state`='显示' and
             `section_id`=#{section_id}
             <if test="department_name!=null and department_name!=''">
                 and `department_name` like concat("%",#{department_name},"%")

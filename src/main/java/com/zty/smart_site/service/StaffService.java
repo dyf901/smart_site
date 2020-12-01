@@ -2,6 +2,7 @@ package com.zty.smart_site.service;
 
 import com.zty.smart_site.dao.StaffDao;
 import com.zty.smart_site.entity.Staff;
+import com.zty.smart_site.entity.Value;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -178,5 +179,11 @@ public class StaffService implements StaffDao {
     @Override
     public int InsertStaffCode(Map map) {
         return staffDao.InsertStaffCode(map);
+    }
+
+    //人员趋势分析
+    @Override
+    public List<Value> StaffQs(Map map) {
+        return staffDao.StaffQs(map);
     }
 }

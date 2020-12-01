@@ -270,6 +270,12 @@ public class RiskshowService implements RiskshowDao {
         return riskshowDao.CountRiskshowBySubId(map);
     }
 
+    //根据责任人查询数量总数
+    @Override
+    public List<Riskshow> CountRiskshowByResponsible(Map map) {
+        return riskshowDao.CountRiskshowByResponsible(map);
+    }
+
     //积分前三
     @Override
     public List<Riskshow> find_riskshow_awarda(Map map) {

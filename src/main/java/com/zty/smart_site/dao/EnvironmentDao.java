@@ -10,4 +10,7 @@ public interface EnvironmentDao {
 
     //查询数据
     Environment FindEnvironment(Map map);
+
+    //删除所有数据
+    int DeleteEnvironment();
 }

@@ -22,10 +22,28 @@ public class EnvironmentController {
     @PostMapping("/InsertEnvironment")
     public void InsertEnvironment(@RequestBody Map map){
         System.out.println("数据过来了:"+map);
+        int wd = (Integer) map.get("wd");
+        if(wd==0){
+            map.put("wd","北");
+        }else if (wd==1){
+            map.put("wd","东北");
+        }else if (wd==2){
+            map.put("wd","东");
+        }else if (wd==3){
+            map.put("wd","东南");
+        }else if (wd==4){
+            map.put("wd","南");
+        }else if (wd==5){
+            map.put("wd","西南");
+        }else if (wd==6){
+            map.put("wd","西");
+        }else if (wd==7){
+            map.put("wd","西北");
+        }
         environmentService.InsertEnvironment(map);
     }
 
-    @ApiOperation(value = "增加扬尘检测仪数据" , notes = "")
+    @ApiOperation(value = "查询扬尘检测仪数据" , notes = "")
     @PostMapping("/FindEnvironment")
     public JsonResult FindEnvironment(@RequestBody Map map){
         JsonResult jsonResult = new JsonResult();

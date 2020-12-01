@@ -40,6 +40,12 @@ public class LoginController {
     public JsonResult ForgetPassword(@RequestBody Map map) throws ParseException {
         JsonResult jsonResult = new JsonResult();
         Staff staff = staffService.FindStaffByStaff_phone(map);
+        if (staff==null){
+            jsonResult.setCode(200);
+            jsonResult.setMessage("账号不存在!");
+            return jsonResult;
+        }
+        System.out.println(staff);
         map.put("id" , staff.getId());
         map.put("phone" , map.get("staff_phone"));
         Code code = codeService.FindCodeByPhone(map);
@@ -54,7 +60,6 @@ public class LoginController {
             Date a = sdf.parse(code.getUptime());
             Date b = sdf.parse(sdf.format(date));
             if (a.getTime() - b.getTime() >= 0) {
-                staffService.UpdateStaffPassword(map);
                 jsonResult.setCode(200);
                 jsonResult.setMessage("登录成功!");
                 jsonResult.setData(staff);//返回用户实体类
@@ -71,8 +76,8 @@ public class LoginController {
         }
     }
 
-    /*@ApiOperation(value = "PC登陆" , notes = "测试数据:{\"username\":\"admin\",\"password\":\"123456\"}")
-    @PostMapping("/LoginPc")
+    @ApiOperation(value = "PC登陆" , notes = "测试数据:{\"username\":\"admin\",\"password\":\"123456\"}")
+    @PostMapping("/LoginPcD")
     public JsonResult LoginPc(@RequestBody Map map) throws ParseException {
         JsonResult jsonResult = new JsonResult(ResultCode.USER_NOT_EXIST);
         User user = userService.FindUserByUsername(map);//根据用户名查询用户信息
@@ -106,7 +111,7 @@ public class LoginController {
             jsonResult.setCode(20001);
             return jsonResult;
         }
-    }*/
+    }
 
     /*@ApiOperation(value = "App登录(管理人员)",notes = "测试数据:{\"admin_phone\":\"13100000000\",\n" +
             "\"password\":\"123456\"}")

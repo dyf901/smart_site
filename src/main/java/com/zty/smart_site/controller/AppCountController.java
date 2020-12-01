@@ -141,6 +141,14 @@ public class AppCountController {
         return jsonResult;
     }
 
+    @ApiOperation(value = "根据责任人查询总数" , notes = "测试数据:section_id(标段id,登录返回),station_id(站点id,下拉框选择)")
+    @PostMapping("/CountRiskshowByResponsible")
+    public JsonResult CountRiskshowByResponsible(@RequestBody Map map) {
+        JsonResult jsonResult = new JsonResult();
+        jsonResult.setData(riskshowService.CountRiskshowByResponsible(map));
+        return jsonResult;
+    }
+
     @ApiOperation(value = "根据质量隐患类型查询数量总数" , notes = "测试数据:section_id(标段id,登录返回),station_id(站点id,下拉框选择)")
     @PostMapping("/CountQualityshowByRiskId")
     public JsonResult CountQualityshowByRiskId(@RequestBody Map map) {

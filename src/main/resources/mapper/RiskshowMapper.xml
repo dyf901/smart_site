@@ -391,4 +391,11 @@
         WHERE r.`section_id`=#{section_id} and r.`station_id`=#{station_id}
         group by r.`sub_id`
     </select>
+
+    <!--根据责任人查询数量总数-->
+    <select id="CountRiskshowByResponsible" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.Riskshow">
+        SELECT r.`responsible`,Count(*) as `count` FROM `smart_site`.`riskshow` r
+        WHERE r.`section_id`=#{section_id} and r.`station_id`=#{station_id}
+        group by r.`responsible`
+    </select>
 </mapper>

@@ -137,6 +137,9 @@ public interface RiskshowDao {
     //根据分包单位查询数量总数
     List<Riskshow> CountRiskshowBySubId(Map map);
 
+    //根据责任人查询数量总数
+    List<Riskshow> CountRiskshowByResponsible(Map map);
+
     //积分前三
     List<Riskshow> find_riskshow_awarda(Map map);
 }

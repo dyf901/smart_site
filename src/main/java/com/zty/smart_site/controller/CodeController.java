@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import static com.zty.smart_site.util.AliyunSmsUtils.sendSms;
 import static com.zty.smart_site.util.CodeUtil.getNewcode;
@@ -31,9 +33,22 @@ public class CodeController {
     @PostMapping("/gain_code")
     public JsonResult add_userapp(@RequestBody Map map) throws ClientException {
         JsonResult jsonResult = new JsonResult();
+        //System.out.println(map);
         setNewcode();//通过随机数生成验证码
         String code = Integer.toString(getNewcode());
         String phone = (String) map.get("staff_phone");//获取前端手机号
+        boolean flag = true;
+
+            Pattern p = Pattern.compile("^1[0-9]{10}$");
+        Matcher m = p.matcher(phone);
+        flag = m.matches();
+            System.out.println(flag);
+            if(flag==false){
+                jsonResult.setMessage("无效号码");
+                jsonResult.setCode(20005);
+                return jsonResult;
+            }
+
         map.put("phone" , phone);
         map.put("code" , code);
         SendSmsResponse response = sendSms(phone, code);//发送短信

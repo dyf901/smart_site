@@ -45,9 +45,12 @@ public class StaffController {
     @PostMapping("/InsertStaff")
     public JsonResult InsertStaff(@RequestBody Map map) {
         JsonResult jsonResult = new JsonResult();
-        Staff staff = staffService.FindStaffByStaff_card(map);
+        Staff staff = staffService.FindStaffByStaff_phone(map);
+        System.out.println(staff);
         if (staff == null) {
-            map.put("staff_province" , ProvinceUtil.Province((String) map.get("staff_address")));
+            if(!map.get("staff_address").equals("")){
+                map.put("staff_province" , ProvinceUtil.Province((String) map.get("staff_address")));
+            }
             Worktype worktype = worktypeService.FindWorktypeByWorktypeId(map);
             map.put("person_count" , worktype.getPerson_count());
             staffService.InsertStaff(map);

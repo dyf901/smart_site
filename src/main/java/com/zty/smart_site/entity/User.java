@@ -16,16 +16,17 @@ section_name            标段名称
 */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class User {
-    private int id, section_id;
+    private int id, section_id,station_id;
     private String username, password, create_time, end_time, section_name, user_menu;
 
     public User() {
         super();
     }
 
-    public User(int id, int section_id, String username, String password, String create_time, String end_time, String section_name, String user_menu) {
+    public User(int id, int section_id, int station_id, String username, String password, String create_time, String end_time, String section_name, String user_menu) {
         this.id = id;
         this.section_id = section_id;
+        this.station_id = station_id;
         this.username = username;
         this.password = password;
         this.create_time = create_time;
@@ -98,11 +99,20 @@ public class User {
         this.user_menu = user_menu;
     }
 
+    public int getStation_id() {
+        return station_id;
+    }
+
+    public void setStation_id(int station_id) {
+        this.station_id = station_id;
+    }
+
     @Override
     public String toString() {
-        return "{" +
+        return "User{" +
                 "id=" + id +
                 ", section_id=" + section_id +
+                ", station_id=" + station_id +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", create_time='" + create_time + '\'' +

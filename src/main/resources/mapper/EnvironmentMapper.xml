@@ -15,4 +15,9 @@
        ORDER BY `datatime` DESC
        limit 1
     </select>
+
+    <!--清楚所有数据-->
+    <delete id="DeleteEnvironment" parameterType="java.util.Map">
+        DELETE FROM `smart_site`.`environment`
+    </delete>
 </mapper>

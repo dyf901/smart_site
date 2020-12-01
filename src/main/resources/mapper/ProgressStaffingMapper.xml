@@ -12,6 +12,16 @@
         #{isparent});
     </insert>
 
+    <!--删除进度信息-->
+    <delete id="DeleteProgressStaffing" parameterType="java.util.Map">
+        DELETE FROM `smart_site`.`progress_staffing` WHERE `id`=#{id}
+    </delete>
+
+    <!--根据删除父节点进度信息同时删除所有子节点信息-->
+    <delete id="DeleteByFatherId" parameterType="java.util.Map">
+        DELETE FROM `smart_site`.`progress_staffing` WHERE `fatherid`=#{fatherid}
+    </delete>
+
     <!--修改父节点状态-->
     <update id="UpdateIsParent" parameterType="java.util.Map">
         UPDATE `smart_site`.`progress_staffing` SET `isparent`='true' WHERE (`id`=#{id});
