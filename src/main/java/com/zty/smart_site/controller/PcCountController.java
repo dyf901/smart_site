@@ -1,9 +1,6 @@
 package com.zty.smart_site.controller;
 
-import com.zty.smart_site.entity.Questions;
-import com.zty.smart_site.entity.Riskshow;
-import com.zty.smart_site.entity.Staff;
-import com.zty.smart_site.entity.Value;
+import com.zty.smart_site.entity.*;
 import com.zty.smart_site.service.*;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -189,5 +186,11 @@ public class PcCountController {
     @PostMapping("/StaffQs")
     public List<Value> StaffQs(@RequestBody Map map) {
         return staffService.StaffQs(map);
+    }
+
+    @ApiOperation(value = "本月综合隐患分析" , notes = "测试数据:{\"section_id\":2}")
+    @PostMapping("/RiskshowByMonth")
+    public List<MonthValue> RiskshowByMonth(@RequestBody Map map) {
+        return riskshowService.RiskshowByMonth(map);
     }
 }

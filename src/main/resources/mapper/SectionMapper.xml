@@ -44,4 +44,9 @@
             </if>
         </where>
     </select>
+
+    <!--根据id查询标段信息-->
+    <select id="FindSectionById" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.Section">
+        SELECT `section_name`, `section_time`, `start_time`, `end_time` FROM `smart_site`.`section` WHERE `id`=#{section_id}
+    </select>
 </mapper>

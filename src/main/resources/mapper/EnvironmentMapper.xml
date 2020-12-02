@@ -20,4 +20,21 @@
     <delete id="DeleteEnvironment" parameterType="java.util.Map">
         DELETE FROM `smart_site`.`environment`
     </delete>
+
+    <!--分页查询所有数据-->
+    <select id="FindEnvironmentList" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.Environment">
+        <bind name="page" value="pageSize*(pageNo-1)"></bind>
+        SELECT  `id`, `pm25`, `pm10`, `noise`, `tem`, `hum`, `wp`, `ws`, `wd`, `tsp`, `atm`, `datatime` FROM `smart_site`.`environment`
+        limit #{page},#{pageSize}
+    </select>
+
+    <!--统计总数-->
+    <select id="Total" resultType="long">
+        SELECT COUNT(`id`) FROM `smart_site`.`environment`
+    </select>
+
+    <!--环境分析-->
+    <select id="HJFX" resultType="com.zty.smart_site.entity.Environment">
+        SELECT `pm25`, `pm10`,`datatime` FROM environment where extract(minute from datatime) = 0
+    </select>
 </mapper>

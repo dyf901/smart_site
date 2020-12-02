@@ -1,6 +1,7 @@
 package com.zty.smart_site.service;
 
 import com.zty.smart_site.dao.RiskshowDao;
+import com.zty.smart_site.entity.MonthValue;
 import com.zty.smart_site.entity.Riskshow;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -280,5 +281,12 @@ public class RiskshowService implements RiskshowDao {
     @Override
     public List<Riskshow> find_riskshow_awarda(Map map) {
         return riskshowDao.find_riskshow_awarda(map);
+    }
+
+
+    //本月综合隐患分析
+    @Override
+    public List<MonthValue> RiskshowByMonth(Map map) {
+        return riskshowDao.RiskshowByMonth(map);
     }
 }

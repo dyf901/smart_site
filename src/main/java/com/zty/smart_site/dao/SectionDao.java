@@ -22,4 +22,7 @@ public interface SectionDao {
 
     //统计总谁
     long Total(Map map);
+
+    //根据id查询标段信息
+    Section FindSectionById(Map map);
 }

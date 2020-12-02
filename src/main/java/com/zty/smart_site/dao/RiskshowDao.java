@@ -1,5 +1,6 @@
 package com.zty.smart_site.dao;
 
+import com.zty.smart_site.entity.MonthValue;
 import com.zty.smart_site.entity.Riskshow;
 import org.springframework.stereotype.Repository;
 
@@ -142,4 +143,7 @@ public interface RiskshowDao {
 
     //积分前三
     List<Riskshow> find_riskshow_awarda(Map map);
+
+    //本月综合隐患分析
+    List<MonthValue> RiskshowByMonth(Map map);
 }

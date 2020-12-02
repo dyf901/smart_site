@@ -398,4 +398,15 @@
         WHERE r.`section_id`=#{section_id} and r.`station_id`=#{station_id}
         group by r.`responsible`
     </select>
+
+    <!--本月综合隐患分析-->
+    <select id="RiskshowByMonth" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.MonthValue">
+        select v.month as `month`,ifnull(b.day_value,0) AS `value` from past_12_month_day v
+          left join
+            (select DATE_FORMAT(t.uptime,'%d') month,COUNT(t.id) day_value
+              from riskshow t WHERE t.`section_id`=#{section_id} and t.`station_id`=#{station_id} and DATE_FORMAT(t.`uptime`,'%Y-%m')=DATE_FORMAT(NOW(),'%Y-%m')
+              group by t.uptime)b
+              on v.month = b.month
+              group by v.month
+    </select>
 </mapper>

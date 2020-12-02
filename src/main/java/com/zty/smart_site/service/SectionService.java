@@ -42,4 +42,10 @@ public class SectionService implements SectionDao {
     public long Total(Map map) {
         return sectionDao.Total(map);
     }
+
+    //根据id查询标段信息
+    @Override
+    public Section FindSectionById(Map map) {
+        return sectionDao.FindSectionById(map);
+    }
 }

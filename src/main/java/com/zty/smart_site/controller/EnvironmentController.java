@@ -2,12 +2,14 @@ package com.zty.smart_site.controller;
 
 import com.zty.smart_site.entity.Environment;
 import com.zty.smart_site.entity.JsonResult;
+import com.zty.smart_site.page.Page;
 import com.zty.smart_site.service.EnvironmentService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
 @Api(description = "扬尘检测仪接口")
@@ -43,7 +45,7 @@ public class EnvironmentController {
         environmentService.InsertEnvironment(map);
     }
 
-    @ApiOperation(value = "查询扬尘检测仪数据" , notes = "")
+    @ApiOperation(value = "查询最近一条扬尘检测仪数据" , notes = "")
     @PostMapping("/FindEnvironment")
     public JsonResult FindEnvironment(@RequestBody Map map){
         JsonResult jsonResult = new JsonResult();
@@ -56,5 +58,22 @@ public class EnvironmentController {
             jsonResult.setMessage("未找到数据");
         }
         return jsonResult;
+    }
+
+    @ApiOperation(value = "历史数据" , notes = "")
+    @PostMapping("/FindEnvironmentList")
+    public Page FindEnvironmentList(@RequestBody Map map){
+        Page page = new Page();
+        page.setPageNo((Integer) map.get("pageNo"));
+        page.setPageSize((Integer) map.get("pageSize"));
+        page.setTotal(environmentService.Total());
+        page.setItems(environmentService.FindEnvironmentList(map));
+        return page;
+    }
+
+    @ApiOperation(value = "环境因子分析" , notes = "")
+    @PostMapping("/HJFX")
+    public List<Environment> HJFX(){
+        return environmentService.HJFX();
     }
 }
