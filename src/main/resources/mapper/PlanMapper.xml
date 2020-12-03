@@ -2,10 +2,10 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.zty.schedule.dao.PlanDao">
+<mapper namespace="com.zty.smart_site.dao.PlanDao">
     <!--增加项目进度信息-->
     <insert id="InsertPlan" parameterType="java.util.Map">
-        INSERT INTO `plan` (`progress_name`, `start_time`, `start_day`, `end_time`, `end_day`, `duration`) VALUES (#{name}, #{start_time}, #{start_day}, #{end_time}, #{end_day}, #{plan_day});
+        INSERT INTO `plan` (`progress_name`, `start_time`, `start_day`, `end_time`, `end_day`, `duration`,`section_id`) VALUES (#{progress_name}, #{start_time}, #{start_day}, #{end_time}, #{end_day}, #{duration}, #{section_id});
     </insert>
 
     <!--删除项目进度信息-->
@@ -44,12 +44,12 @@
 
     <!--进度对比-->
     <select id="Comparison" resultType="com.zty.smart_site.entity.Plan">
-        SELECT `progress_name`, `start_time`, `start_day`, `end_time`, `end_day`, `duration`, `practical_day`,`practical_time`,`state` FROM `plan`
+        SELECT `progress_name`, `start_time`, `start_day`, `end_time`, `end_day`, `duration`, `practical_day`,`practical_time`,`state` FROM `plan` WHERE `section_id`=#{section_id}
     </select>
 
     <!--进度分析-->
     <select id="Analyse" resultType="com.zty.smart_site.entity.Plan">
-        SELECT `progress_name`, `duration` FROM `plan`
+        SELECT `progress_name`, `duration` FROM `plan`  WHERE `section_id`=#{section_id}
     </select>
 
     <!--修改当前日期大于计划开工日期的项目状态-->

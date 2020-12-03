@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zty.smart_site.dao.TrainContentWDao">
+    <!--根据id查询培训内容-->
+    <select id="FindTrainContentW" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.TrainContentW">
+        SELECT `id`, `train_name`, `content`, `img_url` FROM `train_contentw` WHERE `id`=#{id}
+    </select>
+
+    <!--查询全部展馆体验-->
+    <select id="FindTrainContentWAll" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.TrainContentW">
+        SELECT `id`, `train_name`, `content`, `img_url` FROM `train_contentw`
+    </select>
+</mapper>

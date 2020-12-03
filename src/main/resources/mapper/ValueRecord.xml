@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zty.smart_site.dao.ValueRecordDao">
+    <!--累计产值-->
+    <select id="SumValue" resultType="com.zty.smart_site.entity.ValueRecord" parameterType="java.util.Map">
+        SELECT SUM(day_value) AS `count` FROM `value_record` WHERE YEAR(`time`)=YEAR(NOW()) and `section_id`=#{section_id};
+    </select>
+
+    <!--产值分析-->
+    <select id="CountValue" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.ValueRecord">
+        select v.month,ifnull(b.day_value,0) AS day_value from past_12_month_view v
+          left join
+            (select DATE_FORMAT(t.time,'%Y-%m') month,SUM(t.day_value) day_value
+              from value_record t WHERE `section_id`=#{section_id}
+              group by t.time)b
+              on v.month = b.month
+              group by v.month
+    </select>
+
+    <!--增加产值-->
+    <insert id="InsertValueRecord" parameterType="java.util.Map">
+		INSERT INTO `value_record` (`section_id`, `day_value`, `time`) VALUES (#{section_id}, #{day_value}, #{time});
+	</insert>
+
+    <!--删除产值-->
+    <delete id="DeleteValueRecord" parameterType="java.util.Map">
+		DELETE FROM `value_record` WHERE `id`=#{id}
+	</delete>
+
+    <!--修改产值-->
+    <update id="UpdateValueRecord" parameterType="java.util.Map">
+        UPDATE `value_record`
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="day_value!=null and day_value!=''">
+                `day_value`=#{day_value},
+            </if>
+            <if test="time!=null and time!=''">
+                `time`=#{time},
+            </if>
+        </trim>
+        WHERE (`id`=#{id})
+    </update>
+
+    <!--分页查询产值-->
+    <select id="FindValueRecord" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.ValueRecord">
+        <bind name="page" value="pageSize*(pageNo-1)"></bind>
+        SELECT `id`, `day_value`, `time` FROM `value_record`
+        WHERE `section_id`=#{section_id}
+        limit #{page},#{pageSize}
+    </select>
+
+    <!--统计总数-->
+    <select id="Total" parameterType="java.util.Map" resultType="long">
+		SELECT COUNT(`id`) FROM `value_record` WHERE `section_id`=#{section_id}
+	</select>
+</mapper>

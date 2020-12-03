@@ -4,9 +4,11 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
+import java.util.Arrays;
+
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@ApiModel(value = "Plan", description = "进度表对象")
-public class Plan {
+@ApiModel(value = "PlanTree", description = "进度对比返回体对象")
+public class PlanTree {
     @ApiModelProperty(value = "进度id", name = "id")
     private int id;
 
@@ -36,17 +38,20 @@ public class Plan {
     @ApiModelProperty(value = "实际结束时间", name = "practical_time")
     private String practical_time;
 
-    @ApiModelProperty(value = "标段id", name = "section_id")
-    private int section_id;
-
     @ApiModelProperty(value = "状态", name = "state")
     private int state;
 
-    public Plan(){
+    @ApiModelProperty(value = "计划",name = "jihua")
+    private char[] jihua;
+
+    @ApiModelProperty(value = "实际",name = "shiji")
+    private char[] shiji;
+
+    public PlanTree(){
         super();
     }
 
-    public Plan(int id, String progress_name, String start_time, int start_day, String end_time, int end_day, int duration, int practical_day, String practical_time, int section_id, int state) {
+    public PlanTree(int id, String progress_name, String start_time, int start_day, String end_time, int end_day, int duration, int practical_day, String practical_time, int state, char[] jihua, char[] shiji) {
         this.id = id;
         this.progress_name = progress_name;
         this.start_time = start_time;
@@ -56,8 +61,9 @@ public class Plan {
         this.duration = duration;
         this.practical_day = practical_day;
         this.practical_time = practical_time;
-        this.section_id = section_id;
         this.state = state;
+        this.jihua = jihua;
+        this.shiji = shiji;
     }
 
     public int getId() {
@@ -76,12 +82,28 @@ public class Plan {
         this.progress_name = progress_name;
     }
 
+    public int getDuration() {
+        return duration;
+    }
+
+    public void setDuration(int duration) {
+        this.duration = duration;
+    }
+
     public String getStart_time() {
         return start_time;
     }
 
     public void setStart_time(String start_time) {
         this.start_time = start_time;
+    }
+
+    public int getStart_day() {
+        return start_day;
+    }
+
+    public void setStart_day(int start_day) {
+        this.start_day = start_day;
     }
 
     public String getEnd_time() {
@@ -92,12 +114,12 @@ public class Plan {
         this.end_time = end_time;
     }
 
-    public int getDuration() {
-        return duration;
+    public int getEnd_day() {
+        return end_day;
     }
 
-    public void setDuration(int duration) {
-        this.duration = duration;
+    public void setEnd_day(int end_day) {
+        this.end_day = end_day;
     }
 
     public int getPractical_day() {
@@ -116,36 +138,28 @@ public class Plan {
         this.practical_time = practical_time;
     }
 
+    public char[] getJihua() {
+        return jihua;
+    }
+
+    public void setJihua(char[] jihua) {
+        this.jihua = jihua;
+    }
+
+    public char[] getShiji() {
+        return shiji;
+    }
+
+    public void setShiji(char[] shiji) {
+        this.shiji = shiji;
+    }
+
     public int getState() {
         return state;
     }
 
     public void setState(int state) {
         this.state = state;
-    }
-
-    public int getStart_day() {
-        return start_day;
-    }
-
-    public void setStart_day(int start_day) {
-        this.start_day = start_day;
-    }
-
-    public int getEnd_day() {
-        return end_day;
-    }
-
-    public void setEnd_day(int end_day) {
-        this.end_day = end_day;
-    }
-
-    public int getSection_id() {
-        return section_id;
-    }
-
-    public void setSection_id(int section_id) {
-        this.section_id = section_id;
     }
 
     @Override
@@ -161,6 +175,8 @@ public class Plan {
                 ", practical_day=" + practical_day +
                 ", practical_time='" + practical_time + '\'' +
                 ", state=" + state +
+                ", jihua=" + Arrays.toString(jihua) +
+                ", shiji=" + Arrays.toString(shiji) +
                 '}';
     }
 }

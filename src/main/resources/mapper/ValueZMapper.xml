@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zty.smart_site.dao.ValueZDao">
+    <!--增加总产值-->
+    <insert id="InsertValue" parameterType="java.util.Map">
+        INSERT INTO `valuez` (`altogether`,`section_id`) VALUES (#{altogether},#{section_id});
+    </insert>
+
+    <!--删除总产值-->
+    <delete id="DeleteValue" parameterType="java.util.Map">
+        DELETE FROM `valuez` WHERE `id`=#{id}
+    </delete>
+
+    <!--修改总产值-->
+    <update id="UpdateValue" parameterType="java.util.Map">
+        UPDATE `valuez` SET `altogether`=#{altogether} WHERE (`id`=#{id});
+    </update>
+
+    <!--查询总产值-->
+    <select id="FindValue" resultType="com.zty.smart_site.entity.ValueZ">
+        SELECT `id`,`altogether` FROM `valuez` WHERE `section_id`=#{section_id}
+    </select>
+
+    <!--查询总产值-->
+    <select id="FindValue1" resultType="com.zty.smart_site.entity.ValueZ">
+        SELECT `id`,`altogether` FROM `valuez` WHERE `section_id`=#{section_id}
+    </select>
+</mapper>

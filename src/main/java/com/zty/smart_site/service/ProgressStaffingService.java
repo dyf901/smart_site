@@ -48,4 +48,16 @@ public class ProgressStaffingService implements ProgressStaffingDao {
     public ProgressStaffing FindById(int id) {
         return progressStaffingDao.FindById(id);
     }
+
+    //删除进度信息
+    @Override
+    public int DeleteProgressStaffing(Map map) {
+        return progressStaffingDao.DeleteProgressStaffing(map);
+    }
+
+    //根据删除父节点进度信息同时删除所有子节点信息
+    @Override
+    public int DeleteByFatherId(Map map) {
+        return progressStaffingDao.DeleteByFatherId(map);
+    }
 }

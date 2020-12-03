@@ -1,5 +1,6 @@
 package com.zty.smart_site.controller;
 
+import com.zty.smart_site.entity.JsonResult;
 import com.zty.smart_site.entity.Section;
 import com.zty.smart_site.page.Page;
 import com.zty.smart_site.service.SectionService;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
+import java.util.jar.JarEntry;
 
 @Api(description = "标段接口")
 @RestController
@@ -45,5 +47,13 @@ public class SectionController {
         page.setTotal(sectionService.Total(map));
         page.setItems(sectionService.FindSectioon(map));
         return page;
+    }
+
+    @ApiOperation(value = "查询总工期天数",notes = "")
+    @PostMapping("/FindSectionById")
+    public JsonResult FindSectionById(@RequestBody Map map){
+        JsonResult jsonResult = new JsonResult();
+        jsonResult.setData(sectionService.FindSectionById(map));
+        return jsonResult;
     }
 }

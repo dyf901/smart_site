@@ -22,4 +22,10 @@ public interface ProgressStaffingDao {
     List<ProgressStaffing> FindProgressStaffingBySectionId(Map map);
 
     ProgressStaffing FindById(int id);
+
+    //删除进度信息
+    int DeleteProgressStaffing(Map map);
+
+    //根据删除父节点进度信息同时删除所有子节点信息
+    int DeleteByFatherId(Map map);
 }

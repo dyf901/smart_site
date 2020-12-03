@@ -5,13 +5,12 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@ApiModel(value = "TrainContent" , description = "馆内培训内容")
-public class TrainContent {
+@ApiModel(value = "TrainContentW" , description = "馆内培训内容")
+public class TrainContentW {
     @ApiModelProperty(value = "培训内容id" , name = "id")
     private int id;
 
-    @ApiModelProperty(value = "培训内容id" , name = "id")
-    private int section_id;
+
 
     @ApiModelProperty(value = "培训名称" , name = "train_name")
     private String train_name;
@@ -22,11 +21,11 @@ public class TrainContent {
     @ApiModelProperty(value = "培训图片" , name = "img_url")
     private String img_url;
 
-    public TrainContent() {
+    public TrainContentW() {
         super();
     }
 
-    public TrainContent(int id, String train_name, String content, String img_url) {
+    public TrainContentW(int id, String train_name, String content, String img_url) {
         this.id = id;
         this.train_name = train_name;
         this.content = content;

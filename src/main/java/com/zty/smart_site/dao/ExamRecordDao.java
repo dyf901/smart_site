@@ -1,6 +1,7 @@
 package com.zty.smart_site.dao;
 
 import com.zty.smart_site.entity.ExamRecord;
+import com.zty.smart_site.entity.Value;
 
 import java.util.List;
 import java.util.Map;
@@ -27,4 +28,7 @@ public interface ExamRecordDao {
     int CountT(Map map);
 
     int CountAll(Map map);
+
+    //考试人数汇总
+    List<Value> CountExamStaff(Map map);
 }

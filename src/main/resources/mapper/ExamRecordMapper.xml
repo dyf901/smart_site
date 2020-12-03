@@ -63,4 +63,15 @@
     <select id="CountAll" parameterType="java.util.Map" resultType="int">
         SELECT COUNT(*) FROM `smart_site`.`exam_record` WHERE `section_id`=#{section_id}
     </select>
+
+    <!--考试人数汇总-->
+    <select id="CountExamStaff" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.Value">
+        select v.month as `month`,ifnull(SUM(b.day_value),0) AS `value` from past_12_month_month v
+          left join
+            (select DATE_FORMAT(t.exam_time,'%m') month,COUNT(t.id) day_value
+              from exam_record t WHERE t.`section_id`=#{section_id} and DATE_FORMAT(t.`exam_time`,'%Y')=DATE_FORMAT(NOW(),'%Y')
+              group by t.exam_time)b
+              on v.month = b.month
+              group by v.month
+    </select>
 </mapper>

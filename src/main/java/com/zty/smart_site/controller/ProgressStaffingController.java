@@ -52,8 +52,9 @@ public class ProgressStaffingController {
 
         int i = progressStaffingService.InsertProgressStaffing(map);
         int l = progressStaffingService.UpdateIsParent(map);
+        int k= planService.InsertPlan(map);
         if (i==1&&l==1){
-            int k= planService.InsertPlan(map);
+
             jsonResult.setCode(200);
             jsonResult.setMessage("增加成功!");
         }else{
@@ -62,4 +63,14 @@ public class ProgressStaffingController {
         }
         return jsonResult;
     }
+
+    @ApiOperation(value = "修改进度计划",notes = "")
+    @PostMapping("/UpdateProgressStaffing")
+    public JsonResult UpdateProgressStaffing(@RequestBody Map map){
+        JsonResult jsonResult = new JsonResult();
+
+        return jsonResult;
+    }
+
+
 }

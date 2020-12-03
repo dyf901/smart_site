@@ -2,6 +2,7 @@ package com.zty.smart_site.service;
 
 import com.zty.smart_site.dao.ExamRecordDao;
 import com.zty.smart_site.entity.ExamRecord;
+import com.zty.smart_site.entity.Value;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -51,5 +52,10 @@ public class ExamRecordService implements ExamRecordDao {
     @Override
     public int CountAll(Map map) {
         return examRecordDao.CountAll(map);
+    }
+
+    @Override
+    public List<Value> CountExamStaff(Map map) {
+        return examRecordDao.CountExamStaff(map);
     }
 }

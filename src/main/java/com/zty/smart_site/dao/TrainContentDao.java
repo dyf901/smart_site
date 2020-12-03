@@ -10,5 +10,14 @@ public interface TrainContentDao {
     TrainContent FindTrainContent(Map map);
 
     //查询全部展馆体验
-    List<TrainContent> FindTrainContentAll();
+    List<TrainContent> FindTrainContentAll(Map map);
+
+    //增加我的展馆培训信息
+    int InsertTrainContent(Map map);
+
+    //删除我的展馆培训信息
+    int DeleteTrainContent(Map map);
+
+    //修改我的展馆培训信息
+    int UpdateTrainContent(Map map);
 }
