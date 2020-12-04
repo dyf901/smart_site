@@ -19,7 +19,7 @@
 
     <!--根据删除父节点进度信息同时删除所有子节点信息-->
     <delete id="DeleteByFatherId" parameterType="java.util.Map">
-        DELETE FROM `smart_site`.`progress_staffing` WHERE `fatherid`=#{fatherid}
+        DELETE FROM `smart_site`.`progress_staffing` WHERE `fatherid`=#{id}
     </delete>
 
     <!--修改父节点状态-->

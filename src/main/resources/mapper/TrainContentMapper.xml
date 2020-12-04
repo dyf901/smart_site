@@ -15,7 +15,7 @@
 
     <!--增加我的展馆培训信息-->
     <insert id="InsertTrainContent" parameterType="java.util.Map">
-        INSERT INTO `smart_site`.`train_content`(`user_id`,`train_name`, `content`, `img_url`) VALUES (#{user_id},#{train_name},#{content},#{img_url});
+        INSERT INTO `smart_site`.`train_content`(`section_id`,`train_name`, `content`, `img_url`) VALUES (#{section_id},#{train_name},#{content},#{img_url});
     </insert>
 
     <!--删除我的展馆培训信息-->

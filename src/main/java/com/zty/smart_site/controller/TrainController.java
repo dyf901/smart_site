@@ -30,7 +30,7 @@ public class TrainController {
     @ApiOperation(value = "增加培训内容" , notes = "传参:")
     @PostMapping("/InsertTrain")
     public boolean InsertTrain(@RequestBody Map map) {
-        System.out.println(map);
+        //System.out.println(map);
         map.put("train_name" , map.get("commonality_name"));
         return trainService.InsertTrain(map) == 1;
     }

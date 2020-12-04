@@ -1,6 +1,7 @@
 package com.zty.smart_site.controller;
 
 import com.zty.smart_site.entity.JsonResult;
+import com.zty.smart_site.entity.ProgressStaffing;
 import com.zty.smart_site.entity.Section;
 import com.zty.smart_site.service.PlanService;
 import com.zty.smart_site.service.ProgressStaffingService;
@@ -72,5 +73,31 @@ public class ProgressStaffingController {
         return jsonResult;
     }
 
-
+    @ApiOperation(value = "删除进度信息",notes = "")
+    @PostMapping("/DeleteProgressStaffing")
+    public JsonResult DeleteProgressStaffing(@RequestBody Map map){
+        JsonResult jsonResult = new JsonResult();
+        ProgressStaffing progressStaffing = progressStaffingService.FindById((Integer) map.get("id"));
+        if(progressStaffing.getIsparent().equals("true")){
+            int i=progressStaffingService.DeleteProgressStaffing(map);
+            int l=progressStaffingService.DeleteByFatherId(map);
+            if (i==1&&l==1){
+                jsonResult.setCode(200);
+                jsonResult.setMessage("删除成功!");
+            }else {
+                jsonResult.setCode(20006);
+                jsonResult.setMessage("删除失败!");
+            }
+        }else {
+            int k=progressStaffingService.DeleteProgressStaffing(map);
+            if(k==1){
+                jsonResult.setCode(200);
+                jsonResult.setMessage("删除成功!");
+            }else {
+                jsonResult.setCode(20006);
+                jsonResult.setMessage("删除失败!");
+            }
+        }
+        return jsonResult;
+    }
 }
