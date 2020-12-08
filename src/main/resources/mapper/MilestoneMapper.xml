@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zty.smart_site.dao.MilestoneDao">
+    <!--增加里程碑信息-->
+    <insert id="InsertMilestone" parameterType="java.util.Map">
+        INSERT INTO `smart_site`.`milestone` (`project_name`, `plan_start`, `plan_end`, `practical_start`, `practical_end`, `img_url`, `section_id`)
+        VALUES (#{project_name}, #{plan_start}, #{plan_end}, #{practical_start}, #{practical_end}, #{img_url}, #{section_id});
+    </insert>
+
+    <!--删除里程碑信息-->
+    <delete id="DeleteMilestone" parameterType="java.util.Map">
+        DELETE FROM `smart_site`.`milestone` WHERE `id`=#{id}
+    </delete>
+
+    <!--修改里程碑信息-->
+    <update id="UpdateMilestone" parameterType="java.util.Map">
+        UPDATE `smart_site`.`milestone`
+        <trim prefix="SET" suffixOverrides=",">
+        <if test="project_name!=null and project_name!=''">
+            `project_name`=#{project_name},
+        </if>
+        <if test="plan_start!=null and plan_start!=''">
+            `plan_start`=#{plan_start},
+        </if>
+        <if test="plan_end!=null and plan_end!=''">
+            `plan_end`=#{plan_end},
+        </if>
+        <if test="practical_start!=null and practical_start!=''">
+            `practical_start`=#{practical_start},
+        </if>
+        <if test="practical_end!=null and practical_end!=''">
+            `practical_end`=#{practical_end},
+        </if>
+        <if test="img_url!=null and img_url!=''">
+            `img_url`=#{img_url},
+        </if>
+    </trim>
+        WHERE (`id`=#{id})
+    </update>
+    
+    <!--分页查询里程碑信息-->
+    <select id="FindMilestone" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.Milestone">
+        <bind name="page" value="pageSize*(pageNo-1)"></bind>
+        SELECT `id`, `project_name`, `plan_start`, `plan_end`, `practical_start`, `practical_end`, `img_url` FROM `smart_site`.`milestone`
+        WHERE `section_id`=#{section_id}
+        limit #{page},#{pageSize}
+    </select>
+
+    <!--统计总数-->
+    <select id="Total" parameterType="java.util.Map" resultType="long">
+        SELECT COUNT(`id`) FROM `smart_site`.`milestone` WHERE `section_id`=#{section_id}
+    </select>
+
+    <!--大屏_里程碑信息-->
+    <select id="SelectMilestone" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.Milestone">
+        SELECT `id`, `project_name`, `plan_start`, `plan_end`, `practical_start`, `practical_end`, `img_url` FROM `smart_site`.`milestone`
+        WHERE `section_id`=#{section_id}
+    </select>
+</mapper>

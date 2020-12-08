@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zty.smart_site.dao.PartyPersonDao">
+    <!--增加党建人员信息-->
+    <insert id="InsertPartyPerson" parameterType="java.util.Map">
+        INSERT INTO `smart_site`.`party_person` (`section_id` ,`person_name`, `img_url`, `state`) VALUES (#{section_id}, #{person_name}, #{img_url}, #{state});
+    </insert>
+
+    <!--删除党建人员信息-->
+    <delete id="DeletePartyPerson" parameterType="java.util.Map">
+        DELETE FROM `smart_site`.`party_person` WHERE `id`=#{id}
+    </delete>
+
+    <!--修改党建人员信息-->
+    <update id="UpdatePartyPerson" parameterType="java.util.Map">
+        UPDATE `smart_site`.`party_person`
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="person_name!=null and person_name!=''">
+                `person_name`=#{person_name},
+            </if>
+            <if test="img_url!=null and img_url!=''">
+                `img_url`=#{img_url},
+            </if>
+            <if test="state!=null and state!=''">
+                `state`=#{state},
+            </if>
+        </trim>
+        WHERE (`id`=#{id})
+    </update>
+
+    <!--分页查询党建人员信息-->
+    <select id="FindPartyPerson" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.PartyPerson">
+        <bind name="page" value="pageSize*(pageNo-1)"></bind>
+        SELECT `id`, `person_name`, `img_url`, `state` FROM `smart_site`.`party_person`
+        WHERE `section_id`=#{section_id}
+        limit #{page},#{pageSize}
+    </select>
+
+    <!--统计总数-->
+    <select id="Total" parameterType="java.util.Map" resultType="long">
+        SELECT COUNT(`id`) FROM `smart_site`.`party_person` WHERE `section_id`=#{section_id}
+    </select>
+
+    <!--大屏_党建人员信息-->
+    <select id="SelectPartyPerson" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.PartyPerson">
+        SELECT `id`, `person_name`, `img_url`, `state` FROM `smart_site`.`party_person`
+        WHERE `section_id`=#{section_id}
+    </select>
+</mapper>

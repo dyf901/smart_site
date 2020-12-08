@@ -1,0 +1,85 @@
+package com.zty.smart_site.controller;
+
+import com.zty.smart_site.entity.JsonResult;
+import com.zty.smart_site.entity.PartyPerson;
+import com.zty.smart_site.page.Page;
+import com.zty.smart_site.service.PartyPersonService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.Map;
+
+@Api(description = "党建人员信息接口")
+@RestController
+@RequestMapping("PartyPerson")
+@CrossOrigin
+public class PartyPersonController {
+    @Autowired
+    private PartyPersonService partyPersonService;
+
+    @ApiOperation(value = "增加党建人员信息",notes = "")
+    @PostMapping("/InsertPartyPerson")
+    public JsonResult InsertPartyPerson(@RequestBody Map map){
+        JsonResult jsonResult = new JsonResult();
+        int i =partyPersonService.InsertPartyPerson(map);
+        if (i==1){
+            jsonResult.setCode(200);
+            jsonResult.setMessage("增加成功!");
+        }else {
+            jsonResult.setCode(20006);
+            jsonResult.setMessage("增加失败!");
+        }
+        return jsonResult;
+    }
+
+    @ApiOperation(value = "删除党建人员信息",notes = "")
+    @PostMapping("/DeletePartyPerson")
+    public JsonResult DeletePartyPerson(@RequestBody Map map){
+        JsonResult jsonResult = new JsonResult();
+        int i =partyPersonService.DeletePartyPerson(map);
+        if (i==1){
+            jsonResult.setCode(200);
+            jsonResult.setMessage("删除成功!");
+        }else {
+            jsonResult.setCode(20006);
+            jsonResult.setMessage("删除失败!");
+        }
+        return jsonResult;
+    }
+
+
+    @ApiOperation(value = "修改党建人员信息",notes = "")
+    @PostMapping("/UpdatePartyPerson")
+    public JsonResult UpdatePartyPerson(@RequestBody Map map){
+        JsonResult jsonResult = new JsonResult();
+        int i =partyPersonService.UpdatePartyPerson(map);
+        if (i==1){
+            jsonResult.setCode(200);
+            jsonResult.setMessage("修改成功!");
+        }else {
+            jsonResult.setCode(20006);
+            jsonResult.setMessage("修改失败!");
+        }
+        return jsonResult;
+    }
+
+    @ApiOperation(value = "分页查询党建人员信息",notes = "")
+    @PostMapping("/FindPartyPerson")
+    public Page FindPartyPerson(@RequestBody Map map){
+        Page page = new Page();
+        page.setPageNo((Integer) map.get("pageNo"));
+        page.setPageSize((Integer) map.get("pageSize"));
+        page.setTotal(partyPersonService.Total(map));
+        page.setItems(partyPersonService.FindPartyPerson(map));
+        return page;
+    }
+
+    @ApiOperation(value = "大屏_党建人员信息",notes = "")
+    @PostMapping("/SelectPartyPerson")
+    public List<PartyPerson> SelectPartyPerson(@RequestBody Map map){
+        return partyPersonService.SelectPartyPerson(map);
+    }
+}
