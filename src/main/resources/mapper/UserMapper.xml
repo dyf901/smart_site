@@ -22,7 +22,7 @@
     <!--根据username查询用户信息-->
     <select id="FindUserByUsername" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.User">
         SELECT u.`username`, u.`password`, u.`create_time`, u.`end_time`, u.`section_id`, u.`station_id`,u.`user_menu`,s.`section_name`
-        as `section_name` FROM `smart_site`.`user` u
+        as `section_name`, s.`section_principal` as `section_principal` FROM `smart_site`.`user` u
         INNER JOIN `smart_site`.`section` s ON u.`section_id`=s.`id`
         WHERE `username`=#{username}
     </select>

@@ -29,4 +29,10 @@ public interface PlanDao {
 
     //修改项目状态为2
     int UpdateState2(Map map);
+
+    //查询项目进度
+    List<Plan> FindPlan(Map map);
+
+    //统计总数
+    long Total(Map map);
 }

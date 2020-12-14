@@ -66,4 +66,18 @@
     <update id="UpdateState2" parameterType="java.util.Map">
         UPDATE `plan` SET `state`=2, `practical_time`=#{practical_time}  WHERE `id`=#{id}
     </update>
+
+    <!--查询项目进度-->
+    <select id="FindPlan" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.Plan">
+        <bind name="page" value="pageSize*(pageNo-1)"></bind>
+        SELECT `id`, `progress_name`, `start_time`, `end_time`, `duration`, `practical_day`, `practical_time`, `state` FROM
+        `plan`
+        WHERE `section_id`=#{section_id}
+        limit #{page},#{pageSize}
+    </select>
+
+    <!--统计总数-->
+    <select id="Total" resultType="long">
+        SELECT COUNT(`id`) FROM `plan` WHERE `section_id`=#{section_id}
+    </select>
 </mapper>

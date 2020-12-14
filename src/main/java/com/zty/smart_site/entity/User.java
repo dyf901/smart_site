@@ -17,13 +17,13 @@ section_name            标段名称
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class User {
     private int id, section_id,station_id;
-    private String username, password, create_time, end_time, section_name, user_menu;
+    private String username, password, create_time, end_time, section_name, user_menu,section_principal;
 
     public User() {
         super();
     }
 
-    public User(int id, int section_id, int station_id, String username, String password, String create_time, String end_time, String section_name, String user_menu) {
+    public User(int id, int section_id, int station_id, String username, String password, String create_time, String end_time, String section_name, String user_menu, String section_principal) {
         this.id = id;
         this.section_id = section_id;
         this.station_id = station_id;
@@ -33,6 +33,7 @@ public class User {
         this.end_time = end_time;
         this.section_name = section_name;
         this.user_menu = user_menu;
+        this.section_principal = section_principal;
     }
 
     public int getId() {
@@ -105,6 +106,14 @@ public class User {
 
     public void setStation_id(int station_id) {
         this.station_id = station_id;
+    }
+
+    public String getSection_principal() {
+        return section_principal;
+    }
+
+    public void setSection_principal(String section_principal) {
+        this.section_principal = section_principal;
     }
 
     @Override

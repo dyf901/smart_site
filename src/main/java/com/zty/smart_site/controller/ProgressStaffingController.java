@@ -15,7 +15,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Map;
 
-@Api(description = "个人积分明细接口")
+@Api(description = "后台进度接口")
 @RestController
 @RequestMapping("ProgressStaffing")
 @CrossOrigin

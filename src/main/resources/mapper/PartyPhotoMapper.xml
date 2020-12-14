@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zty.smart_site.dao.PartyPhotoDao">
+    <!--增加党建相册-->
+    <insert id="InsertPartyPhoto" parameterType="java.util.Map">
+        INSERT INTO `smart_site`.`party_photo` (`url`, `section_id`) VALUES (#{url}, #{section_id});
+    </insert>
+
+    <!--删除党建相册-->
+    <delete id="DeletePartyPhoto" parameterType="java.util.Map">
+        DELETE FROM `smart_site`.`party_photo` WHERE `id`=#{id}
+    </delete>
+
+    <!--修改党建相册-->
+    <update id="UpdatePartyPhoto" parameterType="java.util.Map">
+        UPDATE `smart_site`.`party_photo`
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="url!=null and url!=''">
+                `url`=#{url},
+            </if>
+        </trim>
+        WHERE (`id`=#{id})
+    </update>
+
+    <!--分页查询党建相册-->
+    <select id="FindPartyPhoto" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.PartyPhoto">
+        <bind name="page" value="pageSize*(pageNo-1)"></bind>
+        SELECT `id`,`url` FROM `smart_site`.`party_photo` WHERE `section_id`=#{section_id}
+        limit #{page},#{pageSize}
+    </select>
+
+    <!--统计总数-->
+    <select id="Total" parameterType="java.util.Map" resultType="long">
+        SELECT COUNT(`id`) FROM `smart_site`.`party_photo` WHERE `section_id`=#{section_id}
+    </select>
+
+    <!--大屏_党建相册-->
+    <select id="SelectPartyPhoto" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.PartyPhoto">
+        SELECT `id`,`url` FROM `smart_site`.`party_photo` WHERE `section_id`=#{section_id}
+    </select>
+</mapper>

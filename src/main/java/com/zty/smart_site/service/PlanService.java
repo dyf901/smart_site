@@ -60,4 +60,16 @@ public class PlanService implements PlanDao {
     public int UpdateState2(Map map) {
         return planDao.UpdateState2(map);
     }
+
+    //查询项目进度
+    @Override
+    public List<Plan> FindPlan(Map map) {
+        return planDao.FindPlan(map);
+    }
+
+    //统计总数
+    @Override
+    public long Total(Map map) {
+        return planDao.Total(map);
+    }
 }

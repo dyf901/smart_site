@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zty.smart_site.dao.ConstructionPhotoDao">
+    <!--增加施工相册-->
+    <insert id="InsertConstructionPhoto" parameterType="java.util.Map">
+        INSERT INTO `smart_site`.`construction_photo` (`url`,`section_id`) VALUES (#{url},#{section_id});
+    </insert>
+
+    <!--删除施工相册-->
+    <delete id="DeleteConstructionPhoto" parameterType="java.util.Map">
+        DELETE FROM `smart_site`.`construction_photo` WHERE `id`=#{id}
+    </delete>
+
+    <!--修改施工相册-->
+    <update id="UpdateConstructionPhoto" parameterType="java.util.Map">
+        UPDATE `smart_site`.`construction_photo`
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="url!=null and url!=''">
+                `url`=#{url},
+            </if>
+        </trim>
+        WHERE (`id`=#{id})
+    </update>
+
+    <!--分页查询施工相册信息-->
+    <select id="FindConstructionPhoto" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.ConstructionPhoto">
+        <bind name="page" value="pageSize*(pageNo-1)"></bind>
+        SELECT `id`,`url` FROM `smart_site`.`construction_photo` WHERE `section_id`=#{section_id}
+        limit #{page},#{pageSize}
+    </select>
+
+    <!--统计总数-->
+    <select id="Total" parameterType="java.util.Map" resultType="long">
+        SELECT COUNT(`id`) FROM `smart_site`.`construction_photo` WHERE `section_id`=#{section_id}
+    </select>
+
+    <!--大屏_施工相册-->
+    <select id="SelectConstructionPhoto" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.ConstructionPhoto">
+        SELECT `id`,`url` FROM `smart_site`.`construction_photo` WHERE `section_id`=#{section_id}
+    </select>
+</mapper>

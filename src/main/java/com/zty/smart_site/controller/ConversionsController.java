@@ -54,8 +54,18 @@ public class ConversionsController {
 
     @ApiOperation(value = "删除兑换记录" , notes = "测试数据:{\"id\":3}")
     @PostMapping("/DeleteConversions")
-    public boolean DeleteConversions(@RequestBody Map map) {
-        return conversionsService.DeleteConversions(map) == 1;
+    public JsonResult DeleteConversions(@RequestBody Map map) {
+        JsonResult jsonResult = new JsonResult();
+        int i = conversionsService.DeleteConversions(map);
+        if (i == 1) {
+            jsonResult.setMessage("删除成功!");
+            jsonResult.setCode(200);
+
+        } else {
+            jsonResult.setMessage("删除失败!");
+            jsonResult.setCode(20006);
+        }
+        return jsonResult;
     }
 
     @ApiOperation(value = "分页模糊查询兑换记录" , notes = "测试数据:{\"pageNo\":1,\"pageSize\":10,\"section_id\":1}")
