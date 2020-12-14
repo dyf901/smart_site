@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zty.smart_site.dao.PartyNewsDao">
+    <!--增加党建新闻-->
+    <insert id="InsertPartyNews" parameterType="java.util.Map">
+        INSERT INTO `smart_site`.`party_news` (`title`, `url`, `date_time`, `section_id`) VALUES (#{title}, #{url}, #{date_time}, #{section_id});
+    </insert>
+
+    <!--删除党建新闻-->
+    <delete id="DeletePartyNews" parameterType="java.util.Map">
+        DELETE FROM `smart_site`.`party_news` WHERE `id`=#{id}
+    </delete>
+
+    <!--修改党建新闻-->
+    <update id="UpdatePartyNews" parameterType="java.util.Map">
+        UPDATE  `smart_site`.`party_news`
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="title!=null and title!=''">
+                `title`=#{title},
+            </if>
+            <if test="url!=null and url!=''">
+                `url`=#{url},
+            </if>
+            <if test="date_time!=null and date_time!=''">
+                `date_time`=#{date_time},
+            </if>
+        </trim>
+        WHERE (`id`=#{id})
+    </update>
+
+    <!--分页查询党建新闻-->
+    <select id="FindPartyNews" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.PartyNews">
+        <bind name="page" value="pageSize*(pageNo-1)"></bind>
+        SELECT `id`, `title`, `url`, `date_time` FROM `smart_site`.`party_news`
+        WHERE `section_id`=#{section_id}
+        limit #{page},#{pageSize}
+    </select>
+
+    <!--统计总数-->
+    <select id="Total" parameterType="java.util.Map" resultType="long">
+        SELECT COUNT(`id`) FROM `smart_site`.`party_news` WHERE `section_id`=#{section_id}
+    </select>
+
+    <!--大屏_党建新闻-->
+    <select id="SelectPartyNews" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.PartyNews">
+        SELECT `id`, `title`, `url`, `date_time` FROM `smart_site`.`party_news` WHERE `section_id`=#{section_id}
+        ORDER BY `date_time` DESC
+        limit 1
+    </select>
+</mapper>
