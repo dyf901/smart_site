@@ -22,11 +22,11 @@
         r.`responsible`, r.`description`, r.`uptime`, r.`plan_time`,r.`url`, r.`active`,r.`title`,a.`risk_category` as
         risk_name,s.`station_name` as station_name,l.`subcontractors_name` as `sub_name`,p.`process_name` as
         `process_name`,z.`staff_name` as `staff_name` FROM `smart_site`.`riskshow` r
-        INNER JOIN `smart_site`.`risk` a ON r.`risk_id`=a.`id`
-        INNER JOIN `smart_site`.`station` s ON r.`station_id`=s.`id`
-        INNER JOIN `smart_site`.`subcontractors` l ON r.`sub_id`=l.`id`
-        INNER JOIN `smart_site`.`process` p ON r.`process_id`=p.`id`
-        INNER JOIN `smart_site`.`staff` z ON r.`staff_id`=z.`id`
+        LEFT JOIN `smart_site`.`risk` a ON r.`risk_id`=a.`id`
+        LEFT JOIN `smart_site`.`station` s ON r.`station_id`=s.`id`
+        LEFT JOIN `smart_site`.`subcontractors` l ON r.`sub_id`=l.`id`
+        LEFT JOIN `smart_site`.`process` p ON r.`process_id`=p.`id`
+        LEFT JOIN `smart_site`.`staff` z ON r.`staff_id`=z.`id`
         WHERE r.`id`=#{id}
     </select>
 
@@ -37,11 +37,11 @@
         r.`responsible`, r.`description`, r.`uptime`, r.`url`, r.`active`,r.`title`,a.`risk_category` as
         risk_name,s.`station_name` as station_name,l.`subcontractors_name` as `sub_name`,p.`process_name` as
         `process_name`,z.`staff_name` as `staff_name` FROM `smart_site`.`riskshow` r
-        INNER JOIN `smart_site`.`risk` a ON r.`risk_id`=a.`id`
-        INNER JOIN `smart_site`.`station` s ON r.`station_id`=s.`id`
-        INNER JOIN `smart_site`.`subcontractors` l ON r.`sub_id`=l.`id`
-        INNER JOIN `smart_site`.`process` p ON r.`process_id`=p.`id`
-        INNER JOIN `smart_site`.`staff` z ON r.`staff_id`=z.`id`
+        LEFT JOIN `smart_site`.`risk` a ON r.`risk_id`=a.`id`
+        LEFT JOIN `smart_site`.`station` s ON r.`station_id`=s.`id`
+        LEFT JOIN `smart_site`.`subcontractors` l ON r.`sub_id`=l.`id`
+        LEFT JOIN `smart_site`.`process` p ON r.`process_id`=p.`id`
+        LEFT JOIN `smart_site`.`staff` z ON r.`staff_id`=z.`id`
         <where>
             r.`section_id`=#{section_id}
             <if test="risk_id!=null and risk_id!=''">
@@ -75,11 +75,11 @@
         r.`responsible`, r.`description`, r.`uptime`, r.`url`, r.`active`,r.`title`,a.`risk_category` as
         risk_name,s.`station_name` as station_name,l.`subcontractors_name` as `sub_name`,p.`process_name` as
         `process_name`,z.`staff_name` as `staff_name` FROM `smart_site`.`riskshow` r
-        INNER JOIN `smart_site`.`risk` a ON r.`risk_id`=a.`id`
-        INNER JOIN `smart_site`.`station` s ON r.`station_id`=s.`id`
-        INNER JOIN `smart_site`.`subcontractors` l ON r.`sub_id`=l.`id`
-        INNER JOIN `smart_site`.`process` p ON r.`process_id`=p.`id`
-        INNER JOIN `smart_site`.`staff` z ON r.`staff_id`=z.`id`
+        LEFT JOIN `smart_site`.`risk` a ON r.`risk_id`=a.`id`
+        LEFT JOIN `smart_site`.`station` s ON r.`station_id`=s.`id`
+        LEFT JOIN `smart_site`.`subcontractors` l ON r.`sub_id`=l.`id`
+        LEFT JOIN `smart_site`.`process` p ON r.`process_id`=p.`id`
+        LEFT JOIN `smart_site`.`staff` z ON r.`staff_id`=z.`id`
         where r.`section_id`=#{section_id} and r.`station_id`=#{station_id} and r.`state`='待审核'
         limit #{page},#{pageSize}
     </select>
@@ -97,11 +97,11 @@
         r.`responsible`, r.`description`, r.`uptime`, r.`url`, r.`active`,r.`title`,a.`risk_category` as
         risk_name,s.`station_name` as station_name,l.`subcontractors_name` as `sub_name`,p.`process_name` as
         `process_name`,z.`staff_name` as `staff_name` FROM `smart_site`.`riskshow` r
-        INNER JOIN `smart_site`.`risk` a ON r.`risk_id`=a.`id`
-        INNER JOIN `smart_site`.`station` s ON r.`station_id`=s.`id`
-        INNER JOIN `smart_site`.`subcontractors` l ON r.`sub_id`=l.`id`
-        INNER JOIN `smart_site`.`process` p ON r.`process_id`=p.`id`
-        INNER JOIN `smart_site`.`staff` z ON r.`staff_id`=z.`id`
+        LEFT JOIN `smart_site`.`risk` a ON r.`risk_id`=a.`id`
+        LEFT JOIN `smart_site`.`station` s ON r.`station_id`=s.`id`
+        LEFT JOIN `smart_site`.`subcontractors` l ON r.`sub_id`=l.`id`
+        LEFT JOIN `smart_site`.`process` p ON r.`process_id`=p.`id`
+        LEFT JOIN `smart_site`.`staff` z ON r.`staff_id`=z.`id`
         where r.`section_id`=#{section_id} and r.`station_id`=#{station_id} and r.`state`='无效'
         limit #{page},#{pageSize}
     </select>
@@ -119,11 +119,11 @@
         r.`responsible`, r.`description`, r.`uptime`,r.`plan_time`, r.`url`, r.`active`,r.`title`,a.`risk_category` as
         risk_name,s.`station_name` as station_name,l.`subcontractors_name` as `sub_name`,p.`process_name` as
         `process_name`,z.`staff_name` as `staff_name` FROM `smart_site`.`riskshow` r
-        INNER JOIN `smart_site`.`risk` a ON r.`risk_id`=a.`id`
-        INNER JOIN `smart_site`.`station` s ON r.`station_id`=s.`id`
-        INNER JOIN `smart_site`.`subcontractors` l ON r.`sub_id`=l.`id`
-        INNER JOIN `smart_site`.`process` p ON r.`process_id`=p.`id`
-        INNER JOIN `smart_site`.`staff` z ON r.`staff_id`=z.`id`
+        LEFT JOIN `smart_site`.`risk` a ON r.`risk_id`=a.`id`
+        LEFT JOIN `smart_site`.`station` s ON r.`station_id`=s.`id`
+        LEFT JOIN `smart_site`.`subcontractors` l ON r.`sub_id`=l.`id`
+        LEFT JOIN `smart_site`.`process` p ON r.`process_id`=p.`id`
+        LEFT JOIN `smart_site`.`staff` z ON r.`staff_id`=z.`id`
         where r.`section_id`=#{section_id} and r.`station_id`=#{station_id} and r.`state`='有效' and r.`active`='待整改'
         limit #{page},#{pageSize}
     </select>
@@ -141,11 +141,11 @@
         r.`responsible`, r.`description`, r.`uptime`, r.`url`, r.`active`,r.`title`,a.`risk_category` as
         risk_name,s.`station_name` as station_name,l.`subcontractors_name` as `sub_name`,p.`process_name` as
         `process_name`,z.`staff_name` as `staff_name` FROM `smart_site`.`riskshow` r
-        INNER JOIN `smart_site`.`risk` a ON r.`risk_id`=a.`id`
-        INNER JOIN `smart_site`.`station` s ON r.`station_id`=s.`id`
-        INNER JOIN `smart_site`.`subcontractors` l ON r.`sub_id`=l.`id`
-        INNER JOIN `smart_site`.`process` p ON r.`process_id`=p.`id`
-        INNER JOIN `smart_site`.`staff` z ON r.`staff_id`=z.`id`
+        LEFT JOIN `smart_site`.`risk` a ON r.`risk_id`=a.`id`
+        LEFT JOIN `smart_site`.`station` s ON r.`station_id`=s.`id`
+        LEFT JOIN `smart_site`.`subcontractors` l ON r.`sub_id`=l.`id`
+        LEFT JOIN `smart_site`.`process` p ON r.`process_id`=p.`id`
+        LEFT JOIN `smart_site`.`staff` z ON r.`staff_id`=z.`id`
         where r.`section_id`=#{section_id} and r.`station_id`=#{station_id} and r.`state`='有效' and r.`active`='已整改'
         limit #{page},#{pageSize}
     </select>
@@ -163,11 +163,11 @@
         r.`responsible`, r.`description`, r.`uptime`, r.`url`, r.`active`,r.`title`,a.`risk_category` as
         risk_name,s.`station_name` as station_name,l.`subcontractors_name` as `sub_name`,p.`process_name` as
         `process_name`,z.`staff_name` as `staff_name` FROM `smart_site`.`riskshow` r
-        INNER JOIN `smart_site`.`risk` a ON r.`risk_id`=a.`id`
-        INNER JOIN `smart_site`.`station` s ON r.`station_id`=s.`id`
-        INNER JOIN `smart_site`.`subcontractors` l ON r.`sub_id`=l.`id`
-        INNER JOIN `smart_site`.`process` p ON r.`process_id`=p.`id`
-        INNER JOIN `smart_site`.`staff` z ON r.`staff_id`=z.`id`
+        LEFT JOIN `smart_site`.`risk` a ON r.`risk_id`=a.`id`
+        LEFT JOIN `smart_site`.`station` s ON r.`station_id`=s.`id`
+        LEFT JOIN `smart_site`.`subcontractors` l ON r.`sub_id`=l.`id`
+        LEFT JOIN `smart_site`.`process` p ON r.`process_id`=p.`id`
+        LEFT JOIN `smart_site`.`staff` z ON r.`staff_id`=z.`id`
         where r.`section_id`=#{section_id}
         limit #{page},#{pageSize}
     </select>
@@ -185,11 +185,11 @@
         r.`responsible`, r.`description`, r.`uptime`, r.`url`, r.`active`,r.`title`,a.`risk_category` as
         risk_name,s.`station_name` as station_name,l.`subcontractors_name` as `sub_name`,p.`process_name` as
         `process_name`,z.`staff_name` as `staff_name` FROM `smart_site`.`riskshow` r
-        INNER JOIN `smart_site`.`risk` a ON r.`risk_id`=a.`id`
-        INNER JOIN `smart_site`.`station` s ON r.`station_id`=s.`id`
-        INNER JOIN `smart_site`.`subcontractors` l ON r.`sub_id`=l.`id`
-        INNER JOIN `smart_site`.`process` p ON r.`process_id`=p.`id`
-        INNER JOIN `smart_site`.`staff` z ON r.`staff_id`=z.`id`
+        LEFT JOIN `smart_site`.`risk` a ON r.`risk_id`=a.`id`
+        LEFT JOIN `smart_site`.`station` s ON r.`station_id`=s.`id`
+        LEFT JOIN `smart_site`.`subcontractors` l ON r.`sub_id`=l.`id`
+        LEFT JOIN `smart_site`.`process` p ON r.`process_id`=p.`id`
+        LEFT JOIN `smart_site`.`staff` z ON r.`staff_id`=z.`id`
         where r.`section_id`=#{section_id} and r.`state`='有效' and r.`active`='未整改'
         limit #{page},#{pageSize}
     </select>
@@ -207,11 +207,11 @@
         r.`responsible`, r.`description`, r.`uptime`, r.`url`, r.`active`,r.`title`,a.`risk_category` as
         risk_name,s.`station_name` as station_name,l.`subcontractors_name` as `sub_name`,p.`process_name` as
         `process_name`,z.`staff_name` as `staff_name` FROM `smart_site`.`riskshow` r
-        INNER JOIN `smart_site`.`risk` a ON r.`risk_id`=a.`id`
-        INNER JOIN `smart_site`.`station` s ON r.`station_id`=s.`id`
-        INNER JOIN `smart_site`.`subcontractors` l ON r.`sub_id`=l.`id`
-        INNER JOIN `smart_site`.`process` p ON r.`process_id`=p.`id`
-        INNER JOIN `smart_site`.`staff` z ON r.`staff_id`=z.`id`
+        LEFT JOIN `smart_site`.`risk` a ON r.`risk_id`=a.`id`
+        LEFT JOIN `smart_site`.`station` s ON r.`station_id`=s.`id`
+        LEFT JOIN `smart_site`.`subcontractors` l ON r.`sub_id`=l.`id`
+        LEFT JOIN `smart_site`.`process` p ON r.`process_id`=p.`id`
+        LEFT JOIN `smart_site`.`staff` z ON r.`staff_id`=z.`id`
         where r.`section_id`=#{section_id} and r.`state`='有效' and r.`active`='已整改'
         limit #{page},#{pageSize}
     </select>
@@ -229,11 +229,11 @@
         r.`responsible`, r.`description`, r.`uptime`, r.`url`, r.`active`,r.`title`,a.`risk_category` as
         risk_name,s.`station_name` as station_name,l.`subcontractors_name` as `sub_name`,p.`process_name` as
         `process_name`,z.`staff_name` as `staff_name` FROM `smart_site`.`riskshow` r
-        INNER JOIN `smart_site`.`risk` a ON r.`risk_id`=a.`id`
-        INNER JOIN `smart_site`.`station` s ON r.`station_id`=s.`id`
-        INNER JOIN `smart_site`.`subcontractors` l ON r.`sub_id`=l.`id`
-        INNER JOIN `smart_site`.`process` p ON r.`process_id`=p.`id`
-        INNER JOIN `smart_site`.`staff` z ON r.`staff_id`=z.`id`
+        LEFT JOIN `smart_site`.`risk` a ON r.`risk_id`=a.`id`
+        LEFT JOIN `smart_site`.`station` s ON r.`station_id`=s.`id`
+        LEFT JOIN `smart_site`.`subcontractors` l ON r.`sub_id`=l.`id`
+        LEFT JOIN `smart_site`.`process` p ON r.`process_id`=p.`id`
+        LEFT JOIN `smart_site`.`staff` z ON r.`staff_id`=z.`id`
         where r.`section_id`=#{section_id} and r.`state`='有效' and r.`active`='已整改' and r.`status`='待检查'
         limit #{page},#{pageSize}
     </select>
@@ -250,11 +250,11 @@
         r.`responsible`, r.`description`, r.`uptime`, r.`url`, r.`active`,r.`title`,a.`risk_category` as
         risk_name,s.`station_name` as station_name,l.`subcontractors_name` as `sub_name`,p.`process_name` as
         `process_name`,z.`staff_name` as `staff_name` FROM `smart_site`.`riskshow` r
-        INNER JOIN `smart_site`.`risk` a ON r.`risk_id`=a.`id`
-        INNER JOIN `smart_site`.`station` s ON r.`station_id`=s.`id`
-        INNER JOIN `smart_site`.`subcontractors` l ON r.`sub_id`=l.`id`
-        INNER JOIN `smart_site`.`process` p ON r.`process_id`=p.`id`
-        INNER JOIN `smart_site`.`staff` z ON r.`staff_id`=z.`id`
+        LEFT JOIN `smart_site`.`risk` a ON r.`risk_id`=a.`id`
+        LEFT JOIN `smart_site`.`station` s ON r.`station_id`=s.`id`
+        LEFT JOIN `smart_site`.`subcontractors` l ON r.`sub_id`=l.`id`
+        LEFT JOIN `smart_site`.`process` p ON r.`process_id`=p.`id`
+        LEFT JOIN `smart_site`.`staff` z ON r.`staff_id`=z.`id`
         where r.`staff_id`=#{staff_id}
     </select>
 

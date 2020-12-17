@@ -47,4 +47,10 @@ public class PartyPersonService implements PartyPersonDao {
     public List<PartyPerson> SelectPartyPerson(Map map) {
         return partyPersonDao.SelectPartyPerson(map);
     }
+
+    //大屏_学习强国排行版
+    @Override
+    public List<PartyPerson> SelectPartyPersonByIntegral(Map map) {
+        return partyPersonDao.SelectPartyPersonByIntegral(map);
+    }
 }

@@ -165,4 +165,88 @@ public class OssUploadController {
         }
         return "upload";
     }
+
+    @ApiOperation(value = "里程碑图片上传" , notes = "")
+    @PostMapping("/MilestoneUpload")
+    public String MilestoneUpload(MultipartFile file) {
+
+        try {
+
+            if (null != file) {
+                String filename = file.getOriginalFilename();
+                if (!"".equals(filename.trim())) {
+                    File newFile = new File(filename);
+                    FileOutputStream os = new FileOutputStream(newFile);
+                    os.write(file.getBytes());
+                    os.close();
+                    file.transferTo(newFile);
+                    String Host = "milestone";
+                    //上传到OSS
+                    String uploadUrl = AliyunOSSUtil.upload(newFile, Host);
+                    newFile.delete();
+                    return uploadUrl;
+                }
+
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return "upload";
+    }
+
+    @ApiOperation(value = "党建人员照片上传" , notes = "")
+    @PostMapping("/PartyPersonUpload")
+    public String PartyPersonUpload(MultipartFile file) {
+
+        try {
+
+            if (null != file) {
+                String filename = file.getOriginalFilename();
+                if (!"".equals(filename.trim())) {
+                    File newFile = new File(filename);
+                    FileOutputStream os = new FileOutputStream(newFile);
+                    os.write(file.getBytes());
+                    os.close();
+                    file.transferTo(newFile);
+                    String Host = "partyperson";
+                    //上传到OSS
+                    String uploadUrl = AliyunOSSUtil.upload(newFile, Host);
+                    newFile.delete();
+                    return uploadUrl;
+                }
+
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return "upload";
+    }
+
+    @ApiOperation(value = "施工照片上传" , notes = "")
+    @PostMapping("/ConstructionPhotoUpload")
+    public String ConstructionPhotoUpload(MultipartFile file) {
+
+        try {
+
+            if (null != file) {
+                String filename = file.getOriginalFilename();
+                if (!"".equals(filename.trim())) {
+                    File newFile = new File(filename);
+                    FileOutputStream os = new FileOutputStream(newFile);
+                    os.write(file.getBytes());
+                    os.close();
+                    file.transferTo(newFile);
+                    String Host = "construction";
+                    //上传到OSS
+                    String uploadUrl = AliyunOSSUtil.upload(newFile, Host);
+                    newFile.delete();
+                    return uploadUrl;
+                }
+
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return "upload";
+    }
 }

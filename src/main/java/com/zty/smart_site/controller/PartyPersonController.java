@@ -82,4 +82,10 @@ public class PartyPersonController {
     public List<PartyPerson> SelectPartyPerson(@RequestBody Map map){
         return partyPersonService.SelectPartyPerson(map);
     }
+
+    @ApiOperation(value = "大屏_学习强国排行榜",notes = "")
+    @PostMapping("/SelectPartyPersonByIntegral")
+    public List<PartyPerson> SelectPartyPersonByIntegral(@RequestBody Map map){
+        return partyPersonService.SelectPartyPersonByIntegral(map);
+    }
 }

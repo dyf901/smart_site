@@ -24,4 +24,6 @@ public interface PartyPersonDao {
     //大屏_党建人员信息
     List<PartyPerson> SelectPartyPerson(Map map);
 
+    //大屏_学习强国排行版
+    List<PartyPerson> SelectPartyPersonByIntegral(Map map);
 }

@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
-@JsonInclude(JsonInclude.Include.NON_NULL)
 @ApiModel(value = "Milestone" , description = "里程碑表对象")
 public class PartyPerson {
     @ApiModelProperty(value = "积分id" , name = "id")
@@ -22,16 +21,24 @@ public class PartyPerson {
     @ApiModelProperty(value = "党员状态" , name = "state")
     private String state;
 
+    @ApiModelProperty(value = "党员状态" , name = "duty")
+    private String duty;
+
+    @ApiModelProperty(value = "党员状态" , name = "integral")
+    private String integral;
+
     public PartyPerson(){
         super();
     }
 
-    public PartyPerson(int id, int section_id, String person_name, String img_url, String state) {
+    public PartyPerson(int id, int section_id, String person_name, String img_url, String state, String duty, String integral) {
         this.id = id;
         this.section_id = section_id;
         this.person_name = person_name;
         this.img_url = img_url;
         this.state = state;
+        this.duty = duty;
+        this.integral = integral;
     }
 
     public int getId() {
@@ -74,14 +81,19 @@ public class PartyPerson {
         this.section_id = section_id;
     }
 
-    @Override
-    public String toString() {
-        return "{" +
-                "id=" + id +
-                ", section_id=" + section_id +
-                ", person_name='" + person_name + '\'' +
-                ", img_url='" + img_url + '\'' +
-                ", state='" + state + '\'' +
-                '}';
+    public String getDuty() {
+        return duty;
+    }
+
+    public void setDuty(String duty) {
+        this.duty = duty;
+    }
+
+    public String getIntegral() {
+        return integral;
+    }
+
+    public void setIntegral(String integral) {
+        this.integral = integral;
     }
 }
