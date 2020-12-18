@@ -47,4 +47,9 @@ public class TrainCommonalityService implements TrainCommonalityDao {
     public int CountAll() {
         return trainCommonalityDao.CountAll();
     }
+
+    @Override
+    public List<TrainCommonality> SelectTrainCommonality() {
+        return trainCommonalityDao.SelectTrainCommonality();
+    }
 }

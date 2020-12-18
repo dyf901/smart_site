@@ -9,6 +9,7 @@ import org.apache.poi.ss.formula.functions.T;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
 @Api(description = "公共课程接口")
@@ -46,5 +47,11 @@ public class TrainCommonalityController {
         page.setTotal(trainCommonalityService.Total(map));
         page.setItems(trainCommonalityService.FindTrainCommonality(map));
         return page;
+    }
+
+    @ApiOperation(value = "查询公共课程" , notes = "")
+    @PostMapping("/SelectTrainCommonality")
+    public List<TrainCommonality> SelectTrainCommonality(@RequestBody Map map) {
+        return trainCommonalityService.SelectTrainCommonality();
     }
 }

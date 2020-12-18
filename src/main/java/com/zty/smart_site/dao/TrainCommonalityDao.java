@@ -22,4 +22,6 @@ public interface TrainCommonalityDao {
     long Total(Map map);
 
     int CountAll();
+
+    List<TrainCommonality> SelectTrainCommonality();
 }
