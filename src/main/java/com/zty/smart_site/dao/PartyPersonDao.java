@@ -26,4 +26,10 @@ public interface PartyPersonDao {
 
     //大屏_学习强国排行版
     List<PartyPerson> SelectPartyPersonByIntegral(Map map);
+
+    //项目部成员-政治面貌
+    List<PartyPerson> CountPartyPersonByState(Map map);
+
+    //支部党员构成-学历
+    List<PartyPerson> CountPartyPersonByEducation(Map map);
 }

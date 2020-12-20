@@ -409,4 +409,19 @@
               on v.month = b.month
               group by v.month
     </select>
+
+    <!--隐患详情-->
+    <select id="Select_Riskshow_Month" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.Riskshow">
+        SELECT r.`id`, r.`risk_id`, r.`staff_id`, r.`process_id`, r.`section_id`, r.`station_id`, r.`sub_id`,
+        r.`responsible`, r.`description`, r.`uptime`, r.`plan_time`,r.`url`, r.`active`,r.`title`,a.`risk_category` as
+        risk_name,s.`station_name` as station_name,l.`subcontractors_name` as `sub_name`,p.`process_name` as
+        `process_name`,z.`staff_name` as `staff_name` FROM `smart_site`.`riskshow` r
+        LEFT JOIN `smart_site`.`risk` a ON r.`risk_id`=a.`id`
+        LEFT JOIN `smart_site`.`station` s ON r.`station_id`=s.`id`
+        LEFT JOIN `smart_site`.`subcontractors` l ON r.`sub_id`=l.`id`
+        LEFT JOIN `smart_site`.`process` p ON r.`process_id`=p.`id`
+        LEFT JOIN `smart_site`.`staff` z ON r.`staff_id`=z.`id`
+        WHERE r.`section_id`=#{section_id}
+        ORDER BY r.`uptime` DESC
+    </select>
 </mapper>

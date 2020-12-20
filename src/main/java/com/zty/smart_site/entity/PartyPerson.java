@@ -27,11 +27,17 @@ public class PartyPerson {
     @ApiModelProperty(value = "党员状态" , name = "integral")
     private String integral;
 
+    @ApiModelProperty(value = "学历" , name = "education")
+    private String education;
+
+    @ApiModelProperty(value = "数量" , name = "count")
+    private int count;
+
     public PartyPerson(){
         super();
     }
 
-    public PartyPerson(int id, int section_id, String person_name, String img_url, String state, String duty, String integral) {
+    public PartyPerson(int id, int section_id, String person_name, String img_url, String state, String duty, String integral, String education) {
         this.id = id;
         this.section_id = section_id;
         this.person_name = person_name;
@@ -39,6 +45,7 @@ public class PartyPerson {
         this.state = state;
         this.duty = duty;
         this.integral = integral;
+        this.education = education;
     }
 
     public int getId() {
@@ -95,5 +102,21 @@ public class PartyPerson {
 
     public void setIntegral(String integral) {
         this.integral = integral;
+    }
+
+    public String getEducation() {
+        return education;
+    }
+
+    public void setEducation(String education) {
+        this.education = education;
+    }
+
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
     }
 }

@@ -146,4 +146,7 @@ public interface RiskshowDao {
 
     //本月综合隐患分析
     List<MonthValue> RiskshowByMonth(Map map);
+
+    //大屏_隐患详情
+    List<Riskshow> Select_Riskshow_Month(Map map);
 }

@@ -301,4 +301,10 @@ public class RiskshowController {
             }
         }
     }
+
+    @ApiOperation(value = "大屏_隐患详情",notes = "")
+    @PostMapping("/Select_Riskshow_Month")
+    public List<Riskshow> Select_Riskshow_Month(@RequestBody Map map){
+        return riskshowService.Select_Riskshow_Month(map);
+    }
 }

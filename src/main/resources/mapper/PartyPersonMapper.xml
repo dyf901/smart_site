@@ -62,4 +62,18 @@
         ORDER BY `integral` DESC
         limit 3;
     </select>
+
+    <!--项目部成员-政治面貌-->
+    <select id="CountPartyPersonByState" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.PartyPerson">
+        SELECT COUNT(`id`) AS `count`, `state` FROM `smart_site`.`party_person`
+        GROUP BY `state`
+        WHERE `section_id`=#{section_id}
+    </select>
+
+    <!--支部党员构成-学历-->
+    <select id="CountPartyPersonByEducation" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.PartyPerson">
+        SELECT COUNT(`id`) AS `count`, `education` FROM `smart_site`.`party_person`
+        GROUP BY `education`
+        WHERE `section_id`=#{section_id}
+    </select>
 </mapper>

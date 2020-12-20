@@ -53,4 +53,16 @@ public class PartyPersonService implements PartyPersonDao {
     public List<PartyPerson> SelectPartyPersonByIntegral(Map map) {
         return partyPersonDao.SelectPartyPersonByIntegral(map);
     }
+
+    //项目部成员-政治面貌
+    @Override
+    public List<PartyPerson> CountPartyPersonByState(Map map) {
+        return partyPersonDao.CountPartyPersonByState(map);
+    }
+
+    //支部党员构成-学历
+    @Override
+    public List<PartyPerson> CountPartyPersonByEducation(Map map) {
+        return partyPersonDao.CountPartyPersonByEducation(map);
+    }
 }

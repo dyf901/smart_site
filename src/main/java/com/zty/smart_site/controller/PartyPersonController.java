@@ -88,4 +88,16 @@ public class PartyPersonController {
     public List<PartyPerson> SelectPartyPersonByIntegral(@RequestBody Map map){
         return partyPersonService.SelectPartyPersonByIntegral(map);
     }
+
+    @ApiOperation(value = "项目部成员-政治面貌",notes = "")
+    @PostMapping("/CountPartyPersonByState")
+    public List<PartyPerson> CountPartyPersonByState(@RequestBody Map map){
+        return partyPersonService.CountPartyPersonByState(map);
+    }
+
+    @ApiOperation(value = "支部党员构成-学历",notes = "")
+    @PostMapping("/CountPartyPersonByEducation")
+    public List<PartyPerson> CountPartyPersonByEducation(@RequestBody Map map){
+        return partyPersonService.CountPartyPersonByEducation(map);
+    }
 }
