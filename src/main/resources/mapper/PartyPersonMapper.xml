@@ -66,14 +66,20 @@
     <!--项目部成员-政治面貌-->
     <select id="CountPartyPersonByState" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.PartyPerson">
         SELECT COUNT(`id`) AS `count`, `state` FROM `smart_site`.`party_person`
-        GROUP BY `state`
         WHERE `section_id`=#{section_id}
+        GROUP BY `state`
     </select>
 
     <!--支部党员构成-学历-->
     <select id="CountPartyPersonByEducation" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.PartyPerson">
         SELECT COUNT(`id`) AS `count`, `education` FROM `smart_site`.`party_person`
-        GROUP BY `education`
         WHERE `section_id`=#{section_id}
+        GROUP BY `education`
+
     </select>
+
+    <!--修改党员id-->
+    <update id="UpdatePartyPersonById" parameterType="java.util.Map">
+        UPDATE `smart_site`.`party_person` SET `id`=#{NewId} WHERE `id`=#{id}
+    </update>
 </mapper>
