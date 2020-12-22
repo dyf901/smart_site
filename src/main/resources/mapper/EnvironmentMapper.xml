@@ -35,6 +35,6 @@
 
     <!--环境分析-->
     <select id="HJFX" resultType="com.zty.smart_site.entity.Environment">
-        SELECT `pm25`, `pm10`,`datatime` FROM environment where extract(minute from datatime) = 0
+        SELECT `pm25`, `pm10`, `tsp`, `datatime` FROM environment where extract(minute from datatime) = 0
     </select>
 </mapper>

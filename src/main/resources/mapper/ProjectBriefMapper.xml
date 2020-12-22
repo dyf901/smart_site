@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zty.smart_site.dao.ProjectBriefDao">
+    <!--增加大屏项目简介-->
+    <insert id="InsertProjectBrief" parameterType="java.util.Map">
+        INSERT INTO `smart_site`.`project_brief` (`section_id`, `img_url`, `brief`) VALUES (#{section_id}, #{img_url}, #{brief});
+    </insert>
+
+    <!--删除大屏项目简介-->
+    <delete id="DeleteProjectBrief" parameterType="java.util.Map">
+        DELETE FROM `smart_site`.`project_brief` WHERE `id`=#{id}
+    </delete>
+
+    <!--修改大屏项目简介-->
+    <update id="UpdateProjectBrief" parameterType="java.util.Map">
+        UPDATE `smart_site`.`project_brief` SET `img_url`=#{img_url}, `brief`=#{brief} WHERE (`id`=#{id});
+    </update>
+
+    <!--分页查询大屏项目简介-->
+    <select id="FindProjectBrief" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.ProjectBrief">
+        <bind name="page" value="pageSize*(pageNo-1)"></bind>
+        SELECT `id`, `section_id`, `img_url`, `brief` FROM `smart_site`.`project_brief`
+        WHERE `section_id`=#{section_id}
+        limit #{page},#{pageSize}
+    </select>
+
+    <!--统计总数-->
+    <select id="Total" parameterType="java.util.Map" resultType="long">
+        SELECT COUNT(`id`) FROM `smart_site`.`project_brief` WHERE `section_id`=#{section_id}
+    </select>
+
+    <!--大屏-项目简介-->
+    <select id="SelectProjectBrief" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.ProjectBrief">
+        SELECT `id`, `section_id`, `img_url`, `brief` FROM `smart_site`.`project_brief`
+        WHERE `section_id`=#{section_id}
+    </select>
+</mapper>
