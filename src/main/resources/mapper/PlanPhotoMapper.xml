@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zty.smart_site.dao.PlanPhotoDao">
+    <!--增加智筹管度图片-->
+    <insert id="InsertPlanPhoto" parameterType="java.util.Map">
+        INSERT INTO `smart_site`.`plan_photo` (`section_id`, `img_url`, `uptime`) VALUES (#{section_id}, #{img_url}, #{uptime});
+    </insert>
+
+    <!--删除智筹管度图片-->
+    <delete id="DeletePlanPhoto" parameterType="java.util.Map">
+        DELETE FROM `smart_site`.`plan_photo` WHERE `id`=#{id}
+    </delete>
+
+    <!--修改智筹管度图片-->
+    <update id="UpdatePlanPhoto" parameterType="java.util.Map">
+        UPDATE `smart_site`.`plan_photo` SET `img_url`=#{img_url} WHERE (`id`=#{id});
+    </update>
+
+    <!--分页模糊查询智筹管度图片-->
+    <select id="FindPlanPhoto" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.PlanPhoto">
+        <bind name="page" value="pageSize(pageNo-1)"></bind>
+        SELECT `id`, `section_id`, `img_url`, `uptime` FROM `smart_site`.`plan_photo`
+        WHERE `section_id`=#{section_id}
+        ORDER BY `uptime` DESC
+        limit #{page}, #{pageSize}
+    </select>
+
+    <!--统计总数-->
+    <select id="Total" parameterType="java.util.Map" resultType="long">
+        SELECT COUNT(`id`) FROM `smart_site`.`plan_photo` WHERE `section_id`=#{section_id}
+    </select>
+
+    <!--智慧工地_智筹管度-->
+    <select id="SelectPlanPhoto" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.PlanPhoto">
+        SELECT `img_url` FROM `smart_site`.`plan_photo`
+        WHERE `section_id`=#{section_id}
+        ORDER BY `uptime` DESC
+        limit 1;
+    </select>
+</mapper>

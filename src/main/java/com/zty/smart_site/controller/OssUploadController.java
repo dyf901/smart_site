@@ -249,4 +249,32 @@ public class OssUploadController {
         }
         return "upload";
     }
+
+    @ApiOperation(value = "智筹管度图片上传" , notes = "")
+    @PostMapping("/PlanPhotoUpload")
+    public String PlanPhotoUpload(MultipartFile file) {
+
+        try {
+
+            if (null != file) {
+                String filename = file.getOriginalFilename();
+                if (!"".equals(filename.trim())) {
+                    File newFile = new File(filename);
+                    FileOutputStream os = new FileOutputStream(newFile);
+                    os.write(file.getBytes());
+                    os.close();
+                    file.transferTo(newFile);
+                    String Host = "planphoto";
+                    //上传到OSS
+                    String uploadUrl = AliyunOSSUtil.upload(newFile, Host);
+                    newFile.delete();
+                    return uploadUrl;
+                }
+
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return "upload";
+    }
 }
