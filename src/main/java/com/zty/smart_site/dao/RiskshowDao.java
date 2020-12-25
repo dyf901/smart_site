@@ -12,6 +12,9 @@ public interface RiskshowDao {
     //增加安全隐患信息记录
     int InsertRiskshow(Map map);
 
+    //增加安全隐患信息记录
+    int InsertRiskshowPC(Map map);
+
     //删除安全隐患记录
     int DeleteRiskshow(Map map);
 

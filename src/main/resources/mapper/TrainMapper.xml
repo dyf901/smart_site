@@ -49,7 +49,7 @@
     <select id="FindTrainByIdX" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.Train">
         SELECT t.`id`, t.`type_id`, t.`train_name`, t.`content`, t.`section_id`,t.`video_url`, s.`type_name` as
         `type_name` FROM `smart_site`.`train` t
-        INNER JOIN `smart_site`.`train_type` s ON t.`type_id`=s.`id`
+        LEFT JOIN `smart_site`.`train_type` s ON t.`type_id`=s.`id`
         where t.`id`=#{id}
     </select>
 

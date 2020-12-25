@@ -24,6 +24,7 @@ public class TrainPhotoController {
     @PostMapping("/InsertTrainPhoto")
     public JsonResult InsertTrainPhoto(@RequestBody Map map){
         JsonResult jsonResult = new JsonResult();
+
         int i =trainPhotoService.InsertTrainPhoto(map);
         if (i==1){
             jsonResult.setCode(200);
@@ -55,6 +56,7 @@ public class TrainPhotoController {
     @PostMapping("/UpdateTrainPhoto")
     public JsonResult UpdateTrainPhoto(@RequestBody Map map){
         JsonResult jsonResult = new JsonResult();
+        System.out.println("map:"+map);
         int i =trainPhotoService.UpdateTrainPhoto(map);
         if (i==1){
             jsonResult.setCode(200);

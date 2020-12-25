@@ -20,6 +20,11 @@ public class RiskshowService implements RiskshowDao {
         return riskshowDao.InsertRiskshow(map);
     }
 
+    @Override
+    public int InsertRiskshowPC(Map map) {
+        return riskshowDao.InsertRiskshowPC(map);
+    }
+
     //删除安全隐患记录
     @Override
     public int DeleteRiskshow(Map map) {

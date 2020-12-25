@@ -186,4 +186,10 @@ public class StaffService implements StaffDao {
     public List<Value> StaffQs(Map map) {
         return staffDao.StaffQs(map);
     }
+
+    //根据姓名查询人员信息
+    @Override
+    public Staff FindStaffByStaffName(Map map) {
+        return staffDao.FindStaffByStaffName(map);
+    }
 }

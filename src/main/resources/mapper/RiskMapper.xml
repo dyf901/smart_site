@@ -49,8 +49,7 @@
 
     <!--下拉框查询安全隐患类型-->
     <select id="SelectRisk" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.Risk">
-        SELECT `id` , `risk_category` FROM `smart_site`.`risk` WHERE `section_id`=#{section_id} and
-        `station_id`=#{station_id}
+        SELECT `id` , `risk_category` FROM `smart_site`.`risk` WHERE `section_id`=#{section_id}
     </select>
 
 </mapper>

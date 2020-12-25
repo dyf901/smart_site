@@ -258,4 +258,13 @@
               on v.month = b.month
               group by v.month
     </select>
+
+    <!--根据姓名查询人员信息-->
+    <select id="FindStaffByStaffName" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.Staff">
+        SELECT
+        s.`id`,s.`staff_name`,s.`staff_age`,s.`staff_img`,s.`staff_sex`,s.`staff_nation`,s.`staff_card`,s.`staff_address`,s.`staff_province`,s.`staff_phone`,s.`sos_name`,s.`sos_ship`,s.`sos_phone`,s.`entry_time`,s.`history_integral`,s.`end_integral`,s.`section_id`,s.`station_id`,s.`sub_id`,s.`worktype_id`,s.`department_id`,s.`password`,s.`picture`,s.`state`,s.`status`,s.`type`,s.`train`,s.`staff_code`
+        FROM `smart_site`.`staff` s
+        WHERE s.`section_id`=#{section_id} AND s.`staff_name`=#{staff_name}
+        limit 1;
+    </select>
 </mapper>

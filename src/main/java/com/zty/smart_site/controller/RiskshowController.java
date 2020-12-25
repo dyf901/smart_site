@@ -2,6 +2,7 @@ package com.zty.smart_site.controller;
 
 import com.zty.smart_site.entity.JsonResult;
 import com.zty.smart_site.entity.Riskshow;
+import com.zty.smart_site.entity.Staff;
 import com.zty.smart_site.page.Page;
 
 import com.zty.smart_site.service.*;
@@ -36,6 +37,28 @@ public class RiskshowController {
 
     @Autowired
     private RiskrectifyService riskrectifyService;//整改通知单
+
+    @ApiOperation(value = "增加安全隐患记录PC" , notes = "传参:`title`(标题),`risk_id`(安全隐患类id,安全隐患类型下拉框), `staff_name`(员工姓名,登录时返回), `section_id`(标段id), `station_id`(站点id,下拉框查询),`sub_id`(分包单位id) `description`(详细说明), `url`(图片地址数组)")
+    @PostMapping("/InsertRiskshowPc")
+    public JsonResult InsertRiskshowPc(@RequestBody Map map) {
+        JsonResult jsonResult = new JsonResult();
+        System.out.println(map);
+        Staff staff=staffService.FindStaffByStaffName(map);
+        map.put("staff_id",staff.getId());
+        map.put("staff_id",staff.getStation_id());
+
+
+        int i = riskshowService.InsertRiskshowPC(map);
+        if (i == 1) {
+            jsonResult.setMessage("增加成功!");
+            jsonResult.setCode(200);
+            return jsonResult;
+        } else {
+            jsonResult.setMessage("添加失败!");
+            jsonResult.setCode(20006);
+            return jsonResult;
+        }
+    }
 
     @ApiOperation(value = "增加安全隐患记录" , notes = "传参:`title`(标题),`risk_id`(安全隐患类id,安全隐患类型下拉框), `staff_name`(员工姓名,登录时返回), `section_id`(标段id), `station_id`(站点id,下拉框查询),`sub_id`(分包单位id) `description`(详细说明), `url1`(图片地址数组), `staff_id(劳务人员id,管理人员不需要传,登录返回)`,  `process_id`(工序id,下拉框返回)")
     @PostMapping("/InsertRiskshow")

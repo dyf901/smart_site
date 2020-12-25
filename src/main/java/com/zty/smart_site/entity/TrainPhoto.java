@@ -10,8 +10,8 @@ public class TrainPhoto {
     @ApiModelProperty(value = "培训相册id" , name = "id")
     private int id;
 
-    @ApiModelProperty(value = "图片地址" , name = "url")
-    private String url;
+    @ApiModelProperty(value = "图片地址" , name = "img_url")
+    private String img_url;
 
     @ApiModelProperty(value = "标段id" , name = "section_id")
     private int section_id;
@@ -20,9 +20,9 @@ public class TrainPhoto {
         super();
     }
 
-    public TrainPhoto(int id, String url, int section_id) {
+    public TrainPhoto(int id, String img_url, int section_id) {
         this.id = id;
-        this.url = url;
+        this.img_url = img_url;
         this.section_id = section_id;
     }
 
@@ -34,12 +34,12 @@ public class TrainPhoto {
         this.id = id;
     }
 
-    public String getUrl() {
-        return url;
+    public String getImg_url() {
+        return img_url;
     }
 
-    public void setUrl(String url) {
-        this.url = url;
+    public void setImg_url(String img_url) {
+        this.img_url = img_url;
     }
 
     public int getSection_id() {

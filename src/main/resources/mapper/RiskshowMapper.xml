@@ -11,6 +11,14 @@
         #{responsible}, #{description}, now(), #{url});
     </insert>
 
+    <!--增加安全隐患信息记录-->
+    <insert id="InsertRiskshowPC" parameterType="java.util.Map">
+        INSERT INTO `smart_site`.`riskshow` (`title`, `staff_id`, `risk_id`, `section_id`, `station_id`, `process_id`,
+        `sub_id`, `responsible`, `description`, `uptime`, `url`)
+        VALUES (#{title}, #{staff_id}, #{risk_id}, #{section_id}, #{station_id}, #{process_id}, #{sub_id},
+        #{responsible}, #{description}, #{uptime}, #{url});
+    </insert>
+
     <!--删除安全隐患记录-->
     <delete id="DeleteRiskshow" parameterType="java.util.Map">
         DELETE FROM `smart_site`.`riskshow` WHERE `id`=#{id}
@@ -308,24 +316,24 @@
 
     <!--统计安全隐患数量-->
     <select id="CountRiskShow" parameterType="java.util.Map" resultType="int">
-        SELECT COUNT(*) FROM `smart_site`.`riskshow` WHERE `section_id`=#{section_id} and `station_id`=#{station_id}
+        SELECT COUNT(*) FROM `smart_site`.`riskshow` WHERE `section_id`=#{section_id}
     </select>
 
     <!--统计安全隐患数量_已整改-->
     <select id="CountRiskShowByYZG" parameterType="java.util.Map" resultType="int">
-        SELECT COUNT(*) FROM `smart_site`.`riskshow` WHERE `section_id`=#{section_id} and `station_id`=#{station_id} and
+        SELECT COUNT(*) FROM `smart_site`.`riskshow` WHERE `section_id`=#{section_id}  and
         `active`='已整改'
     </select>
 
     <!--统计安全隐患数量_未整改-->
     <select id="CountRiskShowByWZG" parameterType="java.util.Map" resultType="int">
-        SELECT COUNT(*) FROM `smart_site`.`riskshow` WHERE `section_id`=#{section_id} and `station_id`=#{station_id} and
+        SELECT COUNT(*) FROM `smart_site`.`riskshow` WHERE `section_id`=#{section_id}  and
         `active`='待整改'
     </select>
 
     <!--统计安全隐患数量_超期未整改-->
     <select id="CountRiskShowByCQWZG" parameterType="java.util.Map" resultType="int">
-        SELECT COUNT(*) FROM `smart_site`.`riskshow` WHERE `section_id`=#{section_id} and `station_id`=#{station_id} and
+        SELECT COUNT(*) FROM `smart_site`.`riskshow` WHERE `section_id`=#{section_id}  and
         `active`='超期未整改'
     </select>
 
@@ -338,49 +346,49 @@
     <select id="find_riskshow_top" resultType="int" parameterType="java.util.Map">
         SELECT count(*) from `smart_site`.`riskshow` where uptime between (select DATE_ADD(curdate(),interval
         -day(curdate())+1 day)) and (select DATE_ADD(curdate(),interval -day(curdate())+10 day)) and
-        section_id=#{section_id} and station_id=#{station_id}
+        section_id=#{section_id}
     </select>
 
     <!-- 查询当月中旬数据的条数 -->
     <select id="find_riskshow_mid" resultType="int" parameterType="java.util.Map">
         SELECT count(*) from `smart_site`.`riskshow` where uptime between (select DATE_ADD(curdate(),interval
         -day(curdate())+10 day)) and (select DATE_ADD(curdate(),interval -day(curdate())+20 day)) and
-        section_id=#{section_id} and station_id=#{station_id}
+        section_id=#{section_id}
     </select>
 
     <!-- 查询当月下旬数据的条数 -->
     <select id="find_riskshow_end" resultType="int" parameterType="java.util.Map">
         SELECT count(*) from `smart_site`.`riskshow` where uptime between (select DATE_ADD(curdate(),interval
         -day(curdate())+20 day)) and (select DATE_ADD(curdate(),interval -day(curdate())+31 day)) and
-        section_id=#{section_id} and station_id=#{station_id}
+        section_id=#{section_id}
     </select>
 
     <!-- 查询当月上旬有效数据的条数 -->
     <select id="find_riskshow_top_y" resultType="int" parameterType="java.util.Map">
         SELECT count(*) from `smart_site`.`riskshow` where uptime between (select DATE_ADD(curdate(),interval
         -day(curdate())+1 day)) and (select DATE_ADD(curdate(),interval -day(curdate())+10 day)) and state='有效' and
-        section_id=#{section_id} and station_id=#{station_id}
+        section_id=#{section_id}
     </select>
 
     <!-- 查询当月中旬有效数据的条数 -->
     <select id="find_riskshow_mid_y" resultType="int" parameterType="java.util.Map">
         SELECT count(*) from `smart_site`.`riskshow` where uptime between (select DATE_ADD(curdate(),interval
         -day(curdate())+10 day)) and (select DATE_ADD(curdate(),interval -day(curdate())+20 day)) and state='有效' and
-        section_id=#{section_id} and station_id=#{station_id}
+        section_id=#{section_id}
     </select>
 
     <!-- 查询当月下旬有效数据的条数 -->
     <select id="find_riskshow_end_y" resultType="int" parameterType="java.util.Map">
         SELECT count(*) from `smart_site`.`riskshow` where uptime between (select DATE_ADD(curdate(),interval
         -day(curdate())+20 day)) and (select DATE_ADD(curdate(),interval -day(curdate())+31 day)) and state='有效' and
-        section_id=#{section_id} and station_id=#{station_id}
+        section_id=#{section_id}
     </select>
 
     <!--根据隐患类型查询数量总数-->
     <select id="CountRiskshowByRiskId" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.Riskshow">
         SELECT Count(*) as `count`,a.`risk_category` as risk_name FROM `smart_site`.`riskshow` r
         INNER JOIN `smart_site`.`risk` a ON r.`risk_id`=a.`id`
-        WHERE r.`section_id`=#{section_id} and r.`station_id`=#{station_id}
+        WHERE r.`section_id`=#{section_id}
         group by r.`risk_id`
     </select>
 
@@ -388,14 +396,14 @@
     <select id="CountRiskshowBySubId" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.Riskshow">
         SELECT Count(*) as `count`,l.`subcontractors_name` as `sub_name` FROM `smart_site`.`riskshow` r
         INNER JOIN `smart_site`.`subcontractors` l ON r.`sub_id`=l.`id`
-        WHERE r.`section_id`=#{section_id} and r.`station_id`=#{station_id}
+        WHERE r.`section_id`=#{section_id}
         group by r.`sub_id`
     </select>
 
     <!--根据责任人查询数量总数-->
     <select id="CountRiskshowByResponsible" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.Riskshow">
         SELECT r.`responsible`,Count(*) as `count` FROM `smart_site`.`riskshow` r
-        WHERE r.`section_id`=#{section_id} and r.`station_id`=#{station_id}
+        WHERE r.`section_id`=#{section_id}
         group by r.`responsible`
     </select>
 
@@ -404,7 +412,7 @@
         select v.month as `month`,ifnull(b.day_value,0) AS `value` from past_12_month_day v
           left join
             (select DATE_FORMAT(t.uptime,'%d') month,COUNT(t.id) day_value
-              from riskshow t WHERE t.`section_id`=#{section_id} and t.`station_id`=#{station_id} and DATE_FORMAT(t.`uptime`,'%Y-%m')=DATE_FORMAT(NOW(),'%Y-%m')
+              from riskshow t WHERE t.`section_id`=#{section_id}  and DATE_FORMAT(t.`uptime`,'%Y-%m')=DATE_FORMAT(NOW(),'%Y-%m')
               group by t.uptime)b
               on v.month = b.month
               group by v.month

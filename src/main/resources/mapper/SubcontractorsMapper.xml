@@ -26,8 +26,8 @@
         <bind name="page" value="pageSize*(pageNo-1)"></bind>
         SELECT s.`id`,s.`subcontractors_name`, s.`section_id`,s.`station_id`, s.`principal`, s.`principal_phone`,
         s.`remark`,b.section_name as section_name,l.station_name as station_name FROM `smart_site`.`subcontractors` s
-        INNER JOIN `smart_site`.`section` b ON s.`section_id`=b.`id`
-        INNER JOIN `smart_site`.`station` l ON s.`station_id`=l.`id`
+        LEFT JOIN `smart_site`.`section` b ON s.`section_id`=b.`id`
+        LEFT JOIN `smart_site`.`station` l ON s.`station_id`=l.`id`
         <where>
             s.`section_id`=#{section_id}
             <if test="subcontractors_name!=null and subcontractors_name!=''">
@@ -52,6 +52,6 @@
     <select id="SelectSubcontractors" parameterType="java.util.Map"
             resultType="com.zty.smart_site.entity.Subcontractors">
         SELECT `id`,`subcontractors_name`, `section_id` FROM `smart_site`.`subcontractors` WHERE
-        `section_id`=#{section_id} and `station_id`=#{station_id} and `state`='显示'
+        `section_id`=#{section_id}  and `state`='显示'
     </select>
 </mapper>

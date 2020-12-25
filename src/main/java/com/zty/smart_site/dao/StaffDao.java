@@ -95,4 +95,7 @@ public interface StaffDao {
 
     //人员趋势分析
     List<Value> StaffQs(Map map);
+
+    //根据姓名查询人员信息
+    Staff FindStaffByStaffName(Map map);
 }

@@ -5,7 +5,7 @@
 <mapper namespace="com.zty.smart_site.dao.PartyPersonDao">
     <!--增加党建人员信息-->
     <insert id="InsertPartyPerson" parameterType="java.util.Map">
-        INSERT INTO `smart_site`.`party_person` (`section_id` ,`person_name`, `img_url`, `state`, `duty`, `integral`) VALUES (#{section_id}, #{person_name}, #{img_url}, #{state}, #{duty} ,#{integral});
+        INSERT INTO `smart_site`.`party_person` (`section_id` ,`person_name`, `img_url`, `state`, `duty`, `integral`, `education`) VALUES (#{section_id}, #{person_name}, #{img_url}, #{state}, #{duty} ,#{integral}, #{education});
     </insert>
 
     <!--删除党建人员信息-->
@@ -39,7 +39,7 @@
     <!--分页查询党建人员信息-->
     <select id="FindPartyPerson" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.PartyPerson">
         <bind name="page" value="pageSize*(pageNo-1)"></bind>
-        SELECT `id`, `person_name`, `img_url`, `state`, `duty`, `integral` FROM `smart_site`.`party_person`
+        SELECT `id`, `person_name`, `img_url`, `state`, `duty`, `integral`,`education` FROM `smart_site`.`party_person`
         WHERE `section_id`=#{section_id}
         limit #{page},#{pageSize}
     </select>
