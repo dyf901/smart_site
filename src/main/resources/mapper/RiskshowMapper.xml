@@ -88,13 +88,13 @@
         LEFT JOIN `smart_site`.`subcontractors` l ON r.`sub_id`=l.`id`
         LEFT JOIN `smart_site`.`process` p ON r.`process_id`=p.`id`
         LEFT JOIN `smart_site`.`staff` z ON r.`staff_id`=z.`id`
-        where r.`section_id`=#{section_id} and r.`station_id`=#{station_id} and r.`state`='待审核'
+        where r.`section_id`=#{section_id}  and r.`state`='待审核'
         limit #{page},#{pageSize}
     </select>
 
     <!--统计总数-->
     <select id="Total_JCJL" parameterType="java.util.Map" resultType="long">
-        SELECT COUNT(*) FROM `smart_site`.`riskshow` where `section_id`=#{section_id} and `station_id`=#{station_id} and
+        SELECT COUNT(*) FROM `smart_site`.`riskshow` where `section_id`=#{section_id}  and
         `state`='待审核'
     </select>
 
@@ -110,13 +110,13 @@
         LEFT JOIN `smart_site`.`subcontractors` l ON r.`sub_id`=l.`id`
         LEFT JOIN `smart_site`.`process` p ON r.`process_id`=p.`id`
         LEFT JOIN `smart_site`.`staff` z ON r.`staff_id`=z.`id`
-        where r.`section_id`=#{section_id} and r.`station_id`=#{station_id} and r.`state`='无效'
+        where r.`section_id`=#{section_id}  and r.`state`='无效'
         limit #{page},#{pageSize}
     </select>
 
     <!--统计总数_无效记录-->
     <select id="Total_WXJL" parameterType="java.util.Map" resultType="long">
-        SELECT COUNT(*) FROM `smart_site`.`riskshow` where `section_id`=#{section_id} and `station_id`=#{station_id} and
+        SELECT COUNT(*) FROM `smart_site`.`riskshow` where `section_id`=#{section_id}  and
         `state`='无效'
     </select>
 
@@ -132,13 +132,13 @@
         LEFT JOIN `smart_site`.`subcontractors` l ON r.`sub_id`=l.`id`
         LEFT JOIN `smart_site`.`process` p ON r.`process_id`=p.`id`
         LEFT JOIN `smart_site`.`staff` z ON r.`staff_id`=z.`id`
-        where r.`section_id`=#{section_id} and r.`station_id`=#{station_id} and r.`state`='有效' and r.`active`='待整改'
+        where r.`section_id`=#{section_id}  and r.`state`='有效' and r.`active`='待整改'
         limit #{page},#{pageSize}
     </select>
 
     <!--统计总数_待整改-->
     <select id="Total_DZG" parameterType="java.util.Map" resultType="long">
-        SELECT COUNT(*) FROM `smart_site`.`riskshow` where `section_id`=#{section_id} and `station_id`=#{station_id} and
+        SELECT COUNT(*) FROM `smart_site`.`riskshow` where `section_id`=#{section_id}  and
         `state`='有效' and `active`='待整改'
     </select>
 
@@ -154,13 +154,13 @@
         LEFT JOIN `smart_site`.`subcontractors` l ON r.`sub_id`=l.`id`
         LEFT JOIN `smart_site`.`process` p ON r.`process_id`=p.`id`
         LEFT JOIN `smart_site`.`staff` z ON r.`staff_id`=z.`id`
-        where r.`section_id`=#{section_id} and r.`station_id`=#{station_id} and r.`state`='有效' and r.`active`='已整改'
+        where r.`section_id`=#{section_id}  and r.`state`='有效' and r.`active`='已整改'
         limit #{page},#{pageSize}
     </select>
 
     <!--统计总数_整改复查-->
     <select id="Total_ZGFC" parameterType="java.util.Map" resultType="long">
-        SELECT COUNT(*) FROM `smart_site`.`riskshow` where `section_id`=#{section_id} and `station_id`=#{station_id} and
+        SELECT COUNT(*) FROM `smart_site`.`riskshow` where `section_id`=#{section_id}  and
         `state`='有效' and `active`='已整改'
     </select>
 
@@ -177,6 +177,7 @@
         LEFT JOIN `smart_site`.`process` p ON r.`process_id`=p.`id`
         LEFT JOIN `smart_site`.`staff` z ON r.`staff_id`=z.`id`
         where r.`section_id`=#{section_id}
+        ORDER BY r.`uptime` DESC
         limit #{page},#{pageSize}
     </select>
 
@@ -199,6 +200,7 @@
         LEFT JOIN `smart_site`.`process` p ON r.`process_id`=p.`id`
         LEFT JOIN `smart_site`.`staff` z ON r.`staff_id`=z.`id`
         where r.`section_id`=#{section_id} and r.`state`='有效' and r.`active`='未整改'
+        ORDER BY r.`uptime` DESC
         limit #{page},#{pageSize}
     </select>
 
@@ -221,6 +223,7 @@
         LEFT JOIN `smart_site`.`process` p ON r.`process_id`=p.`id`
         LEFT JOIN `smart_site`.`staff` z ON r.`staff_id`=z.`id`
         where r.`section_id`=#{section_id} and r.`state`='有效' and r.`active`='已整改'
+        ORDER BY r.`uptime` DESC
         limit #{page},#{pageSize}
     </select>
 
@@ -243,6 +246,7 @@
         LEFT JOIN `smart_site`.`process` p ON r.`process_id`=p.`id`
         LEFT JOIN `smart_site`.`staff` z ON r.`staff_id`=z.`id`
         where r.`section_id`=#{section_id} and r.`state`='有效' and r.`active`='已整改' and r.`status`='待检查'
+        ORDER BY r.`uptime` DESC
         limit #{page},#{pageSize}
     </select>
 
@@ -264,6 +268,7 @@
         LEFT JOIN `smart_site`.`process` p ON r.`process_id`=p.`id`
         LEFT JOIN `smart_site`.`staff` z ON r.`staff_id`=z.`id`
         where r.`staff_id`=#{staff_id}
+        ORDER BY r.`uptime` DESC
     </select>
 
     <!--修改安全隐患状态(有效)-->
@@ -431,5 +436,15 @@
         LEFT JOIN `smart_site`.`staff` z ON r.`staff_id`=z.`id`
         WHERE r.`section_id`=#{section_id}
         ORDER BY r.`uptime` DESC
+    </select>
+
+    <!--根据id查询安全隐患记录-->
+    <select id="FindRiskshowByIdDp" resultType="com.zty.smart_site.entity.Riskshow" parameterType="java.util.Map">
+        SELECT r.`id`, r.`risk_id`, r.`staff_id`, r.`process_id`, r.`section_id`, r.`station_id`, r.`sub_id`,
+        r.`responsible`, r.`description`, r.`uptime`, r.`plan_time`, r.`zg_url`, r.`zg_description`, r.`fc_description`, r.`url`, r.`active`,r.`title`,a.`risk_category` as
+        risk_name,z.`staff_name` as `staff_name` FROM `smart_site`.`riskshow` r
+        LEFT JOIN `smart_site`.`risk` a ON r.`risk_id`=a.`id`
+        LEFT JOIN `smart_site`.`staff` z ON r.`staff_id`=z.`id`
+        WHERE r.`id`=#{id}
     </select>
 </mapper>

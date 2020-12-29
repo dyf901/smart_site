@@ -5,8 +5,8 @@
 <mapper namespace="com.zty.smart_site.dao.WorktypeDao">
     <!--增加工种-->
     <insert id="InsertWorktype" parameterType="java.util.Map">
-        INSERT INTO `smart_site`.`worktype` (`worktype_name`, `content`, `section_id`, `station_id`, `sub_id`, `remark`)
-        VALUES (#{worktype_name}, #{content}, #{section_id}, #{station_id}, #{sub_id},#{remark});
+        INSERT INTO `smart_site`.`worktype` (`worktype_name`, `content`, `section_id`, `station_id`, `remark`)
+        VALUES (#{worktype_name}, #{content}, #{section_id}, #{station_id},#{remark});
     </insert>
 
     <!--删除工种-->
@@ -28,12 +28,11 @@
     <!--分页模糊查询工种信息-->
     <select id="FindWorktype" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.Worktype">
         <bind name="page" value="pageSize*(pageNo-1)"></bind>
-        SELECT w.`id`,w.`worktype_name`, w.`content`, w.`section_id`, w.`station_id`,w.`sub_id`, w.`person_count`,
-        w.`remark`,s.section_name as section_name,l.station_name as station_name,a.subcontractors_name as sub_name FROM
+        SELECT w.`id`,w.`worktype_name`, w.`content`, w.`section_id`, w.`station_id`, w.`person_count`,
+        w.`remark`,s.section_name as section_name,l.station_name as station_name FROM
         `smart_site`.`worktype` w
-        INNER JOIN `smart_site`.`section` s ON w.`section_id`=s.`id`
-        INNER JOIN `smart_site`.`station` l ON w.`station_id`=l.`id`
-        INNER JOIN `smart_site`.`subcontractors` a ON w.`sub_id`=a.`id`
+        LEFT JOIN `smart_site`.`section` s ON w.`section_id`=s.`id`
+        LEFT JOIN `smart_site`.`station` l ON w.`station_id`=l.`id`
         <where>
             w.`section_id`=#{section_id}
             <if test="worktype_name!=null and worktype_name!=''">
@@ -63,7 +62,7 @@
     <!--下拉框查询工种信息-->
     <select id="SelectWorktype" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.Worktype">
         SELECT `id`,`worktype_name` FROM `smart_site`.`worktype`
-        where section_id=#{section_id} and sub_id=#{sub_id} and `state`='显示'
+        where section_id=#{section_id} and `state`='显示'
     </select>
 
     <!--根据worktype_id查询工种信息-->

@@ -16,14 +16,18 @@ public class TrainPhoto {
     @ApiModelProperty(value = "标段id" , name = "section_id")
     private int section_id;
 
+    @ApiModelProperty(value = "备注" , name = "message")
+    private String message;
+
     public TrainPhoto(){
         super();
     }
 
-    public TrainPhoto(int id, String img_url, int section_id) {
+    public TrainPhoto(int id, String img_url, int section_id, String message) {
         this.id = id;
         this.img_url = img_url;
         this.section_id = section_id;
+        this.message = message;
     }
 
     public int getId() {
@@ -48,5 +52,13 @@ public class TrainPhoto {
 
     public void setSection_id(int section_id) {
         this.section_id = section_id;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
     }
 }

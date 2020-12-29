@@ -28,6 +28,7 @@ public class TrainContentController {
     @ApiOperation(value = "查询全部展馆体验" , notes = "")
     @PostMapping("/FindTrainContentAll")
     public List<TrainContent> FindTrainContentAll(@RequestBody Map map) {
+        System.out.println(map);
         return trainContentService.FindTrainContentAll(map);
     }
 

@@ -162,7 +162,7 @@
     <select id="CountByWorktype" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.Staff">
         SELECT COUNT(*) as `count`,worktype_id,w.worktype_name as worktype_name from `smart_site`.`staff` s
         LEFT join `smart_site`.`worktype` w on s.worktype_id=w.id
-        WHERE s.section_id=#{section_id} and s.station_id=#{station_id} and s.`worktype_id` <![CDATA[!= ]]> 1
+        WHERE s.section_id=#{section_id}  and s.`worktype_id` <![CDATA[!= ]]> 1
         GROUP BY worktype_id
     </select>
 
@@ -170,14 +170,14 @@
     <select id="CountBySub" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.Staff">
         SELECT COUNT(*) as `count`,sub_id,w.subcontractors_name as sub_name from `smart_site`.`staff` s
         LEFT join `smart_site`.`subcontractors` w on s.sub_id=w.id
-        WHERE s.section_id=#{section_id} and s.station_id=#{station_id} and s.`sub_id` <![CDATA[!= ]]> 1
+        WHERE s.section_id=#{section_id}  and s.`sub_id` <![CDATA[!= ]]> 1
         GROUP BY sub_id
     </select>
 
     <!--根据人员类型分组查询(单独站点)-->
     <select id="CountByType" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.Staff">
         SELECT COUNT(*) as `count`,`type` from `smart_site`.`staff`
-        WHERE section_id=#{section_id} and station_id=#{station_id}
+        WHERE section_id=#{section_id}
         GROUP BY `type`
     </select>
 
@@ -205,13 +205,13 @@
     <!--统计总劳务人员数(单独站点)-->
     <select id="CountByTypeLW" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.Staff">
         SELECT COUNT(*) as `count` from `smart_site`.`staff`
-        WHERE section_id=#{section_id} and `position_id`=15
+        WHERE section_id=#{section_id} and `type`='劳务人员'
     </select>
 
     <!--统计总管理人员数(单独站点)-->
     <select id="CountByTypeGL" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.Staff">
         SELECT COUNT(*) as `count` from `smart_site`.`staff`
-        WHERE section_id=#{section_id} and `position_id`!=15
+        WHERE section_id=#{section_id} and `type`!='劳务人员'
     </select>
 
     <!--按照年龄端分组查询(单独站点)-->
@@ -250,10 +250,10 @@
 
     <!--人员趋势分析-->
     <select id="StaffQs" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.Value">
-        select v.month,ifnull(b.day_value,0) AS value from past_12_month_view v
+        select v.month,ifnull(b.day_value,0) AS value from past_12_month_day v
           left join
-            (select DATE_FORMAT(t.entry_time,'%Y-%m') month,COUNT(t.id) day_value
-              from staff t WHERE t.section_id=#{section_id}
+            (select DATE_FORMAT(t.entry_time,'%d') month,COUNT(t.id) day_value
+              from staff t WHERE t.section_id=#{section_id} and DATE_FORMAT(t.`entry_time`,'%Y-%m')=DATE_FORMAT(NOW(),'%Y-%m')
               group by t.entry_time)b
               on v.month = b.month
               group by v.month

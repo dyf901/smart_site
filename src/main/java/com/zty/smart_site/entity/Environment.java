@@ -13,34 +13,34 @@ public class Environment {
     @ApiModelProperty(value = "知识名称" , name = "deviceId")
     private String deviceId;
 
-    @ApiModelProperty(value = "知识名称" , name = "pm25")
+    @ApiModelProperty(value = "PM2.5值" , name = "pm25")
     private String pm25;
 
-    @ApiModelProperty(value = "知识名称" , name = "pm10")
+    @ApiModelProperty(value = "PM10值" , name = "pm10")
     private String pm10;
 
-    @ApiModelProperty(value = "知识名称" , name = "noise")
+    @ApiModelProperty(value = "噪声" , name = "noise")
     private String noise;
 
-    @ApiModelProperty(value = "知识名称" , name = "tem")
+    @ApiModelProperty(value = "温度" , name = "tem")
     private String tem;
 
-    @ApiModelProperty(value = "知识名称" , name = "hum")
+    @ApiModelProperty(value = "湿度" , name = "hum")
     private String hum;
 
-    @ApiModelProperty(value = "知识名称" , name = "wp")
+    @ApiModelProperty(value = "风力" , name = "wp")
     private String wp;
 
-    @ApiModelProperty(value = "知识名称" , name = "ws")
+    @ApiModelProperty(value = "风速" , name = "ws")
     private String ws;
 
-    @ApiModelProperty(value = "知识名称" , name = "wd")
+    @ApiModelProperty(value = "风向" , name = "wd")
     private String wd;
 
-    @ApiModelProperty(value = "知识名称" , name = "tsp")
+    @ApiModelProperty(value = "TSP" , name = "tsp")
     private String tsp;
 
-    @ApiModelProperty(value = "知识名称" , name = "atm")
+    @ApiModelProperty(value = "大气压" , name = "atm")
     private String atm;
 
     @ApiModelProperty(value = "知识名称" , name = "datatime")

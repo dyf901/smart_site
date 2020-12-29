@@ -152,4 +152,7 @@ public interface RiskshowDao {
 
     //大屏_隐患详情
     List<Riskshow> Select_Riskshow_Month(Map map);
+
+    //根据id查询隐患记录详细信息
+    Riskshow FindRiskshowByIdDp(Map map);
 }

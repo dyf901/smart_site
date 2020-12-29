@@ -45,9 +45,9 @@ public class StaffController {
     @PostMapping("/InsertStaff")
     public JsonResult InsertStaff(@RequestBody Map map) {
         JsonResult jsonResult = new JsonResult();
-        Staff staff = staffService.FindStaffByStaff_phone(map);
-        System.out.println(staff);
-        if (staff == null) {
+//        Staff staff = staffService.FindStaffByStaff_phone(map);
+//        System.out.println(staff);
+//        if (staff == null) {
             if(!map.get("staff_address").equals("")){
                 map.put("staff_province" , ProvinceUtil.Province((String) map.get("staff_address")));
             }
@@ -57,10 +57,10 @@ public class StaffController {
             worktypeService.UpdateWorktypePerson_count(map);
             jsonResult.setMessage("增加成功!");
             return jsonResult;
-        } else {
-            jsonResult.setMessage("员工已存在或信息有误,增加失败!");
-            return jsonResult;
-        }
+//        } else {
+//            jsonResult.setMessage("员工已存在或信息有误,增加失败!");
+//            return jsonResult;
+//        }
 
 
     }

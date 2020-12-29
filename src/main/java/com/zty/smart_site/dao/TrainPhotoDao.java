@@ -23,4 +23,7 @@ public interface TrainPhotoDao {
 
     //大屏_培训相册
     List<TrainPhoto> SelectTrainPhoto(Map map);
+
+    //根据id查询培训相册信息
+    TrainPhoto FindTrainPhotoById(Map map);
 }

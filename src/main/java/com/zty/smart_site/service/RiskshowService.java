@@ -300,4 +300,10 @@ public class RiskshowService implements RiskshowDao {
     public List<Riskshow> Select_Riskshow_Month(Map map) {
         return riskshowDao.Select_Riskshow_Month(map);
     }
+
+    //根据id查询隐患记录详细信息
+    @Override
+    public Riskshow FindRiskshowByIdDp(Map map) {
+        return riskshowDao.FindRiskshowByIdDp(map);
+    }
 }

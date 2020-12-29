@@ -47,4 +47,10 @@ public class TrainPhotoService implements TrainPhotoDao {
     public List<TrainPhoto> SelectTrainPhoto(Map map) {
         return trainPhotoDao.SelectTrainPhoto(map);
     }
+
+    //根据id查询培训相册信息
+    @Override
+    public TrainPhoto FindTrainPhotoById(Map map) {
+        return trainPhotoDao.FindTrainPhotoById(map);
+    }
 }

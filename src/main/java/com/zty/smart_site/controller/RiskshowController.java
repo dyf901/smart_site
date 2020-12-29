@@ -44,8 +44,16 @@ public class RiskshowController {
         JsonResult jsonResult = new JsonResult();
         System.out.println(map);
         Staff staff=staffService.FindStaffByStaffName(map);
-        map.put("staff_id",staff.getId());
-        map.put("staff_id",staff.getStation_id());
+        System.out.println("staff:"+staff);
+        if(staff!=null){
+            map.put("staff_id",staff.getId());
+            map.put("station_id",staff.getStation_id());
+        }else {
+            map.put("staff_id",0);
+            map.put("station_id",0);
+            map.put("process_id",0);
+        }
+
 
 
         int i = riskshowService.InsertRiskshowPC(map);
@@ -329,5 +337,11 @@ public class RiskshowController {
     @PostMapping("/Select_Riskshow_Month")
     public List<Riskshow> Select_Riskshow_Month(@RequestBody Map map){
         return riskshowService.Select_Riskshow_Month(map);
+    }
+
+    @ApiOperation(value = "根据id查询隐患记录详细信息",notes = "")
+    @PostMapping("/FindRiskshowByIdDp")
+    public Riskshow FindRiskshowByIdDp(@RequestBody Map map){
+        return riskshowService.FindRiskshowByIdDp(map);
     }
 }

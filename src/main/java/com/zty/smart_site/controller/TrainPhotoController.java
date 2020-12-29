@@ -84,4 +84,10 @@ public class TrainPhotoController {
     public List<TrainPhoto> SelectTrainPhoto(@RequestBody Map map){
         return trainPhotoService.SelectTrainPhoto(map);
     }
+
+    @ApiOperation(value = "根据id查询培训相册信息",notes = "")
+    @PostMapping("/FindTrainPhotoById")
+    public TrainPhoto FindTrainPhotoById(@RequestBody Map map){
+        return trainPhotoService.FindTrainPhotoById(map);
+    }
 }
