@@ -48,4 +48,10 @@ public class ConstructionPhotoService implements ConstructionPhotoDao {
     public List<ConstructionPhoto> SelectConstructionPhoto(Map map) {
         return constructionPhotoDao.SelectConstructionPhoto(map);
     }
+
+    //根据id查询施工相册信息
+    @Override
+    public ConstructionPhoto FindConstructionPhotoById(Map map) {
+        return constructionPhotoDao.FindConstructionPhotoById(map);
+    }
 }

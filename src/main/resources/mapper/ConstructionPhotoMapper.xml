@@ -5,7 +5,7 @@
 <mapper namespace="com.zty.smart_site.dao.ConstructionPhotoDao">
     <!--增加施工相册-->
     <insert id="InsertConstructionPhoto" parameterType="java.util.Map">
-        INSERT INTO `smart_site`.`construction_photo` (`url`,`section_id`) VALUES (#{url},#{section_id});
+        INSERT INTO `smart_site`.`construction_photo` (`url`,`section_id`,`message`) VALUES (#{url},#{section_id},#{message});
     </insert>
 
     <!--删除施工相册-->
@@ -20,6 +20,9 @@
             <if test="url!=null and url!=''">
                 `url`=#{url},
             </if>
+            <if test="message!=null and message!=''">
+                `message`=#{message},
+            </if>
         </trim>
         WHERE (`id`=#{id})
     </update>
@@ -27,7 +30,7 @@
     <!--分页查询施工相册信息-->
     <select id="FindConstructionPhoto" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.ConstructionPhoto">
         <bind name="page" value="pageSize*(pageNo-1)"></bind>
-        SELECT `id`,`url` FROM `smart_site`.`construction_photo` WHERE `section_id`=#{section_id}
+        SELECT `id`,`url`,`message` FROM `smart_site`.`construction_photo` WHERE `section_id`=#{section_id}
         limit #{page},#{pageSize}
     </select>
 
@@ -39,5 +42,10 @@
     <!--大屏_施工相册-->
     <select id="SelectConstructionPhoto" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.ConstructionPhoto">
         SELECT `id`,`url` FROM `smart_site`.`construction_photo` WHERE `section_id`=#{section_id}
+    </select>
+
+    <!--根据id查询施工相册信息-->
+    <select id="FindConstructionPhotoById" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.ConstructionPhoto">
+        SELECT `id`,`url`,`message` FROM `smart_site`.`construction_photo` WHERE `id`=#{id}
     </select>
 </mapper>

@@ -23,4 +23,7 @@ public interface ConstructionPhotoDao {
 
     //大屏_施工相册
     List<ConstructionPhoto> SelectConstructionPhoto(Map map);
+
+    //根据id查询施工相册信息
+    ConstructionPhoto FindConstructionPhotoById(Map map);
 }

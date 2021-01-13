@@ -5,8 +5,8 @@
 <mapper namespace="com.zty.smart_site.dao.MilestoneDao">
     <!--增加里程碑信息-->
     <insert id="InsertMilestone" parameterType="java.util.Map">
-        INSERT INTO `smart_site`.`milestone` (`project_name`, `plan_start`, `plan_end`, `practical_start`, `practical_end`, `img_url`, `section_id`)
-        VALUES (#{project_name}, #{plan_start}, #{plan_end}, #{practical_start}, #{practical_end}, #{img_url}, #{section_id});
+        INSERT INTO `smart_site`.`milestone` (`project_name`, `plan_start`, `plan_end`, `practical_start`, `practical_end`, `img_url`, `section_id`, `message`)
+        VALUES (#{project_name}, #{plan_start}, #{plan_end}, #{practical_start}, #{practical_end}, #{img_url}, #{section_id}, #{message});
     </insert>
 
     <!--删除里程碑信息-->
@@ -36,6 +36,9 @@
         <if test="img_url!=null and img_url!=''">
             `img_url`=#{img_url},
         </if>
+        <if test="message!=null and message!=''">
+                `message`=#{message},
+        </if>
     </trim>
         WHERE (`id`=#{id})
     </update>
@@ -43,7 +46,7 @@
     <!--分页查询里程碑信息-->
     <select id="FindMilestone" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.Milestone">
         <bind name="page" value="pageSize*(pageNo-1)"></bind>
-        SELECT `id`, `project_name`, `plan_start`, `plan_end`, `practical_start`, `practical_end`, `img_url` FROM `smart_site`.`milestone`
+        SELECT `id`, `project_name`, `plan_start`, `plan_end`, `practical_start`, `practical_end`, `img_url`, `message` FROM `smart_site`.`milestone`
         WHERE `section_id`=#{section_id}
         limit #{page},#{pageSize}
     </select>
@@ -55,7 +58,13 @@
 
     <!--大屏_里程碑信息-->
     <select id="SelectMilestone" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.Milestone">
-        SELECT `id`, `project_name`, `plan_start`, `plan_end`, `practical_start`, `practical_end`, `img_url` FROM `smart_site`.`milestone`
+        SELECT `id`, `project_name`, `plan_start`, `plan_end`, `practical_start`, `practical_end`, `img_url`, `message` FROM `smart_site`.`milestone`
         WHERE `section_id`=#{section_id}
+    </select>
+
+    <!--根据id查询里程碑信息-->
+    <select id="FindMilestoneById" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.Milestone">
+        SELECT `id`, `project_name`, `plan_start`, `plan_end`, `practical_start`, `practical_end`, `img_url`, `message` FROM `smart_site`.`milestone`
+        WHERE `id`=#{id}
     </select>
 </mapper>

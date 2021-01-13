@@ -82,4 +82,10 @@ public class ConstructionPhotoController {
     public List<ConstructionPhoto> SelectConstructionPhoto(@RequestBody Map map){
         return constructionPhotoService.SelectConstructionPhoto(map);
     }
+
+    @ApiOperation(value = "根据id查询施工相册信息",notes = "")
+    @PostMapping("/FindConstructionPhotoById")
+    public ConstructionPhoto FindConstructionPhotoById(@RequestBody Map map){
+        return constructionPhotoService.FindConstructionPhotoById(map);
+    }
 }

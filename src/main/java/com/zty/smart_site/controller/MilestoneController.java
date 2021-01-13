@@ -82,4 +82,10 @@ public class MilestoneController {
     public List<Milestone> SelectMilestone(@RequestBody Map map){
         return milestoneService.SelectMilestone(map);
     }
+
+    @ApiOperation(value = "根据id查询里程碑信息",notes = "")
+    @PostMapping("/FindMilestoneById")
+    public Milestone FindMilestoneById(@RequestBody Map map){
+        return milestoneService.FindMilestoneById(map);
+    }
 }

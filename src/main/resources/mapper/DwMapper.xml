@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zty.smart_site.dao.DwDao">
+    <!--修改-->
+    <insert id="InsertDw" parameterType="java.util.Map">
+        INSERT INTO `smart_site`.`dw` (`carId`, `lonc`, `latc`, `speed`, `uptime`) VALUES (#{carId}, #{lonc}, #{latc}, #{speed}, now());
+    </insert>
+
+    <!---->
+    <update id="UpdateDw" parameterType="java.util.Map">
+        UPDATE `smart_site`.`dw` SET `lonc`=#{lonc}, `latc`=#{latc}, `speed`=#{speed} WHERE (`carId`=#{carId});
+    </update>
+
+    <!--查询-->
+    <select id="FindDw" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.Dw">
+        Select * FROM `smart_site`.`dw`
+        ORDER BY `carId` ASC
+    </select>
+
+    <!--查询-->
+    <select id="FindDwBycarId" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.Dw">
+        Select * FROM `smart_site`.`dw` WHERE `carId`=#{carId}
+    </select>
+</mapper>

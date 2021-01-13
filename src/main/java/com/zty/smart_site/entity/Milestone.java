@@ -33,11 +33,14 @@ public class Milestone {
     @ApiModelProperty(value = "图片地址" , name = "img_url")
     private String img_url;
 
+    @ApiModelProperty(value = "备注" , name = "message")
+    private String message;
+
     public Milestone(){
         super();
     }
 
-    public Milestone(int id, int section_id, String project_name, Date plan_start, Date plan_end, Date practical_start, Date practical_end, String img_url) {
+    public Milestone(int id, int section_id, String project_name, Date plan_start, Date plan_end, Date practical_start, Date practical_end, String img_url, String message) {
         this.id = id;
         this.section_id = section_id;
         this.project_name = project_name;
@@ -46,6 +49,7 @@ public class Milestone {
         this.practical_start = practical_start;
         this.practical_end = practical_end;
         this.img_url = img_url;
+        this.message = message;
     }
 
     public int getId() {
@@ -110,6 +114,14 @@ public class Milestone {
 
     public void setSection_id(int section_id) {
         this.section_id = section_id;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
     }
 
     @Override

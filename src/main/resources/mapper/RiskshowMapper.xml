@@ -80,7 +80,7 @@
     <select id="FindRiskshow_JCJL" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.Riskshow">
         <bind name="page" value="pageSize*(pageNo-1)"></bind>
         SELECT r.`id`, r.`risk_id`, r.`staff_id`, r.`process_id`, r.`section_id`, r.`station_id`, r.`sub_id`,
-        r.`responsible`, r.`description`, r.`uptime`, r.`url`, r.`active`,r.`title`,a.`risk_category` as
+        r.`responsible`, r.`description`, r.`uptime`, r.`url`, r.`active`,r.`title`,r.`plan_time`,r.`zg_url`,r.`zg_description`,a.`risk_category` as
         risk_name,s.`station_name` as station_name,l.`subcontractors_name` as `sub_name`,p.`process_name` as
         `process_name`,z.`staff_name` as `staff_name` FROM `smart_site`.`riskshow` r
         LEFT JOIN `smart_site`.`risk` a ON r.`risk_id`=a.`id`
@@ -102,7 +102,7 @@
     <select id="FindRiskshow_WXJL" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.Riskshow">
         <bind name="page" value="pageSize*(pageNo-1)"></bind>
         SELECT r.`id`, r.`risk_id`, r.`staff_id`, r.`process_id`, r.`section_id`, r.`station_id`, r.`sub_id`,
-        r.`responsible`, r.`description`, r.`uptime`, r.`url`, r.`active`,r.`title`,a.`risk_category` as
+        r.`responsible`, r.`description`, r.`uptime`, r.`url`, r.`active`,r.`title`,r.`plan_time`,r.`zg_url`,r.`zg_description`,a.`risk_category` as
         risk_name,s.`station_name` as station_name,l.`subcontractors_name` as `sub_name`,p.`process_name` as
         `process_name`,z.`staff_name` as `staff_name` FROM `smart_site`.`riskshow` r
         LEFT JOIN `smart_site`.`risk` a ON r.`risk_id`=a.`id`
@@ -124,7 +124,7 @@
     <select id="FindRiskshow_DZG" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.Riskshow">
         <bind name="page" value="pageSize*(pageNo-1)"></bind>
         SELECT r.`id`, r.`risk_id`, r.`staff_id`, r.`process_id`, r.`section_id`, r.`station_id`, r.`sub_id`,
-        r.`responsible`, r.`description`, r.`uptime`,r.`plan_time`, r.`url`, r.`active`,r.`title`,a.`risk_category` as
+        r.`responsible`, r.`description`, r.`uptime`,r.`plan_time`, r.`url`, r.`active`,r.`title`,r.`plan_time`,r.`zg_url`,r.`zg_description`,a.`risk_category` as
         risk_name,s.`station_name` as station_name,l.`subcontractors_name` as `sub_name`,p.`process_name` as
         `process_name`,z.`staff_name` as `staff_name` FROM `smart_site`.`riskshow` r
         LEFT JOIN `smart_site`.`risk` a ON r.`risk_id`=a.`id`
@@ -146,7 +146,7 @@
     <select id="FindRiskshow_ZGFC" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.Riskshow">
         <bind name="page" value="pageSize*(pageNo-1)"></bind>
         SELECT r.`id`, r.`risk_id`, r.`staff_id`, r.`process_id`, r.`section_id`, r.`station_id`, r.`sub_id`,
-        r.`responsible`, r.`description`, r.`uptime`, r.`url`, r.`active`,r.`title`,a.`risk_category` as
+        r.`responsible`, r.`description`, r.`uptime`, r.`url`, r.`active`,r.`title`,r.`plan_time`,r.`zg_url`,r.`zg_description`,a.`risk_category` as
         risk_name,s.`station_name` as station_name,l.`subcontractors_name` as `sub_name`,p.`process_name` as
         `process_name`,z.`staff_name` as `staff_name` FROM `smart_site`.`riskshow` r
         LEFT JOIN `smart_site`.`risk` a ON r.`risk_id`=a.`id`
@@ -315,7 +315,7 @@
     <select id="find_riskshow_awarda" resultType="java.util.Map">
         select * from (select SUM(integral) as awarda,s.*,w.worktype_name as bz from riskshow r INNER JOIN staff s on
         r.staff_id=s.id LEFT JOIN worktype w on w.id=s.worktype_id where
-        (date_format(uptime,'%Y-%m')=date_format(now(),'%Y-%m')) and r.state='有效' and r.section_id=#{section_id} GROUP
+         r.state='有效' and r.section_id=#{section_id} GROUP
         BY staff_id) as t ORDER BY t.awarda desc limit 3;
     </select>
 

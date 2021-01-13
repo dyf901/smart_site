@@ -48,4 +48,10 @@ public class MilestoneService implements MilestoneDao {
     public List<Milestone> SelectMilestone(Map map) {
         return milestoneDao.SelectMilestone(map);
     }
+
+    //根据id查询里程碑信息
+    @Override
+    public Milestone FindMilestoneById(Map map) {
+        return milestoneDao.FindMilestoneById(map);
+    }
 }

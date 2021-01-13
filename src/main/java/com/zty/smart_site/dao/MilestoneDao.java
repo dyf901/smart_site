@@ -23,4 +23,7 @@ public interface MilestoneDao {
 
     //大屏_里程碑信息
     List<Milestone> SelectMilestone(Map map);
+
+    //根据id查询里程碑信息
+    Milestone FindMilestoneById(Map map);
 }
