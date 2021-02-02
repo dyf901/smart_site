@@ -8,6 +8,8 @@ import net.sf.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -26,6 +28,10 @@ public class DwController {
        if (dw==null){
            dwService.InsertDw(map);
        }else {
+           SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+           Date now = new Date();
+           String time = format.format(now);
+           map.put("uptime",time);
            dwService.UpdateDw(map);
        }
     }
@@ -36,5 +42,15 @@ public class DwController {
 
 
        return dwService.FindDw();
+    }
+
+    @RequestMapping("ceshi")
+    public String ceshi(@RequestParam String name){
+        if (name.equals("张")){
+            return "长城";
+        }else if (name.equals("代")){
+            return "逸飞";
+        }
+        return "空!";
     }
 }

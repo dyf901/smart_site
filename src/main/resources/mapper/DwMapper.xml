@@ -5,12 +5,33 @@
 <mapper namespace="com.zty.smart_site.dao.DwDao">
     <!--修改-->
     <insert id="InsertDw" parameterType="java.util.Map">
-        INSERT INTO `smart_site`.`dw` (`carId`, `lonc`, `latc`, `speed`, `uptime`) VALUES (#{carId}, #{lonc}, #{latc}, #{speed}, now());
+        INSERT INTO `smart_site`.`dw` (`carId`, `lonc`, `latc`, `speed`, `uptime`, `carNO`, `dir`) VALUES (#{carId}, #{lonc}, #{latc}, #{speed}, now(),#{carNO},#{dir});
     </insert>
 
     <!---->
     <update id="UpdateDw" parameterType="java.util.Map">
-        UPDATE `smart_site`.`dw` SET `lonc`=#{lonc}, `latc`=#{latc}, `speed`=#{speed} WHERE (`carId`=#{carId});
+        UPDATE `smart_site`.`dw`
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="lonc!=null and lonc!=''">
+                `lonc`=#{lonc},
+            </if>
+            <if test="latc!=null and latc!=''">
+                `latc`=#{latc},
+            </if>
+            <if test="speed!=null and speed!=''">
+                `speed`=#{speed},
+            </if>
+            <if test="carNO!=null and carNO!=''">
+                `carNO`=#{carNO},
+            </if>
+            <if test="dir!=null and dir!=''">
+                `dir`=#{dir},
+            </if>
+            <if test="uptime!=null and uptime!=''">
+                `uptime`=#{uptime},
+            </if>
+        </trim>
+        WHERE (`carId`=#{carId})
     </update>
 
     <!--查询-->

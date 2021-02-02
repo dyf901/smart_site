@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zty.smart_site.dao.AiMonitoringDao">
+    <!--增加Ai监控信息-->
+    <insert id="InsertAiMonitoring" parameterType="java.util.Map">
+        INSERT INTO `smart_site`.`ai_monitoring` (`deviceid`, `cip`, `datetime`, `option`, `department`, `img`) VALUES (#{deviceid}, #{cip}, #{datetime}, #{option}, #{department}, #{img});
+    </insert>
+
+    <!--查询Ai监控信息-->
+    <select id="FindAiMonitoring" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.AiMonitoring">
+        SELECT `id`, `deviceid`, `cip`, `datetime`, `option`, `department`, `img` FROM `smart_site`.`ai_monitoring`
+        <where>
+            <if test="option!=null and option!=''">
+                and `option`=#{option}
+            </if>
+        </where>
+        ORDER BY `datetime` DESC
+    </select>
+
+    <!--下拉框状态-->
+    <select id="SelectOption" parameterType="java.util.Map" resultType="com.zty.smart_site.entity.AiMonitoring">
+        SELECT `id`, `option` FROM `smart_site`.`ai_monitoring`
+        GROUP BY `option`
+    </select>
+</mapper>
